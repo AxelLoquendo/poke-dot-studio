@@ -221,7 +221,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" unique_id=1582396213 groups=["Player"]]
+[node name="Player" type="Node2D" unique_id=1582396213]
 script = ExtResource("1_ohkui")
 
 [node name="Character" type="Node2D" parent="." unique_id=743704339]
@@ -244,8 +244,8 @@ script = ExtResource("7_kqq6a")
 [node name="CharacterController" type="Node2D" parent="." unique_id=30566097]
 script = ExtResource("8_o1da6")
 
-[node name="CharacterAnimatedController" type="Node2D" parent="." unique_id=96399635]
-script = ExtResource("8_3s2t1")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1290034630]
 zoom = Vector2(2, 2)
+
+[node name="CharacterAnimatedController" type="Node2D" parent="." unique_id=96399635]
+script = ExtResource("8_3s2t1")

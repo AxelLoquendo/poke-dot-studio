@@ -1,16 +1,66 @@
-# Godot 4+ specific ignores
+# ==============================================================================
+# Godot 4.4+ Core (¡Preparado para el Engine!)
+# ==============================================================================
 .godot/
-.nomedia
 
-# Godot-specific ignores
-.import/
+# Carpetas de compilación y exportación de plataformas nativas
+/android/
+/ios/
+/macos/
+/windows/
+/linux/
+/export/
+/build/
+
+# Archivos temporales y generados automáticamente por el motor
+*.remap
+*.translation
+*.cache
+*.autosave
+
+# NOTA DE SEGURIDAD PARA EL ENGINE:
+# *.uid y la carpeta .import/ NO se ignoran. Deben versionarse en Git para 
+# garantizar la consistencia de los Autoloads y recursos compartidos mediante UIDs.
+
+# ==============================================================================
+# Credenciales y Configuraciones Locales
+# ==============================================================================
 export.cfg
 export_credentials.cfg
 
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
+# ==============================================================================
+# Soporte para C# / .NET (Mono) y C++ (GDExtension)
+# ==============================================================================
 .mono/
 data_*/
 mono_crash.*.json
+.csproj
+.sln
+.nuget/
+
+# Binarios de extensiones nativas C++ (si se compilan localmente)
+.sconsign.dblite
+*.godot.*.o
+*.godot.*.a
+*.godot.*.so
+*.godot.*.dylib
+*.godot.*.dll
+bin/
+
+# ==============================================================================
+# Herramientas de Desarrollo y Editores
+# ==============================================================================
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docuser
+
+# ==============================================================================
+# Archivos Basura del Sistema Operativo
+# ==============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
