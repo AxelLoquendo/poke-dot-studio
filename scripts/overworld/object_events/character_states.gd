@@ -38,7 +38,7 @@ func change_state(new_state: State) -> void:
 func on_state_changed() -> void:
 	match current_state:
 		State.IDLE:
-			animation_controller.play_idle_animation(controller.direction)
+			animation_controller.play_idle_animation(controller.last_direction)
 
 		State.WALK:
 			pass
@@ -48,7 +48,7 @@ func on_state_changed() -> void:
 
 
 func idle(_delta: float) -> void:
-	if controller.get_direction() != Vector2.ZERO:
+	if controller.moving:
 		change_state(State.WALK)
 	else:
 		animation_controller.play_idle_animation(controller.last_direction)
@@ -58,8 +58,7 @@ func walk(_delta: float) -> void:
 	if controller.moving:
 		return
 
-	if controller.get_direction() == Vector2.ZERO:
-		change_state(State.IDLE)
+	change_state(State.IDLE)
 
 
 func run(_delta: float) -> void:
