@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var character: Character = $"../Character"
 @onready var character_controller: CharacterController = $"../CharacterController"
+@onready var move_route_controller: MoveRouteController = $"../MoveRouteController"
 
 # ============================================================
 # CONSTANTES
@@ -100,7 +101,11 @@ func process_wander(delta: float) -> void:
 	wander_timer = WANDER_DELAY
 
 func process_patrol(_delta: float) -> void:
-	pass
+	if npc_data.move_route == null:
+		return
+
+	if not move_route_controller.executing:
+		move_route_controller.start_route(npc_data.move_route)
 
 
 func process_follow(_delta: float) -> void:

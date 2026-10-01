@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MoveRoute" format=3 uid="uid://dg0dbixifstat"]
+
+[ext_resource type="Script" uid="uid://di17bd60fi6e6" path="res://scripts/overworld/object_events/movement/move_command.gd" id="1_kturt"]
+[ext_resource type="Script" uid="uid://cjds8o7m4flhg" path="res://scripts/overworld/object_events/movement/move_route.gd" id="2_y4lla"]
+
+[sub_resource type="Resource" id="Resource_kturt"]
+script = ExtResource("1_kturt")
+type = 5
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[resource]
+script = ExtResource("2_y4lla")
+commands = Array[ExtResource("1_kturt")]([SubResource("Resource_kturt")])
+metadata/_custom_type_script = "uid://cjds8o7m4flhg"
