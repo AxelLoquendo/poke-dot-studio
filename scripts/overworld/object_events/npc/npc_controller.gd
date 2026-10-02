@@ -10,6 +10,8 @@ extends Node2D
 # ============================================================
 const LOOK_AROUND_DELAY: float = 0.8
 const WANDER_DELAY: float = 0.8
+const FOLLOW_DISTANCE: float = 32.0
+const FOLLOW_DELAY: float = 0.2
 
 # ============================================================
 # VARIABLES
@@ -18,6 +20,9 @@ var npc_data: NPCData
 
 var look_around_timer: float = 0.0
 var wander_timer: float = 0.0
+
+var patrol_started: bool = false
+var follow_timer: float = 0.0
 
 # ============================================================
 # INICIALIZACIÓN
@@ -103,13 +108,37 @@ func process_wander(delta: float) -> void:
 func process_patrol(_delta: float) -> void:
 	if npc_data.move_route == null:
 		return
+	if patrol_started:
+		return
+	patrol_started = true
+	move_route_controller.start_route(npc_data.move_route)
 
-	if not move_route_controller.executing:
-		move_route_controller.start_route(npc_data.move_route)
-
-
-func process_follow(_delta: float) -> void:
-	pass
+func process_follow(delta: float) -> void:
+	if character_controller.moving:
+		return
+	if follow_timer > 0.0:
+		follow_timer -= delta
+		return
+	var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
+	if player == null:
+		return
+	var player_controller: CharacterController = \
+		player.get_node("CharacterController") as CharacterController
+	if player_controller == null:
+		return
+	var player_position: Vector2 = player_controller.get_character_position()
+	var npc_position: Vector2 = character_controller.get_character_position()
+	var offset: Vector2 = player_position - npc_position
+	var distance: float = offset.length()
+	if distance <= FOLLOW_DISTANCE:
+		return
+	var direction: Vector2
+	if abs(offset.x) > abs(offset.y):
+		direction = Vector2.RIGHT if offset.x > 0.0 else Vector2.LEFT
+	else:
+		direction = Vector2.DOWN if offset.y > 0.0 else Vector2.UP
+	character_controller.request_move(direction)
+	follow_timer = FOLLOW_DELAY
 
 # ============================================================
 # MOVIMIENTO

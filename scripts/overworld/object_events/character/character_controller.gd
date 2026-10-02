@@ -172,6 +172,9 @@ func look_direction(new_direction: Vector2) -> void:
 
 	animation_controller.play_idle_animation(new_direction)
 
+func get_character_position() -> Vector2:
+	return character.global_position
+
 # ============================================================
 # GRID
 # ============================================================

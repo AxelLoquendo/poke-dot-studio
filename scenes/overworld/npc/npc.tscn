@@ -14,7 +14,7 @@
 
 [sub_resource type="Resource" id="Resource_ocu5l"]
 script = ExtResource("2_p4iet")
-behavior = 3
+behavior = 4
 move_route = ExtResource("2_tf7rx")
 id = &"PROFESOR_OAK"
 ow = 1

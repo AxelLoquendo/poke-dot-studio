@@ -5,10 +5,11 @@
 
 [sub_resource type="Resource" id="Resource_kturt"]
 script = ExtResource("1_kturt")
-type = 5
+type = 6
 metadata/_custom_type_script = "uid://di17bd60fi6e6"
 
 [resource]
 script = ExtResource("2_y4lla")
 commands = Array[ExtResource("1_kturt")]([SubResource("Resource_kturt")])
+loop = false
 metadata/_custom_type_script = "uid://cjds8o7m4flhg"

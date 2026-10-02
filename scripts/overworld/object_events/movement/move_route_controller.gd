@@ -65,7 +65,17 @@ func execute_command(command: MoveCommand) -> void:
 		MoveCommand.Type.MOVE_FORWARD:
 			character_controller.request_move(character_controller.last_direction)
 		MoveCommand.Type.MOVE_TOWARD_PLAYER:
-			character_controller.request_move(get_direction_to_player())
+			var direction: Vector2 = get_direction_to_player()
+			if direction == Vector2.ZERO:
+				finish_command()
+			else:
+				character_controller.request_move(direction)
+		MoveCommand.Type.MOVE_AWAY_FROM_PLAYER:
+			var direction: Vector2 = get_direction_away_from_player()
+			if direction == Vector2.ZERO:
+				finish_command()
+			else:
+				character_controller.request_move(direction)
 		MoveCommand.Type.TURN_UP:
 			character_controller.look_direction(Vector2.UP)
 			finish_command()
@@ -104,22 +114,42 @@ func start_wait(duration: float) -> void:
 
 func get_direction_to_player() -> Vector2:
 	var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
+	if player == null:
+		return Vector2.ZERO
+	var player_controller: CharacterController = \
+		player.get_node("CharacterController") as CharacterController
+	if player_controller == null:
+		return Vector2.ZERO
+	var player_position: Vector2 = player_controller.get_character_position()
+	var character_position: Vector2 = character_controller.get_character_position()
+	var offset: Vector2 = player_position - character_position
+	if abs(offset.x) > abs(offset.y):
+		return Vector2.RIGHT if offset.x > 0.0 else Vector2.LEFT
+	if offset.y != 0.0:
+		return Vector2.DOWN if offset.y > 0.0 else Vector2.UP
+	return Vector2.ZERO
 
-	print("PLAYER ENCONTRADO: ", player)
+func get_direction_away_from_player() -> Vector2:
+	var player: Node2D = get_tree().get_first_node_in_group("Player") as Node2D
 
 	if player == null:
 		return Vector2.ZERO
 
-	var offset: Vector2 = player.global_position - character_controller.global_position
+	var player_controller: CharacterController = \
+		player.get_node("CharacterController") as CharacterController
 
-	print("NPC: ", character_controller.global_position)
-	print("PLAYER: ", player.global_position)
-	print("OFFSET: ", offset)
+	if player_controller == null:
+		return Vector2.ZERO
+
+	var player_position: Vector2 = player_controller.get_character_position()
+	var character_position: Vector2 = character_controller.get_character_position()
+
+	var offset: Vector2 = player_position - character_position
+
+	if offset == Vector2.ZERO:
+		return Vector2.ZERO
 
 	if abs(offset.x) > abs(offset.y):
-		return Vector2.RIGHT if offset.x > 0.0 else Vector2.LEFT
+		return Vector2.LEFT if offset.x > 0.0 else Vector2.RIGHT
 
-	if offset.y != 0.0:
-		return Vector2.DOWN if offset.y > 0.0 else Vector2.UP
-
-	return Vector2.ZERO
+	return Vector2.UP if offset.y > 0.0 else Vector2.DOWN
