@@ -5,11 +5,47 @@
 
 [sub_resource type="Resource" id="Resource_kturt"]
 script = ExtResource("1_kturt")
-type = 6
+type = 2
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_dhr15"]
+script = ExtResource("1_kturt")
+type = 2
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_3o5p3"]
+script = ExtResource("1_kturt")
+type = 2
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_csh5y"]
+script = ExtResource("1_kturt")
+type = 13
+parameter = 0.5
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_qknfe"]
+script = ExtResource("1_kturt")
+type = 3
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_1vmbk"]
+script = ExtResource("1_kturt")
+type = 3
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_t362i"]
+script = ExtResource("1_kturt")
+type = 3
+metadata/_custom_type_script = "uid://di17bd60fi6e6"
+
+[sub_resource type="Resource" id="Resource_y4lla"]
+script = ExtResource("1_kturt")
+type = 13
+parameter = 0.5
 metadata/_custom_type_script = "uid://di17bd60fi6e6"
 
 [resource]
 script = ExtResource("2_y4lla")
-commands = Array[ExtResource("1_kturt")]([SubResource("Resource_kturt")])
-loop = false
+commands = Array[ExtResource("1_kturt")]([SubResource("Resource_kturt"), SubResource("Resource_dhr15"), SubResource("Resource_3o5p3"), SubResource("Resource_csh5y"), SubResource("Resource_qknfe"), SubResource("Resource_1vmbk"), SubResource("Resource_t362i"), SubResource("Resource_y4lla")])
 metadata/_custom_type_script = "uid://cjds8o7m4flhg"
