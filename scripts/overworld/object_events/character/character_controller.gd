@@ -3,48 +3,50 @@ extends Node2D
 
 @onready var character: Node2D = $"../Character"
 @onready var animation_controller: CharacterAnimatedController = $"../CharacterAnimatedController"
-
-## Opcional: arrastra el AudioStreamPlayer hijo, o créalo en código.
 @onready var bump_player: AudioStreamPlayer = get_node_or_null("BumpSound") as AudioStreamPlayer
-
 @export var bump_sound: AudioStream
-
+# ============================================================
+# SEÑALES
+# ============================================================
 signal movement_finished
 signal movement_blocked
-
+# ============================================================
+# CONSTANTES
+# ============================================================
 const TILE_SIZE: float = 16.0
 const MOVE_SPEED: float = 64.0
 const HOLD_THRESHOLD: float = 0.12
-## Mismo ritmo aproximado que un paso (16/64 = 0.25 s)
 const BUMP_COOLDOWN: float = 0.25
-const BUMP_ANIM_SPEED: float = 0.1
-
+const BUMP_ANIM_SPEED: float = 1.0
+# ============================================================
+# VARIABLES
+# ============================================================
 var current_position: Vector2
 var initial_position: Vector2
 var target_position: Vector2
-
 var moving: bool = false
-
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.DOWN
-
 var move_progress: float = 0.0
-
 var input_direction: Vector2 = Vector2.ZERO
 var hold_time: float = 0.0
 var waiting_for_move: bool = false
-
 var external_move: bool = false
 var depth_priority: int = 2
-
 var bump_cooldown: float = 0.0
 
+# ============================================================
+# FUNCIONES
+# ============================================================
 func _ready() -> void:
 	character.global_position = snap_to_grid(character.global_position)
 	current_position = character.global_position
 	initial_position = character.global_position
 	target_position = character.global_position
 	update_depth()
+
+func is_bumping() -> bool:
+	return bump_cooldown > 0.0
 
 func set_direction(new_direction: Vector2) -> void:
 	input_direction = new_direction
@@ -64,8 +66,11 @@ func request_move(new_direction: Vector2) -> void:
 		external_move = false
 
 func process_movement(delta: float) -> void:
+	var was_bumping: bool = bump_cooldown > 0.0
 	if bump_cooldown > 0.0:
 		bump_cooldown = maxf(bump_cooldown - delta, 0.0)
+		if was_bumping and bump_cooldown <= 0.0 and not moving:
+			animation_controller.play_idle_animation(last_direction)
 	if moving:
 		process_move(delta)
 		return
@@ -136,7 +141,6 @@ func _play_bump_animation() -> void:
 		return
 	sprite.speed_scale = BUMP_ANIM_SPEED
 	animation_controller.play_step_animation(direction)
-	# Restaurar velocidad al terminar (o tras el cooldown)
 	_restore_anim_speed_after_bump(sprite)
 
 func _restore_anim_speed_after_bump(sprite: AnimatedSprite2D) -> void:
