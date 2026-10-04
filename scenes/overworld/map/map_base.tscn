@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://nvm4yd1qhavb"]
+
+[ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="1_d5g20"]
+[ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_i3vuo"]
+
+[sub_resource type="Resource" id="Resource_kturt"]
+script = ExtResource("1_d5g20")
+metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
+
+[node name="Map_Attributes" type="Node2D" unique_id=1993050852]
+script = ExtResource("1_i3vuo")
+attributes = SubResource("Resource_kturt")
+
+[node name="Tileset" type="Node2D" parent="." unique_id=261736993]
+
+[node name="Tile0" type="TileMapLayer" parent="Tileset" unique_id=1436758875]
+
+[node name="Tile1" type="TileMapLayer" parent="Tileset" unique_id=497837947]
+
+[node name="Tile2" type="TileMapLayer" parent="Tileset" unique_id=727004056]
+
+[node name="Tile3" type="TileMapLayer" parent="Tileset" unique_id=562314614]
+
+[node name="Tile4" type="TileMapLayer" parent="Tileset" unique_id=826873359]
+
+[node name="Behaviour" type="Node2D" parent="." unique_id=1681849792]
+
+[node name="Collision" type="TileMapLayer" parent="Behaviour" unique_id=630593805]
+
+[node name="Borde" type="TileMapLayer" parent="Behaviour" unique_id=48474854]
+
+[node name="EventObject" type="Node2D" parent="." unique_id=1092069242]
+
+[node name="Trigger" type="Node2D" parent="." unique_id=564404473]

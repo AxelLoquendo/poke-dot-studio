@@ -2,11 +2,15 @@ class_name MapSection
 extends RefCounted
 
 enum MapID {
-	MAPSEC_PALLET_TOWN,
-	MAPSEC_ROUTE_1,
+	NONE,
+	MAPSEC_PUEBLO_INICIO,
+	MAPSEC_RUTA_1,
+	MAPSEC_CIUDAD_LUGANO,
+	MAPSEC_RUTA_2,
 }
 
 enum RegionID {
+	NONE,
 	KANTO,
 	JHOTO,
 	HOENN,
@@ -19,6 +23,8 @@ enum RegionID {
 }
 
 const MAP_SCENES: Dictionary = {
-	MapID.MAPSEC_PALLET_TOWN: "res://maps/kanto/pallet_town.tscn",
-	MapID.MAPSEC_ROUTE_1: "res://maps/kanto/route_1.tscn",
+	MapID.MAPSEC_PUEBLO_INICIO: "res://scenes/overworld/map/pueblo_inicio/pueblo_inicio.tscn",
+	MapID.MAPSEC_RUTA_1: "res://scenes/overworld/map/ruta_1/ruta_1.tscn",
+	MapID.MAPSEC_CIUDAD_LUGANO: "res://scenes/overworld/map/ciudad_lugano/ciudad_lugano.tscn",
+	MapID.MAPSEC_RUTA_2: "res://scenes/overworld/map/ruta_2/ruta_2.tscn",
 }

@@ -26,6 +26,10 @@ window/size/viewport_height=384
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/map_creator/plugin.cfg", "res://addons/map_editor/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
