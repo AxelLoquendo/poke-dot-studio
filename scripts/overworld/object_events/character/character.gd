@@ -2,6 +2,8 @@
 extends Node
 class_name Character
 
+const TILE_SIZE: float = 16.0
+
 @export var data: CharacterBase:
 	set(value):
 		data = value
@@ -62,6 +64,13 @@ func update_ow_sprite(texture: Texture2D) -> void:
 				atlas_1.atlas = texture
 				atlas_1.region = Rect2(Vector2(1, y) * frame_size, frame_size)
 				OwSprite.sprite_frames.set_frame(animation_name, 1, atlas_1)
+	_alinear_a_casilla(frame_size)
+
+func _alinear_a_casilla(frame_size: Vector2) -> void:
+	if OwSprite == null:
+		return
+	OwSprite.centered = true
+	OwSprite.position = Vector2(TILE_SIZE * 0.5, TILE_SIZE - frame_size.y * 0.5)
 
 func play_animation(animation_name: String) -> void:
 	OwSprite.play(animation_name)

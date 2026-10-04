@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="1_d5g20"]
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_i3vuo"]
+[ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="3_m4svl"]
+[ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="4_gl05j"]
 
 [sub_resource type="Resource" id="Resource_kturt"]
 script = ExtResource("1_d5g20")
@@ -32,3 +34,9 @@ attributes = SubResource("Resource_kturt")
 [node name="EventObject" type="Node2D" parent="." unique_id=1092069242]
 
 [node name="Trigger" type="Node2D" parent="." unique_id=564404473]
+
+[node name="MapMusicController" type="Node2D" parent="." unique_id=1712646082]
+script = ExtResource("3_m4svl")
+
+[node name="MapBorderController" type="Node2D" parent="." unique_id=1618371318]
+script = ExtResource("4_gl05j")

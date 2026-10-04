@@ -1,5 +1,4 @@
 extends Node
-class_name MusicManager
 ## Sistema global de reproducción de música.
 ##
 ## Debe registrarse como Autoload.

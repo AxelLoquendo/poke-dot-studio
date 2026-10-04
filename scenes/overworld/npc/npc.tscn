@@ -229,17 +229,17 @@ animations = [{
 script = ExtResource("1_g2w0f")
 
 [node name="Character" type="Node2D" parent="." unique_id=1042318258]
-position = Vector2(8, 0)
 script = ExtResource("1_p4iet")
 data = SubResource("Resource_ocu5l")
 
 [node name="Shadow" type="Sprite2D" parent="Character" unique_id=1564293493]
 modulate = Color(1, 1, 1, 0.4509804)
 z_index = -1
-position = Vector2(-0.5, 11)
+position = Vector2(8, 11)
 texture = ExtResource("1_xq8s2")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Character" unique_id=10191544]
+position = Vector2(8, 0)
 sprite_frames = SubResource("SpriteFrames_jjxhw")
 animation = &"Idle_Down"
 
