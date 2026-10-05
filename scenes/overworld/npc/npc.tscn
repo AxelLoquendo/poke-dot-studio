@@ -16,6 +16,7 @@
 script = ExtResource("2_p4iet")
 behavior = 3
 move_route = ExtResource("2_tf7rx")
+walk = 3.0
 id = &"PROFESOR_OAK"
 ow = 1
 name = "Prof. Oak"

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://djpl5n6524dmw"]
+
+[ext_resource type="Script" uid="uid://cxbeyl8uwxysm" path="res://scripts/overworld/object_events/game/game_session.gd" id="1_60jme"]
+[ext_resource type="PackedScene" uid="uid://d21xcd02bjjna" path="res://scenes/overworld/player/player.tscn" id="2_yojri"]
+[ext_resource type="Script" uid="uid://3hqxkcbg5078" path="res://scripts/overworld/object_events/game/game_start_data.gd" id="3_awcbw"]
+[ext_resource type="Script" uid="uid://dyoc2mykofmlf" path="res://scripts/overworld/map/map_manager.gd" id="3_igv5w"]
+
+[sub_resource type="Resource" id="Resource_huxmy"]
+script = ExtResource("3_awcbw")
+start_map_id = 1
+start_position = Vector2i(13, 8)
+metadata/_custom_type_script = "uid://3hqxkcbg5078"
+
+[node name="GameSession" type="Node" unique_id=340036627]
+script = ExtResource("1_60jme")
+start_data = SubResource("Resource_huxmy")
+
+[node name="Player" parent="." unique_id=1582396213 instance=ExtResource("2_yojri")]
+
+[node name="MapManager" type="Node" parent="." unique_id=539829925]
+script = ExtResource("3_igv5w")

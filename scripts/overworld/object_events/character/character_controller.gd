@@ -1,26 +1,22 @@
 class_name CharacterController
 extends Node2D
 
+@onready var entity_root: Node2D = get_parent() as Node2D
 @onready var character: Node2D = $"../Character"
 @onready var animation_controller: CharacterAnimatedController = $"../CharacterAnimatedController"
 @onready var bump_player: AudioStreamPlayer = get_node_or_null("BumpSound") as AudioStreamPlayer
+
 @export var bump_sound: AudioStream
-# ============================================================
-# SEÑALES
-# ============================================================
+
 signal movement_finished
 signal movement_blocked
-# ============================================================
-# CONSTANTES
-# ============================================================
+
 const TILE_SIZE: float = 16.0
 const MOVE_SPEED: float = 64.0
 const HOLD_THRESHOLD: float = 0.12
 const BUMP_COOLDOWN: float = 0.25
 const BUMP_ANIM_SPEED: float = 1.0
-# ============================================================
-# VARIABLES
-# ============================================================
+
 var current_position: Vector2
 var initial_position: Vector2
 var target_position: Vector2
@@ -34,25 +30,35 @@ var waiting_for_move: bool = false
 var external_move: bool = false
 var depth_priority: int = 2
 var bump_cooldown: float = 0.0
+var move_speed: float = MOVE_SPEED
 
-# ============================================================
-# FUNCIONES
-# ============================================================
+
 func _ready() -> void:
-	character.global_position = snap_to_grid(character.global_position)
-	current_position = character.global_position
-	initial_position = character.global_position
-	target_position = character.global_position
-	update_depth()
+	entity_root.global_position = snap_to_grid(entity_root.global_position)
+	character.position = Vector2.ZERO
+
+	current_position = entity_root.global_position
+	initial_position = entity_root.global_position
+	target_position = entity_root.global_position
+
+
+func set_move_speed(speed: float) -> void:
+	if speed <= 0.0:
+		return
+	move_speed = speed
+
 
 func is_bumping() -> bool:
 	return bump_cooldown > 0.0
 
+
 func set_direction(new_direction: Vector2) -> void:
 	input_direction = new_direction
 
+
 func get_direction() -> Vector2:
 	return input_direction
+
 
 func request_move(new_direction: Vector2) -> void:
 	if moving:
@@ -64,6 +70,7 @@ func request_move(new_direction: Vector2) -> void:
 	last_direction = new_direction
 	if not start_move():
 		external_move = false
+
 
 func process_movement(delta: float) -> void:
 	var was_bumping: bool = bump_cooldown > 0.0
@@ -81,6 +88,7 @@ func process_movement(delta: float) -> void:
 		return
 	process_input()
 
+
 func process_input() -> void:
 	var new_direction: Vector2 = get_direction()
 	if new_direction == Vector2.ZERO:
@@ -95,6 +103,7 @@ func process_input() -> void:
 		return
 	direction = new_direction
 	start_move()
+
 
 func process_input_hold(delta: float) -> void:
 	var current_direction: Vector2 = get_direction()
@@ -114,8 +123,9 @@ func process_input_hold(delta: float) -> void:
 		waiting_for_move = false
 		start_move()
 
+
 func start_move() -> bool:
-	initial_position = character.global_position
+	initial_position = entity_root.global_position
 	target_position = initial_position + direction * TILE_SIZE
 	if EntityCollisionSystem.is_position_occupied(target_position, self):
 		_play_bump()
@@ -126,13 +136,15 @@ func start_move() -> bool:
 	animation_controller.play_step_animation(direction)
 	return true
 
+
 func _play_bump() -> void:
 	if bump_cooldown > 0.0:
 		return
 	_play_bump_animation()
-	if get_parent().is_in_group("Player"):
+	if entity_root.is_in_group("Player"):
 		_play_bump_sound()
 	bump_cooldown = BUMP_COOLDOWN
+
 
 func _play_bump_animation() -> void:
 	var sprite: AnimatedSprite2D = character.get_node_or_null("Sprite") as AnimatedSprite2D
@@ -143,10 +155,12 @@ func _play_bump_animation() -> void:
 	animation_controller.play_step_animation(direction)
 	_restore_anim_speed_after_bump(sprite)
 
+
 func _restore_anim_speed_after_bump(sprite: AnimatedSprite2D) -> void:
 	await get_tree().create_timer(BUMP_COOLDOWN).timeout
 	if is_instance_valid(sprite):
 		sprite.speed_scale = 1.0
+
 
 func _play_bump_sound() -> void:
 	if bump_sound == null:
@@ -158,16 +172,15 @@ func _play_bump_sound() -> void:
 	bump_player.stream = bump_sound
 	bump_player.play()
 
+
 func process_move(delta: float) -> void:
-	move_progress += (MOVE_SPEED * delta) / TILE_SIZE
+	move_progress += (move_speed * delta) / TILE_SIZE
 	move_progress = minf(move_progress, 1.0)
-	character.global_position = initial_position.lerp(target_position, move_progress)
-	update_depth()
+	entity_root.global_position = initial_position.lerp(target_position, move_progress)
 	if move_progress >= 1.0:
-		character.global_position = target_position
+		entity_root.global_position = target_position
 		current_position = target_position
 		moving = false
-		update_depth()
 		movement_finished.emit()
 		if external_move:
 			external_move = false
@@ -178,6 +191,7 @@ func process_move(delta: float) -> void:
 			last_direction = next_direction
 			start_move()
 
+
 func look_direction(new_direction: Vector2) -> void:
 	if new_direction == Vector2.ZERO:
 		return
@@ -185,12 +199,14 @@ func look_direction(new_direction: Vector2) -> void:
 	last_direction = new_direction
 	animation_controller.play_idle_animation(new_direction)
 
-func update_depth() -> void:
-	character.z_index = depth_priority + int(character.global_position.y)
 
 func get_character_position() -> Vector2:
-	return character.global_position
+	return entity_root.global_position
+
 
 @warning_ignore("shadowed_variable_base_class")
 func snap_to_grid(position: Vector2) -> Vector2:
-	return Vector2(round(position.x / TILE_SIZE) * TILE_SIZE, round(position.y / TILE_SIZE) * TILE_SIZE)
+	return Vector2(
+		round(position.x / TILE_SIZE) * TILE_SIZE,
+		round(position.y / TILE_SIZE) * TILE_SIZE
+	)

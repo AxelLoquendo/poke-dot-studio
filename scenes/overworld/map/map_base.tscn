@@ -22,8 +22,10 @@ attributes = SubResource("Resource_kturt")
 [node name="Tile2" type="TileMapLayer" parent="Tileset" unique_id=727004056]
 
 [node name="Tile3" type="TileMapLayer" parent="Tileset" unique_id=562314614]
+z_index = 2
 
 [node name="Tile4" type="TileMapLayer" parent="Tileset" unique_id=826873359]
+z_index = 3
 
 [node name="Behaviour" type="Node2D" parent="." unique_id=1681849792]
 
@@ -32,6 +34,8 @@ attributes = SubResource("Resource_kturt")
 [node name="Borde" type="TileMapLayer" parent="Behaviour" unique_id=48474854]
 
 [node name="EventObject" type="Node2D" parent="." unique_id=1092069242]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Trigger" type="Node2D" parent="." unique_id=564404473]
 

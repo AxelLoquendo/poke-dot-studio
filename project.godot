@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="PokeDot-Studio"
+run/main_scene="uid://djpl5n6524dmw"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -41,6 +42,7 @@ folder_colors={
 "res://assets/": "yellow",
 "res://data/": "red",
 "res://doc/": "purple",
+"res://font/": "gray",
 "res://game/": "teal",
 "res://scenes/": "orange",
 "res://scripts/": "green",
