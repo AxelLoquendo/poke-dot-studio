@@ -1,9 +1,9 @@
 # ==============================================================================
-# Godot 4.4+ Core (¡Preparado para el Engine!)
+# Godot 4.x
 # ==============================================================================
 .godot/
 
-# Carpetas de compilación y exportación de plataformas nativas
+# Exportación y plataformas nativas
 /android/
 /ios/
 /macos/
@@ -12,33 +12,25 @@
 /export/
 /build/
 
-# Archivos temporales y generados automáticamente por el motor
+# Temporales y generados por el motor
 *.remap
 *.translation
 *.cache
 *.autosave
+*.tmp
 
-# NOTA DE SEGURIDAD PARA EL ENGINE:
-# *.uid y la carpeta .import/ NO se ignoran. Deben versionarse en Git para 
-# garantizar la consistencia de los Autoloads y recursos compartidos mediante UIDs.
+# NOTA: *.uid y los *.import junto a cada asset SÍ se versionan.
+# Garantizan la consistencia de UIDs y la importación de recursos.
 
 # ==============================================================================
-# Credenciales y Configuraciones Locales
+# Credenciales y configuraciones locales
 # ==============================================================================
 export.cfg
 export_credentials.cfg
 
 # ==============================================================================
-# Soporte para C# / .NET (Mono) y C++ (GDExtension)
+# Binarios de extensiones nativas C++ (GDExtension)
 # ==============================================================================
-.mono/
-data_*/
-mono_crash.*.json
-.csproj
-.sln
-.nuget/
-
-# Binarios de extensiones nativas C++ (si se compilan localmente)
 .sconsign.dblite
 *.godot.*.o
 *.godot.*.a
@@ -48,19 +40,16 @@ mono_crash.*.json
 bin/
 
 # ==============================================================================
-# Herramientas de Desarrollo y Editores
+# Editores
 # ==============================================================================
 .vscode/
 .idea/
 *.suo
 *.user
-*.userosscache
-*.sln.docuser
 
 # ==============================================================================
-# Archivos Basura del Sistema Operativo
+# Sistema operativo
 # ==============================================================================
 .DS_Store
 Thumbs.db
 desktop.ini
-
