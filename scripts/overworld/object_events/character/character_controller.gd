@@ -16,6 +16,8 @@ const MOVE_SPEED: float = 64.0
 const HOLD_THRESHOLD: float = 0.12
 const BUMP_COOLDOWN: float = 0.25
 const BUMP_ANIM_SPEED: float = 1.0
+const Z_GROUND: int = 0
+const Z_ELEVATED: int = 3
 
 var current_position: Vector2
 var initial_position: Vector2
@@ -128,6 +130,8 @@ func start_move() -> bool:
 		_play_bump()
 		movement_blocked.emit()
 		return false
+	# Capa visual desde el primer frame del paso
+	MapCollisionSystem.preview_render_state(self, initial_position, target_position)
 	move_progress = 0.0
 	moving = true
 	animation_controller.play_step_animation(direction)
@@ -178,7 +182,7 @@ func process_move(delta: float) -> void:
 		current_position = target_position
 		moving = false
 		# Aplicar altura / puente de la casilla destino
-		MapCollisionSystem.apply_cell_state(self, target_position)
+		MapCollisionSystem.apply_cell_state(self, initial_position, target_position)
 		movement_finished.emit()
 		if external_move:
 			external_move = false
@@ -205,3 +209,11 @@ func snap_to_grid(position: Vector2) -> Vector2:
 		round(position.x / TILE_SIZE) * TILE_SIZE,
 		round(position.y / TILE_SIZE) * TILE_SIZE
 	)
+
+func update_render_layer() -> void:
+	if entity_root == null:
+		return
+	if elevated:
+		entity_root.z_index = Z_ELEVATED
+	else:
+		entity_root.z_index = Z_GROUND
