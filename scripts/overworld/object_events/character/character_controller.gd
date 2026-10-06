@@ -31,22 +31,20 @@ var external_move: bool = false
 var depth_priority: int = 2
 var bump_cooldown: float = 0.0
 var move_speed: float = MOVE_SPEED
-
+var height_level: int = 0
+var elevated: bool = false
 
 func _ready() -> void:
 	entity_root.global_position = snap_to_grid(entity_root.global_position)
 	character.position = Vector2.ZERO
-
 	current_position = entity_root.global_position
 	initial_position = entity_root.global_position
 	target_position = entity_root.global_position
-
 
 func set_move_speed(speed: float) -> void:
 	if speed <= 0.0:
 		return
 	move_speed = speed
-
 
 func is_bumping() -> bool:
 	return bump_cooldown > 0.0
@@ -123,11 +121,10 @@ func process_input_hold(delta: float) -> void:
 		waiting_for_move = false
 		start_move()
 
-
 func start_move() -> bool:
 	initial_position = entity_root.global_position
 	target_position = initial_position + direction * TILE_SIZE
-	if EntityCollisionSystem.is_position_occupied(target_position, self):
+	if CollisionFacade.is_blocked(self, target_position):
 		_play_bump()
 		movement_blocked.emit()
 		return false
@@ -135,7 +132,6 @@ func start_move() -> bool:
 	moving = true
 	animation_controller.play_step_animation(direction)
 	return true
-
 
 func _play_bump() -> void:
 	if bump_cooldown > 0.0:
@@ -181,6 +177,8 @@ func process_move(delta: float) -> void:
 		entity_root.global_position = target_position
 		current_position = target_position
 		moving = false
+		# Aplicar altura / puente de la casilla destino
+		MapCollisionSystem.apply_cell_state(self, target_position)
 		movement_finished.emit()
 		if external_move:
 			external_move = false
@@ -191,7 +189,6 @@ func process_move(delta: float) -> void:
 			last_direction = next_direction
 			start_move()
 
-
 func look_direction(new_direction: Vector2) -> void:
 	if new_direction == Vector2.ZERO:
 		return
@@ -199,10 +196,8 @@ func look_direction(new_direction: Vector2) -> void:
 	last_direction = new_direction
 	animation_controller.play_idle_animation(new_direction)
 
-
 func get_character_position() -> Vector2:
 	return entity_root.global_position
-
 
 @warning_ignore("shadowed_variable_base_class")
 func snap_to_grid(position: Vector2) -> Vector2:

@@ -31,17 +31,49 @@ func change_map(
 		push_error("MapManager: la escena no es Map")
 		return
 
+	# ANTES de add_child: la capa ya existe en la instancia
+	MapCollisionSystem.set_active_map(mapa)
+
 	add_child(mapa)
 	current_map = mapa
 
 	_place_player(mapa, player, cell)
+
+	var player_controller: CharacterController = \
+		player.get_node_or_null("CharacterController") as CharacterController
+	if player_controller != null:
+		MapCollisionSystem.init_entity_state(
+			player_controller,
+			player.global_position
+		)
+
+	# NPC ya en el mapa
+	_init_map_entities(mapa)
+
 	map_changed.emit(mapa)
 
+
+func _init_map_entities(mapa: Map) -> void:
+	var groups: Array[StringName] = [&"Npc"]
+	for group: StringName in groups:
+		for node: Node in mapa.get_tree().get_nodes_in_group(group):
+			# Solo los que están bajo este mapa
+			if not mapa.is_ancestor_of(node):
+				continue
+			var controller: CharacterController = \
+				node.get_node_or_null("CharacterController") as CharacterController
+			if controller == null:
+				continue
+			MapCollisionSystem.init_entity_state(
+				controller,
+				controller.get_character_position()
+			)
 
 func _unload_current() -> void:
 	if current_map == null:
 		return
-	# El player no se borra: se saca del mapa antes
+	# 3) Limpiar capa de colisión
+	MapCollisionSystem.clear_active_map()
 	current_map.queue_free()
 	current_map = null
 	map_unloaded.emit()
