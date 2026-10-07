@@ -17,28 +17,21 @@ func _exit_tree() -> void:
 
 
 func _handles(object: Object) -> bool:
+	# Solo cuando realmente nos interesa el objeto
 	if object is TileMapLayer:
 		return _layer_pertenece_a_mapa(object as TileMapLayer)
-	if object is Map:
+	if object is Node2D and _es_entidad(object as Node2D):
 		return true
-	if object is Node2D:
-		return _es_entidad(object as Node2D)
 	return false
 
 
 func _forward_canvas_gui_input(event: InputEvent) -> bool:
-	# --- Entidades (Player / Npc) ---
 	if _manejar_input_entidad(event):
 		return true
-
-	# --- Límite de tiles (como antes) ---
 	return _manejar_input_tiles(event)
 
 
-# ============================================================
-# ENTIDADES — snap 16x16
-# ============================================================
-
+# --- entidades (igual que tenías) ---
 func _manejar_input_entidad(event: InputEvent) -> bool:
 	var entidad: Node2D = _obtener_entidad_seleccionada()
 	if entidad == null:
@@ -53,36 +46,32 @@ func _manejar_input_entidad(event: InputEvent) -> bool:
 		var boton: InputEventMouseButton = event as InputEventMouseButton
 		if boton.button_index != MOUSE_BUTTON_LEFT:
 			return false
-
 		if boton.pressed:
 			var mundo: Vector2 = _obtener_posicion_mundo(boton.position)
-			# Solo empezar drag si el clic está cerca de la entidad
 			if not _clic_sobre_entidad(entidad, mundo):
 				return false
-
 			_arrastrando_entidad = true
 			_entidad_activa = entidad
 			_offset_drag = entidad.global_position - mundo
 			return true
-		else:
-			if _arrastrando_entidad:
-				_aplicar_snap(entidad, mapa)
-				_soltar_entidad()
-				return true
+		if _arrastrando_entidad:
+			_aplicar_snap(entidad, mapa)
+			_soltar_entidad()
+			return true
 
-	if event is InputEventMouseMotion and _arrastrando_entidad and _entidad_activa != null:
+	if event is InputEventMouseMotion and _arrastrando_entidad and is_instance_valid(_entidad_activa):
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
 		var mundo: Vector2 = _obtener_posicion_mundo(motion.position)
-		var deseada: Vector2 = mundo + _offset_drag
-		_entidad_activa.global_position = _snap_global(deseada, mapa)
+		_entidad_activa.global_position = _snap_global(mundo + _offset_drag, mapa)
 		return true
 
 	return false
 
 
 func _aplicar_snap(entidad: Node2D, mapa: Map) -> void:
+	if not is_instance_valid(entidad) or mapa == null:
+		return
 	entidad.global_position = _snap_global(entidad.global_position, mapa)
-	# Marcar la escena como modificada
 	EditorInterface.mark_scene_as_unsaved()
 
 
@@ -92,20 +81,17 @@ func _snap_global(pos_global: Vector2, mapa: Map) -> Vector2:
 		roundi(local.x / TILE_SIZE),
 		roundi(local.y / TILE_SIZE)
 	)
-
-	# Opcional: no salir del mapa
 	if mapa.attributes != null:
 		var size: Vector2i = mapa.attributes.map_size
 		if size.x > 0 and size.y > 0:
 			celda.x = clampi(celda.x, 0, size.x - 1)
 			celda.y = clampi(celda.y, 0, size.y - 1)
-
-	var local_snap: Vector2 = Vector2(celda) * TILE_SIZE
-	return mapa.to_global(local_snap)
+	return mapa.to_global(Vector2(celda) * TILE_SIZE)
 
 
 func _clic_sobre_entidad(entidad: Node2D, mundo: Vector2) -> bool:
-	# Área de agarre ~1 tile alrededor del origen de la entidad
+	if not is_instance_valid(entidad):
+		return false
 	var local: Vector2 = entidad.to_local(mundo)
 	return absf(local.x) <= TILE_SIZE and absf(local.y) <= TILE_SIZE
 
@@ -127,19 +113,16 @@ func _obtener_entidad_seleccionada() -> Node2D:
 
 
 func _es_entidad(nodo: Node2D) -> bool:
+	if not is_instance_valid(nodo):
+		return false
 	if nodo.is_in_group("Player") or nodo.is_in_group("Npc"):
 		return true
-	# Fallback por nombre de script / escena
-	var script: Script = nodo.get_script()
+	var script: Script = nodo.get_script() as Script
 	if script == null:
 		return false
 	var path: String = script.resource_path
 	return path.ends_with("player.gd") or path.ends_with("npc.gd")
 
-
-# ============================================================
-# TILES — no pintar fuera de map_size
-# ============================================================
 
 func _manejar_input_tiles(event: InputEvent) -> bool:
 	if not (event is InputEventMouseButton or event is InputEventMouseMotion):
@@ -153,6 +136,7 @@ func _manejar_input_tiles(event: InputEvent) -> bool:
 	if map_size.x <= 0 or map_size.y <= 0:
 		return false
 
+	# Solo limitar si hay un TileMapLayer del mapa seleccionado
 	var layer: TileMapLayer = _obtener_tile_layer_seleccionado()
 	if layer == null or not _layer_pertenece_a_mapa(layer):
 		return false
@@ -196,10 +180,6 @@ func _celda_dentro_del_mapa(celda: Vector2i, tamano: Vector2i) -> bool:
 	)
 
 
-# ============================================================
-# UTILIDADES
-# ============================================================
-
 func _obtener_mapa_actual() -> Map:
 	var root: Node = EditorInterface.get_edited_scene_root()
 	if root is Map:
@@ -217,6 +197,8 @@ func _obtener_tile_layer_seleccionado() -> TileMapLayer:
 
 
 func _layer_pertenece_a_mapa(layer: TileMapLayer) -> bool:
+	if layer == null:
+		return false
 	var mapa: Map = _obtener_mapa_actual()
 	if mapa == null:
 		return false
@@ -230,5 +212,7 @@ func _layer_pertenece_a_mapa(layer: TileMapLayer) -> bool:
 
 func _obtener_posicion_mundo(posicion_viewport: Vector2) -> Vector2:
 	var viewport: SubViewport = EditorInterface.get_editor_viewport_2d()
+	if viewport == null:
+		return Vector2.ZERO
 	var xform: Transform2D = viewport.get_final_transform()
 	return xform.affine_inverse() * posicion_viewport
