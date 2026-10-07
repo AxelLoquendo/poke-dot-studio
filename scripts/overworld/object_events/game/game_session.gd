@@ -12,7 +12,6 @@ func _ready() -> void:
 		push_error("GameSession: falta GameStartData")
 		return
 	_aplicar_datos_player()
-	map_manager.change_map(start_data.start_map_id, start_data.start_position, player)
 	map_factory.load_cluster(start_data.start_map_id, start_data.start_position, player)
 
 func _aplicar_datos_player() -> void:
