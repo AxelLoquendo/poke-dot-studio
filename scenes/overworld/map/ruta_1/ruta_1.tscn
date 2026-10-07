@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bk1lh0uj4nsvp"]
+[gd_scene format=4 uid="uid://bk1lh0uj4nsvp"]
 
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_rxn3h"]
 [ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_qjidi"]
@@ -47,11 +47,12 @@ tile_set = ExtResource("4_tml1e")
 [node name="Behaviour" type="Node2D" parent="." unique_id=1681849792]
 
 [node name="Collision" type="TileMapLayer" parent="Behaviour" unique_id=630593805]
+tile_map_data = PackedByteArray("AAAAABcAAAADAAAAAAABABcAAAADAAAAAAACABcAAAADAAAAAAADABcAAAADAAAAAAAEABcAAAADAAAAAAAFABcAAAADAAAAAAAGABcAAAADAAAAAAAHABcAAAADAAAAAAAIABcAAAADAAAAAAAJABcAAAADAAAAAAAKABcAAAADAAAAAAALABcAAAADAAAAAAAMABcAAAADAAAAAAANABcAAAADAAAAAAAOABcAAAADAAAAAAAPABcAAAADAAAAAAAQABcAAAADAAAAAAARABcAAAADAAAAAAASABcAAAADAAAAAAATABcAAAADAAAAAAAUABcAAAADAAAAAAAVABcAAAADAAAAAAAWABcAAAADAAAAAAAXABcAAAADAAAAAAAYABcAAAADAAAAAAAZABcAAAADAAAAAAAaABcAAAADAAAAAAAbABcAAAADAAAAAAAcABcAAAADAAAAAAAdABcAAAADAAAAAAAeABcAAAADAAAAAAAfABcAAAADAAAAAAAgABcAAAADAAAAAAAhABcAAAADAAAAAAAiABcAAAADAAAAAAAjABcAAAADAAAAAAA=")
 tile_set = ExtResource("5_s4ifi")
 
 [node name="Borde" type="TileMapLayer" parent="Behaviour" unique_id=48474854]
 visible = false
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 53, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 52, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 53, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAADQAAAAAAAEAAAAAADUAAAABAAAAAAABADQAAAABAAEAAAABADUAAAA=")
 tile_set = ExtResource("4_tml1e")
 
 [node name="EventObject" type="Node2D" parent="." unique_id=1092069242]

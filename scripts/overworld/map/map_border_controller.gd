@@ -12,11 +12,7 @@ var _mapa: Map
 var _layer: TileMapLayer
 var _pattern: Array = []
 var _activo: bool = false
-
-## Rects locales (celdas) de mapas conectados: no pintar borde ahí
 var _rects_conectados: Array[Rect2i] = []
-
-## Evitar repintar si la cámara no cambió de rango de celdas
 var _ultima_celda_min: Vector2i = Vector2i(2147483647, 2147483647)
 var _ultima_celda_max: Vector2i = Vector2i(2147483647, 2147483647)
 
@@ -43,7 +39,6 @@ func on_map_attributes_ready(mapa: Map) -> void:
 		_resolver_patron()
 		_reconstruir_rects_conectados()
 		_activo = not _pattern.is_empty()
-		# Forzar repintado tras reconstruir
 		_ultima_celda_min = Vector2i(2147483647, 2147483647)
 
 
@@ -63,7 +58,7 @@ func _resolver_patron() -> void:
 			var source_id: int = _layer.get_cell_source_id(celda)
 			if source_id == -1:
 				push_warning(
-					"MapBorderController: falta tile en el patrón 2x2 en celda %s" % str(celda)
+					"MapBorderController: falta tile en patrón 2x2 en %s" % str(celda)
 				)
 				_pattern.clear()
 				return
@@ -81,7 +76,6 @@ func _reconstruir_rects_conectados() -> void:
 	for entry: MapConnectionEntry in _mapa.attributes.connections:
 		if entry == null or entry.target_map == MapSection.MapID.NONE:
 			continue
-		# UNA sola vez por vecino, no por celda/frame
 		var size_n: Vector2i = MapConnectionResolver.get_map_size(entry.target_map)
 		if size_n.x <= 0 or size_n.y <= 0:
 			continue
