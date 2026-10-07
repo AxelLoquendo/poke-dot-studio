@@ -14,3 +14,5 @@ extends Resource
 @export var requires_flash: bool = false
 #@export var weather: WeatherEffect.WeatherID
 #@export var grass_encounters: WildEncounterTable
+
+@export var connections: Array[MapConnectionEntry] = []

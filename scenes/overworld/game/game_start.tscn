@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d21xcd02bjjna" path="res://scenes/overworld/player/player.tscn" id="2_yojri"]
 [ext_resource type="Script" uid="uid://3hqxkcbg5078" path="res://scripts/overworld/object_events/game/game_start_data.gd" id="3_awcbw"]
 [ext_resource type="Script" uid="uid://dyoc2mykofmlf" path="res://scripts/overworld/map/map_manager.gd" id="3_igv5w"]
+[ext_resource type="Script" uid="uid://ctck3yx0mrpji" path="res://scripts/overworld/map/map_factory.gd" id="5_igv5w"]
 
 [sub_resource type="Resource" id="Resource_huxmy"]
 script = ExtResource("3_awcbw")
@@ -19,3 +20,6 @@ start_data = SubResource("Resource_huxmy")
 
 [node name="MapManager" type="Node" parent="." unique_id=539829925]
 script = ExtResource("3_igv5w")
+
+[node name="MapFactory" type="Node" parent="." unique_id=387870802]
+script = ExtResource("5_igv5w")

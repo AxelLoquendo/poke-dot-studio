@@ -2,6 +2,8 @@
 extends Node2D
 class_name Map
 
+const TILE_SIZE: float = 16.0
+
 @export var attributes: MapAttributes:
 	set(value):
 		attributes = value
@@ -27,6 +29,23 @@ func _draw() -> void:
 		return
 	if attributes.map_size.x <= 0 or attributes.map_size.y <= 0:
 		return
-	var tile_size: float = 16.0
-	var size: Vector2 = Vector2(attributes.map_size) * tile_size
+	var size: Vector2 = Vector2(attributes.map_size) * TILE_SIZE
 	draw_rect(Rect2(Vector2.ZERO, size), Color.RED, false, 2.0)
+	_draw_connections()
+
+func _draw_connections() -> void:
+	if attributes.connections.is_empty():
+		return
+	for entry: MapConnectionEntry in attributes.connections:
+		if entry == null:
+			continue
+		if entry.target_map == MapSection.MapID.NONE:
+			continue
+		var size_neighbor: Vector2i = MapConnectionResolver.get_map_size(entry.target_map)
+		if size_neighbor.x <= 0 or size_neighbor.y <= 0:
+			continue
+		var pos: Vector2 = MapConnectionResolver.world_neighbor_from_current(entry.side, entry.edge_offset, attributes.map_size, size_neighbor)
+		var rect_size: Vector2 = Vector2(size_neighbor) * TILE_SIZE
+		draw_rect(Rect2(pos, rect_size), Color(0.2, 0.85, 1.0, 1.0), false, 2.0)
+		# Esquina para ver el origen del vecino
+		draw_circle(pos, 3.0, Color(0.2, 0.85, 1.0, 1.0))
