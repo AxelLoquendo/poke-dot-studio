@@ -1,6 +1,7 @@
 class_name MapFactory
 extends Node
 ## Overworld continuo: current completo + vecinos precargados (vista).
+## Colisión: todas las layers del cluster registradas en MapCollisionSystem.
 
 signal cluster_loaded(current: Map)
 signal current_changed(mapa: Map)
@@ -30,17 +31,18 @@ func load_cluster(
 	current_map = mapa
 	current_map_id = map_id
 
-	MapCollisionSystem.set_active_map(mapa)
+	MapCollisionSystem.clear_active_map()
+	MapCollisionSystem.register_map(mapa)
+
 	_load_neighbors(mapa)
 	_place_player(mapa, player, cell)
 
-	# Primero todos en pausa
+	# Vecinos en pausa; current activo (deferred: NPCs en grupo)
 	for id: Variant in loaded_maps.keys():
 		var m: Map = loaded_maps[id] as Map
 		if m != null:
 			m.set_as_current(false)
 
-	# Current activo (diferido: NPCs ya en grupo)
 	mapa.set_as_current.call_deferred(true)
 
 	var player_controller: CharacterController = \
@@ -74,7 +76,7 @@ func _promover_a_current(nuevo_id: MapSection.MapID, player: Node2D) -> void:
 
 	current_map = nuevo
 	current_map_id = nuevo_id
-	MapCollisionSystem.set_active_map(nuevo)
+	# No usar set_active_map: borraría las layers de los vecinos
 	_reparent_player_keep_global(player, nuevo)
 
 	nuevo.set_as_current(true)
@@ -83,17 +85,10 @@ func _promover_a_current(nuevo_id: MapSection.MapID, player: Node2D) -> void:
 	current_changed.emit(nuevo)
 
 
-func _aplicar_estados_current() -> void:
-	for id: Variant in loaded_maps.keys():
-		var m: Map = loaded_maps[id] as Map
-		if m == null:
-			continue
-		m.set_as_current(m == current_map)
-
-
 func _load_neighbors(center: Map) -> void:
 	if center.attributes == null:
 		return
+
 	for entry: MapConnectionEntry in center.attributes.connections:
 		if entry == null or entry.target_map == MapSection.MapID.NONE:
 			continue
@@ -117,6 +112,7 @@ func _load_neighbors(center: Map) -> void:
 		)
 		add_child(neighbor)
 		loaded_maps[entry.target_map] = neighbor
+		MapCollisionSystem.register_map(neighbor)
 		neighbor.set_as_current(false)
 
 
@@ -134,9 +130,11 @@ func _refrescar_vecinos(center: Map) -> void:
 	for id: Variant in loaded_maps.keys():
 		if not keep.has(id):
 			a_quitar.append(id)
+
 	for id: Variant in a_quitar:
 		var m: Map = loaded_maps[id] as Map
 		if m != null:
+			MapCollisionSystem.unregister_map(m)
 			m.queue_free()
 		loaded_maps.erase(id)
 
@@ -148,7 +146,13 @@ func _mapa_id_en_posicion(world_pos: Vector2) -> MapSection.MapID:
 			continue
 		var origin: Vector2 = m.global_position
 		var size_px: Vector2 = Vector2(m.attributes.map_size) * TILE_SIZE
-		if Rect2(origin, size_px).has_point(world_pos):
+		var rect: Rect2 = Rect2(origin, size_px)
+		if (
+			world_pos.x >= rect.position.x
+			and world_pos.y >= rect.position.y
+			and world_pos.x < rect.position.x + rect.size.x
+			and world_pos.y < rect.position.y + rect.size.y
+		):
 			return id as MapSection.MapID
 	return MapSection.MapID.NONE
 
@@ -203,6 +207,7 @@ func _unload_all(player: Node2D) -> void:
 	loaded_maps.clear()
 	current_map = null
 	current_map_id = MapSection.MapID.NONE
+
 
 func _init_npcs_current(mapa: Map) -> void:
 	if not mapa.is_inside_tree():
