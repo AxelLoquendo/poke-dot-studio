@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cg0fvuuc136f7" path="res://assets/object_events/shadow/shadow_medium.png" id="1_xq8s2"]
 [ext_resource type="Texture2D" uid="uid://cjyw6cidnr20j" path="res://assets/object_events/npc/profesor_oak.png" id="2_i6wtr"]
 [ext_resource type="Script" uid="uid://grma16a7hh0u" path="res://scripts/overworld/object_events/npc/npc_data.gd" id="2_p4iet"]
-[ext_resource type="Resource" uid="uid://dg0dbixifstat" path="res://data/resources/overworld/movement/test_route.tres" id="2_tf7rx"]
 [ext_resource type="Script" uid="uid://dir6tfrkpfvua" path="res://scripts/overworld/object_events/character/character_states.gd" id="5_5nr1b"]
 [ext_resource type="Script" uid="uid://baumig5wdwje5" path="res://scripts/overworld/object_events/character/character_controller.gd" id="6_g2w0f"]
 [ext_resource type="Script" uid="uid://cchonbmwnug81" path="res://scripts/overworld/object_events/npc/npc_controller.gd" id="7_obqkm"]
@@ -14,12 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_ocu5l"]
 script = ExtResource("2_p4iet")
-behavior = 3
-move_route = ExtResource("2_tf7rx")
 walk = 3.0
-id = &"PROFESOR_OAK"
-ow = 1
-name = "Prof. Oak"
 shadow_type = 2
 metadata/_custom_type_script = "uid://grma16a7hh0u"
 
@@ -103,7 +97,7 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("2_i6wtr")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_jjxhw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvh3h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -241,7 +235,7 @@ texture = ExtResource("1_xq8s2")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Character" unique_id=10191544]
 position = Vector2(8, 0)
-sprite_frames = SubResource("SpriteFrames_jjxhw")
+sprite_frames = SubResource("SpriteFrames_dvh3h")
 animation = &"Idle_Down"
 
 [node name="CharacterState" type="Node2D" parent="." unique_id=440479570]

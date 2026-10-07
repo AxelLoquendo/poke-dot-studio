@@ -7,7 +7,9 @@
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="4_mc62f"]
 [ext_resource type="PackedScene" uid="uid://c00cqut3dbolm" path="res://scenes/overworld/npc/npc.tscn" id="6_mc62f"]
 [ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="6_v7ft0"]
+[ext_resource type="Resource" uid="uid://dg0dbixifstat" path="res://data/resources/overworld/movement/test_route.tres" id="7_8xwte"]
 [ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="7_mc62f"]
+[ext_resource type="Script" uid="uid://grma16a7hh0u" path="res://scripts/overworld/object_events/npc/npc_data.gd" id="7_uh7s8"]
 
 [sub_resource type="Resource" id="Resource_0baub"]
 script = ExtResource("2_ultj3")
@@ -79,6 +81,37 @@ texture = ExtResource("4_2nos3")
 [sub_resource type="TileSet" id="TileSet_0baub"]
 sources/0 = SubResource("TileSetAtlasSource_lecu3")
 
+[sub_resource type="Resource" id="Resource_uh7s8"]
+script = ExtResource("7_uh7s8")
+behavior = 3
+move_route = ExtResource("7_8xwte")
+walk = 3.0
+id = &"PROF. OAK"
+ow = 1
+name = "Prof. Oak"
+shadow_type = 2
+metadata/_custom_type_script = "uid://grma16a7hh0u"
+
+[sub_resource type="Resource" id="Resource_8xwte"]
+script = ExtResource("7_uh7s8")
+behavior = 2
+walk = 3.0
+id = &"KAEL"
+ow = 2
+name = "Kael"
+shadow_type = 2
+metadata/_custom_type_script = "uid://grma16a7hh0u"
+
+[sub_resource type="Resource" id="Resource_2344u"]
+script = ExtResource("7_uh7s8")
+behavior = 1
+walk = 3.0
+id = &"NANCI"
+ow = 16
+name = "Nanci"
+shadow_type = 2
+metadata/_custom_type_script = "uid://grma16a7hh0u"
+
 [node name="Map_Attributes" type="Node2D" unique_id=1993050852]
 script = ExtResource("1_k5h33")
 attributes = SubResource("Resource_0baub")
@@ -122,7 +155,16 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="Npc" parent="EventObject" unique_id=393002471 instance=ExtResource("6_mc62f")]
-position = Vector2(128, 128)
+position = Vector2(128, 144)
+data = SubResource("Resource_uh7s8")
+
+[node name="Npc2" parent="EventObject" unique_id=598226770 instance=ExtResource("6_mc62f")]
+position = Vector2(176, 224)
+data = SubResource("Resource_8xwte")
+
+[node name="Npc3" parent="EventObject" unique_id=1749119849 instance=ExtResource("6_mc62f")]
+position = Vector2(288, 128)
+data = SubResource("Resource_2344u")
 
 [node name="Trigger" type="Node2D" parent="." unique_id=564404473]
 

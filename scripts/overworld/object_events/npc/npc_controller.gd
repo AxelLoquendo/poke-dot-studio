@@ -29,9 +29,10 @@ var follow_timer: float = 0.0
 # ============================================================
 
 func _ready() -> void:
-	npc_data = character.data as NPCData
-
 	character_controller.movement_finished.connect(_on_movement_finished)
+
+func set_npc_data(new_data: NPCData) -> void:
+	npc_data = new_data
 
 # ============================================================
 # COMPORTAMIENTO

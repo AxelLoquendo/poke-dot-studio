@@ -217,3 +217,16 @@ func update_render_layer() -> void:
 		entity_root.z_index = Z_ELEVATED
 	else:
 		entity_root.z_index = Z_GROUND
+
+func teleport_to(world_pos: Vector2) -> void:
+	var snapped: Vector2 = snap_to_grid(world_pos)
+	entity_root.global_position = snapped
+	character.position = Vector2.ZERO
+	current_position = snapped
+	initial_position = snapped
+	target_position = snapped
+	moving = false
+	move_progress = 0.0
+	external_move = false
+	waiting_for_move = false
+	hold_time = 0.0

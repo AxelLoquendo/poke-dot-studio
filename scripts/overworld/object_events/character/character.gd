@@ -45,6 +45,8 @@ func update_character() -> void:
 	_last_shadow = data.shadow_type
 
 func update_ow_sprite(texture: Texture2D) -> void:
+	if OwSprite.sprite_frames != null and not OwSprite.sprite_frames.resource_local_to_scene:
+		OwSprite.sprite_frames = OwSprite.sprite_frames.duplicate()
 	var frame_size: Vector2 = texture.get_size() / Vector2(3, 4)
 	var directions: Dictionary = {"Down": 0, "Up": 1, "Left": 2, "Right": 3}
 	var steps: Dictionary = {"First_Step": 0, "Idle": 1, "Second_Step": 2}

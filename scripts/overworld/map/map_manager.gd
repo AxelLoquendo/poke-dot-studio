@@ -12,6 +12,10 @@ func change_map(
 	cell: Vector2i,
 	player: Node2D
 ) -> void:
+	# 1) Sacar al player del mapa que se va a destruir
+	if player.get_parent() != null and player.get_parent() != self:
+		player.reparent(self)
+
 	_unload_current()
 
 	var path: String = _resolve_path(map_id)
@@ -31,9 +35,7 @@ func change_map(
 		push_error("MapManager: la escena no es Map")
 		return
 
-	# ANTES de add_child: la capa ya existe en la instancia
 	MapCollisionSystem.set_active_map(mapa)
-
 	add_child(mapa)
 	current_map = mapa
 
@@ -47,11 +49,8 @@ func change_map(
 			player.global_position
 		)
 
-	# NPC ya en el mapa
 	_init_map_entities(mapa)
-
 	map_changed.emit(mapa)
-
 
 func _init_map_entities(mapa: Map) -> void:
 	var groups: Array[StringName] = [&"Npc"]
@@ -88,7 +87,14 @@ func _place_player(mapa: Map, player: Node2D, cell: Vector2i) -> void:
 	if player.get_parent() != contenedor:
 		player.reparent(contenedor)
 
-	player.position = Vector2(cell) * 16.0
+	var world_pos: Vector2 = Vector2(cell) * 16.0
+
+	var controller: CharacterController = \
+		player.get_node_or_null("CharacterController") as CharacterController
+	if controller != null:
+		controller.teleport_to(world_pos)
+	else:
+		player.position = world_pos
 
 
 func _resolve_path(map_id: Variant) -> String:

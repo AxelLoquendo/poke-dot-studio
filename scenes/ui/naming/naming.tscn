@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dxhsfiu5gqm7e"]
+
+[ext_resource type="Texture2D" uid="uid://b2f0d121eebcy" path="res://assets/ui/naming/bg_2.png" id="1_8gbss"]
+[ext_resource type="Texture2D" uid="uid://dnhor2ryypjlj" path="res://assets/ui/naming/icon_shadow.png" id="2_ydajd"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="3_gt06x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_htemk"]
+font = ExtResource("3_gt06x")
+font_size = 24
+font_color = Color(0.0627451, 0.09411765, 0.1254902, 1)
+shadow_size = 0
+shadow_color = Color(0.65882355, 0.72156864, 0.72156864, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="Naming" type="Node2D" unique_id=113634336]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=1940635084]
+position = Vector2(256, 192)
+texture = ExtResource("1_8gbss")
+
+[node name="Mon" type="Node2D" parent="." unique_id=1973011369]
+
+[node name="Shadow" type="Sprite2D" parent="Mon" unique_id=1153271074]
+position = Vector2(78, 71)
+texture = ExtResource("2_ydajd")
+
+[node name="Character" type="Node2D" parent="." unique_id=507016801]
+
+[node name="Shadow" type="Sprite2D" parent="Character" unique_id=1190526420]
+
+[node name="Text" type="Node" parent="." unique_id=714530550]
+
+[node name="Label" type="Label" parent="Text" unique_id=472307584]
+offset_left = 40.0
+offset_top = 300.0
+offset_right = 472.0
+offset_bottom = 372.0
+text = "Escribe texto usando el teclado. Pulsa Enter para confirmar, o Esc para cancelar."
+label_settings = SubResource("LabelSettings_htemk")
+autowrap_mode = 2
