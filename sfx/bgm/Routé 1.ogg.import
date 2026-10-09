@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Routé 1.ogg-583efbabf0c3b5de0e6b3a1e88497ced
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

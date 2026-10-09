@@ -6,18 +6,27 @@ const TILE_SIZE: float = 16.0
 var _arrastrando_entidad: bool = false
 var _entidad_activa: Node2D = null
 var _offset_drag: Vector2 = Vector2.ZERO
+var _clipping: bool = false
+var _hooked_layers: Array[TileMapLayer] = []
 
 
 func _enter_tree() -> void:
-	pass
+	set_process(true)
 
 
 func _exit_tree() -> void:
+	_desconectar_layers()
 	_soltar_entidad()
+	set_process(false)
+
+
+func _process(_delta: float) -> void:
+	if not Engine.is_editor_hint():
+		return
+	_asegurar_hooks()
 
 
 func _handles(object: Object) -> bool:
-	# Solo cuando realmente nos interesa el objeto
 	if object is TileMapLayer:
 		return _layer_pertenece_a_mapa(object as TileMapLayer)
 	if object is Node2D and _es_entidad(object as Node2D):
@@ -31,7 +40,6 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 	return _manejar_input_tiles(event)
 
 
-# --- entidades (igual que tenías) ---
 func _manejar_input_entidad(event: InputEvent) -> bool:
 	var entidad: Node2D = _obtener_entidad_seleccionada()
 	if entidad == null:
@@ -115,7 +123,7 @@ func _obtener_entidad_seleccionada() -> Node2D:
 func _es_entidad(nodo: Node2D) -> bool:
 	if not is_instance_valid(nodo):
 		return false
-	if nodo.is_in_group("Player") or nodo.is_in_group("Npc"):
+	if nodo.is_in_group(&"Player") or nodo.is_in_group(&"Npc"):
 		return true
 	var script: Script = nodo.get_script() as Script
 	if script == null:
@@ -136,9 +144,10 @@ func _manejar_input_tiles(event: InputEvent) -> bool:
 	if map_size.x <= 0 or map_size.y <= 0:
 		return false
 
-	# Solo limitar si hay un TileMapLayer del mapa seleccionado
 	var layer: TileMapLayer = _obtener_tile_layer_seleccionado()
 	if layer == null or not _layer_pertenece_a_mapa(layer):
+		return false
+	if layer.name == &"Borde":
 		return false
 
 	var mouse: InputEventMouse = event as InputEventMouse
@@ -149,18 +158,22 @@ func _manejar_input_tiles(event: InputEvent) -> bool:
 		floori(local_mapa.y / TILE_SIZE)
 	)
 
-	if _celda_dentro_del_mapa(celda, map_size):
-		return false
+	var fuera: bool = not _celda_dentro_del_mapa(celda, map_size)
 
 	if event is InputEventMouseButton:
 		var boton: InputEventMouseButton = event as InputEventMouseButton
-		if (
+		if not boton.pressed and (
+			boton.button_index == MOUSE_BUTTON_LEFT
+			or boton.button_index == MOUSE_BUTTON_RIGHT
+		):
+			_recortar_mapa(mapa)
+		if fuera and (
 			boton.button_index == MOUSE_BUTTON_LEFT
 			or boton.button_index == MOUSE_BUTTON_RIGHT
 		):
 			return true
 
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and fuera:
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
 		if (
 			(motion.button_mask & MOUSE_BUTTON_MASK_LEFT) != 0
@@ -169,6 +182,71 @@ func _manejar_input_tiles(event: InputEvent) -> bool:
 			return true
 
 	return false
+
+
+func _asegurar_hooks() -> void:
+	var mapa: Map = _obtener_mapa_actual()
+	if mapa == null:
+		_desconectar_layers()
+		return
+
+	var actuales: Array[TileMapLayer] = _capas_recortables(mapa)
+	if actuales == _hooked_layers:
+		return
+
+	_desconectar_layers()
+	for layer: TileMapLayer in actuales:
+		if not layer.changed.is_connected(_on_layer_changed):
+			layer.changed.connect(_on_layer_changed)
+		_hooked_layers.append(layer)
+
+
+func _desconectar_layers() -> void:
+	for layer: TileMapLayer in _hooked_layers:
+		if is_instance_valid(layer) and layer.changed.is_connected(_on_layer_changed):
+			layer.changed.disconnect(_on_layer_changed)
+	_hooked_layers.clear()
+
+
+func _on_layer_changed() -> void:
+	if _clipping:
+		return
+	var mapa: Map = _obtener_mapa_actual()
+	if mapa == null:
+		return
+	_recortar_mapa(mapa)
+
+
+func _capas_recortables(mapa: Map) -> Array[TileMapLayer]:
+	var result: Array[TileMapLayer] = []
+	var tileset_root: Node = mapa.get_node_or_null("Tileset")
+	if tileset_root != null:
+		for child: Node in tileset_root.get_children():
+			var layer: TileMapLayer = child as TileMapLayer
+			if layer != null:
+				result.append(layer)
+	var col: TileMapLayer = mapa.get_node_or_null("Behaviour/Collision") as TileMapLayer
+	if col != null:
+		result.append(col)
+	return result
+
+
+func _recortar_mapa(mapa: Map) -> void:
+	if _clipping or mapa.attributes == null:
+		return
+	var map_size: Vector2i = mapa.attributes.map_size
+	if map_size.x <= 0 or map_size.y <= 0:
+		return
+
+	_clipping = true
+	for layer: TileMapLayer in _capas_recortables(mapa):
+		if not is_instance_valid(layer):
+			continue
+		var used: Array[Vector2i] = layer.get_used_cells()
+		for cell: Vector2i in used:
+			if not _celda_dentro_del_mapa(cell, map_size):
+				layer.erase_cell(cell)
+	_clipping = false
 
 
 func _celda_dentro_del_mapa(celda: Vector2i, tamano: Vector2i) -> bool:
@@ -214,5 +292,4 @@ func _obtener_posicion_mundo(posicion_viewport: Vector2) -> Vector2:
 	var viewport: SubViewport = EditorInterface.get_editor_viewport_2d()
 	if viewport == null:
 		return Vector2.ZERO
-	var xform: Transform2D = viewport.get_final_transform()
-	return xform.affine_inverse() * posicion_viewport
+	return viewport.get_final_transform().affine_inverse() * posicion_viewport

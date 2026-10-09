@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="1_d5g20"]
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_i3vuo"]
+[ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_h3yp2"]
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="3_0fegv"]
 [ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="3_m4svl"]
 [ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="4_gl05j"]
@@ -31,6 +32,7 @@ z_index = 3
 [node name="Behaviour" type="Node2D" parent="." unique_id=1681849792]
 
 [node name="Collision" type="TileMapLayer" parent="Behaviour" unique_id=630593805]
+self_modulate = Color(1, 1, 1, 0.20784314)
 tile_set = ExtResource("3_0fegv")
 
 [node name="Borde" type="TileMapLayer" parent="Behaviour" unique_id=48474854]
