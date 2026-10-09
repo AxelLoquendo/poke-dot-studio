@@ -130,11 +130,14 @@ func start_move() -> bool:
 		_play_bump()
 		movement_blocked.emit()
 		return false
-	# Capa visual desde el primer frame del paso
 	MapCollisionSystem.preview_render_state(self, initial_position, target_position)
 	move_progress = 0.0
 	moving = true
-	animation_controller.play_step_animation(direction)
+	var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(self, initial_position, target_position)
+	TileBehaviorSystem.on_step_start(ctx)
+	# Si el ledge ya puso animación de salto, no pises con walk
+	if not ctx.jump_animation_played:
+		animation_controller.play_step_animation(direction)
 	return true
 
 func _play_bump() -> void:
@@ -155,6 +158,12 @@ func _play_bump_animation() -> void:
 	animation_controller.play_step_animation(direction)
 	_restore_anim_speed_after_bump(sprite)
 
+func play_ledge_jump_animation(dir: Vector2) -> void:
+	# Mientras no tengas clips de salto, reutiliza el paso o un idle corto
+	if animation_controller.has_method("play_jump_animation"):
+		animation_controller.play_jump_animation(dir)
+	else:
+		animation_controller.play_step_animation(dir)
 
 func _restore_anim_speed_after_bump(sprite: AnimatedSprite2D) -> void:
 	await get_tree().create_timer(BUMP_COOLDOWN).timeout

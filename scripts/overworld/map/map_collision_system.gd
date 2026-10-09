@@ -35,6 +35,10 @@ static func unregister_map(mapa: Map) -> void:
 			_entries.remove_at(i)
 
 
+static func get_registered_maps() -> Array[Dictionary]:
+	return _entries
+
+
 static func get_tile_data_at_world(world_pos: Vector2) -> CollisionTileData:
 	for e: Dictionary in _entries:
 		var mapa: Map = e.get("map") as Map
@@ -54,7 +58,6 @@ static func _world_in_map(mapa: Map, world_pos: Vector2) -> bool:
 		return false
 	var origin: Vector2 = mapa.global_position
 	var size_px: Vector2 = Vector2(mapa.attributes.map_size) * 16.0
-	# Incluye borde máximo (última celda)
 	var rect: Rect2 = Rect2(origin, size_px)
 	return (
 		world_pos.x >= rect.position.x
@@ -68,36 +71,48 @@ static func can_enter(
 	height_level: int,
 	elevated: bool,
 	from_world: Vector2,
-	to_world: Vector2
+	to_world: Vector2,
+	controller: CharacterController = null
 ) -> bool:
 	var to_data: CollisionTileData = get_tile_data_at_world(to_world)
 	var from_data: CollisionTileData = get_tile_data_at_world(from_world)
+
+	# --- Altura / bloqueo ---
+	var height_ok: bool = false
 
 	if not to_data.empty and to_data.bloqueo:
 		return false
 
 	if from_data.cambiar_nivel_altura:
-		return true
-
-	if elevated:
+		height_ok = true
+	elif elevated:
 		if to_data.empty:
-			return height_level == 0
-		if to_data.cambiar_nivel_altura:
-			return true
-		if to_data.no_block:
-			return true
-		return height_level == to_data.nivel_altura
+			height_ok = height_level == 0
+		elif to_data.cambiar_nivel_altura:
+			height_ok = true
+		elif to_data.no_block:
+			height_ok = true
+		else:
+			height_ok = height_level == to_data.nivel_altura
+	elif to_data.empty:
+		height_ok = height_level == 0
+	elif to_data.cambiar_nivel_altura:
+		height_ok = true
+	elif to_data.no_block:
+		height_ok = true
+	else:
+		height_ok = height_level == to_data.nivel_altura
 
-	if to_data.empty:
-		return height_level == 0
+	if not height_ok:
+		return false
 
-	if to_data.cambiar_nivel_altura:
-		return true
-
-	if to_data.no_block:
-		return true
-
-	return height_level == to_data.nivel_altura
+	# --- Comportamiento (Tileset) ---
+	var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(
+		controller,
+		from_world,
+		to_world
+	)
+	return TileBehaviorSystem.can_enter(ctx)
 
 
 static func apply_cell_state(
@@ -115,14 +130,10 @@ static func apply_cell_state(
 		controller.height_level = 0
 		controller.elevated = false
 		controller.update_render_layer()
-		return
-
-	if to_data.cambiar_nivel_altura:
+	elif to_data.cambiar_nivel_altura:
 		controller.elevated = false
 		controller.update_render_layer()
-		return
-
-	if to_data.no_block:
+	elif to_data.no_block:
 		if from_data.cambiar_nivel_altura or controller.elevated:
 			controller.elevated = true
 			if to_data.nivel_altura > 0:
@@ -130,11 +141,18 @@ static func apply_cell_state(
 		else:
 			controller.elevated = false
 		controller.update_render_layer()
-		return
+	else:
+		controller.height_level = to_data.nivel_altura
+		controller.elevated = false
+		controller.update_render_layer()
 
-	controller.height_level = to_data.nivel_altura
-	controller.elevated = false
-	controller.update_render_layer()
+	# Comportamiento al aterrizar (hierba, hielo, etc.)
+	var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(
+		controller,
+		from_world,
+		to_world
+	)
+	TileBehaviorSystem.on_landed(ctx)
 
 
 static func init_entity_state(controller: CharacterController, world_pos: Vector2) -> void:
@@ -190,11 +208,8 @@ static func _will_be_elevated(
 
 	if to_data.empty or to_data.bloqueo:
 		return false
-
 	if to_data.cambiar_nivel_altura:
 		return false
-
 	if to_data.no_block:
 		return from_data.cambiar_nivel_altura or controller.elevated
-
 	return false
