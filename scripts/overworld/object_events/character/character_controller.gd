@@ -35,6 +35,8 @@ var bump_cooldown: float = 0.0
 var move_speed: float = MOVE_SPEED
 var height_level: int = 0
 var elevated: bool = false
+var ledge_hop: bool = false
+const HOP_HEIGHT: float = 6.0
 
 func _ready() -> void:
 	entity_root.global_position = snap_to_grid(entity_root.global_position)
@@ -133,11 +135,11 @@ func start_move() -> bool:
 	MapCollisionSystem.preview_render_state(self, initial_position, target_position)
 	move_progress = 0.0
 	moving = true
+	ledge_hop = false
 	var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(self, initial_position, target_position)
 	TileBehaviorSystem.on_step_start(ctx)
-	# Si el ledge ya puso animación de salto, no pises con walk
-	if not ctx.jump_animation_played:
-		animation_controller.play_step_animation(direction)
+	ledge_hop = ctx.jump_animation_played
+	animation_controller.play_step_animation(direction)
 	return true
 
 func _play_bump() -> void:
@@ -159,11 +161,10 @@ func _play_bump_animation() -> void:
 	_restore_anim_speed_after_bump(sprite)
 
 func play_ledge_jump_animation(dir: Vector2) -> void:
-	# Mientras no tengas clips de salto, reutiliza el paso o un idle corto
 	if animation_controller.has_method("play_jump_animation"):
 		animation_controller.play_jump_animation(dir)
 	else:
-		animation_controller.play_step_animation(dir)
+		animation_controller.play_step_animation(dir)  # ← mismo walk
 
 func _restore_anim_speed_after_bump(sprite: AnimatedSprite2D) -> void:
 	await get_tree().create_timer(BUMP_COOLDOWN).timeout
@@ -186,11 +187,17 @@ func process_move(delta: float) -> void:
 	move_progress += (move_speed * delta) / TILE_SIZE
 	move_progress = minf(move_progress, 1.0)
 	entity_root.global_position = initial_position.lerp(target_position, move_progress)
+	if ledge_hop:
+		var hop: float = 4.0 * HOP_HEIGHT * move_progress * (1.0 - move_progress)
+		character.position = Vector2(0.0, -hop)
+	else:
+		character.position = Vector2.ZERO
 	if move_progress >= 1.0:
 		entity_root.global_position = target_position
+		character.position = Vector2.ZERO
 		current_position = target_position
 		moving = false
-		# Aplicar altura / puente de la casilla destino
+		ledge_hop = false
 		MapCollisionSystem.apply_cell_state(self, initial_position, target_position)
 		movement_finished.emit()
 		if external_move:
