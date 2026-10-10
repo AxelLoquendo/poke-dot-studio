@@ -1,6 +1,7 @@
 class_name MapCollisionSystem
 extends RefCounted
-## Colisión de tiles. Soporta varios mapas cargados (cluster continuo).
+## Colisión de tiles (Behaviour/Collision). Multi-mapa vía register_map.
+## No conoce ledges por nombre: pregunta a TileBehaviorSystem.
 
 ## Entradas: { "map": Map, "layer": TileMapLayer }
 static var _entries: Array[Dictionary] = []
@@ -76,20 +77,6 @@ static func _step_direction(from_world: Vector2, to_world: Vector2) -> Vector2:
 	return Vector2.ZERO
 
 
-static func _is_ledge_jump_entry(to_behavior: int, direction: Vector2) -> bool:
-	match to_behavior:
-		TileBehaviorId.Id.LEDGE_DOWN:
-			return direction == Vector2.DOWN
-		TileBehaviorId.Id.LEDGE_UP:
-			return direction == Vector2.UP
-		TileBehaviorId.Id.LEDGE_LEFT:
-			return direction == Vector2.LEFT
-		TileBehaviorId.Id.LEDGE_RIGHT:
-			return direction == Vector2.RIGHT
-		_:
-			return false
-
-
 static func can_enter(
 	height_level: int,
 	elevated: bool,
@@ -101,10 +88,11 @@ static func can_enter(
 	var from_data: CollisionTileData = get_tile_data_at_world(from_world)
 	var direction: Vector2 = _step_direction(from_world, to_world)
 	var to_behavior: int = TileBehaviorReader.get_behavior_at_world(to_world)
+	var ledge_entry: bool = TileBehaviorSystem.is_ledge_jump_entry(to_behavior, direction)
 
-	# Sólido, salvo entrada a ledge en dirección de salto
+	# Sólido, salvo entrada a ledge en dirección de salto (franqueo del precipicio)
 	if not to_data.empty and to_data.bloqueo:
-		if not _is_ledge_jump_entry(to_behavior, direction):
+		if not ledge_entry:
 			return false
 
 	var height_ok: bool = false
@@ -129,8 +117,7 @@ static func can_enter(
 	else:
 		height_ok = height_level == to_data.nivel_altura
 
-	# Ledge: no exigir cambio de reglas de altura por el bloqueo
-	if _is_ledge_jump_entry(to_behavior, direction):
+	if ledge_entry:
 		height_ok = true
 
 	if not height_ok:
@@ -143,6 +130,7 @@ static func can_enter(
 	)
 	return TileBehaviorSystem.can_enter(ctx)
 
+
 static func apply_cell_state(
 	controller: CharacterController,
 	from_world: Vector2,
@@ -152,7 +140,7 @@ static func apply_cell_state(
 	var from_data: CollisionTileData = get_tile_data_at_world(from_world)
 	var direction: Vector2 = _step_direction(from_world, to_world)
 	var to_behavior: int = TileBehaviorReader.get_behavior_at_world(to_world)
-	var ledge_entry: bool = _is_ledge_jump_entry(to_behavior, direction)
+	var ledge_entry: bool = TileBehaviorSystem.is_ledge_jump_entry(to_behavior, direction)
 
 	if not to_data.empty and to_data.bloqueo and not ledge_entry:
 		return
@@ -173,7 +161,6 @@ static func apply_cell_state(
 			controller.elevated = false
 		controller.update_render_layer()
 	else:
-		# Incluye ledge con bloqueo: aplica nivel del tile
 		controller.height_level = to_data.nivel_altura
 		controller.elevated = false
 		controller.update_render_layer()
@@ -244,6 +231,3 @@ static func _will_be_elevated(
 	if to_data.no_block:
 		return from_data.cambiar_nivel_altura or controller.elevated
 	return false
-
-static func is_ledge_jump_entry(to_behavior: int, direction: Vector2) -> bool:
-	return _is_ledge_jump_entry(to_behavior, direction)

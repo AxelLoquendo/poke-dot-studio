@@ -1,5 +1,6 @@
 class_name MapManager
 extends Node
+## Carga de un solo mapa (warps / indoor). El overworld continuo usa MapFactory.
 
 signal map_changed(mapa: Map)
 signal map_unloaded
@@ -99,5 +100,5 @@ func _place_player(mapa: Map, player: Node2D, cell: Vector2i) -> void:
 
 func _resolve_path(map_id: Variant) -> String:
 	if map_id is MapSection.MapID:
-		return MapSection.MAP_SCENES.get(map_id, "")
+		return str(MapSection.MAP_SCENES.get(map_id, ""))
 	return ""

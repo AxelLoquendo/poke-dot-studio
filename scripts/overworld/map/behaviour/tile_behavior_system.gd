@@ -1,7 +1,7 @@
 class_name TileBehaviorSystem
 extends RefCounted
 
-static var _handlers: Dictionary = {}
+static var _handlers: Dictionary[int, TileBehaviorHandler] = {}
 
 
 static func _ensure() -> void:
@@ -17,8 +17,8 @@ static func _ensure() -> void:
 static func get_handler(id: int) -> TileBehaviorHandler:
 	_ensure()
 	if _handlers.has(id):
-		return _handlers[id] as TileBehaviorHandler
-	return _handlers[TileBehaviorId.Id.NONE] as TileBehaviorHandler
+		return _handlers[id]
+	return _handlers[TileBehaviorId.Id.NONE]
 
 
 static func build_context(
@@ -42,7 +42,21 @@ static func build_context(
 	return ctx
 
 
-## Solo despacha a handlers. NO lee colisión ni altura.
+## ¿Intentar entrar a un tile con behavior de ledge en la dirección del salto?
+static func is_ledge_jump_entry(to_behavior: int, direction: Vector2) -> bool:
+	match to_behavior:
+		TileBehaviorId.Id.LEDGE_DOWN:
+			return direction == Vector2.DOWN
+		TileBehaviorId.Id.LEDGE_UP:
+			return direction == Vector2.UP
+		TileBehaviorId.Id.LEDGE_LEFT:
+			return direction == Vector2.LEFT
+		TileBehaviorId.Id.LEDGE_RIGHT:
+			return direction == Vector2.RIGHT
+		_:
+			return false
+
+
 static func can_enter(ctx: TileBehaviorContext) -> bool:
 	var from_h: TileBehaviorHandler = get_handler(ctx.from_behavior)
 	if not from_h.can_enter(ctx):
