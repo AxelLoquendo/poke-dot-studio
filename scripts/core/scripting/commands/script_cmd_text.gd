@@ -1,7 +1,7 @@
 @tool
 extends ScriptCommand
 class_name ScriptCmdText
-## Muestra texto vía DialogueManager. Asíncrono.
+## Muestra texto vía MessageService. Asíncrono.
 
 @export_multiline var message: String = ""
 @export var messages: Array[String] = []
@@ -28,39 +28,38 @@ func execute(context: ScriptExecutionContext) -> bool:
 	elif speaker.is_empty() and speaker_id != &"":
 		var node: Node = context.find_character_by_id(speaker_id)
 		if node != null:
-			speaker = str(node.name)
+			speaker = _display_name(node)
+	elif speaker.is_empty() and context.npc != null:
+		speaker = _display_name(context.npc)
 
-	# Choices → se anexan a la secuencia
-	var lines: Array[DialogueLine] = []
-	for i: int in range(pages.size()):
-		var line: DialogueLine = DialogueLine.new()
-		line.text = pages[i]
-		line.speaker_name = speaker
-		lines.append(line)
-
-	var packed_choices: PackedStringArray = PackedStringArray()
-	for c: String in choices:
-		packed_choices.append(c)
-
-	if not DialogueManager.dialogue_finished.is_connected(context.complete_async):
-		DialogueManager.dialogue_finished.connect(context.complete_async, CONNECT_ONE_SHOT)
+	if not MessageService.message_finished.is_connected(context.complete_async):
+		MessageService.message_finished.connect(context.complete_async, CONNECT_ONE_SHOT)
 
 	if not choices.is_empty():
-		if not DialogueManager.choice_selected.is_connected(_on_choice.bind(context)):
-			DialogueManager.choice_selected.connect(_on_choice.bind(context), CONNECT_ONE_SHOT)
-		var seq: DialogueSequence = DialogueSequence.new()
-		seq.lines = lines
-		seq.choices = packed_choices
-		DialogueManager.show_sequence(seq)
-	else:
-		DialogueManager.show_sequence_lines(lines)
+		if not MessageService.choice_selected.is_connected(_on_choice.bind(context)):
+			MessageService.choice_selected.connect(_on_choice.bind(context), CONNECT_ONE_SHOT)
 
+	MessageService.show_texts(pages, speaker, choices)
 	context.is_waiting = true
 	return false
 
 
 func _on_choice(index: int, context: ScriptExecutionContext) -> void:
 	context.set_variable(choice_variable, str(index))
+
+
+func _display_name(node: Node) -> String:
+	if node == null:
+		return ""
+	if node.has_method("get_display_name"):
+		return str(node.call("get_display_name"))
+	if "data" in node:
+		var data: Variant = node.get("data")
+		if data != null and data is Resource and "name" in data:
+			var n: String = str(data.get("name"))
+			if not n.is_empty():
+				return n
+	return str(node.name)
 
 
 func get_display_text() -> String:

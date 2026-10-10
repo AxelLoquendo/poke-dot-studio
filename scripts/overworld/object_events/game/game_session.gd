@@ -1,8 +1,6 @@
 class_name GameSession
 extends Node
 
-const DIALOGUE_BOX_SCENE: PackedScene = preload("res://scenes/ui/dialogue_box/dialogue_box.tscn")
-
 @export var start_data: GameStartData
 
 @onready var player: Node2D = $Player
@@ -10,7 +8,7 @@ const DIALOGUE_BOX_SCENE: PackedScene = preload("res://scenes/ui/dialogue_box/di
 
 
 func _ready() -> void:
-	_ensure_dialogue_box()
+	_ensure_message_ui()
 	if start_data == null:
 		push_error("GameSession: falta GameStartData")
 		return
@@ -26,14 +24,12 @@ func _ready() -> void:
 		controller.movement_finished.connect(_on_player_step_finished)
 
 
-func _ensure_dialogue_box() -> void:
-	if DialogueManager.box != null and is_instance_valid(DialogueManager.box):
+func _ensure_message_ui() -> void:
+	if get_tree().get_first_node_in_group(&"message_ui") != null:
 		return
-	var existing: Node = get_tree().get_first_node_in_group(&"dialogue_box")
-	if existing != null:
-		return
-	var box: Node = DIALOGUE_BOX_SCENE.instantiate()
-	add_child(box)
+	var ui: MessageUI = MessageUI.new()
+	ui.name = "MessageUI"
+	add_child(ui)
 
 
 func _on_player_step_finished() -> void:

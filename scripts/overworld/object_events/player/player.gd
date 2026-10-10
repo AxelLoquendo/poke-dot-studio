@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if _script_locked or DialogueManager.is_active():
+	if _script_locked or MessageService.is_active():
 		# Sigue animación idle si hace falta, pero sin input de movimiento
 		if not _script_locked:
 			pass
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _script_locked or DialogueManager.is_active():
+	if _script_locked or MessageService.is_active():
 		return
 	if not event.is_action_pressed("buttonA"):
 		return
