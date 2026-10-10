@@ -1,286 +1,119 @@
 # Arquitectura de PokeDot Studio
 
-Documento formal del estado del motor de overworld.  
-Godot 4.7 · GDScript tipado estricto · Grid 16×16 estilo Pokémon GBA.
+Documento de diseño del motor de overworld. Godot 4.7, GDScript tipado estricto, grilla 16×16.
 
----
+Describe el código de `scripts/`, no una intención futura. Si un comportamiento no aparece aquí, no está implementado.
 
-## 1. Objetivos de diseño
+## 1. Objetivo
 
-1. **Overworld jugable** comparable en feel a los juegos GBA (casillas, giro, caminar, bump, NPCs, mapas).
-2. **Separación de responsabilidades:** cada sistema tiene un contrato pequeño; un fallo no obliga a reescribir el resto.
-3. **Player fuera de las escenas de mapa:** una sola instancia de sesión; los mapas se instancian y el player se reparenta.
-4. **Datos en Resources** (`PlayerData`, `NPCData`, `MapAttributes`, `MoveRoute`) editables en inspector.
-5. **Colisión de mapa por metatiles** (capa `Behaviour/Collision` + custom data), no por física continua.
+PokeDot Studio ejecuta un overworld con el ritmo de los juegos de Game Boy Advance: casilla, giro, paso, choque, NPC, mapa conectado y evento de texto. El combate y la persistencia quedan fuera de este runtime a propósito, para no acoplar el mapa a un modelo de batalla que todavía no existe.
 
----
+El motor tiene que poder cambiar un subsistema sin reescribir los demás. Audio, borde, colisión, mensaje y movimiento se hablan por señales, autoloads o valores de retorno. No se leen entre sí por dentro.
 
-## 2. Capas del sistema
+## 2. Regla de una función
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│  Sesión                                                  │
-│  GameSession · GameStartData                             │
-└───────────────────────────┬─────────────────────────────┘
-							│
-┌───────────────────────────▼─────────────────────────────┐
-│  Mapas                                                   │
-│  MapManager · Map · MapAttributes · MapSection           │
-│  MapMusicController · MapBorderController                │
-└───────────────────────────┬─────────────────────────────┘
-							│
-┌───────────────────────────▼─────────────────────────────┐
-│  Entidades                                               │
-│  Player / NPC · Character · Controllers · States         │
-│  MoveRoute / MoveRouteController                         │
-└───────────────────────────┬─────────────────────────────┘
-							│
-┌───────────────────────────▼─────────────────────────────┐
-│  Colisión e altura                                       │
-│  CollisionFacade · EntityCollisionSystem                 │
-│  MapCollisionSystem · CollisionTileData                  │
-└─────────────────────────────────────────────────────────┘
-```
+Cada función hace una sola de estas tres cosas:
 
----
+1. Calcular y devolver un valor (`MoveStepResult`, ancho de texto, siguiente comando).
+2. Aplicar un valor ya decidido a nodos, sin volver a decidir.
+3. Orquestar: llamar a las otras dos, sin matemática ni construcción de UI dentro.
 
-## 3. Sesión de juego
+Si una función resuelve una colisión y además llama a `play_animation`, está mal partida. El controlador emite `step_started`. `CharacterAnimatedController` es quien reproduce la animación y el salto.
 
-### 3.1 GameSession
-
-- Nodo raíz típico de la escena de boot.
-- Posee `@export var start_data: GameStartData`.
-- Referencias a `Player` y `MapManager`.
-- En `_ready`: solicita el primer mapa; no implementa carga de `.tscn`.
-
-### 3.2 GameStartData (Resource)
-
-| Campo | Uso |
-|-------|-----|
-| `start_map_id` | `MapSection.MapID` del mapa inicial |
-| `start_position` | Celda `Vector2i` de aparición |
-| `player_data` | Opcional; si el Player ya trae data en escena, puede omitirse |
-
-### 3.3 Ciclo de vida del Player
-
-- Existe en la escena de boot (o se instancia una vez).
-- **No** se guarda dentro de los `.tscn` de mapa.
-- `MapManager` lo reparenta a `EventObject` del mapa activo y fija `position = cell * 16`.
-
----
-
-## 4. Sistema de mapas
-
-### 4.1 MapSection
-
-- Enum `MapID` y diccionario `MAP_SCENES: MapID → ruta .tscn`.
-- Enum `RegionID` para metadatos regionales.
-- Única tabla de resolución id → escena (el manager no hardcodea rutas).
-
-### 4.2 MapAttributes (Resource)
-
-Datos del mapa: `map_id`, `region_id`, `map_name`, `map_music`, `map_size`, flags (`is_indoor`, `allow_fly`, etc.).
-
-### 4.3 Map (Node2D, `@tool`)
-
-- Expone `attributes`.
-- En editor dibuja el rectángulo de `map_size`.
-- Notifica a hijos con `on_map_attributes_ready` (música, bordes).
-- **No** implementa movimiento, colisión ni carga de otros mapas.
-
-### 4.4 Estructura de escena (`map_base`)
+## 3. Capas
 
 ```text
-Map_Attributes (Map)
-├── Tileset
-│   ├── Tile0 … Tile2     (suelo / decoración baja)
-│   ├── Tile3             z_index = 2  (capas que tapan al pasar debajo)
-│   └── Tile4             z_index = 3
-├── Behaviour
-│   ├── Collision         TileMapLayer de metatiles
-│   └── Borde             patrón 2×2 de borde infinito
-├── EventObject           z_index = 1, y_sort_enabled
-├── Trigger
-├── MapMusicController
-└── MapBorderController
+Presentación     MessageUI, WeatherRenderer, CharacterAnimatedController, FadeScreen
+Servicios        MessageService, MusicManager, WeatherManager
+Sesión           GameSession, MapFactory, MapManager
+Reglas           CollisionFacade, MapCollisionSystem, TileBehaviorSystem,
+                 ScriptRunner, MoveRouteController, NpcController
+Datos            MapAttributes, NPCData, PlayerData, MoveRoute, WeatherData, .txt
 ```
 
-### 4.5 MapManager
+Las reglas no instancian `Label` ni `Sprite2D`. La presentación no decide si un paso es legal.
 
-Responsabilidades:
+## 4. Sesión
 
-1. Resolver ruta (`MapSection`).
-2. Instanciar / liberar el mapa.
-3. Registrar `MapCollisionSystem.set_active_map` **antes** de `add_child`.
-4. Reparentar player a `EventObject` y posicionar en celda.
-5. `init_entity_state` del player y de NPCs del mapa.
-6. Emitir `map_changed` / `map_unloaded`.
+`GameSession` es la raíz de juego. Tiene un `GameStartData` (`start_map_id`, `start_position`, `player_data`) y un hijo `MapFactory`.
 
-No conoce combate, diálogos ni inventario.
+En `_ready`:
 
-### 4.6 MapMusicController
+1. Crea `MessageUI` si el grupo `message_ui` está vacío. `MessageUI` se registra en el autoload `MessageService`.
+2. Si hay `player_data`, lo asigna al `Character` del jugador.
+3. `MapFactory.load_cluster` carga el mapa de inicio y sus vecinos.
+4. Se conecta `movement_finished` del jugador a `update_current_from_player`.
 
-- Escucha attributes del mapa.
-- Llama a `MusicManager.reproducir_mapa(map_music)`.
+No hay menú de título ni ranuras de guardado en esta escena.
 
-### 4.7 MapBorderController
+## 5. Mapas
 
-- En runtime rellena celdas fuera de `map_size` con un patrón **2×2** tomado de `Behaviour/Borde`.
-- Solo actualiza el área visible + margen respecto a la cámara.
-- Dentro de `map_size` borra celdas de borde para no tapar el mapa jugable.
+Hay dos cargadores. No son intercambiables.
 
----
+`MapFactory` es el overworld continuo. Mantiene el mapa actual y los vecinos declarados en `MapAttributes.connections`. Al cruzar el borde, promueve el vecino a actual, reparenta al jugador conservando `global_position` y refresca el anillo de vecinos. Es el camino que usa `GameSession`.
 
-## 5. Sistema de personajes
+`MapManager.change_map` descarga el mapa entero y carga otro. Sirve para interior y warp, cuando no hay vecinos que conservar. Hoy el arranque no lo usa.
 
-### 5.1 Datos
+Un `Map` expone `MapAttributes` (id, tamaño, conexiones, música, clima). Al activarse como actual dispara a sus controladores hijos:
 
-| Clase | Extiende | Contenido relevante |
-|-------|----------|---------------------|
-| `CharacterBase` | Resource | id, ow, name, shadow, etc. |
-| `PlayerData` | CharacterBase | `walk`, `running` (tiles/s) |
-| `NPCData` | CharacterBase | `behavior`, `move_route`, `walk` |
+- `MapMusicController` pide el BGM al `MusicManager`.
+- `MapWeatherController` publica el clima del mapa en `WeatherManager`.
+- `MapBorderController` rellena fuera del mapa con un patrón 2×2, sin pintar celdas de mapas conectados.
 
-### 5.2 Character (visual)
+La colisión activa es única: `MapCollisionSystem.set_active_map`. Los vecinos existen como escenas, pero las consultas de tile van al mapa actual.
 
-- Carga sheet OW (rejilla 3×4 de frames), arma animaciones.
-- Alinea el sprite a la casilla 16×16 (pies en el borde inferior de la celda).
-- Sombra: posición libre (no forzada por el alineado del cuerpo).
+El detalle de celdas, altura y ledges está en `Sistema_Mapa_y_Colision.md`.
 
-### 5.3 CharacterController
+## 6. Personaje
 
-- Mueve el **root** de la entidad (`Player`/`Npc`) en pasos de 16 px.
-- Velocidad: `move_speed` (px/s), configurable con `set_move_speed(walk * 16)`.
-- Giro con hold threshold antes del primer paso.
-- Bump: animación + sonido (player) + cooldown.
-- Estado de altura: `height_level`, `elevated`.
-- Render: `z_index` `Z_GROUND` (0) o `Z_ELEVATED` (3) según puente.
-- Al iniciar paso: `preview_render_state` (subir capa pronto; **no** bajar al salir hasta el final).
-- Al terminar paso: `apply_cell_state`.
+`CharacterController` posee la posición de grilla, el progreso del paso y el bloqueo. No reproduce animaciones. Emite:
 
-### 5.4 CharacterStates / CharacterAnimatedController
+| Señal | Cuándo |
+|---|---|
+| `step_started(direction, hop)` | Empieza un paso, o un giro que anticipa el paso |
+| `facing_changed(direction)` | Mira sin caminar (`look_direction`) |
+| `bump_started(direction)` | El paso fue rechazado |
+| `bump_ended(direction)` | Terminó el cooldown del choque |
+| `movement_finished` | El lerp llegó al tile destino |
+| `movement_blocked` | La fachada de colisión rechazó el paso |
 
-- Estados de animación (idle / walk) sin mezclarse con la física del grid.
-- Respeto a `is_bumping()` para no pisar el bump con idle.
+`CharacterAnimatedController` se suscribe a las cuatro primeras y aplica sprites, velocidad de bump y el sonido de salto si el padre está en el grupo `Player`. El sonido de choque lo dispara el controlador solo para ese grupo, porque es feedback de input y no de sprite.
 
-### 5.5 Player
+`CharacterStates` (`IDLE`, `WALK`, `RUN`, `LOCKED`) observa `moving`. En `LOCKED` el controlador no acepta otro paso y no termina el que estaba a medias: `halt_for_interaction` lo resuelve antes.
 
-- `PlayerController` lee input y llama `set_direction`.
-- Loop: input → state → `process_movement`.
+El detalle de NPC, patrulla e interacción está en `Sistema_Character.md`.
 
-### 5.6 NPC
+## 7. Eventos
 
-- `NpcController` según `Behavior` (NONE, LOOK_AROUND, WANDER, PATROL, FOLLOW…).
-- `MoveRouteController` ejecuta `MoveRoute` / `MoveCommand` (pasos, mirar, esperar, hacia/lejos del player).
-- Reintentos ante bloqueo sin “deslizar” a casillas laterales de forma incorrecta (diseño de rutas).
+Un NPC con `script_file` acepta la tecla A del jugador si este está quieto y mira su tile. `Npc._run_script` solo orquesta:
 
-### 5.7 Orden de dibujo entre entidades
+1. `_freeze_for_script` bloquea estado, pausa el comportamiento, corta el paso en el tile de origen o de destino según `move_progress >= 0.5`, pausa la ruta y gira hacia el jugador.
+2. `_start_runner` inserta un `ScriptRunner` hijo con un `ScriptCmdTextFile`.
 
-- `EventObject.y_sort_enabled = true`.
-- Se ordena por la **Y del root**, no del hijo `Character`.
+Al terminar, el estado vuelve a `IDLE` y `NpcController.resume_behavior` reanuda la patrulla en el comando guardado. No reinicia la ruta desde el comando 0: si lo hiciera, el tile de la conversación pasaría a ser el origen del circuito.
 
----
+Flags y variables viven en `ScriptExecutionContext`. Los flags son un diccionario estático de proceso. No se escriben a disco.
 
-## 6. Colisión
+El lenguaje está en `Sistema_Scripts.md`. La caja de texto está en `Sistema_Mensajes.md`.
 
-### 6.1 EntityCollisionSystem
+## 8. Presentación global
 
-- Consulta grupos `Player` y `Npc`.
-- Ocupación: casilla actual (`current_position`) y **destino reservado** si `moving`.
-- Evita que dos entidades entren a la misma celda a la vez.
+`MusicManager`, `FadeScreen`, `WeatherManager` y `WeatherRenderer` son autoloads. Un mapa o un comando de script les pide un cambio. Ellos no recorren NPCs ni leen `MapAttributes` por su cuenta, salvo el renderer, que lee la intensidad publicada por el manager.
 
-### 6.2 CollisionTileData
+Ver `Sistema_Presentacion.md`.
 
-Lee del TileSet de `Behaviour/Collision`:
+## 9. Lo que este motor no hace
 
-| Custom data | Tipo | Significado |
-|-------------|------|-------------|
-| `bloqueo` | bool | Pared / no se entra |
-| `cambiar_nivel_altura` | bool | Conector entre niveles |
-| `nivel_altura` | int | Nivel lógico de la casilla |
-| `no_block` | bool | Casilla de puente (paso bajo/alto) |
+- No hay escena de combate ni cálculo de daño.
+- No hay mochila, equipo, Pokédex ni PC.
+- No hay `SaveService`. Los flags mueren con el proceso.
+- `MapManager` no está cableado al arranque. Un warp de script todavía no tiene comando implementado (`warp` se advierte como no portado).
+- Los comandos `applymovement`, `moveplayer`, `giveitem`, `sound`, `trainerbattle`, `checkitem`, `compare` y `savegame` se reconocen en el parser y no tienen factory.
 
-### 6.3 MapCollisionSystem
+## 10. Convenciones
 
-- Mantiene referencia al `TileMapLayer` del mapa activo.
-- `can_enter(height, elevated, from, to)` — reglas de paso.
-- `apply_cell_state` — actualiza `height_level` / `elevated` al llegar.
-- `preview_render_state` — ajusta capa visual al **inicio** del paso (excepto bajar del puente).
-- `init_entity_state` — spawn.
-
-#### Reglas resumidas
-
-```text
-bloqueo                     → no
-desde conector              → sí (transición de nivel)
-elevated + destino          → solo no_block, conector o mismo nivel
-no_block                    → sí (arriba o abajo según estado)
-cambiar_nivel_altura        → sí
-suelo                       → sí si height_level == nivel_altura
-vacío                       → sí si height_level == 0 (convención)
-```
-
-#### Puente y render
-
-- **Por debajo:** `elevated = false`, `z_index = 0` → tiles de `Tile3` (z=2) tapan al personaje.
-- **Por encima:** `elevated = true`, `z_index = 3` → personaje sobre el puente.
-- Al **salir** del puente, el `z_index` bajo solo se aplica al **completar** el paso.
-
-### 6.4 CollisionFacade
-
-Única puerta para el controller:
-
-```text
-is_blocked(controller, target) =
-  EntityCollisionSystem.ocupada OR NOT MapCollisionSystem.can_enter(...)
-```
-
----
-
-## 7. Audio
-
-- Autoload `MusicManager`.
-- IDs en `SFXGame` / `MapMusicID`.
-- El mapa dispara reproducción vía `MapMusicController` según `MapAttributes.map_music`.
-- SE de bump del player configurable en el controller.
-
----
-
-## 8. Herramientas de editor
-
-### Map Creator (`addons/map_creator`)
-
-- Menú para crear un `.tscn` de mapa desde `map_base`.
-- Puede actualizar registros de mapas (según implementación actual del plugin).
-
-### Map Editor (`addons/map_editor`)
-
-- Intercepta pintura fuera de `map_size`.
-- Utilidades de edición 2D en el viewport del editor.
-
----
-
-## 9. Lo que deliberadamente aún no está
-
-- Warps / conexiones entre mapas por trigger
-- Diálogo e interacción (botón A)
-- Encuentros en hierba, surf, ledges unidireccionales como tipo aparte
-- Menú, inventario, combate, save/load completo
-- Multiplayer
-
-La base de overworld (movimiento, entidades, mapas, altura, puentes) está lista para apoyar esas capas.
-
----
-
-## 10. Criterios de extensión
-
-Al añadir un sistema nuevo:
-
-1. ¿Tiene ciclo de vida distinto al movimiento? → script/nodo propio.
-2. ¿Solo necesita datos del mapa? → leer `MapAttributes` o custom data, no inflar `Map.gd`.
-3. ¿Bloquea casillas? → extender custom data + `MapCollisionSystem`, no el controller.
-4. ¿Es solo visual de mapa? → controller hijo del Map, no el manager.
-
----
-
-*Documento alineado al código en `main` de poke-dot-studio (Godot 4.7).*
+- Grilla: `CharacterController.TILE_SIZE` es 16.
+- Grupos: `player`, `npc`. La búsqueda de interacción y de `speaker_id` depende de ellos.
+- Identidad de script: `Npc.get_script_id` devuelve `NPCData.id` o, si falta, el nombre del nodo.
+- Recursos editables en inspector: `MapAttributes`, `NPCData`, `PlayerData`, `MoveRoute`, `GameStartData`.
+- El código nuevo no lee `doc/` como fuente de verdad. Si el documento y el script discrepan, manda el script y se corrige el documento en el mismo cambio.

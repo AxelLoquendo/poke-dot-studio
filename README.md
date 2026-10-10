@@ -1,122 +1,74 @@
 # PokeDot Studio
 
-Motor de overworld estilo **Pokémon GBA** (top-down, grid 16×16), desarrollado en **Godot 4.7** con GDScript tipado estricto.
+Motor de overworld estilo Pokémon GBA, en Godot 4.7 y GDScript con tipado estricto. Grilla de 16×16, viewport de referencia 512×384, renderer GL Compatibility.
 
-Proyecto en solitario. Sucesor conceptual de *pokedot-expansion* / *pokedot-engine*, rediseñado desde cero con separación clara de responsabilidades para evitar refactors constantes.
+Este repositorio es el runtime de mapa, personaje, eventos y presentación. No incluye combate, equipo, mochila, Pokédex ni guardado.
 
----
+La documentación de diseño vive en [`doc/ARQUITECTURA.md`](doc/ARQUITECTURA.md). El resto de los documentos describen un subsistema cada uno y se mantienen alineados al código de `main`, no a iteraciones anteriores.
 
-## Estado actual
+## Alcance
 
-| Área | Estado |
-|------|--------|
-| Movimiento en grid (player / NPC) | Completo |
-| Animaciones OW y sombra | Completo |
-| Rutas y comportamientos de NPC | Completo |
-| Colisión entre entidades | Completo |
-| Colisión de tiles + altura + puentes | Completo |
-| Mapas, bordes infinitos, BGM | Completo |
-| Boot / sesión / MapManager | Completo |
-| Y-Sort y capas de render (puentes) | Completo |
-| Plugins de editor (crear mapa, límites) | Funcional |
-| Warps / diálogos / combates / menú | Pendiente |
-
----
+| Subsistema | Estado |
+|---|---|
+| Movimiento en grilla, animación y hop de ledge | Operativo |
+| Colisión de tile, altura, puente y entidades | Operativo |
+| Mapas conectados (cluster) y mapa único (indoor / warp) | Operativo |
+| Borde infinito, BGM por mapa, clima | Operativo |
+| NPC: wander, look around, follow, patrulla por ruta | Operativo |
+| Intérprete de scripts `.txt` y mensajes con choices | Operativo |
+| Fade de pantalla | Operativo |
+| Combate, menús de partida, persistencia | No implementado |
 
 ## Requisitos
 
-- **Godot 4.7** (GL Compatibility)
-- Viewport de referencia: **512×384** (escala viewport)
+- Godot 4.7, renderer GL Compatibility.
+- Viewport 512×384, stretch `viewport`, aspect `ignore`.
+- Plugins de editor: `addons/map_creator`, `addons/map_editor`.
 
----
+## Arranque
 
-## Arranque rápido
-
-1. Clonar el repositorio y abrir la carpeta en Godot 4.7.
-2. La escena principal está definida en `project.godot` (`run/main_scene`).
-3. Activar los plugins **Map Creator** y **Map Editor** si no cargan solos (`Project → Project Settings → Plugins`).
-4. Ejecutar: se instancia el **Player**, se carga el mapa de `GameStartData` y se coloca en la celda indicada.
-
-Flujo de arranque:
+La escena principal es `scenes/overworld/game/game_start.tscn`. `GameSession` instancia `MessageUI` si no existe, aplica `PlayerData` opcional y pide a `MapFactory` el cluster del mapa indicado en `GameStartData`.
 
 ```text
-Boot (GameSession)
-  → aplica datos opcionales del player
-  → MapManager.change_map(map_id, cell, player)
-	   → MapCollisionSystem.set_active_map
-	   → instancia mapa
-	   → reparent Player → EventObject
-	   → init altura player + NPCs
+GameSession
+  → MessageUI
+  → MapFactory.load_cluster(map_id, celda, player)
+       → mapa actual + vecinos por MapConnection
+       → Player reparentado a EventObject
+       → MapCollisionSystem.init_entity_state
 ```
 
----
+Cada paso del jugador llama a `MapFactory.update_current_from_player`. Si la celda cae en un vecino, ese mapa pasa a ser el actual y se recargan sus conexiones.
 
-## Arquitectura (visión general)
+## Autoloads
 
-```text
-GameSession + GameStartData     → qué mapa y celda al iniciar
-MapManager                      → carga / descarga mapas, coloca player
-Map + MapAttributes             → identidad y datos del mapa
-  MapMusicController            → BGM
-  MapBorderController           → borde infinito 2×2
-  Behaviour/Collision           → metatiles de colisión/altura
-  EventObject (Y-Sort)          → player + NPCs
-CharacterController             → movimiento grid + altura visual
-CollisionFacade                 → entidades OR tiles
-```
+| Nombre | Responsabilidad |
+|---|---|
+| `MusicManager` | BGM y efectos. No conoce mapas. |
+| `FadeScreen` | Cortina a pantalla completa. |
+| `WeatherManager` | Clima activo e intensidad. |
+| `WeatherRenderer` | Partículas, tiles y rayos de ese clima. |
+| `MessageService` | API de texto para scripts. No pinta. |
 
-Principio de diseño: **un script no debe tumbar el engine entero**. Audio, bordes, colisión y movimiento fallan o evolucionan por separado.
+## Controles
 
-Documentación detallada por sistema:
+| Acción | Teclas |
+|---|---|
+| Movimiento | Flechas, WASD |
+| A / aceptar | Z |
+| B | X |
+| Select | Shift |
+| Start | Enter |
 
-- [`doc/ARQUITECTURA.md`](doc/ARQUITECTURA.md) — overview formal de todo el proyecto
-- [`doc/Sistema_Character.md`](doc/Sistema_Character.md) — personajes y movimiento
-- [`doc/Sistema_Mapa_y_Colision.md`](doc/Sistema_Mapa_y_Colision.md) — mapas, altura y puentes
+## Documentación
 
----
+- [`doc/ARQUITECTURA.md`](doc/ARQUITECTURA.md) — contrato del motor y reglas de diseño.
+- [`doc/Sistema_Mapa_y_Colision.md`](doc/Sistema_Mapa_y_Colision.md) — mapas, cluster, tiles, altura.
+- [`doc/Sistema_Character.md`](doc/Sistema_Character.md) — personaje, movimiento, NPC y rutas.
+- [`doc/Sistema_Scripts.md`](doc/Sistema_Scripts.md) — formato `.txt` y runner.
+- [`doc/Sistema_Mensajes.md`](doc/Sistema_Mensajes.md) — caja de texto, nombre y choices.
+- [`doc/Sistema_Presentacion.md`](doc/Sistema_Presentacion.md) — audio, fade y clima.
 
-## Estructura de carpetas
+## Criterio de cambio
 
-```text
-addons/
-  map_creator/     Plugin: crear escena de mapa desde plantilla
-  map_editor/      Plugin: límites de pintura, utilidades de editor
-assets/            Arte compartido (OW, sombras, tilesets)
-game/assets/       Arte propio del juego (player Kael/Kaida, etc.)
-data/resources/    Resources (.tres): rutas, TileSet de colisión
-doc/               Documentación
-scenes/overworld/
-  game/            Boot / sesión
-  map/             map_base + mapas (pueblo, rutas, ciudad…)
-  player/          player.tscn
-  npc/             npc.tscn
-scripts/overworld/
-  map/             Map, manager, bordes, música, colisión de tiles
-  map/collision/   Facade + TileData
-  object_events/   Character, Player, NPC, movement
-  sfx/             MusicManager, IDs de audio
-sfx/               BGM, ME, SE, cries
-```
-
----
-
-## Convenciones
-
-- **Grid:** 16×16 px por casilla.
-- **Posición lógica:** origen del root `Player` / `Npc` (esquina superior izquierda de la casilla).
-- **Grupos:** `"Player"`, `"Npc"`.
-- **Tipado:** estricto (`untyped_declaration` / `inferred_declaration` como error).
-- **Autoload:** `MusicManager`.
-
----
-
-## Licencia y uso
-
-Proyecto personal de aprendizaje/desarrollo. No redistribuir assets de terceros sin cumplir sus términos. El código del motor es de Axel_CodeInfinity o tambien conocido como Axel Loquendo / PokeDot Studio.
-
----
-
-## Créditos
-
-- Diseño e implementación: **Axel_CodeInfinity/Axel Loquendo**
-- Motor: **Godot Engine 4.7**
+Una función calcula, aplica un resultado ya calculado, u orquesta llamadas. No hace dos de esas cosas. El detalle está en la sección 2 de la arquitectura.
