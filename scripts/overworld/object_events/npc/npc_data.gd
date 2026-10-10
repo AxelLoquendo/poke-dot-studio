@@ -5,6 +5,8 @@ extends CharacterBase
 @export var move_route: MoveRoute
 ## Tiles por segundo
 @export var walk: float = 4.0
+## Script de overworld (.txt). Vacío = no interactúa por script.
+@export_file("*.txt") var script_file: String = ""
 
 enum Behavior {
 	NONE,

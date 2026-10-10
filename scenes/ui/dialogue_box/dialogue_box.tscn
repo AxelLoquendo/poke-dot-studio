@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://bebsbk4fxbj3h"]
 
+[ext_resource type="Script" uid="uid://bruc6st6ff33j" path="res://scripts/core/dialogue/dialogue_box.gd" id="1_lqiht"]
 [ext_resource type="Texture2D" uid="uid://f3mllhf1al0m" path="res://assets/window_skins/speech em.png" id="1_rmqiv"]
 
 [node name="DialogueBox" type="CanvasLayer" unique_id=185409007]
+script = ExtResource("1_lqiht")
 
 [node name="Panel" type="NinePatchRect" parent="." unique_id=1159235650]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_rmqiv")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="TextLabel" type="RichTextLabel" parent="Panel" unique_id=854603852]
 layout_mode = 0
