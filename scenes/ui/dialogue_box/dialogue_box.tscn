@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bebsbk4fxbj3h"]
+
+[ext_resource type="Texture2D" uid="uid://f3mllhf1al0m" path="res://assets/window_skins/speech em.png" id="1_rmqiv"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=185409007]
+
+[node name="Panel" type="NinePatchRect" parent="." unique_id=1159235650]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rmqiv")
+
+[node name="TextLabel" type="RichTextLabel" parent="Panel" unique_id=854603852]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="Panel" unique_id=115884242]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NamePanel" type="NinePatchRect" parent="." unique_id=617642764]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rmqiv")
+
+[node name="NameLabel" type="Label" parent="NamePanel" unique_id=2041517557]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
