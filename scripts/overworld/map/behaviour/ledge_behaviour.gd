@@ -11,7 +11,7 @@ func _init(dir: Vector2) -> void:
 func can_enter(ctx: TileBehaviorContext) -> bool:
 	var my_id: int = _id_for_dir(jump_dir)
 
-	# Entrar al ledge desde abajo (contra el salto) → no
+	# Entrar al ledge en contra del salto → no
 	if ctx.to_behavior == my_id and ctx.direction == -jump_dir:
 		return false
 
@@ -23,14 +23,15 @@ func can_enter(ctx: TileBehaviorContext) -> bool:
 
 
 func on_step_start(ctx: TileBehaviorContext) -> void:
-	if ctx.controller == null:
-		return
-	if ctx.from_behavior != _id_for_dir(jump_dir):
+	# Hop al ENTRAR al tile del ledge en dirección de salto
+	if ctx.to_behavior != _id_for_dir(jump_dir):
 		return
 	if ctx.direction != jump_dir:
 		return
-	ctx.controller.play_ledge_jump_animation(ctx.direction)
+	if ctx.controller == null:
+		return
 	ctx.jump_animation_played = true
+
 
 static func _id_for_dir(dir: Vector2) -> int:
 	if dir == Vector2.DOWN:

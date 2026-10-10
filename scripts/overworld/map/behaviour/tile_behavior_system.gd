@@ -42,6 +42,7 @@ static func build_context(
 	return ctx
 
 
+## Solo despacha a handlers. NO lee colisión ni altura.
 static func can_enter(ctx: TileBehaviorContext) -> bool:
 	var from_h: TileBehaviorHandler = get_handler(ctx.from_behavior)
 	if not from_h.can_enter(ctx):
@@ -52,5 +53,7 @@ static func can_enter(ctx: TileBehaviorContext) -> bool:
 static func on_landed(ctx: TileBehaviorContext) -> void:
 	get_handler(ctx.to_behavior).on_landed(ctx)
 
+
 static func on_step_start(ctx: TileBehaviorContext) -> void:
 	get_handler(ctx.from_behavior).on_step_start(ctx)
+	get_handler(ctx.to_behavior).on_step_start(ctx)

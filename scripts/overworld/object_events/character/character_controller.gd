@@ -36,7 +36,9 @@ var move_speed: float = MOVE_SPEED
 var height_level: int = 0
 var elevated: bool = false
 var ledge_hop: bool = false
-const HOP_HEIGHT: float = 6.0
+const HOP_HEIGHT: float = 11.0
+## Pico del arco (0–1). ~0.35–0.4 = sobre la casilla del ledge
+const HOP_PEAK: float = 0.38
 
 func _ready() -> void:
 	entity_root.global_position = snap_to_grid(entity_root.global_position)
@@ -127,18 +129,44 @@ func process_input_hold(delta: float) -> void:
 
 func start_move() -> bool:
 	initial_position = entity_root.global_position
-	target_position = initial_position + direction * TILE_SIZE
-	if CollisionFacade.is_blocked(self, target_position):
-		_play_bump()
-		movement_blocked.emit()
-		return false
+	var one_step: Vector2 = initial_position + direction * TILE_SIZE
+	var two_step: Vector2 = initial_position + direction * TILE_SIZE * 2.0
+	var to_behavior: int = TileBehaviorReader.get_behavior_at_world(one_step)
+	var is_ledge_jump: bool = MapCollisionSystem.is_ledge_jump_entry(
+		to_behavior,
+		direction
+	)
+	if is_ledge_jump:
+		# Saltar B, aterrizar en C
+		target_position = two_step
+		if CollisionFacade.is_blocked(self, target_position):
+			_play_bump()
+			movement_blocked.emit()
+			return false
+		# El “medio” es el ledge: no exige can_enter a B como paso normal
+		ledge_hop = true
+	else:
+		target_position = one_step
+		if CollisionFacade.is_blocked(self, target_position):
+			_play_bump()
+			movement_blocked.emit()
+			return false
+		ledge_hop = false
 	MapCollisionSystem.preview_render_state(self, initial_position, target_position)
 	move_progress = 0.0
 	moving = true
-	ledge_hop = false
-	var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(self, initial_position, target_position)
-	TileBehaviorSystem.on_step_start(ctx)
-	ledge_hop = ctx.jump_animation_played
+	if is_ledge_jump:
+		var ctx: TileBehaviorContext = TileBehaviorSystem.build_context(
+			self, initial_position, one_step
+		)
+		TileBehaviorSystem.on_step_start(ctx)
+		ledge_hop = ctx.jump_animation_played or true
+	else:
+		var ctx2: TileBehaviorContext = TileBehaviorSystem.build_context(
+			self, initial_position, target_position
+		)
+		TileBehaviorSystem.on_step_start(ctx2)
+		ledge_hop = ctx2.jump_animation_played
 	animation_controller.play_step_animation(direction)
 	return true
 
@@ -185,13 +213,16 @@ func _play_bump_sound() -> void:
 
 func process_move(delta: float) -> void:
 	move_progress += (move_speed * delta) / TILE_SIZE
+	# En salto de 2 tiles el "1.0" es el destino C: la distancia es 2*TILE
+	# Si target está a 2 tiles, hay que avanzar el doble de progreso por frame
+	# (ver nota abajo si aún usas progress 0–1 con lerp a two_step)
 	move_progress = minf(move_progress, 1.0)
-	entity_root.global_position = initial_position.lerp(target_position, move_progress)
+	entity_root.global_position = initial_position.lerp(target_position, _ease_move(move_progress))
 	if ledge_hop:
-		var hop: float = 4.0 * HOP_HEIGHT * move_progress * (1.0 - move_progress)
-		character.position = Vector2(0.0, -hop)
+		character.position = Vector2(0.0, -_hop_height(move_progress))
 	else:
 		character.position = Vector2.ZERO
+
 	if move_progress >= 1.0:
 		entity_root.global_position = target_position
 		character.position = Vector2.ZERO
@@ -246,3 +277,18 @@ func teleport_to(world_pos: Vector2) -> void:
 	external_move = false
 	waiting_for_move = false
 	hold_time = 0.0
+
+func _ease_move(t: float) -> float:
+	if not ledge_hop:
+		return t
+	# Un poco más de empuje al inicio, frenado al aterrizar
+	return t * t * (3.0 - 2.0 * t)  # smoothstep
+
+func _hop_height(t: float) -> float:
+	# Dos parábolas: subida hasta HOP_PEAK, bajada hasta 1
+	var peak: float = HOP_PEAK
+	if t <= peak:
+		var u: float = t / peak
+		return HOP_HEIGHT * (1.0 - (1.0 - u) * (1.0 - u))
+	var v: float = (t - peak) / (1.0 - peak)
+	return HOP_HEIGHT * (1.0 - v * v)
