@@ -1,0 +1,13 @@
+lock
+faceplayer
+text "¡Hola! Esto es el sistema de scripts." MSGBOX_NPC
+text "¿Todo bien?" MSGBOX_YESNO
+ifchoice 0 bien
+text "Ánimo entonces."
+release
+end
+
+label bien
+text "¡Genial!"
+release
+end

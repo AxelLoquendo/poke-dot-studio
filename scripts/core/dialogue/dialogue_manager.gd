@@ -86,3 +86,10 @@ func _end() -> void:
 	if box != null:
 		box.hide_box()
 	dialogue_finished.emit()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not _active:
+		return
+	if event.is_action_pressed("buttonA") or event.is_action_pressed("ui_accept"):
+		advance()
+		get_viewport().set_input_as_handled()
