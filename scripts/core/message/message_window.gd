@@ -1,58 +1,88 @@
 class_name MessageWindow
 extends NinePatchRect
-## Ventana de speech estilo PE (solo presentación + typewriter).
+## Speech PE: skin correcto, typewriter, sombra solo en Y, pause animado.
 
 signal typing_finished
-signal advance_requested
+
+const PAUSE_FRAME_W: int = 20
+const PAUSE_FRAME_H: int = 28
+const PAUSE_FRAME_COUNT: int = 4
+const PAUSE_FPS: float = 5.0
 
 var text_label: RichTextLabel
+var shadow_label: RichTextLabel
 var pause_arrow: TextureRect
+var _skin: PeWindowSkin
+var _pause_atlas: AtlasTexture
 
 var _full_text: String = ""
 var _visible_chars: float = 0.0
 var _typing: bool = false
 var _text_speed: float = MessageConfig.TEXT_SPEED_MEDIUM
-var _arrow_bob: float = 0.0
-var _arrow_base_y: float = 0.0
+var _pause_frame: float = 0.0
+var _base_color: Color = MessageConfig.DARK_TEXT_MAIN
+var _shadow_color: Color = MessageConfig.DARK_TEXT_SHADOW
 
 
 func setup() -> void:
 	var rect: Rect2 = MessageConfig.message_rect()
 	position = rect.position
 	size = rect.size
-	texture = MessageConfig.load_speech_texture()
-	patch_margin_left = 14
-	patch_margin_top = 14
-	patch_margin_right = 14
-	patch_margin_bottom = 14
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var tex: Texture2D = MessageConfig.load_speech_texture()
+	_skin = PeWindowSkin.from_texture(tex)
+	_skin.apply_to(self)
+	_resolve_text_colors(tex)
 	visible = false
 
-	text_label = RichTextLabel.new()
-	text_label.name = "TextLabel"
-	text_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	text_label.offset_left = float(MessageConfig.BORDER_X / 2)
-	text_label.offset_top = float(MessageConfig.BORDER_Y / 2) - 4.0
-	text_label.offset_right = -float(MessageConfig.BORDER_X / 2)
-	text_label.offset_bottom = -float(MessageConfig.BORDER_Y / 2)
-	text_label.bbcode_enabled = false
-	text_label.scroll_active = false
-	text_label.fit_content = false
-	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	text_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shadow_label = _make_label("ShadowLabel")
+	shadow_label.add_theme_color_override("default_color", _shadow_color)
+	add_child(shadow_label)
+
+	text_label = _make_label("TextLabel")
+	text_label.add_theme_color_override("default_color", _base_color)
+	add_child(text_label)
+
+	_setup_pause_arrow()
+
+
+func _make_label(node_name: String) -> RichTextLabel:
+	var label: RichTextLabel = RichTextLabel.new()
+	label.name = node_name
+	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# Contenido DENTRO del body del skin PE (márgenes reales, no BORDER/2)
+	var off: Vector2 = _skin.content_offset()
+	var rb: Vector2 = _skin.content_margin_right_bottom()
+	label.offset_left = off.x + 8.0
+	label.offset_top = off.y + 4.0
+	label.offset_right = -rb.x - 8.0
+	label.offset_bottom = -rb.y - 4.0
+	label.bbcode_enabled = false
+	label.scroll_active = false
+	label.fit_content = false
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var font: Font = MessageConfig.load_font()
 	if font != null:
-		text_label.add_theme_font_override("normal_font", font)
-	text_label.add_theme_font_size_override("normal_font_size", MessageConfig.FONT_SIZE)
-	text_label.add_theme_color_override("default_color", MessageConfig.DARK_TEXT_MAIN)
-	add_child(text_label)
+		label.add_theme_font_override("normal_font", font)
+	label.add_theme_font_size_override("normal_font_size", MessageConfig.FONT_SIZE)
+	return label
+
+
+func _setup_pause_arrow() -> void:
+	var full: Texture2D = MessageConfig.load_pause_arrow()
+	_pause_atlas = AtlasTexture.new()
+	_pause_atlas.atlas = full
+	_pause_atlas.region = Rect2(0, 0, PAUSE_FRAME_W, PAUSE_FRAME_H)
 
 	pause_arrow = TextureRect.new()
 	pause_arrow.name = "PauseArrow"
-	pause_arrow.texture = MessageConfig.load_pause_arrow()
+	pause_arrow.texture = _pause_atlas
 	pause_arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	pause_arrow.stretch_mode = TextureRect.STRETCH_KEEP
-	pause_arrow.custom_minimum_size = Vector2(16, 16)
-	pause_arrow.size = Vector2(16, 16)
+	pause_arrow.custom_minimum_size = Vector2(PAUSE_FRAME_W, PAUSE_FRAME_H)
+	pause_arrow.size = Vector2(PAUSE_FRAME_W, PAUSE_FRAME_H)
 	pause_arrow.visible = false
 	pause_arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(pause_arrow)
@@ -62,8 +92,25 @@ func setup() -> void:
 func _place_pause_arrow() -> void:
 	if pause_arrow == null:
 		return
-	pause_arrow.position = Vector2(size.x - 28.0, size.y - 24.0)
-	_arrow_base_y = pause_arrow.position.y
+	pause_arrow.position = Vector2(size.x - float(PAUSE_FRAME_W) - 12.0, size.y - float(PAUSE_FRAME_H) - 6.0)
+
+
+func _resolve_text_colors(tex: Texture2D) -> void:
+	if tex == null:
+		return
+	var img: Image = tex.get_image()
+	if img == null:
+		return
+	var cx: int = 40 if tex.get_width() == 96 else tex.get_width() / 2
+	var cy: int = 24 if tex.get_height() == 48 else tex.get_height() / 2
+	var pixel: Color = img.get_pixel(clampi(cx, 0, tex.get_width() - 1), clampi(cy, 0, tex.get_height() - 1))
+	var lum: float = pixel.r * 0.299 + pixel.g * 0.587 + pixel.b * 0.114
+	if lum < 160.0 / 255.0:
+		_base_color = MessageConfig.LIGHT_TEXT_MAIN
+		_shadow_color = MessageConfig.LIGHT_TEXT_SHADOW
+	else:
+		_base_color = MessageConfig.DARK_TEXT_MAIN
+		_shadow_color = MessageConfig.DARK_TEXT_SHADOW
 
 
 func is_typing() -> bool:
@@ -75,10 +122,15 @@ func display_text(text: String) -> void:
 	_visible_chars = 0.0
 	_typing = true
 	visible = true
+	# Sombra SOLO en Y (+0, +2)
+	shadow_label.position = Vector2(0, 2)
+	shadow_label.text = _full_text
+	shadow_label.visible_characters = 0
+	text_label.position = Vector2.ZERO
 	text_label.text = _full_text
 	text_label.visible_characters = 0
-	if pause_arrow:
-		pause_arrow.visible = false
+	pause_arrow.visible = false
+	_pause_frame = 0.0
 	_place_pause_arrow()
 
 
@@ -91,15 +143,15 @@ func skip_typing() -> void:
 func hide_window() -> void:
 	visible = false
 	_typing = false
-	if pause_arrow:
-		pause_arrow.visible = false
+	pause_arrow.visible = false
 
 
 func _finish_typing() -> void:
 	_typing = false
 	text_label.visible_characters = -1
-	if pause_arrow and pause_arrow.texture != null:
-		pause_arrow.visible = true
+	shadow_label.visible_characters = -1
+	pause_arrow.visible = true
+	_pause_frame = 0.0
 	typing_finished.emit()
 
 
@@ -111,9 +163,11 @@ func _process(delta: float) -> void:
 		_visible_chars += cps * delta
 		var count: int = int(_visible_chars)
 		text_label.visible_characters = count
+		shadow_label.visible_characters = count
 		if count >= _full_text.length():
 			_finish_typing()
 		return
-	if pause_arrow != null and pause_arrow.visible:
-		_arrow_bob += delta * 6.0
-		pause_arrow.position.y = _arrow_base_y + sin(_arrow_bob) * 2.0
+	if pause_arrow.visible and _pause_atlas != null:
+		_pause_frame += delta * PAUSE_FPS
+		var idx: int = int(_pause_frame) % PAUSE_FRAME_COUNT
+		_pause_atlas.region = Rect2(idx * PAUSE_FRAME_W, 0, PAUSE_FRAME_W, PAUSE_FRAME_H)

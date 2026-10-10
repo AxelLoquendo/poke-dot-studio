@@ -23,6 +23,7 @@ var wander_timer: float = 0.0
 
 var patrol_started: bool = false
 var follow_timer: float = 0.0
+var behavior_paused: bool = false
 
 # ============================================================
 # INICIALIZACIÓN
@@ -37,9 +38,8 @@ func set_npc_data(new_data: NPCData) -> void:
 # ============================================================
 # COMPORTAMIENTO
 # ============================================================
-
 func process_behavior(delta: float) -> void:
-	if npc_data == null:
+	if behavior_paused or npc_data == null:
 		return
 
 	match npc_data.behavior:
@@ -147,3 +147,10 @@ func process_follow(delta: float) -> void:
 
 func _on_movement_finished() -> void:
 	pass
+
+func pause_behavior(paused: bool = true) -> void:
+	behavior_paused = paused
+	if paused:
+		look_around_timer = 0.0
+		wander_timer = 0.0
+		follow_timer = 0.0

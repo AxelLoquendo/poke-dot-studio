@@ -81,10 +81,15 @@ func interact(player: Node2D) -> void:
 func _run_script(player: Node2D) -> void:
 	_script_running = true
 	_script_locked = true
+	if npc_controller != null:
+		npc_controller.pause_behavior(true)
+	# Mirar al jugador YA, antes del script
+	face_towards(player.global_position)
+	if move_route_controller != null and move_route_controller.has_method("stop"):
+		move_route_controller.call("stop")
 
 	var file_cmd: ScriptCmdTextFile = ScriptCmdTextFile.new()
 	file_cmd.script_file_path = data.script_file
-
 	var runner: ScriptRunner = ScriptRunner.new()
 	runner.name = "ScriptRunner"
 	add_child(runner)
@@ -95,6 +100,8 @@ func _run_script(player: Node2D) -> void:
 func _on_script_finished(runner: ScriptRunner) -> void:
 	_script_running = false
 	_script_locked = false
+	if npc_controller != null:
+		npc_controller.pause_behavior(false)
 	if is_instance_valid(runner):
 		runner.queue_free()
 

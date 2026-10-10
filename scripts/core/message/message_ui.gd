@@ -105,9 +105,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	if message_window.is_typing():
 		message_window.skip_typing()
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 		return
 	if not _awaiting_advance:
 		return
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 	_page_index += 1
 	if _page_index >= _pages.size():
 		_finish_all()

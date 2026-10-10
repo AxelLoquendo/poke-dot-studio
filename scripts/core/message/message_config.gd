@@ -9,6 +9,7 @@ const SCREEN_HEIGHT: int = 384
 # --- Fuentes (PE MessageConfig) ---
 const FONT_PATH: String = "res://font/power green.ttf"
 const FONT_SIZE: int = 27
+const FONT_Y_OFFSET: int = 8
 const SMALL_FONT_PATH: String = "res://font/power green small.ttf"
 const SMALL_FONT_SIZE: int = 21
 const NARROW_FONT_PATH: String = "res://font/power green narrow.ttf"
