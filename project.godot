@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MusicManager="*uid://bo6mid0uptdmn"
 FadeScreen="*uid://cmnguckln51fa"
 WeatherManager="*uid://cewppc3e2kbqo"
+WeatherRenderer="*uid://2q6ynhb0ap0u"
 
 [debug]
 

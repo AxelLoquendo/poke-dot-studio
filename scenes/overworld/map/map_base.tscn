@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="3_0fegv"]
 [ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="3_m4svl"]
 [ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="4_gl05j"]
+[ext_resource type="Script" uid="uid://cfhh33et7ub23" path="res://scripts/core/weather/weather_controller.gd" id="7_524pk"]
 
 [sub_resource type="Resource" id="Resource_kturt"]
 script = ExtResource("1_d5g20")
@@ -48,3 +49,6 @@ script = ExtResource("3_m4svl")
 
 [node name="MapBorderController" type="Node2D" parent="." unique_id=1618371318]
 script = ExtResource("4_gl05j")
+
+[node name="MapWeatherController" type="Node2D" parent="." unique_id=1357270275]
+script = ExtResource("7_524pk")

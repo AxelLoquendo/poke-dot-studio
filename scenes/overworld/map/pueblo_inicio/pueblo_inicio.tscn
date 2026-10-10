@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dg0dbixifstat" path="res://data/resources/overworld/movement/test_route.tres" id="7_8xwte"]
 [ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="7_mc62f"]
 [ext_resource type="Script" uid="uid://grma16a7hh0u" path="res://scripts/overworld/object_events/npc/npc_data.gd" id="7_uh7s8"]
+[ext_resource type="Script" uid="uid://cfhh33et7ub23" path="res://scripts/core/weather/weather_controller.gd" id="12_yqwpc"]
 
 [sub_resource type="Resource" id="Resource_yojri"]
 script = ExtResource("2_2344u")
@@ -30,7 +31,7 @@ map_id = 1
 map_name = "Pueblo Inicio"
 map_music = 2
 map_size = Vector2i(32, 21)
-weather = 1
+weather = 3
 connections = Array[ExtResource("2_2344u")]([SubResource("Resource_yojri"), SubResource("Resource_n1do5")])
 metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
 
@@ -188,3 +189,6 @@ script = ExtResource("6_v7ft0")
 
 [node name="MapBorderController" type="Node2D" parent="." unique_id=1847624430]
 script = ExtResource("7_mc62f")
+
+[node name="MapWeatherController" type="Node2D" parent="." unique_id=946980574]
+script = ExtResource("12_yqwpc")

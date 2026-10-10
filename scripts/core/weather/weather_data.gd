@@ -16,7 +16,7 @@ enum Category {
 
 ## Partículas (gotas, copos, etc.)
 @export var particle_textures: Array[Texture2D] = []
-@export var particle_delta: Vector2 = Vector2.ZERO          ## px/s
+@export var particle_delta: Vector2 = Vector2.ZERO
 @export var particle_opacity_delta: float = 0.0
 @export var max_particles: int = 40
 
@@ -24,7 +24,7 @@ enum Category {
 @export var tile_textures: Array[Texture2D] = []
 @export var tile_delta: Vector2 = Vector2.ZERO
 
-## Tone de pantalla (RGBA, alpha = intensidad del tone)
+## Tone de pantalla (r/g/b = tinte, a = fuerza base)
 @export var tone: Color = Color(0.0, 0.0, 0.0, 0.0)
 
 ## Extras

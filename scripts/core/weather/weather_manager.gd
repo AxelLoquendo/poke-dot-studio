@@ -3,7 +3,6 @@ extends Node
 ##
 ## Autoload: WeatherManager
 ## No dibuja nada. Solo mantiene tipo/intensidad y notifica cambios.
-## El fade visual de partículas/tone lo hará WeatherRenderer.
 
 signal weather_changed(old_id: WeatherID.Id, new_id: WeatherID.Id)
 signal weather_intensity_changed(old_value: int, new_value: int)
@@ -31,7 +30,6 @@ func is_transitioning() -> bool:
 	return _is_transitioning
 
 
-## Cambia el clima. Si fade=true, el renderer se encarga de la transición visual.
 func set_weather(id: WeatherID.Id, intensity: int = 0, fade: bool = true) -> void:
 	intensity = clampi(intensity, 0, 9)
 	if id == WeatherID.Id.NONE:
@@ -47,8 +45,6 @@ func set_weather(id: WeatherID.Id, intensity: int = 0, fade: bool = true) -> voi
 		_target_id = id
 		_target_intensity = intensity
 		_is_transitioning = true
-		# El renderer escucha weather_changed / una señal de transición
-		# y llama a notify_transition_finished() al terminar.
 		weather_changed.emit(old_id, id)
 		weather_intensity_changed.emit(old_intensity, intensity)
 	else:
@@ -62,7 +58,6 @@ func clear_weather(fade: bool = true) -> void:
 	set_weather(WeatherID.Id.NONE, 0, fade)
 
 
-## Llamado por WeatherRenderer cuando termina el fade visual.
 func notify_transition_finished() -> void:
 	if not _is_transitioning:
 		return
