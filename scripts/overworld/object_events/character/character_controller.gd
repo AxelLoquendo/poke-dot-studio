@@ -79,14 +79,10 @@ func request_move(new_direction: Vector2) -> void:
 
 
 func process_movement(delta: float) -> void:
-	# Si está LOCKED: termina el paso actual y no acepta más movimiento
 	if states != null and states.is_locked():
-		if moving:
-			process_move(delta)
-		else:
-			input_direction = Vector2.ZERO
-			external_move = false
-			waiting_for_move = false
+		input_direction = Vector2.ZERO
+		external_move = false
+		waiting_for_move = false
 		return
 	var was_bumping: bool = bump_cooldown > 0.0
 	if bump_cooldown > 0.0:
@@ -168,6 +164,22 @@ func start_move() -> bool:
 
 	animation_controller.play_step_animation(direction)
 	return true
+
+
+func halt_on_tile() -> void:
+	var tile: Vector2 = snap_to_grid(entity_root.global_position)
+	entity_root.global_position = tile
+	character.position = Vector2.ZERO
+	current_position = tile
+	initial_position = tile
+	target_position = tile
+	moving = false
+	move_progress = 0.0
+	external_move = false
+	input_direction = Vector2.ZERO
+	waiting_for_move = false
+	hold_time = 0.0
+	ledge_hop = false
 
 
 func _play_bump() -> void:

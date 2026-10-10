@@ -67,6 +67,11 @@ func _show_current_page() -> void:
 	else:
 		name_window.show_name(_speaker, msg_rect)
 	message_window.display_text(_pages[_page_index])
+	var last_page: bool = _page_index >= _pages.size() - 1
+	if last_page and not _pending_choices.is_empty():
+		choice_window.show_choices(_pending_choices, msg_rect)
+	else:
+		choice_window.hide_window()
 
 
 func _on_typing_finished() -> void:
@@ -82,14 +87,11 @@ func _on_choice_confirmed(index: int) -> void:
 
 
 func _finish_all() -> void:
-	if not _pending_choices.is_empty():
-		var msg_rect: Rect2 = MessageConfig.message_rect()
-		choice_window.show_choices(_pending_choices, msg_rect)
-		_awaiting_advance = false
-		return
 	_busy = false
+	_pending_choices = PackedStringArray()
 	name_window.hide_window()
 	message_window.hide_window()
+	choice_window.hide_window()
 	message_finished.emit()
 
 
@@ -97,6 +99,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not _busy:
 		return
 	if choice_window.is_active():
+		if message_window.is_typing() and (event.is_action_pressed("buttonA") or event.is_action_pressed("ui_accept")):
+			message_window.skip_typing()
+			get_viewport().set_input_as_handled()
+			return
 		if choice_window.handle_input(event):
 			get_viewport().set_input_as_handled()
 		return

@@ -1,37 +1,30 @@
 class_name NameWindow
 extends NinePatchRect
 
-const MARGIN_L: int = 14
-const MARGIN_T: int = 10
-const MARGIN_R: int = 14
-const MARGIN_B: int = 10
-const INNER_PAD: float = 6.0
-const BOX_HEIGHT: float = 40.0
+const INNER_PAD: float = 4.0
 
 var name_label: Label
+var _skin: PeWindowSkin
 
 
 func setup() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	texture = MessageConfig.load_speech_texture()
-	patch_margin_left = MARGIN_L
-	patch_margin_top = MARGIN_T
-	patch_margin_right = MARGIN_R
-	patch_margin_bottom = MARGIN_B
+	_skin = PeWindowSkin.from_texture(MessageConfig.load_speech_texture())
+	_skin.apply_to(self)
 	visible = false
-	size = Vector2(96.0, BOX_HEIGHT)
+	size = Vector2(160.0, _box_height())
 
 	name_label = Label.new()
 	name_label.name = "NameLabel"
 	name_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	name_label.offset_left = float(MARGIN_L) + INNER_PAD
-	name_label.offset_top = float(MARGIN_T)
-	name_label.offset_right = -(float(MARGIN_R) + INNER_PAD)
-	name_label.offset_bottom = -float(MARGIN_B)
+	name_label.offset_left = float(_skin.margin_left) + INNER_PAD
+	name_label.offset_top = float(_skin.margin_top)
+	name_label.offset_right = -(float(_skin.margin_right) + INNER_PAD)
+	name_label.offset_bottom = -float(_skin.margin_bottom)
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	name_label.clip_text = false
+	name_label.clip_text = true
 	name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	var font: Font = MessageConfig.load_font()
 	if font != null:
@@ -54,11 +47,15 @@ func show_name(speaker: String, message_rect: Rect2) -> void:
 	var text_w: float = 48.0
 	if font != null:
 		text_w = font.get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, fsize).x
-	var total_w: float = float(MARGIN_L + MARGIN_R) + INNER_PAD * 2.0 + text_w + 4.0
-	size = Vector2(maxf(total_w, 80.0), BOX_HEIGHT)
+	var total_w: float = float(_skin.margin_left + _skin.margin_right) + INNER_PAD * 2.0 + text_w
+	size = Vector2(total_w, _box_height())
 	position = Vector2(16.0, message_rect.position.y - size.y)
 	visible = true
 
 
 func hide_window() -> void:
 	visible = false
+
+
+func _box_height() -> float:
+	return float(_skin.margin_top + _skin.margin_bottom + MessageConfig.LINE_HEIGHT)

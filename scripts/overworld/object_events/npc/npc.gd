@@ -28,7 +28,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	# Comportamiento solo si NO está locked
 	if state == null or not state.is_locked():
 		npc_controller.process_behavior(delta)
 	state.process_state(delta)
@@ -60,10 +59,6 @@ func _aplicar_walk() -> void:
 	controller.set_move_speed(data.walk * CharacterController.TILE_SIZE)
 
 
-# ============================================================
-# INTERACCIÓN / SCRIPTS
-# ============================================================
-
 func can_interact() -> bool:
 	if _script_running or _script_locked:
 		return false
@@ -85,9 +80,11 @@ func _run_script(player: Node2D) -> void:
 		state.change_state(CharacterStates.State.LOCKED)
 	if npc_controller != null:
 		npc_controller.pause_behavior(true)
-	face_towards(player.global_position)
 	if move_route_controller != null:
 		move_route_controller.stop_route()
+	if controller != null:
+		controller.halt_on_tile()
+	face_towards(player.global_position)
 
 	var file_cmd: ScriptCmdTextFile = ScriptCmdTextFile.new()
 	file_cmd.script_file_path = data.script_file
