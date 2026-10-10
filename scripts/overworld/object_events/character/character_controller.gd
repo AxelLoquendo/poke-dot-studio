@@ -3,11 +3,14 @@ extends Node2D
 
 @onready var entity_root: Node2D = get_parent() as Node2D
 @onready var character: Node2D = $"../Character"
-@onready var animation_controller: CharacterAnimatedController = $"../CharacterAnimatedController"
 @onready var states: CharacterStates = $"../CharacterState"
 
 signal movement_finished
 signal movement_blocked
+signal facing_changed(direction: Vector2)
+signal step_started(direction: Vector2, hop: bool)
+signal bump_started(direction: Vector2)
+signal bump_ended(direction: Vector2)
 
 const TILE_SIZE: float = 16.0
 const MOVE_SPEED: float = 64.0
@@ -88,7 +91,7 @@ func process_movement(delta: float) -> void:
 	if bump_cooldown > 0.0:
 		bump_cooldown = maxf(bump_cooldown - delta, 0.0)
 		if was_bumping and bump_cooldown <= 0.0 and not moving:
-			animation_controller.play_idle_animation(last_direction)
+			bump_ended.emit(last_direction)
 	if moving:
 		process_move(delta)
 		return
@@ -110,7 +113,7 @@ func process_input() -> void:
 		last_direction = new_direction
 		hold_time = 0.0
 		waiting_for_move = true
-		animation_controller.play_step_animation(direction)
+		step_started.emit(direction, false)
 		return
 	direction = new_direction
 	start_move()
@@ -127,7 +130,7 @@ func process_input_hold(delta: float) -> void:
 		direction = current_direction
 		last_direction = current_direction
 		hold_time = 0.0
-		animation_controller.play_step_animation(direction)
+		step_started.emit(direction, false)
 		return
 	hold_time += delta
 	if hold_time >= HOLD_THRESHOLD:
@@ -160,9 +163,9 @@ func start_move() -> bool:
 		ledge_hop = true
 
 	if ledge_hop:
-		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_PLAYER_JUMP)
-
-	animation_controller.play_step_animation(direction)
+		step_started.emit(direction, true)
+	else:
+		step_started.emit(direction, false)
 	return true
 
 
@@ -189,30 +192,10 @@ func halt_for_interaction() -> bool:
 func _play_bump() -> void:
 	if bump_cooldown > 0.0:
 		return
-	_play_bump_animation()
+	bump_started.emit(direction)
 	if entity_root.is_in_group("Player"):
-		_play_bump_sound()
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_PLAYER_BUMP)
 	bump_cooldown = BUMP_COOLDOWN
-
-
-func _play_bump_animation() -> void:
-	var sprite: AnimatedSprite2D = character.get_node_or_null("Sprite") as AnimatedSprite2D
-	if sprite == null:
-		animation_controller.play_step_animation(direction)
-		return
-	sprite.speed_scale = BUMP_ANIM_SPEED
-	animation_controller.play_step_animation(direction)
-	_restore_anim_speed_after_bump(sprite)
-
-
-func _restore_anim_speed_after_bump(sprite: AnimatedSprite2D) -> void:
-	await get_tree().create_timer(BUMP_COOLDOWN).timeout
-	if is_instance_valid(sprite):
-		sprite.speed_scale = 1.0
-
-
-func _play_bump_sound() -> void:
-	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_PLAYER_BUMP)
 
 
 func process_move(delta: float) -> void:
@@ -256,7 +239,7 @@ func look_direction(new_direction: Vector2) -> void:
 		return
 	direction = new_direction
 	last_direction = new_direction
-	animation_controller.play_idle_animation(new_direction)
+	facing_changed.emit(new_direction)
 
 
 func get_character_position() -> Vector2:

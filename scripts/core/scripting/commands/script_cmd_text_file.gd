@@ -94,83 +94,113 @@ func _configure_msgbox(command: ScriptCmdText, msgbox_name: String) -> void:
 func _create(command_name: String, args: Array) -> ScriptCommand:
 	match command_name:
 		"label":
-			var c: ScriptCmdLabel = ScriptCmdLabel.new()
-			if not args.is_empty():
-				c.label_name = str(args[0])
-			return c
+			return _cmd_label(args)
 		"goto":
-			var c: ScriptCmdGoto = ScriptCmdGoto.new()
-			if not args.is_empty():
-				c.target_label = str(args[0])
-			return c
+			return _cmd_goto(args)
 		"ifchoice":
-			var c: ScriptCmdIfChoice = ScriptCmdIfChoice.new()
-			if not args.is_empty():
-				c.expected_choice = str(args[0])
-			if args.size() > 1:
-				c.target_label = str(args[1])
-			return c
+			return _cmd_if_choice(args)
 		"ifflag":
-			var c: ScriptCmdIfFlag = ScriptCmdIfFlag.new()
-			if not args.is_empty():
-				c.flag_name = str(args[0])
-			if args.size() > 1:
-				c.target_label = str(args[1])
-			return c
+			return _cmd_if_flag(args)
 		"setflag":
-			var c: ScriptCmdSetFlag = ScriptCmdSetFlag.new()
-			if not args.is_empty():
-				c.flag_name = str(args[0])
-			c.value = true
-			return c
+			return _cmd_flag(args, true)
 		"clearflag":
-			var c: ScriptCmdSetFlag = ScriptCmdSetFlag.new()
-			if not args.is_empty():
-				c.flag_name = str(args[0])
-			c.value = false
-			return c
+			return _cmd_flag(args, false)
 		"faceplayer":
 			return ScriptCmdFacePlayer.new()
 		"lock":
-			var c: ScriptCmdLock = ScriptCmdLock.new()
-			c.lock_player = true
-			return c
+			return _cmd_lock(true)
 		"release":
-			var c: ScriptCmdLock = ScriptCmdLock.new()
-			c.lock_player = false
-			return c
+			return _cmd_lock(false)
 		"waitbutton":
-			var c: ScriptCmdWait = ScriptCmdWait.new()
-			c.wait_for_input = true
-			return c
+			return _cmd_wait_button()
 		"fadeout":
-			var c: ScriptCmdFade = ScriptCmdFade.new()
-			c.fade_out = true
-			if not args.is_empty() and str(args[0]).is_valid_float():
-				c.duration = float(args[0])
-			return c
+			return _cmd_fade(args, true)
 		"fadein":
-			var c: ScriptCmdFade = ScriptCmdFade.new()
-			c.fade_out = false
-			if not args.is_empty() and str(args[0]).is_valid_float():
-				c.duration = float(args[0])
-			return c
+			return _cmd_fade(args, false)
 		"weather":
-			var c: ScriptCmdWeather = ScriptCmdWeather.new()
-			if not args.is_empty():
-				c.weather_name = str(args[0])
-			return c
+			return _cmd_weather(args)
 		"multichoice":
-			var c: ScriptCmdText = ScriptCmdText.new()
-			if not args.is_empty():
-				c.message = str(args[0])
-			for i: int in range(1, args.size()):
-				c.choices.append(str(args[i]))
-			c.choice_variable = "last_choice"
-			return c
+			return _cmd_multichoice(args)
 		_:
 			push_warning("ScriptCmdTextFile: comando no portado aún '%s'" % command_name)
 			return null
+
+
+func _cmd_label(args: Array) -> ScriptCmdLabel:
+	var c: ScriptCmdLabel = ScriptCmdLabel.new()
+	if not args.is_empty():
+		c.label_name = str(args[0])
+	return c
+
+
+func _cmd_goto(args: Array) -> ScriptCmdGoto:
+	var c: ScriptCmdGoto = ScriptCmdGoto.new()
+	if not args.is_empty():
+		c.target_label = str(args[0])
+	return c
+
+
+func _cmd_if_choice(args: Array) -> ScriptCmdIfChoice:
+	var c: ScriptCmdIfChoice = ScriptCmdIfChoice.new()
+	if not args.is_empty():
+		c.expected_choice = str(args[0])
+	if args.size() > 1:
+		c.target_label = str(args[1])
+	return c
+
+
+func _cmd_if_flag(args: Array) -> ScriptCmdIfFlag:
+	var c: ScriptCmdIfFlag = ScriptCmdIfFlag.new()
+	if not args.is_empty():
+		c.flag_name = str(args[0])
+	if args.size() > 1:
+		c.target_label = str(args[1])
+	return c
+
+
+func _cmd_flag(args: Array, value: bool) -> ScriptCmdSetFlag:
+	var c: ScriptCmdSetFlag = ScriptCmdSetFlag.new()
+	if not args.is_empty():
+		c.flag_name = str(args[0])
+	c.value = value
+	return c
+
+
+func _cmd_lock(lock_player: bool) -> ScriptCmdLock:
+	var c: ScriptCmdLock = ScriptCmdLock.new()
+	c.lock_player = lock_player
+	return c
+
+
+func _cmd_wait_button() -> ScriptCmdWait:
+	var c: ScriptCmdWait = ScriptCmdWait.new()
+	c.wait_for_input = true
+	return c
+
+
+func _cmd_fade(args: Array, fade_out: bool) -> ScriptCmdFade:
+	var c: ScriptCmdFade = ScriptCmdFade.new()
+	c.fade_out = fade_out
+	if not args.is_empty() and str(args[0]).is_valid_float():
+		c.duration = float(args[0])
+	return c
+
+
+func _cmd_weather(args: Array) -> ScriptCmdWeather:
+	var c: ScriptCmdWeather = ScriptCmdWeather.new()
+	if not args.is_empty():
+		c.weather_name = str(args[0])
+	return c
+
+
+func _cmd_multichoice(args: Array) -> ScriptCmdText:
+	var c: ScriptCmdText = ScriptCmdText.new()
+	if not args.is_empty():
+		c.message = str(args[0])
+	for i: int in range(1, args.size()):
+		c.choices.append(str(args[i]))
+	c.choice_variable = "last_choice"
+	return c
 
 
 func get_display_text() -> String:

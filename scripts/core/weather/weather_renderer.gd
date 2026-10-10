@@ -250,24 +250,23 @@ func _update_particles(delta: float) -> void:
 			continue
 
 		var dist: Vector2 = pdelta * delta
-		s.position += dist
-
-		# Drift extra (Snow / Blizzard) — como Essentials
-		if _active_data.id == WeatherID.Id.SNOW or _active_data.id == WeatherID.Id.BLIZZARD:
-			s.position.x += dist.x * (s.position.y / (_viewport_size.y * 3.0))
-			s.position.x += float([2, 1, 0, -1][randi() % 4]) * dist.x / 8.0
-			s.position.y += float([2, 1, 1, 0, 0, -1][i % 6]) * dist.y / 10.0
-
-		# Opacidad (Essentials trabaja en 0–255)
-		if op_delta != 0.0:
-			s.modulate.a = clampf(s.modulate.a + (op_delta * delta) / 255.0, 0.0, 1.0)
+		_mover_particula(s, i, dist, op_delta, delta)
 
 		var tw: float = float(s.texture.get_width())
-		# Reset solo si sale por izquierda o abajo, o muy transparente
 		if s.modulate.a < 0.25 \
 				or s.position.x < -tw \
 				or s.position.y > _viewport_size.y:
 			_reset_particle(i)
+
+
+func _mover_particula(s: Sprite2D, index: int, dist: Vector2, op_delta: float, delta: float) -> void:
+	s.position += dist
+	if _active_data.id == WeatherID.Id.SNOW or _active_data.id == WeatherID.Id.BLIZZARD:
+		s.position.x += dist.x * (s.position.y / (_viewport_size.y * 3.0))
+		s.position.x += float([2, 1, 0, -1][randi() % 4]) * dist.x / 8.0
+		s.position.y += float([2, 1, 1, 0, 0, -1][index % 6]) * dist.y / 10.0
+	if op_delta != 0.0:
+		s.modulate.a = clampf(s.modulate.a + (op_delta * delta) / 255.0, 0.0, 1.0)
 
 
 # ============================================================

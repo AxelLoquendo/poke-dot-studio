@@ -76,6 +76,11 @@ func interact(player: Node2D) -> void:
 func _run_script(player: Node2D) -> void:
 	_script_running = true
 	_script_locked = true
+	_freeze_for_script(player)
+	_start_runner(player)
+
+
+func _freeze_for_script(player: Node2D) -> void:
 	if state != null:
 		state.change_state(CharacterStates.State.LOCKED)
 	if npc_controller != null:
@@ -89,6 +94,8 @@ func _run_script(player: Node2D) -> void:
 		move_route_controller.pause_route()
 	face_towards(player.global_position)
 
+
+func _start_runner(player: Node2D) -> void:
 	var file_cmd: ScriptCmdTextFile = ScriptCmdTextFile.new()
 	file_cmd.script_file_path = data.script_file
 	var runner: ScriptRunner = ScriptRunner.new()

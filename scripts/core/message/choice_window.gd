@@ -43,57 +43,79 @@ func show_choices(choices: PackedStringArray, message_rect: Rect2) -> void:
 	_choices = choices
 	_index = 0
 	_active = true
-	# queue_free() deja los hijos viejos hasta el final del frame.
-	# _refresh marcaba la flecha vieja y luego se destruía: la nueva nacía invisible.
+	_clear_rows()
+	var text_width: float = _measure_widest(choices)
+	_build_rows(choices)
+	_place_window(text_width, choices.size(), message_rect)
+	_refresh()
+
+
+func _clear_rows() -> void:
 	while choice_list.get_child_count() > 0:
 		var old: Node = choice_list.get_child(0)
 		choice_list.remove_child(old)
 		old.free()
-	for c: Node in choice_list.get_children():
-		c.queue_free()
+
+
+func _measure_widest(choices: PackedStringArray) -> float:
 	var font: Font = MessageConfig.load_font()
 	var max_w: float = 48.0
+	if font == null:
+		return max_w
+	for choice: String in choices:
+		max_w = maxf(max_w, font.get_string_size(choice, HORIZONTAL_ALIGNMENT_LEFT, -1, MessageConfig.FONT_SIZE).x)
+	return max_w
+
+
+func _build_rows(choices: PackedStringArray) -> void:
+	var font: Font = MessageConfig.load_font()
 	for i: int in range(choices.size()):
-		var row: HBoxContainer = HBoxContainer.new()
-		row.custom_minimum_size = Vector2(0, MessageConfig.LINE_HEIGHT)
-		row.add_theme_constant_override("separation", 4)
+		choice_list.add_child(_make_row(choices[i], font, i == 0))
 
-		# Slot fijo: la flecha SIEMPRE ocupa espacio (invisible si no está seleccionada)
-		var arrow: TextureRect = TextureRect.new()
-		arrow.name = "Arrow"
-		arrow.custom_minimum_size = Vector2(ARROW_SLOT_W, MessageConfig.LINE_HEIGHT)
-		arrow.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		arrow.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		if _sel_arrow != null:
-			arrow.texture = _sel_arrow
-		arrow.modulate.a = 1.0 if i == 0 else 0.0  # invisible pero ocupa sitio
 
-		var label: Label = Label.new()
-		label.name = "Text"
-		label.text = choices[i]
-		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		label.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		if font != null:
-			label.add_theme_font_override("font", font)
-		label.add_theme_font_size_override("font_size", MessageConfig.FONT_SIZE)
-		label.add_theme_color_override("font_color", MessageConfig.DARK_TEXT_MAIN)
-		label.add_theme_color_override("font_shadow_color", MessageConfig.DARK_TEXT_SHADOW)
-		label.add_theme_constant_override("shadow_offset_x", 0)  # solo Y
-		label.add_theme_constant_override("shadow_offset_y", 2)
-		if font != null:
-			max_w = maxf(max_w, font.get_string_size(choices[i], HORIZONTAL_ALIGNMENT_LEFT, -1, MessageConfig.FONT_SIZE).x)
+func _make_row(text: String, font: Font, selected: bool) -> HBoxContainer:
+	var row: HBoxContainer = HBoxContainer.new()
+	row.custom_minimum_size = Vector2(0, MessageConfig.LINE_HEIGHT)
+	row.add_theme_constant_override("separation", 4)
+	row.add_child(_make_arrow(selected))
+	row.add_child(_make_label(text, font))
+	return row
 
-		row.add_child(arrow)
-		row.add_child(label)
-		choice_list.add_child(row)
 
-	var ml: int = _skin.margin_left
-	var mr: int = _skin.margin_right
-	var mt: int = _skin.margin_top
-	var mb: int = _skin.margin_bottom
-	size = Vector2(float(ml + mr) + max_w + ARROW_SLOT_W + 12.0,
-		float(mt + mb) + float(choices.size()) * float(MessageConfig.LINE_HEIGHT))
+func _make_arrow(selected: bool) -> TextureRect:
+	var arrow: TextureRect = TextureRect.new()
+	arrow.name = "Arrow"
+	arrow.custom_minimum_size = Vector2(ARROW_SLOT_W, MessageConfig.LINE_HEIGHT)
+	arrow.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	arrow.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if _sel_arrow != null:
+		arrow.texture = _sel_arrow
+	arrow.modulate.a = 1.0 if selected else 0.0
+	return arrow
+
+
+func _make_label(text: String, font: Font) -> Label:
+	var label: Label = Label.new()
+	label.name = "Text"
+	label.text = text
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	if font != null:
+		label.add_theme_font_override("font", font)
+	label.add_theme_font_size_override("font_size", MessageConfig.FONT_SIZE)
+	label.add_theme_color_override("font_color", MessageConfig.DARK_TEXT_MAIN)
+	label.add_theme_color_override("font_shadow_color", MessageConfig.DARK_TEXT_SHADOW)
+	label.add_theme_constant_override("shadow_offset_x", 0)
+	label.add_theme_constant_override("shadow_offset_y", 2)
+	return label
+
+
+func _place_window(text_width: float, count: int, message_rect: Rect2) -> void:
+	size = Vector2(
+		float(_skin.margin_left + _skin.margin_right) + text_width + ARROW_SLOT_W + 12.0,
+		float(_skin.margin_top + _skin.margin_bottom) + float(count) * float(MessageConfig.LINE_HEIGHT)
+	)
 	position = Vector2(
 		message_rect.position.x + message_rect.size.x - size.x,
 		message_rect.position.y - size.y
@@ -101,7 +123,6 @@ func show_choices(choices: PackedStringArray, message_rect: Rect2) -> void:
 	if position.y < 0.0:
 		position.y = message_rect.position.y + message_rect.size.y
 	visible = true
-	_refresh()
 
 
 func hide_window() -> void:

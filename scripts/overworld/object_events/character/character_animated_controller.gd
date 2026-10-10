@@ -2,6 +2,38 @@ class_name CharacterAnimatedController
 extends Node2D
 
 @onready var character: Node2D = $"../Character"
+@onready var controller: CharacterController = $"../CharacterController"
+
+
+func _ready() -> void:
+	if controller == null:
+		return
+	controller.step_started.connect(_on_step_started)
+	controller.facing_changed.connect(play_idle_animation)
+	controller.bump_started.connect(_on_bump_started)
+	controller.bump_ended.connect(play_idle_animation)
+
+
+func _on_step_started(direction: Vector2, hop: bool) -> void:
+	play_step_animation(direction)
+	if hop and get_parent().is_in_group("Player"):
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_PLAYER_JUMP)
+
+
+func _on_bump_started(direction: Vector2) -> void:
+	var sprite: AnimatedSprite2D = character.get_node_or_null("Sprite") as AnimatedSprite2D
+	if sprite == null:
+		play_step_animation(direction)
+		return
+	sprite.speed_scale = CharacterController.BUMP_ANIM_SPEED
+	play_step_animation(direction)
+	_restore_anim_speed(sprite)
+
+
+func _restore_anim_speed(sprite: AnimatedSprite2D) -> void:
+	await get_tree().create_timer(CharacterController.BUMP_COOLDOWN).timeout
+	if is_instance_valid(sprite):
+		sprite.speed_scale = 1.0
 
 # ============================================================
 # VARIABLES

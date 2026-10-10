@@ -186,48 +186,47 @@ func _refresh_connection_previews() -> void:
 		return
 
 	for entry: MapConnectionEntry in attributes.connections:
-		if entry == null or entry.target_map == MapSection.MapID.NONE:
-			continue
-		if entry.target_map == attributes.map_id:
-			continue
-
-		var path: String = MapSection.MAP_SCENES.get(entry.target_map, "") as String
-		if path.is_empty() or not ResourceLoader.exists(path):
-			continue
-
-		var size_neighbor: Vector2i = MapConnectionResolver.get_map_size(entry.target_map)
-		if size_neighbor.x <= 0 or size_neighbor.y <= 0:
-			continue
-
-		var packed: PackedScene = load(path) as PackedScene
-		if packed == null:
-			continue
-
-		var instancia: Node = packed.instantiate()
-		var vecino: Map = instancia as Map
-		if vecino == null:
-			instancia.queue_free()
-			continue
-
-		vecino.set_meta(META_PREVIEW, true)
-		vecino.set_meta(META_SKIP_PREVIEW, true)
-		vecino.name = "Preview_%s" % str(entry.target_map)
-		vecino.position = MapConnectionResolver.world_neighbor_from_current(
-			entry.side,
-			entry.edge_offset,
-			attributes.map_size,
-			size_neighbor
-		)
-		vecino.modulate = PREVIEW_MODULATE
-		vecino.process_mode = Node.PROCESS_MODE_DISABLED
-		_strip_preview_runtime(vecino)
-		add_child(vecino)
-		vecino.owner = null
-		_preview_nodes[entry.target_map] = vecino
+		_spawn_preview(entry)
 
 	_preview_busy = false
 	_last_signature = _layout_signature()
 	queue_redraw()
+
+
+func _spawn_preview(entry: MapConnectionEntry) -> void:
+	if entry == null or entry.target_map == MapSection.MapID.NONE:
+		return
+	if attributes == null or entry.target_map == attributes.map_id:
+		return
+	var path: String = MapSection.MAP_SCENES.get(entry.target_map, "") as String
+	if path.is_empty() or not ResourceLoader.exists(path):
+		return
+	var size_neighbor: Vector2i = MapConnectionResolver.get_map_size(entry.target_map)
+	if size_neighbor.x <= 0 or size_neighbor.y <= 0:
+		return
+	var packed: PackedScene = load(path) as PackedScene
+	if packed == null:
+		return
+	var instancia: Node = packed.instantiate()
+	var vecino: Map = instancia as Map
+	if vecino == null:
+		instancia.queue_free()
+		return
+	vecino.set_meta(META_PREVIEW, true)
+	vecino.set_meta(META_SKIP_PREVIEW, true)
+	vecino.name = "Preview_%s" % str(entry.target_map)
+	vecino.position = MapConnectionResolver.world_neighbor_from_current(
+		entry.side,
+		entry.edge_offset,
+		attributes.map_size,
+		size_neighbor
+	)
+	vecino.modulate = PREVIEW_MODULATE
+	vecino.process_mode = Node.PROCESS_MODE_DISABLED
+	_strip_preview_runtime(vecino)
+	add_child(vecino)
+	vecino.owner = null
+	_preview_nodes[entry.target_map] = vecino
 
 
 func _strip_preview_runtime(vecino: Map) -> void:

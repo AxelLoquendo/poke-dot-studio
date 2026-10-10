@@ -135,26 +135,30 @@ func _actualizar() -> void:
 		return
 	_ultima_celda_min = celda_min
 	_ultima_celda_max = celda_max
+	_pintar_rango(celda_min, celda_max, map_size)
 
+
+func _pintar_rango(celda_min: Vector2i, celda_max: Vector2i, map_size: Vector2i) -> void:
 	for y: int in range(celda_min.y, celda_max.y):
 		for x: int in range(celda_min.x, celda_max.x):
-			var celda: Vector2i = Vector2i(x, y)
+			_pintar_celda(Vector2i(x, y), map_size)
 
-			if _dentro_del_mapa(celda, map_size) or _es_celda_de_mapa_conectado(celda):
-				if _layer.get_cell_source_id(celda) != -1:
-					_layer.erase_cell(celda)
-				_pintadas.erase(celda)
-				continue
 
-			var tile: Dictionary = _tile_del_patron(celda)
-			_layer.set_cell(
-				celda,
-				tile["source_id"] as int,
-				tile["atlas"] as Vector2i,
-				tile["alternative"] as int
-			)
-			if not _pintadas.has(celda):
-				_pintadas.append(celda)
+func _pintar_celda(celda: Vector2i, map_size: Vector2i) -> void:
+	if _dentro_del_mapa(celda, map_size) or _es_celda_de_mapa_conectado(celda):
+		if _layer.get_cell_source_id(celda) != -1:
+			_layer.erase_cell(celda)
+		_pintadas.erase(celda)
+		return
+	var tile: Dictionary = _tile_del_patron(celda)
+	_layer.set_cell(
+		celda,
+		tile["source_id"] as int,
+		tile["atlas"] as Vector2i,
+		tile["alternative"] as int
+	)
+	if not _pintadas.has(celda):
+		_pintadas.append(celda)
 
 
 func _es_celda_de_mapa_conectado(celda: Vector2i) -> bool:

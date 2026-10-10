@@ -35,7 +35,9 @@ func setup() -> void:
 	var tex: Texture2D = MessageConfig.load_speech_texture()
 	_skin = PeWindowSkin.from_texture(tex)
 	_skin.apply_to(self)
-	_resolve_text_colors(tex)
+	var colors: Dictionary = resolve_text_colors(tex)
+	_base_color = colors["base"]
+	_shadow_color = colors["shadow"]
 	visible = false
 
 	# Área blanca = body del nine-patch (entre márgenes). clip_contents = nada se sale.
@@ -112,22 +114,22 @@ func _place_pause_arrow() -> void:
 	)
 
 
-func _resolve_text_colors(tex: Texture2D) -> void:
+static func resolve_text_colors(tex: Texture2D) -> Dictionary:
+	var base: Color = MessageConfig.DARK_TEXT_MAIN
+	var shadow: Color = MessageConfig.DARK_TEXT_SHADOW
 	if tex == null:
-		return
+		return {"base": base, "shadow": shadow}
 	var img: Image = tex.get_image()
 	if img == null:
-		return
+		return {"base": base, "shadow": shadow}
 	var cx: int = 40 if tex.get_width() == 96 else tex.get_width() / 2
 	var cy: int = 24 if tex.get_height() == 48 else tex.get_height() / 2
 	var pixel: Color = img.get_pixel(clampi(cx, 0, tex.get_width() - 1), clampi(cy, 0, tex.get_height() - 1))
 	var lum: float = pixel.r * 0.299 + pixel.g * 0.587 + pixel.b * 0.114
 	if lum < 160.0 / 255.0:
-		_base_color = MessageConfig.LIGHT_TEXT_MAIN
-		_shadow_color = MessageConfig.LIGHT_TEXT_SHADOW
-	else:
-		_base_color = MessageConfig.DARK_TEXT_MAIN
-		_shadow_color = MessageConfig.DARK_TEXT_SHADOW
+		base = MessageConfig.LIGHT_TEXT_MAIN
+		shadow = MessageConfig.LIGHT_TEXT_SHADOW
+	return {"base": base, "shadow": shadow}
 
 
 func is_typing() -> bool:
@@ -143,13 +145,17 @@ func display_text(text: String) -> void:
 	# Sombra solo Y
 	shadow_label.position = Vector2(0, 2)
 	shadow_label.text = _full_text
-	shadow_label.visible_characters = 0
 	text_label.position = Vector2.ZERO
 	text_label.text = _full_text
-	text_label.visible_characters = 0
+	_apply_visible_count(0)
 	pause_arrow.visible = false
 	_pause_frame = 0.0
 	_place_pause_arrow()
+
+
+func _apply_visible_count(count: int) -> void:
+	text_label.visible_characters = count
+	shadow_label.visible_characters = count
 
 
 func skip_typing() -> void:
@@ -165,8 +171,7 @@ func hide_window() -> void:
 
 func _finish_typing() -> void:
 	_typing = false
-	text_label.visible_characters = -1
-	shadow_label.visible_characters = -1
+	_apply_visible_count(-1)
 	pause_arrow.visible = true
 	_pause_frame = 0.0
 	typing_finished.emit()
@@ -174,15 +179,23 @@ func _finish_typing() -> void:
 
 func _process(delta: float) -> void:
 	if _typing:
-		var cps: float = 40.0 if _text_speed <= 0.0 else 1.0 / _text_speed
-		_visible_chars += cps * delta
-		var count: int = int(_visible_chars)
-		text_label.visible_characters = count
-		shadow_label.visible_characters = count
-		if count >= _full_text.length():
-			_finish_typing()
+		_advance_typing(delta)
 		return
-	if pause_arrow.visible and _pause_atlas != null:
-		_pause_frame += delta * PAUSE_FPS
-		var idx: int = int(_pause_frame) % PAUSE_FRAME_COUNT
-		_pause_atlas.region = Rect2(idx * PAUSE_FRAME_W, 0, PAUSE_FRAME_W, PAUSE_FRAME_H)
+	_advance_pause_arrow(delta)
+
+
+func _advance_typing(delta: float) -> void:
+	var cps: float = 40.0 if _text_speed <= 0.0 else 1.0 / _text_speed
+	_visible_chars += cps * delta
+	var count: int = int(_visible_chars)
+	_apply_visible_count(count)
+	if count >= _full_text.length():
+		_finish_typing()
+
+
+func _advance_pause_arrow(delta: float) -> void:
+	if not pause_arrow.visible or _pause_atlas == null:
+		return
+	_pause_frame += delta * PAUSE_FPS
+	var idx: int = int(_pause_frame) % PAUSE_FRAME_COUNT
+	_pause_atlas.region = Rect2(idx * PAUSE_FRAME_W, 0, PAUSE_FRAME_W, PAUSE_FRAME_H)
