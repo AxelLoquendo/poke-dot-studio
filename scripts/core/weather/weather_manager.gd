@@ -41,17 +41,20 @@ func set_weather(id: WeatherID.Id, intensity: int = 0, fade: bool = true) -> voi
 	var old_id: WeatherID.Id = _current_id
 	var old_intensity: int = _current_intensity
 
+	# Aplicar estado lógico YA, para que el renderer lea valores correctos
+	_current_id = id
+	_current_intensity = intensity
+	_target_id = id
+	_target_intensity = intensity
+
 	if fade and old_id != id:
-		_target_id = id
-		_target_intensity = intensity
 		_is_transitioning = true
-		weather_changed.emit(old_id, id)
-		weather_intensity_changed.emit(old_intensity, intensity)
 	else:
-		_apply_immediate(id, intensity)
-		weather_changed.emit(old_id, id)
-		if old_intensity != intensity:
-			weather_intensity_changed.emit(old_intensity, intensity)
+		_is_transitioning = false
+
+	weather_changed.emit(old_id, id)
+	if old_intensity != intensity:
+		weather_intensity_changed.emit(old_intensity, intensity)
 
 
 func clear_weather(fade: bool = true) -> void:
@@ -59,17 +62,6 @@ func clear_weather(fade: bool = true) -> void:
 
 
 func notify_transition_finished() -> void:
-	if not _is_transitioning:
-		return
-	_apply_immediate(_target_id, _target_intensity)
 	_is_transitioning = false
-	_target_id = WeatherID.Id.NONE
-	_target_intensity = 0
-
-
-func _apply_immediate(id: WeatherID.Id, intensity: int) -> void:
-	_current_id = id
-	_current_intensity = intensity
-	_target_id = id
-	_target_intensity = intensity
-	_is_transitioning = false
+	_target_id = _current_id
+	_target_intensity = _current_intensity

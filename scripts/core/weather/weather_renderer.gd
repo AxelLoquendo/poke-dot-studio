@@ -1,8 +1,9 @@
 extends CanvasLayer
-## Render visual del clima de overworld (partículas, tiles, tone).
+## Render visual del clima de overworld (estilo Pokémon Essentials).
 ##
 ## Autoload: WeatherRenderer
-## No decide qué clima hay; solo reacciona a WeatherManager.
+## Partículas: entran por arriba/derecha, salen por abajo/izquierda.
+## Lluvia: índices pares = gota, impares = splash (último bitmap).
 
 const MAX_PARTICLES: int = 60
 const LAYER_INDEX: int = 90
@@ -94,7 +95,8 @@ func _intensity_to_max(intensity: int, data: WeatherData) -> int:
 		return 0
 	if data.max_particles <= 0:
 		return 0
-	return int(round(float(data.max_particles) * float(intensity) / 9.0))
+	# Essentials: (power + 1) * MAX_SPRITES / 10
+	return clampi(int((intensity + 1) * MAX_PARTICLES / 10), 0, MAX_PARTICLES)
 
 
 # ============================================================
@@ -107,13 +109,13 @@ func _setup_tone() -> void:
 		_base_tone_alpha = 0.0
 		return
 	var t: Color = _active_data.tone
-	var strength: float = 1.0
-	if _active_data.max_particles > 0:
-		strength = float(_active_max) / float(_active_data.max_particles)
-	elif _active_data.tile_textures.size() > 0:
-		strength = float(WeatherManager.get_current_intensity()) / 9.0
-	_base_tone_alpha = clampf(t.a * strength, 0.0, 0.6)
-	_tone_rect.color = Color(t.r, t.g, t.b, _base_tone_alpha)
+	var strength: float = float(WeatherManager.get_current_intensity()) / 9.0
+	_base_tone_alpha = clampf(absf(t.a) * strength, 0.0, 0.55)
+	# ColorRect mezcla; valores negativos de tone se interpretan como oscurecer
+	var r: float = clampf(0.5 + t.r * 0.5, 0.0, 1.0)
+	var g: float = clampf(0.5 + t.g * 0.5, 0.0, 1.0)
+	var b: float = clampf(0.5 + t.b * 0.5, 0.0, 1.0)
+	_tone_rect.color = Color(r, g, b, _base_tone_alpha)
 
 
 # ============================================================
@@ -124,7 +126,7 @@ func _ensure_particle_pool() -> void:
 	while _particles.size() < MAX_PARTICLES:
 		var s: Sprite2D = Sprite2D.new()
 		s.visible = false
-		s.centered = true
+		s.centered = false
 		_particle_root.add_child(s)
 		_particles.append(s)
 		_lifetimes.append(0.0)
@@ -134,16 +136,29 @@ func _setup_particles() -> void:
 	_ensure_particle_pool()
 	for i: int in range(MAX_PARTICLES):
 		_assign_particle_texture(i)
-		if i < _active_max:
+		if i < _active_max and _has_particles():
 			_reset_particle(i)
 		else:
 			_particles[i].visible = false
 			_lifetimes[i] = 0.0
 
 
+func _has_particles() -> bool:
+	return _active_data != null and not _active_data.particle_textures.is_empty()
+
+
+func _is_rain_category() -> bool:
+	return _active_data != null and _active_data.category == WeatherData.Category.RAIN
+
+
+func _is_splash_index(index: int) -> bool:
+	# Essentials: Rain + índice impar → splash (último bitmap)
+	return _is_rain_category() and index % 2 == 1 and _active_data.particle_textures.size() >= 2
+
+
 func _refresh_particle_visibility() -> void:
 	for i: int in range(MAX_PARTICLES):
-		if i < _active_max:
+		if i < _active_max and _has_particles():
 			if not _particles[i].visible:
 				_reset_particle(i)
 		else:
@@ -153,15 +168,17 @@ func _refresh_particle_visibility() -> void:
 
 func _assign_particle_texture(index: int) -> void:
 	var s: Sprite2D = _particles[index]
-	if _active_data == null or _active_data.particle_textures.is_empty():
+	if not _has_particles():
 		s.texture = null
 		return
 	var textures: Array[Texture2D] = _active_data.particle_textures
-	if _active_data.category == WeatherData.Category.RAIN and _active_data.splash_texture != null:
-		if index % 2 == 1:
-			s.texture = _active_data.splash_texture
-		else:
-			s.texture = textures[index % textures.size()]
+	if _is_splash_index(index):
+		# Último bitmap = splash (como Essentials)
+		s.texture = textures[textures.size() - 1]
+	elif _is_rain_category() and textures.size() >= 2:
+		# Gotas: todos menos el último
+		var drop_count: int = textures.size() - 1
+		s.texture = textures[index % drop_count]
 	else:
 		s.texture = textures[index % textures.size()]
 
@@ -175,42 +192,47 @@ func _reset_particle(index: int) -> void:
 
 	s.visible = true
 	s.modulate = Color(1.0, 1.0, 1.0, 1.0)
-	var pdelta: Vector2 = _active_data.particle_delta
 	var tw: float = float(s.texture.get_width())
 	var th: float = float(s.texture.get_height())
+	var w: float = _viewport_size.x
+	var h: float = _viewport_size.y
 
-	# Splash de lluvia
-	if _active_data.category == WeatherData.Category.RAIN \
-			and index % 2 == 1 \
-			and _active_data.splash_texture != null:
+	# --- Splash (lluvia, índice impar) ---
+	if _is_splash_index(index):
 		s.position = Vector2(
-			randf_range(-tw, _viewport_size.x + tw),
-			randf_range(-th, _viewport_size.y + th)
+			randf_range(-tw, w + tw),
+			randf_range(-th, h + th)
 		)
 		_lifetimes[index] = randf_range(0.3, 0.5)
 		return
 
+	var pdelta: Vector2 = _active_data.particle_delta
+	var x_speed: float = pdelta.x
+	var y_speed: float = pdelta.y
 	var gradient: float = 0.0
-	if absf(pdelta.y) > 0.001:
-		gradient = pdelta.x / pdelta.y
+	if absf(y_speed) > 0.001:
+		gradient = x_speed / y_speed
 
 	if absf(gradient) >= 1.0:
-		s.position.x = _viewport_size.x + randf() * _viewport_size.x
-		s.position.y = randf_range(0.0, _viewport_size.y + th)
-		var distance: float = s.position.x + tw + randf() * _viewport_size.x * 1.6
-		_lifetimes[index] = absf(distance / pdelta.x) if absf(pdelta.x) > 0.001 else 2.0
+		# Entra por la derecha (Essentials)
+		s.position.x = w + randf() * w
+		var denom: float = gradient if absf(gradient) > 0.001 else 1.0
+		s.position.y = h - randf() * (h + th - w / denom)
+		var distance: float = s.position.x - w * 0.5 + tw + randf() * w * 1.6
+		_lifetimes[index] = absf(distance / x_speed) if absf(x_speed) > 0.001 else 2.0
 	else:
-		s.position.x = randf_range(-tw, _viewport_size.x + tw)
-		s.position.y = -th - randf() * _viewport_size.y
-		var distance_y: float = _viewport_size.y * 0.5 + th + randf() * _viewport_size.y * 1.6
-		_lifetimes[index] = absf(distance_y / pdelta.y) if absf(pdelta.y) > 0.001 else 2.0
+		# Entra por arriba (Essentials)
+		s.position.x = -tw + randf() * (w + tw - gradient * h)
+		s.position.y = -th - randf() * h
+		var distance_y: float = -s.position.y + h * 0.5 + randf() * h * 1.6
+		_lifetimes[index] = absf(distance_y / y_speed) if absf(y_speed) > 0.001 else 2.0
 
 
 func _update_particles(delta: float) -> void:
-	if _active_data == null:
+	if not _has_particles():
 		return
 	var pdelta: Vector2 = _active_data.particle_delta
-	var op_delta: float = _active_data.particle_opacity_delta
+	var op_delta: float = _active_data.particle_opacity_delta  # escala 0–255 / s (Essentials)
 
 	for i: int in range(_active_max):
 		var s: Sprite2D = _particles[i]
@@ -222,29 +244,34 @@ func _update_particles(delta: float) -> void:
 			_reset_particle(i)
 			continue
 
-		if _active_data.category == WeatherData.Category.RAIN \
-				and i % 2 == 1 \
-				and _active_data.splash_texture != null:
+		# Splash: visible solo los últimos 0.2 s
+		if _is_splash_index(i):
 			s.modulate.a = 1.0 if _lifetimes[i] < 0.2 else 0.0
 			continue
 
-		s.position += pdelta * delta
+		var dist: Vector2 = pdelta * delta
+		s.position += dist
 
+		# Drift extra (Snow / Blizzard) — como Essentials
 		if _active_data.id == WeatherID.Id.SNOW or _active_data.id == WeatherID.Id.BLIZZARD:
-			s.position.x += pdelta.x * (s.position.y / (_viewport_size.y * 3.0)) * delta
-			s.position.x += float([2, 1, 0, -1][randi() % 4]) * pdelta.x / 8.0 * delta
+			s.position.x += dist.x * (s.position.y / (_viewport_size.y * 3.0))
+			s.position.x += float([2, 1, 0, -1][randi() % 4]) * dist.x / 8.0
+			s.position.y += float([2, 1, 1, 0, 0, -1][i % 6]) * dist.y / 10.0
 
+		# Opacidad (Essentials trabaja en 0–255)
 		if op_delta != 0.0:
-			s.modulate.a = clampf(s.modulate.a + op_delta * delta / 255.0, 0.0, 1.0)
+			s.modulate.a = clampf(s.modulate.a + (op_delta * delta) / 255.0, 0.0, 1.0)
 
+		var tw: float = float(s.texture.get_width())
+		# Reset solo si sale por izquierda o abajo, o muy transparente
 		if s.modulate.a < 0.25 \
-				or s.position.x < -float(s.texture.get_width()) \
-				or s.position.y > _viewport_size.y + float(s.texture.get_height()):
+				or s.position.x < -tw \
+				or s.position.y > _viewport_size.y:
 			_reset_particle(i)
 
 
 # ============================================================
-# TILES
+# TILES (fog / sand / blizzard)
 # ============================================================
 
 func _setup_tiles() -> void:
@@ -268,7 +295,7 @@ func _setup_tiles() -> void:
 	_tiles_wide = int(ceil(_viewport_size.x / tw)) + 2
 	_tiles_tall = int(ceil(_viewport_size.y / th)) + 2
 
-	var show: bool = _active_max > 0 or WeatherManager.get_current_intensity() > 0
+	var show: bool = WeatherManager.get_current_intensity() > 0
 	for i: int in range(_tiles_wide * _tiles_tall):
 		var s: Sprite2D = Sprite2D.new()
 		s.texture = _active_data.tile_textures[i % _active_data.tile_textures.size()]
@@ -300,7 +327,7 @@ func _update_tiles(delta: float) -> void:
 	while _tile_y > 0.0:
 		_tile_y -= th
 
-	var show: bool = _active_max > 0 or WeatherManager.get_current_intensity() > 0
+	var show: bool = WeatherManager.get_current_intensity() > 0
 	for i: int in range(_tiles.size()):
 		var col: int = i % _tiles_wide
 		var row: int = int(i / _tiles_wide)
@@ -314,6 +341,8 @@ func _update_tiles(delta: float) -> void:
 
 func _update_lightning(delta: float) -> void:
 	if _active_data == null or not _active_data.has_lightning:
+		return
+	if WeatherManager.get_current_intensity() <= 0:
 		return
 	_time_until_flash -= delta
 	if _time_until_flash > 0.0:

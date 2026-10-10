@@ -1,6 +1,6 @@
 class_name WeatherCatalog
 extends Object
-## Catálogo de climas. Fuente única de verdad para WeatherData.
+## Catálogo de climas. Valores de movimiento y graphics idénticos a Pokémon Essentials.
 
 const BASE_PATH: String = "res://assets/weather/"
 
@@ -31,38 +31,41 @@ static func _build(id: WeatherID.Id) -> WeatherData:
 		WeatherID.Id.NONE:
 			data.category = WeatherData.Category.NONE
 
+		# Essentials: Rain  particle (-600, 2400)  last graphic = splash
 		WeatherID.Id.RAIN:
 			data.category = WeatherData.Category.RAIN
-			data.particle_delta = Vector2(-120.0, 480.0)
-			data.particle_opacity_delta = -40.0
-			data.max_particles = 40
-			data.tone = Color(-0.05, -0.05, 0.0, 0.15)
+			data.particle_delta = Vector2(-600.0, 2400.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tone = Color(-0.5, -0.5, -0.5, 10.0 / 255.0)  # approx tone at full strength
 			data.particle_textures = [
 				_load_tex("rain_1.png"),
 				_load_tex("rain_2.png"),
 				_load_tex("rain_3.png"),
-				_load_tex("rain_4.png"),
+				_load_tex("rain_4.png"),  # splash
 			]
 
+		# Essentials: HeavyRain usa graphics de storm y mismos deltas
 		WeatherID.Id.HEAVY_RAIN:
 			data.category = WeatherData.Category.RAIN
-			data.particle_delta = Vector2(-160.0, 640.0)
-			data.particle_opacity_delta = -50.0
-			data.max_particles = 55
-			data.tone = Color(-0.08, -0.08, 0.0, 0.25)
+			data.particle_delta = Vector2(-3600.0, 3600.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tone = Color(-0.75, -0.75, -0.75, 10.0 / 255.0)
 			data.particle_textures = [
-				_load_tex("rain_1.png"),
-				_load_tex("rain_2.png"),
-				_load_tex("rain_3.png"),
-				_load_tex("rain_4.png"),
+				_load_tex("storm_1.png"),
+				_load_tex("storm_2.png"),
+				_load_tex("storm_3.png"),
+				_load_tex("storm_4.png"),
 			]
 
+		# Essentials: Storm  (-3600, 3600) + lightning flash
 		WeatherID.Id.STORM:
 			data.category = WeatherData.Category.RAIN
-			data.particle_delta = Vector2(-180.0, 720.0)
-			data.particle_opacity_delta = -60.0
+			data.particle_delta = Vector2(-3600.0, 3600.0)
+			data.particle_opacity_delta = 0.0
 			data.max_particles = 60
-			data.tone = Color(-0.1, -0.1, 0.0, 0.35)
+			data.tone = Color(-0.75, -0.75, -0.75, 10.0 / 255.0)
 			data.has_lightning = true
 			data.particle_textures = [
 				_load_tex("storm_1.png"),
@@ -71,24 +74,27 @@ static func _build(id: WeatherID.Id) -> WeatherData:
 				_load_tex("storm_4.png"),
 			]
 
+		# Essentials: Snow usa hail_1/2/3 y delta (-240, 240)
 		WeatherID.Id.SNOW:
 			data.category = WeatherData.Category.SNOW
-			data.particle_delta = Vector2(-20.0, 80.0)
-			data.particle_opacity_delta = -15.0
-			data.max_particles = 35
-			data.tone = Color(0.05, 0.05, 0.1, 0.1)
+			data.particle_delta = Vector2(-240.0, 240.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tone = Color(0.5, 0.5, 0.5, 0.0)
 			data.particle_textures = [
-				_load_tex("blizzard_1.png"),
-				_load_tex("blizzard_2.png"),
+				_load_tex("hail_1.png"),
+				_load_tex("hail_2.png"),
+				_load_tex("hail_3.png"),
 			]
 
+		# Essentials: Blizzard particles + tile
 		WeatherID.Id.BLIZZARD:
 			data.category = WeatherData.Category.SNOW
-			data.particle_delta = Vector2(-200.0, 120.0)
-			data.particle_opacity_delta = -25.0
-			data.max_particles = 50
-			data.tone = Color(0.08, 0.08, 0.12, 0.3)
-			data.tile_delta = Vector2(-120.0, 40.0)
+			data.particle_delta = Vector2(-720.0, 240.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tile_delta = Vector2(-1200.0, 600.0)
+			data.tone = Color(0.75, 0.75, 0.75, 0.0)
 			data.particle_textures = [
 				_load_tex("blizzard_1.png"),
 				_load_tex("blizzard_2.png"),
@@ -99,13 +105,14 @@ static func _build(id: WeatherID.Id) -> WeatherData:
 				_load_tex("blizzard_tile.png"),
 			]
 
+		# Essentials: Sandstorm
 		WeatherID.Id.SANDSTORM:
 			data.category = WeatherData.Category.SAND
-			data.particle_delta = Vector2(-280.0, 40.0)
-			data.particle_opacity_delta = -20.0
-			data.max_particles = 45
-			data.tone = Color(0.15, 0.08, -0.05, 0.25)
-			data.tile_delta = Vector2(-180.0, 20.0)
+			data.particle_delta = Vector2(-1200.0, 640.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tile_delta = Vector2(-800.0, 400.0)
+			data.tone = Color(0.5, 0.0, -0.5, 0.0)
 			data.particle_textures = [
 				_load_tex("sandstorm_1.png"),
 				_load_tex("sandstorm_2.png"),
@@ -116,34 +123,35 @@ static func _build(id: WeatherID.Id) -> WeatherData:
 				_load_tex("sandstorm_tile.png"),
 			]
 
+		# Essentials: Fog solo tile
 		WeatherID.Id.FOG:
 			data.category = WeatherData.Category.FOG
-			data.tone = Color(0.1, 0.1, 0.12, 0.4)
-			data.tile_delta = Vector2(-30.0, 0.0)
 			data.max_particles = 0
+			data.tile_delta = Vector2(-32.0, 0.0)
+			data.tone = Color(0.0, 0.0, 0.0, 0.0)
 			data.tile_textures = [
 				_load_tex("fog_tile.png"),
-				_load_tex("fog_tile_2.png"),
 			]
 
+		# Hail propio (no está en PE overworld base; usamos hail + caída más vertical)
 		WeatherID.Id.HAIL:
 			data.category = WeatherData.Category.SNOW
-			data.particle_delta = Vector2(-40.0, 360.0)
-			data.particle_opacity_delta = -30.0
-			data.max_particles = 40
-			data.tone = Color(0.05, 0.05, 0.1, 0.2)
+			data.particle_delta = Vector2(-120.0, 720.0)
+			data.particle_opacity_delta = 0.0
+			data.max_particles = 60
+			data.tone = Color(0.4, 0.4, 0.5, 0.0)
 			data.particle_textures = [
 				_load_tex("hail_1.png"),
 				_load_tex("hail_2.png"),
 				_load_tex("hail_3.png"),
 			]
 
+		# Essentials: Sun solo tone (pulsa en el renderer)
 		WeatherID.Id.SUN:
 			data.category = WeatherData.Category.SUN
-			data.tone = Color(0.12, 0.08, -0.02, 0.15)
 			data.max_particles = 0
+			data.tone = Color(64.0 / 255.0, 64.0 / 255.0, 32.0 / 255.0, 0.0)
 
-	# Filtrar texturas nulas por si falta algún archivo
 	var clean_particles: Array[Texture2D] = []
 	for t: Texture2D in data.particle_textures:
 		if t != null:

@@ -34,6 +34,8 @@ func _ready() -> void:
 		_conectar_senales()
 		_last_signature = _layout_signature()
 		call_deferred("_refresh_connection_previews")
+	elif not Engine.is_editor_hint():
+		call_deferred("_notify_attributes_changed")
 
 
 func _process(_delta: float) -> void:
@@ -57,7 +59,6 @@ func _process(_delta: float) -> void:
 
 
 func _solo_cambio_offset(antes: String, ahora: String) -> bool:
-	# "id:lado:offset" — si cambia el mapa o el lado, hay que reinstanciar
 	var a: PackedStringArray = antes.split("|")
 	var b: PackedStringArray = ahora.split("|")
 	if a.size() != b.size():
@@ -144,6 +145,9 @@ func set_as_current(activo: bool) -> void:
 		var music: MapMusicController = get_node_or_null("MapMusicController") as MapMusicController
 		if music != null:
 			music.activar()
+		var weather: MapWeatherController = get_node_or_null("MapWeatherController") as MapWeatherController
+		if weather != null:
+			weather.activar()
 
 
 func _sync_preview_positions() -> void:
@@ -233,6 +237,9 @@ func _strip_preview_runtime(vecino: Map) -> void:
 	var border: Node = vecino.get_node_or_null("MapBorderController")
 	if border != null:
 		border.queue_free()
+	var weather: Node = vecino.get_node_or_null("MapWeatherController")
+	if weather != null:
+		weather.queue_free()
 	var events: Node = vecino.get_node_or_null("EventObject")
 	if events != null:
 		events.visible = false
