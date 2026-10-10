@@ -28,9 +28,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	if _script_locked:
-		return
-	npc_controller.process_behavior(delta)
+	# Comportamiento solo si NO está locked
+	if state == null or not state.is_locked():
+		npc_controller.process_behavior(delta)
 	state.process_state(delta)
 	controller.process_movement(delta)
 
@@ -81,12 +81,13 @@ func interact(player: Node2D) -> void:
 func _run_script(player: Node2D) -> void:
 	_script_running = true
 	_script_locked = true
+	if state != null:
+		state.change_state(CharacterStates.State.LOCKED)
 	if npc_controller != null:
 		npc_controller.pause_behavior(true)
-	# Mirar al jugador YA, antes del script
 	face_towards(player.global_position)
-	if move_route_controller != null and move_route_controller.has_method("stop"):
-		move_route_controller.call("stop")
+	if move_route_controller != null:
+		move_route_controller.stop_route()
 
 	var file_cmd: ScriptCmdTextFile = ScriptCmdTextFile.new()
 	file_cmd.script_file_path = data.script_file
@@ -100,8 +101,11 @@ func _run_script(player: Node2D) -> void:
 func _on_script_finished(runner: ScriptRunner) -> void:
 	_script_running = false
 	_script_locked = false
+	if state != null and state.has_method("is_locked") and state.is_locked():
+		state.change_state(CharacterStates.State.IDLE)
 	if npc_controller != null:
 		npc_controller.pause_behavior(false)
+		npc_controller.resume_behavior()
 	if is_instance_valid(runner):
 		runner.queue_free()
 
@@ -120,6 +124,12 @@ func face_towards(world_pos: Vector2) -> void:
 
 func set_script_locked(locked: bool) -> void:
 	_script_locked = locked
+	if state == null:
+		return
+	if locked:
+		state.change_state(CharacterStates.State.LOCKED)
+	elif state.is_locked():
+		state.change_state(CharacterStates.State.IDLE)
 
 
 func get_script_id() -> StringName:

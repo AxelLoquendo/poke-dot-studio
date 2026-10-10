@@ -4,6 +4,7 @@ extends Node2D
 @onready var character: Character = $"../Character"
 @onready var character_controller: CharacterController = $"../CharacterController"
 @onready var move_route_controller: MoveRouteController = $"../MoveRouteController"
+@onready var states: CharacterStates = $"../CharacterState"
 
 # ============================================================
 # CONSTANTES
@@ -40,6 +41,8 @@ func set_npc_data(new_data: NPCData) -> void:
 # ============================================================
 func process_behavior(delta: float) -> void:
 	if behavior_paused or npc_data == null:
+		return
+	if states != null and states.is_locked():
 		return
 
 	match npc_data.behavior:
@@ -154,3 +157,10 @@ func pause_behavior(paused: bool = true) -> void:
 		look_around_timer = 0.0
 		wander_timer = 0.0
 		follow_timer = 0.0
+
+func resume_behavior() -> void:
+	behavior_paused = false
+	if npc_data == null:
+		return
+	if npc_data.behavior == NPCData.Behavior.PATROL:
+		patrol_started = false

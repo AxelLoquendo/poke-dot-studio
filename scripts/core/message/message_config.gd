@@ -8,12 +8,12 @@ const SCREEN_HEIGHT: int = 384
 
 # --- Fuentes (PE MessageConfig) ---
 const FONT_PATH: String = "res://font/power green.ttf"
-const FONT_SIZE: int = 27
+const FONT_SIZE: int = 24
 const FONT_Y_OFFSET: int = 8
 const SMALL_FONT_PATH: String = "res://font/power green small.ttf"
-const SMALL_FONT_SIZE: int = 21
+const SMALL_FONT_SIZE: int = 16
 const NARROW_FONT_PATH: String = "res://font/power green narrow.ttf"
-const NARROW_FONT_SIZE: int = 27
+const NARROW_FONT_SIZE: int = 24
 
 # --- Colores de texto (0–255 PE → Color 0–1) ---
 const DARK_TEXT_MAIN: Color = Color(80.0 / 255.0, 80.0 / 255.0, 88.0 / 255.0, 1.0)
@@ -24,11 +24,11 @@ const LIGHT_TEXT_SHADOW: Color = Color(72.0 / 255.0, 80.0 / 255.0, 88.0 / 255.0,
 # --- Layout PE: pbBottomLeftLines ---
 const LINE_HEIGHT: int = 32
 const DEFAULT_LINES: int = 2
-const BORDER_X: int = 32
+const BORDER_X: int = 64
 const BORDER_Y: int = 32
 const TEXT_PADDING: int = 4
 ## Pause cursor: 0=fin texto, 1=abajo-derecha, 2=abajo-centro (PE CURSOR_POSITION)
-const CURSOR_POSITION: int = 1
+const CURSOR_POSITION: int = 2
 
 # --- Velocidad de texto (PE medium = 2/80 s) ---
 const TEXT_SPEED_MEDIUM: float = 2.0 / 80.0

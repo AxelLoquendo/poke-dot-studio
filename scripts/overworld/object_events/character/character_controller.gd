@@ -4,6 +4,7 @@ extends Node2D
 @onready var entity_root: Node2D = get_parent() as Node2D
 @onready var character: Node2D = $"../Character"
 @onready var animation_controller: CharacterAnimatedController = $"../CharacterAnimatedController"
+@onready var states: CharacterStates = $"../CharacterState"
 
 signal movement_finished
 signal movement_blocked
@@ -64,6 +65,8 @@ func get_direction() -> Vector2:
 
 
 func request_move(new_direction: Vector2) -> void:
+	if states != null and states.is_locked():
+		return
 	if moving:
 		return
 	if new_direction == Vector2.ZERO:
@@ -76,6 +79,15 @@ func request_move(new_direction: Vector2) -> void:
 
 
 func process_movement(delta: float) -> void:
+	# Si está LOCKED: termina el paso actual y no acepta más movimiento
+	if states != null and states.is_locked():
+		if moving:
+			process_move(delta)
+		else:
+			input_direction = Vector2.ZERO
+			external_move = false
+			waiting_for_move = false
+		return
 	var was_bumping: bool = bump_cooldown > 0.0
 	if bump_cooldown > 0.0:
 		bump_cooldown = maxf(bump_cooldown - delta, 0.0)

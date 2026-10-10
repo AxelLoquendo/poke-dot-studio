@@ -1,6 +1,6 @@
 class_name MessageWindow
 extends NinePatchRect
-## Speech PE: skin correcto, typewriter, sombra solo en Y, pause animado.
+## Speech PE: contenido clippeado al body blanco del skin.
 
 signal typing_finished
 
@@ -8,7 +8,9 @@ const PAUSE_FRAME_W: int = 20
 const PAUSE_FRAME_H: int = 28
 const PAUSE_FRAME_COUNT: int = 4
 const PAUSE_FPS: float = 5.0
+const INNER_PAD: float = 4.0
 
+var content: Control
 var text_label: RichTextLabel
 var shadow_label: RichTextLabel
 var pause_arrow: TextureRect
@@ -36,28 +38,42 @@ func setup() -> void:
 	_resolve_text_colors(tex)
 	visible = false
 
+	# Área blanca = body del nine-patch (entre márgenes). clip_contents = nada se sale.
+	content = Control.new()
+	content.name = "Content"
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.clip_contents = true
+	add_child(content)
+	_layout_content()
+
 	shadow_label = _make_label("ShadowLabel")
 	shadow_label.add_theme_color_override("default_color", _shadow_color)
-	add_child(shadow_label)
+	content.add_child(shadow_label)
 
 	text_label = _make_label("TextLabel")
 	text_label.add_theme_color_override("default_color", _base_color)
-	add_child(text_label)
+	content.add_child(text_label)
 
 	_setup_pause_arrow()
+
+
+func _layout_content() -> void:
+	var ml: float = float(_skin.margin_left)
+	var mt: float = float(_skin.margin_top)
+	var mr: float = float(_skin.margin_right)
+	var mb: float = float(_skin.margin_bottom)
+	content.position = Vector2(ml, mt)
+	content.size = Vector2(size.x - ml - mr, size.y - mt - mb)
 
 
 func _make_label(node_name: String) -> RichTextLabel:
 	var label: RichTextLabel = RichTextLabel.new()
 	label.name = node_name
 	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	# Contenido DENTRO del body del skin PE (márgenes reales, no BORDER/2)
-	var off: Vector2 = _skin.content_offset()
-	var rb: Vector2 = _skin.content_margin_right_bottom()
-	label.offset_left = off.x + 8.0
-	label.offset_top = off.y + 4.0
-	label.offset_right = -rb.x - 8.0
-	label.offset_bottom = -rb.y - 4.0
+	label.offset_left = INNER_PAD
+	label.offset_top = INNER_PAD
+	label.offset_right = -INNER_PAD
+	label.offset_bottom = -INNER_PAD
 	label.bbcode_enabled = false
 	label.scroll_active = false
 	label.fit_content = false
@@ -75,24 +91,25 @@ func _setup_pause_arrow() -> void:
 	_pause_atlas = AtlasTexture.new()
 	_pause_atlas.atlas = full
 	_pause_atlas.region = Rect2(0, 0, PAUSE_FRAME_W, PAUSE_FRAME_H)
-
 	pause_arrow = TextureRect.new()
 	pause_arrow.name = "PauseArrow"
 	pause_arrow.texture = _pause_atlas
 	pause_arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	pause_arrow.stretch_mode = TextureRect.STRETCH_KEEP
-	pause_arrow.custom_minimum_size = Vector2(PAUSE_FRAME_W, PAUSE_FRAME_H)
 	pause_arrow.size = Vector2(PAUSE_FRAME_W, PAUSE_FRAME_H)
 	pause_arrow.visible = false
 	pause_arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(pause_arrow)
+	add_child(pause_arrow)  # fuera del content (sobre el borde inferior)
 	_place_pause_arrow()
 
 
 func _place_pause_arrow() -> void:
 	if pause_arrow == null:
 		return
-	pause_arrow.position = Vector2(size.x - float(PAUSE_FRAME_W) - 12.0, size.y - float(PAUSE_FRAME_H) - 6.0)
+	pause_arrow.position = Vector2(
+		size.x - float(PAUSE_FRAME_W) - float(_skin.margin_right) * 0.35,
+		size.y - float(PAUSE_FRAME_H) - 4.0
+	)
 
 
 func _resolve_text_colors(tex: Texture2D) -> void:
@@ -118,11 +135,12 @@ func is_typing() -> bool:
 
 
 func display_text(text: String) -> void:
+	_layout_content()
 	_full_text = text
 	_visible_chars = 0.0
 	_typing = true
 	visible = true
-	# Sombra SOLO en Y (+0, +2)
+	# Sombra solo Y
 	shadow_label.position = Vector2(0, 2)
 	shadow_label.text = _full_text
 	shadow_label.visible_characters = 0
@@ -135,9 +153,8 @@ func display_text(text: String) -> void:
 
 
 func skip_typing() -> void:
-	if not _typing:
-		return
-	_finish_typing()
+	if _typing:
+		_finish_typing()
 
 
 func hide_window() -> void:
@@ -157,9 +174,7 @@ func _finish_typing() -> void:
 
 func _process(delta: float) -> void:
 	if _typing:
-		var cps: float = 40.0
-		if _text_speed > 0.0:
-			cps = 1.0 / _text_speed
+		var cps: float = 40.0 if _text_speed <= 0.0 else 1.0 / _text_speed
 		_visible_chars += cps * delta
 		var count: int = int(_visible_chars)
 		text_label.visible_characters = count

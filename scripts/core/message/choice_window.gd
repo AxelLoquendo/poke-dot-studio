@@ -43,6 +43,12 @@ func show_choices(choices: PackedStringArray, message_rect: Rect2) -> void:
 	_choices = choices
 	_index = 0
 	_active = true
+	# queue_free() deja los hijos viejos hasta el final del frame.
+	# _refresh marcaba la flecha vieja y luego se destruía: la nueva nacía invisible.
+	while choice_list.get_child_count() > 0:
+		var old: Node = choice_list.get_child(0)
+		choice_list.remove_child(old)
+		old.free()
 	for c: Node in choice_list.get_children():
 		c.queue_free()
 	var font: Font = MessageConfig.load_font()
