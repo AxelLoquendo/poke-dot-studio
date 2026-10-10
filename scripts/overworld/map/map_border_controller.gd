@@ -13,6 +13,7 @@ var _layer: TileMapLayer
 var _pattern: Array = []
 var _activo: bool = false
 var _rects_conectados: Array[Rect2i] = []
+var _pintadas: Array[Vector2i] = []
 var _ultima_celda_min: Vector2i = Vector2i(2147483647, 2147483647)
 var _ultima_celda_max: Vector2i = Vector2i(2147483647, 2147483647)
 
@@ -28,6 +29,8 @@ func _ready() -> void:
 	if _layer == null:
 		push_warning("MapBorderController: no se encontró layer de borde")
 		return
+	# Detrás de Tile0+ de cualquier mapa. z relativo al Map (z = 0).
+	_layer.z_index = -1
 	_resolver_patron()
 	_reconstruir_rects_conectados()
 	_activo = not _pattern.is_empty()
@@ -36,16 +39,30 @@ func _ready() -> void:
 func on_map_attributes_ready(mapa: Map) -> void:
 	_mapa = mapa
 	if _layer != null:
+		_layer.z_index = -1
 		_resolver_patron()
 		_reconstruir_rects_conectados()
 		_activo = not _pattern.is_empty()
-		_ultima_celda_min = Vector2i(2147483647, 2147483647)
+		_limpiar_borde_pintado()
 
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not _activo:
 		return
+	if _mapa == null or not _mapa.is_current:
+		_limpiar_borde_pintado()
+		return
 	_actualizar()
+
+
+func _limpiar_borde_pintado() -> void:
+	if _layer == null or _pintadas.is_empty():
+		return
+	for celda: Vector2i in _pintadas:
+		_layer.erase_cell(celda)
+	_pintadas.clear()
+	_ultima_celda_min = Vector2i(2147483647, 2147483647)
+	_ultima_celda_max = Vector2i(2147483647, 2147483647)
 
 
 func _resolver_patron() -> void:
@@ -123,14 +140,10 @@ func _actualizar() -> void:
 		for x: int in range(celda_min.x, celda_max.x):
 			var celda: Vector2i = Vector2i(x, y)
 
-			if _dentro_del_mapa(celda, map_size):
+			if _dentro_del_mapa(celda, map_size) or _es_celda_de_mapa_conectado(celda):
 				if _layer.get_cell_source_id(celda) != -1:
 					_layer.erase_cell(celda)
-				continue
-
-			if _es_celda_de_mapa_conectado(celda):
-				if _layer.get_cell_source_id(celda) != -1:
-					_layer.erase_cell(celda)
+				_pintadas.erase(celda)
 				continue
 
 			var tile: Dictionary = _tile_del_patron(celda)
@@ -140,6 +153,8 @@ func _actualizar() -> void:
 				tile["atlas"] as Vector2i,
 				tile["alternative"] as int
 			)
+			if not _pintadas.has(celda):
+				_pintadas.append(celda)
 
 
 func _es_celda_de_mapa_conectado(celda: Vector2i) -> bool:
