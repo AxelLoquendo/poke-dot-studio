@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://3hqxkcbg5078" path="res://scripts/overworld/object_events/game/game_start_data.gd" id="3_awcbw"]
 [ext_resource type="Script" uid="uid://dyoc2mykofmlf" path="res://scripts/overworld/map/map_manager.gd" id="3_igv5w"]
 [ext_resource type="Script" uid="uid://ctck3yx0mrpji" path="res://scripts/overworld/map/map_factory.gd" id="5_igv5w"]
-[ext_resource type="PackedScene" uid="uid://bebsbk4fxbj3h" path="res://scenes/ui/dialogue_box/dialogue_box.tscn" id="6_awcbw"]
 
 [sub_resource type="Resource" id="Resource_huxmy"]
 script = ExtResource("3_awcbw")
@@ -24,5 +23,3 @@ script = ExtResource("3_igv5w")
 
 [node name="MapFactory" type="Node" parent="." unique_id=387870802]
 script = ExtResource("5_igv5w")
-
-[node name="DialogueBox" parent="." unique_id=185409007 instance=ExtResource("6_awcbw")]
