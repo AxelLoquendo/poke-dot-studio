@@ -30,6 +30,7 @@ map_id = 1
 map_name = "Pueblo Inicio"
 map_music = 2
 map_size = Vector2i(32, 21)
+weather = 1
 connections = Array[ExtResource("2_2344u")]([SubResource("Resource_yojri"), SubResource("Resource_n1do5")])
 metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
 

@@ -12,7 +12,8 @@ extends Resource
 @export var allow_dig_escape_rope: bool = false
 @export var allow_fly: bool = false
 @export var requires_flash: bool = false
-#@export var weather: WeatherEffect.WeatherID
+@export var weather: WeatherID.Id = WeatherID.Id.NONE
+@export_range(0, 9) var weather_intensity: int = 0
 #@export var grass_encounters: WildEncounterTable
 
 @export var connections: Array[MapConnectionEntry] = []

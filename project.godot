@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicManager="*uid://bo6mid0uptdmn"
+FadeScreen="*uid://cmnguckln51fa"
+WeatherManager="*uid://cewppc3e2kbqo"
 
 [debug]
 
