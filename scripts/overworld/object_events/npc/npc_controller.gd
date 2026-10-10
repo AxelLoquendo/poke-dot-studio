@@ -162,5 +162,10 @@ func resume_behavior() -> void:
 	behavior_paused = false
 	if npc_data == null:
 		return
-	if npc_data.behavior == NPCData.Behavior.PATROL:
+	if npc_data.behavior != NPCData.Behavior.PATROL:
+		return
+	if move_route_controller.has_route():
+		patrol_started = true
+		move_route_controller.resume_route()
+	else:
 		patrol_started = false

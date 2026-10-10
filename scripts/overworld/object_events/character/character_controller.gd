@@ -166,8 +166,11 @@ func start_move() -> bool:
 	return true
 
 
-func halt_on_tile() -> void:
+func halt_for_interaction() -> bool:
+	var reached: bool = moving and move_progress >= 0.5
 	var tile: Vector2 = snap_to_grid(entity_root.global_position)
+	if moving:
+		tile = target_position if reached else initial_position
 	entity_root.global_position = tile
 	character.position = Vector2.ZERO
 	current_position = tile
@@ -180,6 +183,7 @@ func halt_on_tile() -> void:
 	waiting_for_move = false
 	hold_time = 0.0
 	ledge_hop = false
+	return reached
 
 
 func _play_bump() -> void:

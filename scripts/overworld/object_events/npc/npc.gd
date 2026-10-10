@@ -80,10 +80,13 @@ func _run_script(player: Node2D) -> void:
 		state.change_state(CharacterStates.State.LOCKED)
 	if npc_controller != null:
 		npc_controller.pause_behavior(true)
-	if move_route_controller != null:
-		move_route_controller.stop_route()
+	var reached: bool = false
 	if controller != null:
-		controller.halt_on_tile()
+		reached = controller.halt_for_interaction()
+	if move_route_controller != null:
+		if reached:
+			move_route_controller.complete_current_command()
+		move_route_controller.pause_route()
 	face_towards(player.global_position)
 
 	var file_cmd: ScriptCmdTextFile = ScriptCmdTextFile.new()
