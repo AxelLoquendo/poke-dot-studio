@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_k5h33"]
 [ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_2344u"]
 [ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="2_ultj3"]
-[ext_resource type="TileSet" uid="uid://c6t22g76idhl5" path="res://scenes/overworld/map/pueblo_inicio/pueblo_inicio.tres" id="3_ultj3"]
+[ext_resource type="TileSet" uid="uid://c6t22g76idhl5" path="res://data/resources/overworld/tileset/outside.tres" id="3_ultj3"]
 [ext_resource type="Texture2D" uid="uid://brxkaxye1ebhs" path="res://assets/tileset/Dungeon forest.png" id="4_2nos3"]
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="4_mc62f"]
 [ext_resource type="PackedScene" uid="uid://c00cqut3dbolm" path="res://scenes/overworld/npc/npc.tscn" id="6_mc62f"]
@@ -18,13 +18,19 @@ target_map = 2
 edge_offset = -4
 metadata/_custom_type_script = "uid://bb4w0g3qpr4fi"
 
+[sub_resource type="Resource" id="Resource_n1do5"]
+script = ExtResource("2_2344u")
+target_map = 5
+side = 3
+metadata/_custom_type_script = "uid://bb4w0g3qpr4fi"
+
 [sub_resource type="Resource" id="Resource_0baub"]
 script = ExtResource("2_ultj3")
 map_id = 1
 map_name = "Pueblo Inicio"
 map_music = 2
 map_size = Vector2i(32, 21)
-connections = Array[ExtResource("2_2344u")]([SubResource("Resource_yojri")])
+connections = Array[ExtResource("2_2344u")]([SubResource("Resource_yojri"), SubResource("Resource_n1do5")])
 metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lecu3"]

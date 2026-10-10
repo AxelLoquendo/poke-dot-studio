@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://u6p8ht5np1r2"]
+
+[ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_fw4h3"]
+[ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_8mtqp"]
+[ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="3_mb1m7"]
+[ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="4_7chuo"]
+[ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="5_as6ge"]
+[ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="6_f6hga"]
+
+[sub_resource type="Resource" id="Resource_krvm3"]
+script = ExtResource("3_mb1m7")
+map_id = 18
+map_name = "Region Tiall"
+metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
+
+[node name="Map_Attributes" type="Node2D" unique_id=1993050852]
+script = ExtResource("1_fw4h3")
+attributes = SubResource("Resource_krvm3")
+
+[node name="Tileset" type="Node2D" parent="." unique_id=261736993]
+
+[node name="Tile0" type="TileMapLayer" parent="Tileset" unique_id=1436758875]
+
+[node name="Tile1" type="TileMapLayer" parent="Tileset" unique_id=497837947]
+
+[node name="Tile2" type="TileMapLayer" parent="Tileset" unique_id=727004056]
+
+[node name="Tile3" type="TileMapLayer" parent="Tileset" unique_id=562314614]
+z_index = 2
+
+[node name="Tile4" type="TileMapLayer" parent="Tileset" unique_id=826873359]
+z_index = 3
+
+[node name="Behaviour" type="Node2D" parent="." unique_id=1681849792]
+
+[node name="Collision" type="TileMapLayer" parent="Behaviour" unique_id=630593805]
+self_modulate = Color(1, 1, 1, 0.20784314)
+tile_set = ExtResource("4_7chuo")
+
+[node name="Borde" type="TileMapLayer" parent="Behaviour" unique_id=48474854]
+
+[node name="EventObject" type="Node2D" parent="." unique_id=1092069242]
+z_index = 1
+y_sort_enabled = true
+
+[node name="Trigger" type="Node2D" parent="." unique_id=564404473]
+
+[node name="MapMusicController" type="Node2D" parent="." unique_id=1712646082]
+script = ExtResource("5_as6ge")
+
+[node name="MapBorderController" type="Node2D" parent="." unique_id=1618371318]
+script = ExtResource("6_f6hga")
