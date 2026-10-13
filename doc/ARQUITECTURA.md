@@ -6,7 +6,7 @@ Describe el código de `scripts/`, no una intención futura. Si un comportamient
 
 ## 1. Objetivo
 
-PokeDot Studio ejecuta un overworld con el ritmo de los juegos de Game Boy Advance: casilla, giro, paso, choque, NPC, mapa conectado y evento de texto. El combate y la persistencia quedan fuera de este runtime a propósito, para no acoplar el mapa a un modelo de batalla que todavía no existe.
+PokeDot Studio ejecuta un overworld con el ritmo de los juegos de Game Boy Advance: casilla, giro, paso, choque, NPC, mapa conectado, evento de casilla y script de texto. El combate, los ítems y la persistencia quedan fuera de este runtime a propósito.
 
 El motor tiene que poder cambiar un subsistema sin reescribir los demás. Audio, borde, colisión, mensaje y movimiento se hablan por señales, autoloads o valores de retorno. No se leen entre sí por dentro.
 
@@ -23,15 +23,18 @@ Si una función resuelve una colisión y además llama a `play_animation`, está
 ## 3. Capas
 
 ```text
-Presentación     MessageUI, WeatherRenderer, CharacterAnimatedController, FadeScreen
+Presentación     MessageUI, LocationSignpost, WeatherRenderer,
+                 CharacterAnimatedController, FadeScreen
 Servicios        MessageService, MusicManager, WeatherManager
 Sesión           GameSession, MapFactory, MapManager
 Reglas           CollisionFacade, MapCollisionSystem, TileBehaviorSystem,
-                 ScriptRunner, MoveRouteController, NpcController
-Datos            MapAttributes, NPCData, PlayerData, MoveRoute, WeatherData, .txt
+                 ScriptRunner, MoveRouteController, NpcController,
+                 MapEventResolver
+Datos            MapAttributes, NPCData, PlayerData, MoveRoute,
+                 WeatherData, MapEvent, scripts .txt
 ```
 
-Las reglas no instancian `Label` ni `Sprite2D`. La presentación no decide si un paso es legal.
+Las reglas no instancian `Label` ni `Sprite2D` de mensaje. La presentación no decide si un paso es legal.
 
 ## 4. Sesión
 
@@ -40,9 +43,10 @@ Las reglas no instancian `Label` ni `Sprite2D`. La presentación no decide si un
 En `_ready`:
 
 1. Crea `MessageUI` si el grupo `message_ui` está vacío. `MessageUI` se registra en el autoload `MessageService`.
-2. Si hay `player_data`, lo asigna al `Character` del jugador.
-3. `MapFactory.load_cluster` carga el mapa de inicio y sus vecinos.
-4. Se conecta `movement_finished` del jugador a `update_current_from_player`.
+2. Crea `LocationSignpost` y conecta `MapFactory.cluster_loaded` / `current_changed` a su anuncio de mapa.
+3. Si hay `player_data`, lo asigna al `Character` del jugador.
+4. `MapFactory.load_cluster` carga el mapa de inicio y sus vecinos.
+5. Se conecta `movement_finished` del jugador a `update_current_from_player` y a `MapEventResolver.try_step`.
 
 No hay menú de título ni ranuras de guardado en esta escena.
 
@@ -50,70 +54,46 @@ No hay menú de título ni ranuras de guardado en esta escena.
 
 Hay dos cargadores. No son intercambiables.
 
-`MapFactory` es el overworld continuo. Mantiene el mapa actual y los vecinos declarados en `MapAttributes.connections`. Al cruzar el borde, promueve el vecino a actual, reparenta al jugador conservando `global_position` y refresca el anillo de vecinos. Es el camino que usa `GameSession`.
+**`MapFactory`** es el overworld continuo. Mantiene el mapa actual y los vecinos, registra capas de colisión del cluster y reparenta al jugador. Es el camino de `load_cluster` y del comando `warp` de script.
 
-`MapManager.change_map` descarga el mapa entero y carga otro. Sirve para interior y warp, cuando no hay vecinos que conservar. Hoy el arranque no lo usa.
+**`MapManager`** carga un solo mapa (pensado para indoor sin vecinos). Existe en el código; el flujo de juego actual usa `MapFactory`.
 
-Un `Map` expone `MapAttributes` (id, tamaño, conexiones, música, clima). Al activarse como actual dispara a sus controladores hijos:
+`MapAttributes` describe el mapa: id, nombre, música, tamaño, clima, conexiones, `show_location_name`, `location_style`, `location_type`, flags de indoor / fly / dig.
 
-- `MapMusicController` pide el BGM al `MusicManager`.
-- `MapWeatherController` publica el clima del mapa en `WeatherManager`.
-- `MapBorderController` rellena fuera del mapa con un patrón 2×2, sin pintar celdas de mapas conectados.
+## 6. Eventos de casilla
 
-La colisión activa es única: `MapCollisionSystem.set_active_map`. Los vecinos existen como escenas, pero las consultas de tile van al mapa actual.
+`MapEvent` (`Marker2D`) es un evento sin Object/NPC, hijo del mapa:
 
-El detalle de celdas, altura y ledges está en `Sistema_Mapa_y_Colision.md`.
+| Kind | Disparo | Efecto |
+|---|---|---|
+| `WARP` | Al pisar | Transfer con fade vía `MapFactory` |
+| `COORD` | Al pisar | Script `.txt` si la condición de flag lo permite |
+| `BG` | Al pulsar A frente a la casilla | Cartel / script (objeto oculto: solo flag por ahora) |
 
-## 6. Personaje
+`MapEventResolver` concentra la evaluación. `try_step` corre al terminar un paso del jugador. `try_interact` corre al pulsar A (antes que el NPC).
 
-`CharacterController` posee la posición de grilla, el progreso del paso y el bloqueo. No reproduce animaciones. Emite:
+Los warps se enlazan por `warp_id` ↔ `dest_warp_id` entre mapas, con `dest_tile_fallback` de respaldo.
 
-| Señal | Cuándo |
-|---|---|
-| `step_started(direction, hop)` | Empieza un paso, o un giro que anticipa el paso |
-| `facing_changed(direction)` | Mira sin caminar (`look_direction`) |
-| `bump_started(direction)` | El paso fue rechazado |
-| `bump_ended(direction)` | Terminó el cooldown del choque |
-| `movement_finished` | El lerp llegó al tile destino |
-| `movement_blocked` | La fachada de colisión rechazó el paso |
+## 7. Scripts
 
-`CharacterAnimatedController` se suscribe a las cuatro primeras y aplica sprites, velocidad de bump y el sonido de salto si el padre está en el grupo `Player`. El sonido de choque lo dispara el controlador solo para ese grupo, porque es feedback de input y no de sprite.
+El formato `.txt` lo parsea `ScriptTextParser`. `ScriptCmdTextFile` convierte cada línea en un `ScriptCommand`. `ScriptRunner` ejecuta en secuencia; los comandos asíncronos ponen `context.is_waiting` y llaman `complete_async` al terminar.
 
-`CharacterStates` (`IDLE`, `WALK`, `RUN`, `LOCKED`) observa `moving`. En `LOCKED` el controlador no acepta otro paso y no termina el que estaba a medias: `halt_for_interaction` lo resuelve antes.
+El runner de un NPC es hijo del NPC. Antes de un `warp` que destruye el mapa, el comando reparenta el runner a `MapFactory` para que `release` / `end` puedan ejecutarse.
 
-El detalle de NPC, patrulla e interacción está en `Sistema_Character.md`.
+El alcance overworld del intérprete está cerrado: texto, control de flujo, flags, variables, movimiento, fade, clima, sonido y warp. No hay `giveitem`, `trainerbattle` ni `savegame` implementados (pueden figurar como desconocidos o sin factory).
 
-## 7. Eventos
+## 8. Mensajes y presentación
 
-Un NPC con `script_file` acepta la tecla A del jugador si este está quieto y mira su tile. `Npc._run_script` solo orquesta:
+`MessageService` es la API. `MessageUI` pinta cajas estilo Essentials (speech / choice / name). `FadeScreen` usa alpha lineal a 0.4 s. `LocationSignpost` muestra el nombre del mapa con gráficos de `assets/ui/Location/` según estilo y tipo.
 
-1. `_freeze_for_script` bloquea estado, pausa el comportamiento, corta el paso en el tile de origen o de destino según `move_progress >= 0.5`, pausa la ruta y gira hacia el jugador.
-2. `_start_runner` inserta un `ScriptRunner` hijo con un `ScriptCmdTextFile`.
+## 9. Fuera de alcance
 
-Al terminar, el estado vuelve a `IDLE` y `NpcController.resume_behavior` reanuda la patrulla en el comando guardado. No reinicia la ruta desde el comando 0: si lo hiciera, el tile de la conversación pasaría a ser el origen del circuito.
+Combate, party, mochila, Pokédex, guardado en disco, menú de pausa completo, Surf / bici / HM como sistemas jugables.
 
-Flags y variables viven en `ScriptExecutionContext`. Los flags son un diccionario estático de proceso. No se escriben a disco.
+## 10. Criterio al añadir código
 
-El lenguaje está en `Sistema_Scripts.md`. La caja de texto está en `Sistema_Mensajes.md`.
+- ¿Quién calcula y quién aplica?
+- ¿La presentación puede vivir sin conocer el mapa?
+- ¿El script puede vivir sin conocer el tilemap?
 
-## 8. Presentación global
-
-`MusicManager`, `FadeScreen`, `WeatherManager` y `WeatherRenderer` son autoloads. Un mapa o un comando de script les pide un cambio. Ellos no recorren NPCs ni leen `MapAttributes` por su cuenta, salvo el renderer, que lee la intensidad publicada por el manager.
-
-Ver `Sistema_Presentacion.md`.
-
-## 9. Lo que este motor no hace
-
-- No hay escena de combate ni cálculo de daño.
-- No hay mochila, equipo, Pokédex ni PC.
-- No hay `SaveService`. Los flags mueren con el proceso.
-- `MapManager` no está cableado al arranque. Un warp de script todavía no tiene comando implementado (`warp` se advierte como no portado).
-- Los comandos `applymovement`, `moveplayer`, `giveitem`, `sound`, `trainerbattle`, `checkitem`, `compare` y `savegame` se reconocen en el parser y no tienen factory.
-
-## 10. Convenciones
-
-- Grilla: `CharacterController.TILE_SIZE` es 16.
-- Grupos: `player`, `npc`. La búsqueda de interacción y de `speaker_id` depende de ellos.
-- Identidad de script: `Npc.get_script_id` devuelve `NPCData.id` o, si falta, el nombre del nodo.
-- Recursos editables en inspector: `MapAttributes`, `NPCData`, `PlayerData`, `MoveRoute`, `GameStartData`.
-- El código nuevo no lee `doc/` como fuente de verdad. Si el documento y el script discrepan, manda el script y se corrige el documento en el mismo cambio.
+Si la respuesta obliga a cruzar capas, falta un valor intermedio o una señal.

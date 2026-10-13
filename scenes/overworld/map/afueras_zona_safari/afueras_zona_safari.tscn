@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_gjfmq"]
 [ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_n1do5"]
 [ext_resource type="Script" uid="uid://ce0wpmthqfrq8" path="res://scripts/overworld/map/map_attributes.gd" id="3_0bgs5"]
+[ext_resource type="Script" uid="uid://bgh8vk7mcfn41" path="res://scripts/overworld/map/map_script_entry.gd" id="3_o3o2d"]
 [ext_resource type="TileSet" uid="uid://c6t22g76idhl5" path="res://data/resources/overworld/tileset/outside.tres" id="4_n1do5"]
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="4_o3o2d"]
 [ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="5_ne85c"]
@@ -22,6 +23,11 @@ map_name = "Afueras Zona Safari"
 map_music = 19
 map_size = Vector2i(22, 21)
 show_location_name = true
+is_indoor = null
+allow_dig_escape_rope = null
+allow_fly = null
+requires_flash = null
+weather_intensity = null
 connections = Array[ExtResource("2_n1do5")]([SubResource("Resource_kturt")])
 metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
 

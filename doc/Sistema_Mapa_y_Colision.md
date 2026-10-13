@@ -1,63 +1,71 @@
-# Mapas y colisión
+# Mapa, cluster, colisión y eventos de casilla
 
-## 1. Identidad de un mapa
+## 1. Piezas
 
-`MapSection.MapID` es el enumerado de mapas. `MapSection.MAP_SCENES` traduce cada id a una escena `scenes/overworld/map/<nombre>/<nombre>.tscn`.
-
-`MapAttributes` (resource en el nodo `Map`) guarda id, `map_size` en celdas, lista de `MapConnectionEntry`, música y clima. Una conexión tiene lado, `edge_offset` y `target_map`. `MapConnectionResolver` convierte eso en origen mundial del vecino y en el rectángulo que ocupa. El borde infinito usa ese rectángulo para no pintar encima de un mapa que sí existe.
+| Clase | Papel |
+|---|---|
+| `Map` | Escena de un mapa: tiles, `MapAttributes`, borde, eventos |
+| `MapAttributes` | Metadatos exportados (id, nombre, música, clima, conexiones, location_*) |
+| `MapFactory` | Cluster continuo: actual + vecinos |
+| `MapManager` | Un solo mapa (indoor / API alternativa) |
+| `MapCollisionSystem` | Capas de colisión activas del cluster |
+| `CollisionFacade` | Un paso → `MoveStepResult` |
+| `MapEvent` | Evento de casilla (WARP / COORD / BG) |
+| `MapEventResolver` | Evalúa eventos al pisar o al pulsar A |
 
 ## 2. Cluster
 
-`MapFactory.load_cluster(map_id, celda, player)`:
+`MapFactory.load_cluster(map_id, cell, player)`:
 
-1. Descarga instancias previas, reparentando al jugador fuera de ellas.
-2. Instancia el mapa y lo marca actual (`set_as_current(true)`), lo que enciende música, clima y borde.
-3. Coloca al jugador en la celda, en coordenadas del mapa, y lo reparenta a `EventObject`.
-4. `MapCollisionSystem.set_active_map` e `init_entity_state` para el jugador y para cada NPC del mapa.
-5. Instancia los vecinos declarados, desactivados como actuales, en la posición que devuelve el resolver.
+1. Descarga el cluster anterior (el player se reparenta fuera antes).
+2. Instancia el mapa central y los vecinos según `MapConnectionEntry`.
+3. Registra colisión de todo el cluster.
+4. Coloca al player en la celda (espacio del mapa) y emite `cluster_loaded`.
 
-`update_current_from_player` traduce la posición mundial a un id con los rectángulos de las conexiones. Si el id cambió, ese vecino pasa a actual y `_refrescar_vecinos` descarga los que ya no tocan y carga los nuevos.
+`update_current_from_player` detecta si la posición mundial cayó en un vecino; si sí, promueve ese mapa a actual (`current_changed`) y refresca vecinos. `reparent_player_keep_global` conserva la posición mundial.
 
-Promover no teletransporta. `_reparent_player_keep_global` conserva la posición mundial. El jugador ya está, visualmente, dentro del vecino.
+## 3. Warp
 
-## 3. Mapa único
+Dos entradas equivalentes en efecto de carga:
 
-`MapManager.change_map` existe para interiores: saca al jugador, libera el mapa, limpia la colisión activa, instancia uno nuevo y lo coloca en una celda. No carga vecinos. Un comando de script `warp` todavía no llama a este método.
+1. **Script** `warp MAP_ID x y [dir]` → `ScriptCmdWarp` → fade → `load_cluster` → orientación opcional → fade in. El runner se reparenta a `MapFactory` para no morir con el NPC.
+2. **MapEvent WARP** → `MapEventResolver` → mismo `FadeScreen` + `load_cluster`, llegada por `dest_warp_id` o `dest_tile_fallback`.
 
-## 4. Consulta de un paso
+## 4. Eventos de casilla (`MapEvent`)
 
-`CollisionFacade.resolve_move(controller, direction)` devuelve un `MoveStepResult`:
+`Marker2D` con snap 16×16 en editor. Grupo `map_events`.
 
-- `blocked`
-- `target_world`
-- `hop`
-- `behavior_world` (celda cuyo comportamiento se evalúa; en un ledge puede no ser el destino)
+| Kind | Cuándo | Qué |
+|---|---|---|
+| `WARP` | Pisar | Transfer al `dest_map` / `dest_warp_id` |
+| `COORD` | Pisar | Script si `condition_ok()` |
+| `BG` | A frente a la casilla | Script (cartel); `HIDDEN_ITEM` marca flag si aplica |
 
-El orden dentro de la fachada es entidad y después tile. `EntityCollisionSystem` ocupa la casilla destino si otro actor del grupo ya está ahí. `MapCollisionSystem` lee el `TileData` del mapa activo.
+Condición: `condition_flag` vacío = siempre; si no, compara `ScriptExecutionContext.global_flags` con `expected_value`.
 
-`CollisionTileData` saca de custom data del tile:
+Cableado:
 
-- `no_block`: se puede entrar.
-- altura y puente, usados por `init_entity_state` / `apply_cell_state` para `height_level`, `elevated` y el `z_index` (0 en suelo, 3 elevado).
+- Tras cada paso del player: `MapEventResolver.try_step(player, map_factory)`.
+- Al pulsar A: `try_interact` antes de buscar NPC.
 
-`preview_render_state` anticipa esa capa al empezar el paso, para que el sprite no cambie de orden a mitad del lerp.
+## 5. Consulta de un paso
 
-## 5. Comportamientos de tile
+`CollisionFacade.resolve_move(controller, direction)` → `MoveStepResult` (`blocked`, `target_world`, `hop`, `behavior_world`).
 
-`TileBehaviorReader` identifica el comportamiento. `TileBehaviorSystem` busca un `TileBehaviorHandler`. Hoy el handler concreto es `LedgeBehavior`: solo deja entrar si la dirección del paso coincide con la del ledge, marca hop y la animación de salto la dispara el propio contexto (`jump_animation_played`), que el controlador traduce a `ledge_hop` antes de emitir `step_started`.
+Orden: entidad y después tile. `EntityCollisionSystem` ocupa casillas de actores. `MapCollisionSystem` lee custom data del tile (`no_block`, altura, puente).
 
-Añadir un comportamiento nuevo es un handler. No se edita `start_move`.
+## 6. Comportamientos de tile
 
-## 6. Borde
+`TileBehaviorReader` + `TileBehaviorSystem` + handlers. Hoy el handler concreto es `LedgeBehavior` (dirección del ledge, hop, animación vía contexto del paso).
 
-`MapBorderController` corre en `_process` solo con el mapa actual. Calcula el rectángulo visible de la cámara en espacio local, lo expande `MARGEN_CELDAS` y, si el rango cambió, pinta.
+## 7. Borde
 
-`_pintar_celda` borra la celda si cae dentro de `map_size` o de un rectángulo conectado. Si no, copia el tile del patrón 2×2. Decidir el rango y escribir el `TileMapLayer` son funciones distintas.
+`MapBorderController` pinta el patrón infinito fuera de `map_size` y de los rectángulos conectados, según la cámara.
 
-## 7. Preview de editor
+## 8. Preview de editor
 
-Con `Engine.is_editor_hint()`, `Map._refresh_connection_previews` instancia los vecinos, les pone meta `META_PREVIEW` y `META_SKIP_PREVIEW`, les apaga música, borde, clima y eventos (`_strip_preview_runtime`) y los tiñe. `_spawn_preview` hace un vecino. No corre en el juego.
+Con `Engine.is_editor_hint()`, los vecinos de preview se instancian sin runtime (sin música, clima, eventos activos).
 
-## 8. Y-sort
+## 9. Y-sort
 
-Player y NPC cuelgan de `EventObject`, que ordena por Y. El `z_index` de puente es ortogonal a ese orden: altura de capa, no orden dentro de la capa.
+Player y NPC cuelgan de `EventObject`. El `z_index` de puente es ortogonal al orden Y.

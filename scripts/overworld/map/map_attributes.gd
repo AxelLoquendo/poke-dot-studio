@@ -20,6 +20,10 @@ extends Resource
 
 @export var connections: Array[MapConnectionEntry] = []
 
+@export_group("Map Script")
+@export_file("*.txt") var map_script: String = ""  ## compat: se trata como ON_LOAD
+@export var map_scripts: Array[MapScriptEntry] = []
+
 enum LocationStyle {
 	HGSS,
 	PLATINUM,

@@ -1,43 +1,56 @@
-# Audio, fade y clima
+# Presentación: audio, fade, clima y ubicación
 
-Estos tres servicios no conocen NPCs ni scripts. Un mapa, al volverse actual, o un comando, les pide un estado. Ellos lo muestran.
+## 1. Audio
 
-## 1. Música y efectos
+`MusicManager` (autoload) reproduce BGM y SE. No conoce mapas: quien decide la pista es el mapa o un comando de script.
 
-`MusicManager` es un autoload. Reproduce BGM y SE por id de `SFXGame`. Ese script es un catálogo de rutas bajo `res://sfx/` (`bgm`, `se`, `me`, gritos). No decide cuándo suena una ruta.
-
-`MapMusicController`, hijo del mapa, en `activar` lee el BGM de `MapAttributes` y se lo pasa al manager. Cambiar de mapa actual vuelve a llamar a `activar`. No hay fade de música propio en el controlador: si el manager corta el stream anterior, el corte es el de esa función.
-
-Efectos que hoy salen del overworld, no de un comando `sound` (ese comando no está portado):
-
-- salto de ledge, en `CharacterAnimatedController`, solo grupo `Player`
-- choque, en `CharacterController._play_bump`, solo grupo `Player`
-- cursor y aceptar de la caja de choices, en `ChoiceWindow` y `MessageUI`
+`MapMusicController` / atributos del mapa asignan `map_music` al entrar. `sound` en script resuelve un `SFXGame.SoundEffectID` y llama a `reproducir_se`.
 
 ## 2. Fade
 
-`FadeScreen` es un `CanvasLayer` con un `ColorRect` a pantalla completa. `fade_out` y `fade_in` interpolan el alfa con un tween. `set_covered` y `set_clear` no animan.
+`FadeScreen` (autoload, `CanvasLayer` 100) cubre la pantalla con un `ColorRect`.
 
-`ScriptCmdFade` llama al autoload y completa el comando cuando el tween termina. La duración por defecto es la del propio fade. Un argumento numérico en el `.txt` la sustituye.
+- Duración por defecto: **0.4 s** (PE `pbFadeOutIn`).
+- Curva: **alpha lineal** (no SINE).
+- API: `fade_out`, `fade_in`, `fade_out_in`, `set_covered`, `set_clear`.
+- `process_mode = ALWAYS` para funcionar con el árbol pausado.
 
-El fade no pausa el árbol. Quien no deba moverse tiene que estar locked por el script (`lock`) o por el mensaje.
+Scripts: `fadeout` / `fadein` [segundos]. Warps de script y de `MapEvent` usan el mismo autoload.
 
 ## 3. Clima
 
-`WeatherManager` guarda id, intensidad y si hay transición. `set_weather` / `clear_weather` publican el cambio. No crean sprites.
+`WeatherManager` guarda el clima activo y la intensidad. `WeatherRenderer` dibuja partículas / tiles / rayos.
 
-`MapWeatherController` traduce el clima declarado en el mapa a esa llamada cuando el mapa se activa.
+El clima de un mapa sale de `MapAttributes.weather` e `weather_intensity` al activar el mapa. El comando `weather` en script puede cambiarlo en runtime.
 
-`WeatherRenderer` es el autoload que dibuja. Mantiene tres familias, todas en pantalla y no en coordenadas de mapa:
+## 4. Cartel de nombre de mapa
 
-- Partículas (lluvia, nieve, tormenta). `_update_particles` decide vida y reciclaje. `_mover_particula` aplica delta, drift de nieve y opacidad. El spawn de cada gota está en `_reset_particle` y sigue las reglas de entrada de Essentials (por la derecha si la pendiente es fuerte, por arriba si no). Los índices de splash solo se ven en los últimos 0.2 s de vida.
-- Tiles (niebla, arena, ventisca). Una grilla que envuelve el viewport y se desplaza con `tile_delta`.
-- Rayo, solo en tormenta, como flash de color.
+`LocationSignpost` (creado por `GameSession`) replica el ritmo de PE `LocationWindow`:
 
-`WeatherCatalog` y `WeatherData` describen texturas, deltas y opacidad por `WeatherID`. Añadir un clima es un resource y una entrada del catálogo, no un bloque nuevo dentro del bucle de partículas, salvo que el movimiento no sea un delta más un drift.
+- Entrada 0.4 s desde arriba, visible 1.6 s, salida 0.4 s.
+- Se cancela si `MessageService.is_active()`.
+- No se repite si el **nombre** es el mismo que el anuncio anterior.
 
-La intensidad 0 deja las partículas en cero y los tiles transparentes. El manager sigue teniendo id: apagar no borra el tipo.
+### Datos en el mapa
 
-## 4. Orden respecto al mensaje
+En `MapAttributes`:
 
-El mensaje vive en la capa 95. El clima y el fade son canvas layers de autoload. Un fade cubre el mensaje si su capa es mayor. Hoy el fade se usa entre eventos, no encima de una choice. No hay un contrato de capas escrito en código más allá de `MessageConfig.MESSAGE_LAYER`.
+| Campo | Uso |
+|---|---|
+| `map_name` | Texto del cartel |
+| `show_location_name` | Si es false, no se muestra |
+| `location_style` | `HGSS`, `PLATINUM`, `DP`, `ORAS`, `XY` |
+| `location_type` | `DEFAULT`, `TOWN`, `CITY`, `ROUTE`, `FOREST`, `CAVE`, `LAKE`, `PARK`, `SEA` |
+
+### Gráficos
+
+`LocationSignpostConfig` carga desde `res://assets/ui/Location/`:
+
+- HGSS / Pt: `HGSS town.png`, `Pt route.png`, etc. (prefijo + tipo).
+- DP / ORAS / XY: un solo archivo (`DP.png`, `ORAS.png`, `XY.png`).
+
+HGSS suele ser 272×64; el banner usa el tamaño nativo del PNG y el texto centrado encima.
+
+### Señales
+
+`MapFactory.cluster_loaded` y `current_changed` → `LocationSignpost.try_show_for_map`.

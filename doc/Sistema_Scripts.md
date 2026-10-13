@@ -1,82 +1,103 @@
-# Scripts de evento
+# Sistema de scripts
 
-## 1. Ejecución
+Formato `.txt` estilo pokeemerald / eventos de mapa. El runtime no interpreta Ruby ni GDScript embebido: solo comandos del parser.
 
-`ScriptRunner` recibe una lista de `ScriptCommand`. Cada `execute` devuelve `true` si el comando terminó en el acto. Si devuelve `false`, el contexto queda en `is_waiting` y el runner no avanza hasta `on_async_complete`.
-
-`get_inline_commands` permite que un comando se reescriba como varios antes de ejecutarse. `ScriptCmdTextFile` hace eso: lee el `.txt`, lo convierte y el runner sustituye el comando archivo por la lista resultante. Los labels se reconstruyen después de la expansión.
-
-`jump_to_label` deja `current_index` en el índice del `ScriptCmdLabel`. El siguiente ciclo ejecuta lo que hay detrás de la etiqueta, no la etiqueta misma (su `execute` no hace nada).
-
-El contexto guarda:
-
-- `npc`, `player`, `map`
-- `variables` locales de esta corrida (`last_choice` es una de ellas)
-- `global_flags`, estático en la clase, vivo mientras el proceso exista
-
-`find_character_by_id` recorre los grupos `npc` y `player` y compara con `get_script_id`.
-
-## 2. Formato del archivo
-
-UTF-8, una orden por línea. Se ignoran líneas vacías y las que empiezan por `#` o `//`. El primer token es el comando, en minúsculas. Los argumentos van separados por espacios. Un argumento con espacios se encierra en comillas. El parser no admite comillas escapadas.
+## 1. Pipeline
 
 ```text
-lock
-faceplayer
-text "¿Sales de viaje?" MSGBOX_YESNO
-ifchoice 0 SiViaja
-text "Otro día será."
-release
-end
-
-label SiViaja
-text "Cuídate."
-release
-end
+archivo .txt
+  → ScriptTextParser.parse_script / load_script_file
+  → Array de diccionarios { command, args, line }
+  → ScriptCmdTextFile._convert → Array[ScriptCommand]
+  → ScriptRunner.start_script(...)
 ```
 
-Varias líneas `text` seguidas, sin `MSGBOX_*` ni hablante, se agrupan en un solo `ScriptCmdText` de varias páginas. En cuanto una línea trae msgbox o un id de hablante, se corta el grupo y esa línea sale como comando propio.
+Entradas típicas:
 
-## 3. Comandos con efecto
+- NPC: `NPCData.script_file` → `ScriptCmdTextFile` al interactuar.
+- `MapEvent` COORD / BG: `script_file` del evento.
+- Script que hace `warp`: el runner se reparenta a `MapFactory` antes de descargar el mapa.
+
+## 2. Contexto
+
+`ScriptExecutionContext` lleva `npc`, `player`, `map`, `variables` locales, `runner` y flags globales estáticos (`global_flags`).
+
+`complete_async` desbloquea el runner tras un comando que esperaba (fade, texto, wait, waitmovement, warp).
+
+## 3. Comandos operativos
 
 | Comando | Efecto |
 |---|---|
-| `text "..." [MSGBOX_*] [speaker_id]` | Muestra páginas. Ver sección 4. |
-| `multichoice "pregunta" "A" "B"` | Un texto y una choice por argumento extra. El índice queda en `last_choice`. |
-| `label nombre` | Marca. |
-| `goto nombre` | Salta. |
-| `ifchoice esperado etiqueta` | Si `last_choice` como string es igual a `esperado`, salta. `0` es la primera opción. |
+| `text "..." [MSGBOX_*] [speaker_id]` | Páginas de mensaje. Ver `Sistema_Mensajes.md`. |
+| `multichoice "pregunta" "A" "B" ...` | Texto + choices. Índice en `last_choice`. |
+| `label nombre` | Marca de salto. |
+| `goto nombre` | Salta a la etiqueta. |
+| `ifchoice esperado etiqueta` | Si `last_choice` (string) == `esperado`, salta. `0` = primera opción. |
 | `ifflag nombre etiqueta` | Salta si el flag global es verdadero. |
 | `setflag nombre` / `clearflag nombre` | Escribe el flag global. |
-| `faceplayer` | El NPC ejecuta `face_towards` hacia el jugador. |
-| `lock` / `release` | `player.set_script_locked`. No pausa la ruta del NPC; eso ya ocurrió al iniciar el script. |
-| `waitbutton` | Espera A. |
-| `fadeout [seg]` / `fadein [seg]` | `FadeScreen`. Asíncrono. |
+| `setvar nombre valor` | Variable de contexto (número). |
+| `addvar nombre delta` | Suma a la variable. |
+| `compare nombre op valor etiqueta` | `op`: `==` `!=` `>` `<` `>=` `<=`. Si cumple, salta. |
+| `faceplayer` | El NPC del contexto mira al jugador. |
+| `lock` / `release` | `player.set_script_locked(true/false)`. |
+| `waitbutton` | Espera A / accept. |
+| `wait segundos` | Espera tiempo (float). |
+| `fadeout [seg]` / `fadein [seg]` | `FadeScreen` (default 0.4). Asíncrono. |
 | `weather nombre` | `WeatherManager`. |
+| `sound SE_...` o `GUI_...` | `MusicManager.reproducir_se`. Prefijo `SE_` opcional. |
+| `applymovement [objetivo] paso,paso,...` | Inicia ruta. Objetivo: vacío/`event`/`npc`, `player`, o id de script. |
+| `moveplayer paso,paso,...` | Igual que `applymovement player ...`. |
+| `waitmovement [objetivo]` | Espera `route_finished` del `MoveRouteController`. |
+| `warp MAP_ID x y [dirección]` | Fade out → `MapFactory.load_cluster` → fade in. |
 | `end` / `return` | Termina el runner. |
 
-## 4. Msgbox
+### Tokens de movimiento
 
-El segundo argumento de `text`, si está en `ScriptTextParser.MSGBOX_MAP`:
+`walk_up` / `up`, `walk_down` / `down`, `walk_left` / `left`, `walk_right` / `right`,  
+`face_up`, `face_down`, `face_left`, `face_right`, `face_player`,  
+`wait_0.5` (segundos).
+
+Varios pasos en un argumento separados por coma: `walk_up,walk_up,face_down`.
+
+### Warp
+
+```text
+warp MAPSEC_RUTA_1 5 10 down
+warp PUEBLO_INICIO 8 12
+```
+
+El token de mapa acepta el enum con o sin prefijo `MAPSEC_`. Dirección opcional: `up` `down` `left` `right`.
+
+## 4. Msgbox
 
 | Token | Efecto |
 |---|---|
 | `MSGBOX_YESNO` | Choices `Sí` y `No`. Índice en `last_choice`. |
 | `MSGBOX_SIGN` | Sin caja de nombre. |
-| `MSGBOX_NPC`, `MSGBOX_DEFAULT`, `MSGBOX_AUTOCLOSE`, `MSGBOX_GETINPUT` | Se aceptan. No cambian el comando, salvo que un tercer token se tome como `speaker_id`. `AUTOCLOSE` no cierra solo. `GETINPUT` no abre el teclado de nombre. |
+| `MSGBOX_NPC`, `MSGBOX_DEFAULT`, `MSGBOX_AUTOCLOSE`, `MSGBOX_GETINPUT` | Se aceptan. Un tercer token puede ser `speaker_id`. |
 
-Si el segundo argumento no es un msgbox, se interpreta como id de personaje y `ScriptCmdText` resuelve el nombre con `get_display_name` o con `data.name`.
+## 5. Ejemplo
 
-## 5. Comandos reconocidos y sin implementación
+```text
+lock
+faceplayer
+text "¿Vienes?" MSGBOX_YESNO
+ifchoice 1 no
+applymovement event walk_up,walk_up,face_down
+applymovement player walk_up,walk_up
+waitmovement event
+waitmovement player
+sound SE_GUI_SEL_DECISION
+warp MAPSEC_RUTA_1 5 10 up
+release
+end
 
-El parser los acepta para no romper archivos de Essentials, y `_create` emite un warning y devuelve `null`. El runner se salta los huecos nulos.
+label no
+text "Está bien."
+release
+end
+```
 
-`applymovement`, `moveplayer`, `giveitem`, `sound`, `warp`, `checkitem`, `compare`, `savegame`, `trainerbattle`.
+## 6. Fuera de alcance del intérprete
 
-Hasta que cada uno tenga factory, un script que dependa de ellos no hace esa línea.
-
-## 6. Añadir un comando
-
-1. Meter el nombre en `ScriptTextParser.COMANDOS_VALIDOS`.
-2. Añadir una rama en `ScriptCmdTextFile._create` que delegue en un `_cmd_*` pequeño.
-3. El `execute` del comando nuevo calcula o llama a un servicio. No instancia UI si ya existe un servicio para eso.
+`giveitem`, `checkitem`, `trainerbattle`, `savegame` no tienen factory operativo. No forman parte del overworld cerrado.
