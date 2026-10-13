@@ -1,6 +1,8 @@
 class_name MoveRouteController
 extends Node
 
+signal route_finished
+
 var character_controller: CharacterController
 var route: MoveRoute
 var current_command: int = 0

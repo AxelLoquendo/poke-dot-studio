@@ -34,6 +34,7 @@ func _ensure_message_ui() -> void:
 
 func _on_player_step_finished() -> void:
 	map_factory.update_current_from_player(player)
+	MapEventResolver.try_step(player, map_factory)
 
 
 func _aplicar_datos_player() -> void:

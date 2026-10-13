@@ -13,6 +13,8 @@ var current_map_id: MapSection.MapID = MapSection.MapID.NONE
 ## MapSection.MapID -> Map
 var loaded_maps: Dictionary = {}
 
+func _ready() -> void:
+	add_to_group(&"map_factory")
 
 func load_cluster(
 	map_id: MapSection.MapID,

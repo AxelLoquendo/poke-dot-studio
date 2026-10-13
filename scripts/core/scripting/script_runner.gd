@@ -116,3 +116,5 @@ func _finish_script() -> void:
 	is_running = false
 	set_process(false)
 	script_finished.emit()
+	# Seguro si el host (NPC) ya no existe
+	call_deferred("queue_free")

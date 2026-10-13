@@ -1,0 +1,4 @@
+lock
+text "Casa de Azul." MSGBOX_SIGN
+release
+end

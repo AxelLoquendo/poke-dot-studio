@@ -121,6 +121,8 @@ func _create(command_name: String, args: Array) -> ScriptCommand:
 			return _cmd_weather(args)
 		"multichoice":
 			return _cmd_multichoice(args)
+		"warp":
+			return _cmd_warp(args)
 		_:
 			push_warning("ScriptCmdTextFile: comando no portado aún '%s'" % command_name)
 			return null
@@ -202,6 +204,17 @@ func _cmd_multichoice(args: Array) -> ScriptCmdText:
 	c.choice_variable = "last_choice"
 	return c
 
+func _cmd_warp(args: Array) -> ScriptCmdWarp:
+	var c: ScriptCmdWarp = ScriptCmdWarp.new()
+	if args.is_empty():
+		push_warning("warp: falta map_id")
+		return c
+	c.map_token = str(args[0])
+	if args.size() >= 3:
+		c.cell = Vector2i(int(str(args[1])), int(str(args[2])))
+	if args.size() >= 4:
+		c.facing = ScriptCmdWarp._resolve_facing(str(args[3]))
+	return c
 
 func get_display_text() -> String:
 	return "script: %s" % script_file_path.get_file()

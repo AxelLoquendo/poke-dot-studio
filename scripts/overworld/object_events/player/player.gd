@@ -35,6 +35,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if controller.moving:
 		return
+
+	# 1) BG (carteles) frente al player
+	var factory: MapFactory = get_tree().get_first_node_in_group(&"map_factory") as MapFactory
+	if factory != null and MapEventResolver.try_interact(self, factory):
+		get_viewport().set_input_as_handled()
+		return
+
+	# 2) NPC
 	var npc: Node2D = _find_facing_npc()
 	if npc != null and npc.has_method("interact"):
 		npc.call("interact", self)
