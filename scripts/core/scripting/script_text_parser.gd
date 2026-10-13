@@ -8,7 +8,8 @@ const COMANDOS_VALIDOS: Array[String] = [
 	"compare", "applymovement", "weather", "fadeout", "fadein",
 	"savegame", "waitbutton", "setflag", "clearflag", "moveplayer",
 	"faceplayer", "lock", "release", "warp", "giveitem", "sound",
-	"return", "end", "checkitem", "trainerbattle",
+	"return", "end", "checkitem", "trainerbattle", "waitmovement",
+	"wait", "setvar", "addvar",
 ]
 
 const MSGBOX_MAP: Dictionary = {

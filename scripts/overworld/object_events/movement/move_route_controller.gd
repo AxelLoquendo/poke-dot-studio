@@ -90,6 +90,8 @@ func execute_next_command() -> void:
 		if route.loop:
 			current_command = 0
 		else:
+			executing = false
+			route_finished.emit()
 			stop_route()
 			return
 	var command: MoveCommand = route.commands[current_command]
@@ -137,6 +139,11 @@ func execute_command(command: MoveCommand) -> void:
 			_advance_command()
 		MoveCommand.Type.TURN_RIGHT:
 			character_controller.look_direction(Vector2.RIGHT)
+			_advance_command()
+		MoveCommand.Type.FACE_PLAYER:
+			var d: Vector2 = get_direction_to_player()
+			if d != Vector2.ZERO:
+				character_controller.look_direction(d)
 			_advance_command()
 		MoveCommand.Type.WAIT:
 			start_wait(command.parameter)

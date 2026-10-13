@@ -1,6 +1,7 @@
 lock
 faceplayer
-text "¡Nos vamos!" MSGBOX_NPC
-warp MAPSEC_RUTA_1 10 10 up
+text "Camina." MSGBOX_NPC
+applymovement PLAYER walk_left,walk_left,face_down
+waitmovement
 release
 end

@@ -18,6 +18,7 @@ enum Type {
 	TURN_LEFT,
 	TURN_RIGHT,
 
+	FACE_PLAYER,
 	WAIT,
 }
 

@@ -123,6 +123,22 @@ func _create(command_name: String, args: Array) -> ScriptCommand:
 			return _cmd_multichoice(args)
 		"warp":
 			return _cmd_warp(args)
+		"applymovement":
+			return _cmd_apply_movement(args, false)
+		"moveplayer":
+			return _cmd_apply_movement(args, true)
+		"waitmovement":
+			return _cmd_wait_movement(args)
+		"wait":
+			return _cmd_wait_time(args)
+		"sound":
+			return _cmd_sound(args)
+		"setvar":
+			return _cmd_set_var(args, false)
+		"addvar":
+			return _cmd_set_var(args, true)
+		"compare":
+			return _cmd_compare(args)
 		_:
 			push_warning("ScriptCmdTextFile: comando no portado aún '%s'" % command_name)
 			return null
@@ -214,6 +230,69 @@ func _cmd_warp(args: Array) -> ScriptCmdWarp:
 		c.cell = Vector2i(int(str(args[1])), int(str(args[2])))
 	if args.size() >= 4:
 		c.facing = ScriptCmdWarp._resolve_facing(str(args[3]))
+	return c
+
+func _cmd_apply_movement(args: Array, force_player: bool) -> ScriptCmdApplyMovement:
+	var c: ScriptCmdApplyMovement = ScriptCmdApplyMovement.new()
+	var i: int = 0
+	if force_player:
+		c.target_token = "player"
+	elif not args.is_empty() and not _is_step(str(args[0])):
+		c.target_token = str(args[0])
+		i = 1
+	var tokens: PackedStringArray = PackedStringArray()
+	while i < args.size():
+		for part: String in str(args[i]).split(",", false):
+			var p: String = part.strip_edges()
+			if not p.is_empty():
+				tokens.append(p)
+		i += 1
+	c.route_tokens = tokens
+	return c
+
+func _is_step(s: String) -> bool:
+	var t: String = s.to_lower()
+	return t.begins_with("walk_") or t.begins_with("face_") or t.begins_with("wait_")
+
+func _cmd_wait_movement(args: Array) -> ScriptCmdWaitMovement:
+	var c: ScriptCmdWaitMovement = ScriptCmdWaitMovement.new()
+	if not args.is_empty():
+		c.target_token = str(args[0])
+	return c
+
+func _cmd_wait_time(args: Array) -> ScriptCmdWait:
+	var c: ScriptCmdWait = ScriptCmdWait.new()
+	c.wait_for_input = false
+	if not args.is_empty() and str(args[0]).is_valid_float():
+		c.duration = float(args[0])
+	return c
+
+func _cmd_sound(args: Array) -> ScriptCmdSound:
+	var c: ScriptCmdSound = ScriptCmdSound.new()
+	if not args.is_empty():
+		c.sound_token = str(args[0])
+	return c
+
+func _cmd_set_var(args: Array, is_add: bool) -> ScriptCmdSetVar:
+	var c: ScriptCmdSetVar = ScriptCmdSetVar.new()
+	c.is_add = is_add
+	if args.size() >= 1:
+		c.var_name = str(args[0])
+	if args.size() >= 2 and str(args[1]).is_valid_float():
+		c.value = float(args[1])
+	return c
+
+func _cmd_compare(args: Array) -> ScriptCmdCompare:
+	var c: ScriptCmdCompare = ScriptCmdCompare.new()
+	# compare nombre == 1 etiqueta
+	if args.size() >= 1:
+		c.var_name = str(args[0])
+	if args.size() >= 2:
+		c.op = str(args[1])
+	if args.size() >= 3 and str(args[2]).is_valid_float():
+		c.expected = float(args[2])
+	if args.size() >= 4:
+		c.target_label = str(args[3])
 	return c
 
 func get_display_text() -> String:
