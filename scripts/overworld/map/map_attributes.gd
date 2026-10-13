@@ -8,6 +8,8 @@ extends Resource
 @export var map_size: Vector2i
 #@export var battle_scene: BattleBackground.Background
 @export var show_location_name: bool = false
+@export var location_style: LocationStyle = LocationStyle.HGSS
+@export var location_type: LocationType = LocationType.DEFAULT
 @export var is_indoor: bool = false
 @export var allow_dig_escape_rope: bool = false
 @export var allow_fly: bool = false
@@ -17,3 +19,23 @@ extends Resource
 #@export var grass_encounters: WildEncounterTable
 
 @export var connections: Array[MapConnectionEntry] = []
+
+enum LocationStyle {
+	HGSS,
+	PLATINUM,
+	DP,
+	ORAS,
+	XY,
+}
+
+enum LocationType {
+	DEFAULT,
+	TOWN,
+	CITY,
+	ROUTE,
+	FOREST,
+	CAVE,
+	LAKE,
+	PARK,
+	SEA,
+}

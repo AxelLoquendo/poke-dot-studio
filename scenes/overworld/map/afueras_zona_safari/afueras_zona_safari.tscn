@@ -21,6 +21,7 @@ map_id = 5
 map_name = "Afueras Zona Safari"
 map_music = 19
 map_size = Vector2i(22, 21)
+show_location_name = true
 connections = Array[ExtResource("2_n1do5")]([SubResource("Resource_kturt")])
 metadata/_custom_type_script = "uid://ce0wpmthqfrq8"
 
