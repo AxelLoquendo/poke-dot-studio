@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://c4f0xe4oall5u"]
 
 [ext_resource type="Script" uid="uid://bc32ghw4o41tf" path="res://scripts/core/boot/gender_select_scene.gd" id="1_klo5a"]
-[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_1n06h"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_klo5a"]
-font = ExtResource("2_1n06h")
 
 [node name="GenderSelect" type="Control" unique_id=1983782125]
 layout_mode = 3
@@ -16,6 +12,11 @@ grow_vertical = 2
 script = ExtResource("1_klo5a")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1737839738]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Base" type="TextureRect" parent="." unique_id=1432783219]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -33,11 +34,3 @@ offset_left = 280.0
 offset_top = 48.0
 offset_right = 320.0
 offset_bottom = 88.0
-
-[node name="Hint" type="Label" parent="." unique_id=2129460793]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 340.0
-offset_right = 160.0
-offset_bottom = 380.0
-label_settings = SubResource("LabelSettings_klo5a")

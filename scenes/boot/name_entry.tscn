@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://g1vg4vbsxd0h"]
+
+[ext_resource type="Script" uid="uid://bew3kfcq3gslk" path="res://scripts/core/boot/name_entry_scene.gd" id="1_x2r84"]
+
+[node name="NameEntry" type="Control" unique_id=1058515208]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2r84")
+
+[node name="Bg" type="TextureRect" parent="." unique_id=1725802467]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tab" type="TextureRect" parent="." unique_id=1182823175]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Preview" type="TextureRect" parent="." unique_id=1019832513]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HelpLabel" type="Label" parent="." unique_id=1187020975]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="NameLabel" type="Label" parent="." unique_id=1176968802]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Cursor" type="TextureRect" parent="." unique_id=925724934]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

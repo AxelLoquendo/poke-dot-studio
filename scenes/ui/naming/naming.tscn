@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dxhsfiu5gqm7e"]
 
 [ext_resource type="Texture2D" uid="uid://b2f0d121eebcy" path="res://assets/ui/naming/bg_2.png" id="1_8gbss"]
-[ext_resource type="Script" uid="uid://bew3kfcq3gslk" path="res://scripts/core/boot/name_entry_scene.gd" id="1_ydajd"]
 [ext_resource type="Texture2D" uid="uid://dnhor2ryypjlj" path="res://assets/ui/naming/icon_shadow.png" id="2_ydajd"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="3_gt06x"]
 
@@ -14,7 +13,6 @@ shadow_color = Color(0.65882355, 0.72156864, 0.72156864, 1)
 shadow_offset = Vector2(0, 2)
 
 [node name="Naming" type="Node2D" unique_id=113634336]
-script = ExtResource("1_ydajd")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1940635084]
 position = Vector2(256, 192)

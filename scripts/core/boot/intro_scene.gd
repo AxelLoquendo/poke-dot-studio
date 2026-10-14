@@ -3,6 +3,7 @@ class_name IntroScene
 ## Intro de nueva partida (gráficos PE intro*). Luego género.
 
 const PIC_DIR: String = "res://assets/Pictures/"
+const SCREEN: Vector2 = Vector2(512, 384)
 
 @onready var bg: TextureRect = $Bg
 @onready var character: TextureRect = $Character
@@ -22,10 +23,10 @@ func _ready() -> void:
 
 
 func _setup_rect(r: TextureRect) -> void:
+	# Solo el fondo:
 	r.set_anchors_preset(Control.PRESET_FULL_RECT)
 	r.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	r.stretch_mode = TextureRect.STRETCH_KEEP
-
 
 func _play() -> void:
 	_ensure_message_ui()
@@ -53,10 +54,25 @@ func _play() -> void:
 func _set_char(file_name: String) -> void:
 	if file_name.is_empty():
 		character.texture = null
+		character.visible = false
 		return
+	character.visible = true
+	character.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	character.stretch_mode = TextureRect.STRETCH_KEEP
+	# Quitar full-rect del character si lo tenía en la escena
+	character.set_anchors_preset(Control.PRESET_TOP_LEFT)
 	var path: String = PIC_DIR + file_name
-	if ResourceLoader.exists(path):
-		character.texture = load(path) as Texture2D
+	if not ResourceLoader.exists(path):
+		return
+	character.texture = load(path) as Texture2D
+	var sz: Vector2 = character.texture.get_size()
+	character.size = sz
+	# Centrado horizontal, apoyado hacia el medio-bajo (sobre zona de mensaje)
+	character.position = Vector2(
+		(SCREEN.x - sz.x) * 0.5,
+		160.0 - sz.y * 0.25
+	)
+
 
 
 func _ensure_message_ui() -> void:
