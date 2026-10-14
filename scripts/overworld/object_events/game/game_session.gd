@@ -25,6 +25,12 @@ func _ready() -> void:
 		controller.movement_finished.connect(_on_player_step_finished)
 	if FadeScreen.is_covered():
 		await FadeScreen.fade_in(0.4)
+	if SessionBoot.start_data != null:
+		start_data = SessionBoot.start_data
+		SessionBoot.start_data = null
+	if start_data == null:
+		push_error("GameSession: falta GameStartData")
+		return
 
 func _ensure_message_ui() -> void:
 	if get_tree().get_first_node_in_group(&"message_ui") != null:

@@ -213,14 +213,9 @@ func _confirm() -> void:
 			_busy = false
 		Cmd.NEW_GAME:
 			new_game_pressed.emit()
+			NewGameState.reset()
 			await FadeScreen.fade_out(0.4)
-			# Por ahora al overworld; luego intro/género/nombre
-			var game_path: String = "res://scenes/overworld/game/game_start.tscn"
-			if ResourceLoader.exists(game_path):
-				get_tree().change_scene_to_file(game_path)
-			else:
-				await FadeScreen.fade_in(0.4)
-				_busy = false
+			get_tree().change_scene_to_file("res://scenes/boot/intro.tscn")
 		Cmd.OPTIONS:
 			options_pressed.emit()
 			# Stub: no hay escena aún

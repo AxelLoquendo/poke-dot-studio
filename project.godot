@@ -23,6 +23,8 @@ WeatherManager="*uid://cewppc3e2kbqo"
 WeatherRenderer="*uid://2q6ynhb0ap0u"
 MessageService="*uid://b1sy3fvyqgyum"
 DayNightManager="*uid://t77g33udd200"
+NewGameState="*uid://dw0qry34r34k1"
+SessionBoot="*uid://dvncc6ew838td"
 
 [debug]
 
