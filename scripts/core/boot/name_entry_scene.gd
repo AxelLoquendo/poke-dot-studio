@@ -1,191 +1,121 @@
 extends Control
 class_name NameEntryScene
-## Entrada de nombre estilo PE PokemonEntryScene2 (simplificado).
+## Nombre por teclado (modalidad PC de PE). Sprite = overworld, no intro.
 
 const DIR: String = "res://assets/ui/Naming/"
 const MAX_LEN: int = 7
 
-const ROWS: int = 13
-const COLS: int = 5
-const GRID_X: float = 52.0
-const GRID_Y: float = 180.0
-const CELL_W: float = 32.0
-const CELL_H: float = 38.0
-
-## MAYUS / minus (PE @@Characters recortado)
-const CHARS: Array[String] = [
-	"ABCDEFGHIJ ,.KLMNOPQRST '-UVWXYZ     ♂♀             0123456789   ",
-	"abcdefghij ,.klmnopqrst '-uvwxyz     ♂♀             0123456789   ",
-]
-
-@onready var bg: TextureRect = $Bg
-@onready var preview: TextureRect = $Preview
-@onready var name_label: Label = $NameLabel
-@onready var help_label: Label = $HelpLabel
-@onready var cursor: TextureRect = $Cursor
-@onready var tab: TextureRect = $Tab
-
-var _mode: int = 0
-var _cursor: int = 0  # 0..64 grid, -1 OK, -2 BACK (simplificado: últimos dos “celdas” lógicas)
-var _text: String = ""
+var _bg: TextureRect
+var _subject: TextureRect
+var _help: Label
+var _line: LineEdit
 var _busy: bool = true
 
 
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
-	_text = "Rojo" if NewGameState.is_male else "Hoja"
-	_setup_visuals()
-	_rebuild_grid_labels()
-	_update_name()
-	_update_cursor()
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	_build()
 	await FadeScreen.fade_in(0.4)
+	_line.grab_focus()
 	_busy = false
 
 
-func _setup_visuals() -> void:
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	bg.stretch_mode = TextureRect.STRETCH_KEEP
+func _build() -> void:
+	_bg = TextureRect.new()
+	_bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_bg.stretch_mode = TextureRect.STRETCH_KEEP
 	var bg_path: String = DIR + "bg_2.png"
 	if not ResourceLoader.exists(bg_path):
 		bg_path = DIR + "bg.png"
 	if ResourceLoader.exists(bg_path):
-		bg.texture = load(bg_path) as Texture2D
+		_bg.texture = load(bg_path) as Texture2D
+	add_child(_bg)
 
-	# Sprite del jugador (intro boy/girl)
-	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	preview.stretch_mode = TextureRect.STRETCH_KEEP
-	var face: String = "res://assets/Pictures/introBoy.png" if NewGameState.is_male \
-		else "res://assets/Pictures/introGirl.png"
-	if ResourceLoader.exists(face):
-		preview.texture = load(face) as Texture2D
-		preview.size = preview.texture.get_size()
-	preview.position = Vector2(40, 40)
+	_subject = TextureRect.new()
+	_subject.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_subject.stretch_mode = TextureRect.STRETCH_KEEP
+	_subject.texture = _load_overworld_preview()
+	if _subject.texture != null:
+		_subject.size = _subject.texture.get_size()
+	_subject.position = Vector2(48, 48)
+	add_child(_subject)
 
-	help_label.text = "¿Cómo te llamas?"
-	help_label.position = Vector2(160, 24)
+	_help = Label.new()
+	_help.text = "¿Cómo te llamas?"
+	_help.position = Vector2(160, 28)
+	_apply_font(_help, 24)
+	_help.add_theme_color_override("font_color", Color.WHITE)
+	add_child(_help)
 
-	name_label.position = Vector2(172, 70)
+	_line = LineEdit.new()
+	_line.position = Vector2(172, 70)
+	_line.size = Vector2(240, 32)
+	_line.max_length = MAX_LEN
+	_line.text = "Rojo" if NewGameState.is_male else "Hoja"
+	_line.placeholder_text = "Nombre"
+	_apply_line_font(_line, 24)
+	_line.text_submitted.connect(_on_submitted)
+	add_child(_line)
+
+
+## Frame del charset de overworld (idle abajo), no introBoy.
+func _load_overworld_preview() -> Texture2D:
+	var pd: PlayerData = NewGameState.male_player_data if NewGameState.is_male \
+		else NewGameState.female_player_data
+	if pd == null:
+		return null
+	# Ajusta al campo real de tu CharacterBase / PlayerData:
+	# ejemplos comunes: pd.sprite_sheet, pd.texture, pd.charset
+	var sheet: Texture2D = null
+	if pd.get("sprite_sheet") != null:
+		sheet = pd.sprite_sheet as Texture2D
+	elif pd.get("texture") != null:
+		sheet = pd.texture as Texture2D
+	if sheet == null:
+		return null
+	# Una celda idle mirando abajo (ajusta frame_w/h a tu sheet)
+	var frame_w: int = 32
+	var frame_h: int = 32
+	if sheet.get_width() >= 128:
+		frame_w = int(sheet.get_width() / 4.0)
+		frame_h = int(sheet.get_height() / 4.0)
+	var atlas: AtlasTexture = AtlasTexture.new()
+	atlas.atlas = sheet
+	# Fila "down", primer frame (idle) — típico en sheets 4×4
+	atlas.region = Rect2(0, 0, frame_w, frame_h)
+	return atlas
+
+
+func _apply_font(lab: Label, size: int) -> void:
 	var font: Font = MessageConfig.load_font()
 	if font != null:
-		name_label.add_theme_font_override("font", font)
-		help_label.add_theme_font_override("font", font)
-	name_label.add_theme_font_size_override("font_size", 24)
-	help_label.add_theme_font_size_override("font_size", 24)
-
-	if ResourceLoader.exists(DIR + "cursor_1.png"):
-		cursor.texture = load(DIR + "cursor_1.png") as Texture2D
-	cursor.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	cursor.stretch_mode = TextureRect.STRETCH_KEEP
-
-	if ResourceLoader.exists(DIR + "overlay_tab_1.png"):
-		tab.texture = load(DIR + "overlay_tab_%d.png" % (_mode + 1)) as Texture2D
-	tab.position = Vector2(22, 162)
-	tab.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	tab.stretch_mode = TextureRect.STRETCH_KEEP
+		lab.add_theme_font_override("font", font)
+	lab.add_theme_font_size_override("font_size", size)
 
 
-func _char_at(index: int) -> String:
-	var s: String = CHARS[_mode]
-	if index < 0 or index >= s.length():
-		return " "
-	return s.substr(index, 1)
-
-
-func _rebuild_grid_labels() -> void:
-	# Borra labels viejos del grid
-	for c: Node in get_children():
-		if c.name.begins_with("Cell_"):
-			c.queue_free()
+func _apply_line_font(line: LineEdit, size: int) -> void:
 	var font: Font = MessageConfig.load_font()
-	for i: int in mini(CHARS[_mode].length(), ROWS * COLS):
-		var ch: String = _char_at(i)
-		if ch == " ":
-			continue
-		var lab: Label = Label.new()
-		lab.name = "Cell_%d" % i
-		var col: int = i % ROWS
-		var row: int = int(i / ROWS)
-		lab.position = Vector2(GRID_X + col * CELL_W - 6.0, GRID_Y + row * CELL_H - 4.0)
-		lab.text = ch
-		if font != null:
-			lab.add_theme_font_override("font", font)
-		lab.add_theme_font_size_override("font_size", 24)
-		lab.add_theme_color_override("font_color", Color(16 / 255.0, 24 / 255.0, 32 / 255.0))
-		lab.add_theme_color_override("font_shadow_color", Color(160 / 255.0, 160 / 255.0, 160 / 255.0))
-		lab.add_theme_constant_override("shadow_offset_x", 0)
-		lab.add_theme_constant_override("shadow_offset_y", 2)
-		add_child(lab)
-	# Tab overlay por modo
-	var tab_path: String = DIR + "overlay_tab_%d.png" % (_mode + 1)
-	if ResourceLoader.exists(tab_path):
-		tab.texture = load(tab_path) as Texture2D
+	if font != null:
+		line.add_theme_font_override("font", font)
+	line.add_theme_font_size_override("font_size", size)
 
 
-func _update_name() -> void:
-	name_label.text = _text
-
-
-func _update_cursor() -> void:
-	if _cursor < 0:
-		return
-	var col: int = _cursor % ROWS
-	var row: int = int(_cursor / ROWS)
-	cursor.position = Vector2(GRID_X + col * CELL_W - 8.0, GRID_Y + row * CELL_H - 8.0)
+func _on_submitted(text: String) -> void:
+	_finish(text)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _busy:
 		return
-	if event.is_action_pressed("Left"):
-		_cursor = posmod(_cursor - 1, ROWS * COLS)
-		_update_cursor()
-	elif event.is_action_pressed("Right"):
-		_cursor = posmod(_cursor + 1, ROWS * COLS)
-		_update_cursor()
-	elif event.is_action_pressed("Up"):
-		_cursor = posmod(_cursor - ROWS, ROWS * COLS)
-		_update_cursor()
-	elif event.is_action_pressed("Down"):
-		_cursor = posmod(_cursor + ROWS, ROWS * COLS)
-		_update_cursor()
-	elif event.is_action_pressed("buttonA") or event.is_action_pressed("ui_accept"):
-		_press_cell()
-	elif event.is_action_pressed("buttonB") or event.is_action_pressed("ui_cancel"):
-		_backspace()
-	# Select = cambiar pestaña (MAYUS/minus)
-	elif event.is_action_pressed("buttonSelect") or event.is_action_pressed("ui_focus_next"):
-		_mode = (_mode + 1) % CHARS.size()
-		_rebuild_grid_labels()
+	# Enter ya lo maneja text_submitted; Start también confirma
+	if event.is_action_pressed("buttonStart"):
+		_finish(_line.text)
 
 
-func _press_cell() -> void:
-	var ch: String = _char_at(_cursor)
-	if ch == " ":
-		return
-	if _text.length() >= MAX_LEN:
-		return
-	_text += ch
-	_update_name()
-
-
-func _backspace() -> void:
-	if _text.is_empty():
-		return
-	_text = _text.substr(0, _text.length() - 1)
-	_update_name()
-
-
-## Confirmar: mantén Start o un botón dedicado; aquí Start = OK
-func _input(event: InputEvent) -> void:
-	if _busy:
-		return
-	if event.is_action_pressed("buttonStart") or event.is_action_pressed("ui_home"):
-		_confirm()
-
-
-func _confirm() -> void:
-	var n: String = _text.strip_edges()
+func _finish(raw: String) -> void:
+	var n: String = raw.strip_edges()
 	if n.is_empty():
 		return
 	_busy = true
