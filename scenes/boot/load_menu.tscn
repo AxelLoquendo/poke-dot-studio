@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bpa5lobiq286p"]
+
+[ext_resource type="Script" uid="uid://b4web5hvxri6w" path="res://scripts/core/boot/load_menu_scene.gd" id="1_m0aye"]
+
+[node name="LoadMenu" type="Control" unique_id=1922535026]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m0aye")

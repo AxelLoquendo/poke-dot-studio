@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dy8uyyuo1iwf4"]
+
+[ext_resource type="Script" uid="uid://b7q6ddlewdp3d" path="res://scripts/core/boot/splash_title_scene.gd" id="1_4qn14"]
+
+[node name="SplashTitle" type="Control" unique_id=1298034668]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4qn14")
+
+[node name="Bg" type="TextureRect" parent="." unique_id=43265295]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 384.0
+
+[node name="StartPrompt" type="TextureRect" parent="." unique_id=1774263194]
+layout_mode = 0
+offset_top = 342.0
+offset_right = 40.0
+offset_bottom = 382.0

@@ -191,6 +191,7 @@ data = SubResource("Resource_2344u")
 [node name="Trigger" type="Node2D" parent="." unique_id=564404473]
 
 [node name="House_Player" type="Marker2D" parent="Trigger" unique_id=1572898173]
+visible = false
 z_index = 100
 position = Vector2(96, 112)
 script = ExtResource("10_g3goa")

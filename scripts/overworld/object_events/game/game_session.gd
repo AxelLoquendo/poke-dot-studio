@@ -23,6 +23,8 @@ func _ready() -> void:
 		player.get_node_or_null("CharacterController") as CharacterController
 	if controller != null:
 		controller.movement_finished.connect(_on_player_step_finished)
+	if FadeScreen.is_covered():
+		await FadeScreen.fade_in(0.4)
 
 func _ensure_message_ui() -> void:
 	if get_tree().get_first_node_in_group(&"message_ui") != null:

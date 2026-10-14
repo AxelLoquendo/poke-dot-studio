@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PokeDot-Studio"
-run/main_scene="uid://djpl5n6524dmw"
+run/main_scene="uid://dy8uyyuo1iwf4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
