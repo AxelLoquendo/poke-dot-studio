@@ -139,6 +139,8 @@ func _create(command_name: String, args: Array) -> ScriptCommand:
 			return _cmd_set_var(args, true)
 		"compare":
 			return _cmd_compare(args)
+		"savegame":
+			return _cmd_save_game(args)
 		_:
 			push_warning("ScriptCmdTextFile: comando no portado aún '%s'" % command_name)
 			return null
@@ -293,6 +295,12 @@ func _cmd_compare(args: Array) -> ScriptCmdCompare:
 		c.expected = float(args[2])
 	if args.size() >= 4:
 		c.target_label = str(args[3])
+	return c
+
+func _cmd_save_game(args: Array) -> ScriptCmdSaveGame:
+	var c: ScriptCmdSaveGame = ScriptCmdSaveGame.new()
+	if not args.is_empty() and str(args[0]).strip_edges().to_lower() == "silent":
+		c.silent = true
 	return c
 
 func get_display_text() -> String:

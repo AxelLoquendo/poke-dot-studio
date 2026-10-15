@@ -14,6 +14,7 @@ var _panels: Array[Control] = []
 var _bg: TextureRect
 var _panels_tex: Texture2D
 var _busy: bool = false
+var _save_preview: SaveData = null
 
 
 func _ready() -> void:
@@ -21,6 +22,8 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	_build_bg()
 	_panels_tex = load(LoadMenuConfig.PANELS_PATH) as Texture2D
+	if SaveService.has_save():
+		_save_preview = SaveService.load_game()
 	_build_commands()
 	_build_panels()
 	_select(0)
@@ -40,7 +43,7 @@ func _build_bg() -> void:
 
 
 func _build_commands() -> void:
-	var has_save: bool = _has_save()
+	var has_save: bool = _save_preview != null
 	_commands.clear()
 	_commands.append({
 		"id": Cmd.CONTINUE,
@@ -73,10 +76,6 @@ func _build_commands() -> void:
 			break
 
 
-func _has_save() -> bool:
-	return SaveService.has_save()
-
-
 func _build_panels() -> void:
 	for p: Control in _panels:
 		p.queue_free()
@@ -102,6 +101,7 @@ func _make_panel(cmd: Dictionary, selected: bool) -> Control:
 	var is_continue: bool = bool(cmd["is_continue"])
 	var h: int = LoadMenuConfig.PANEL_CONTINUE_H if is_continue else LoadMenuConfig.PANEL_NEW_H
 	root.size = Vector2(float(LoadMenuConfig.PANEL_W), float(h))
+
 	var tr: TextureRect = TextureRect.new()
 	tr.name = "Skin"
 	tr.position = Vector2.ZERO
@@ -110,21 +110,43 @@ func _make_panel(cmd: Dictionary, selected: bool) -> Control:
 	tr.stretch_mode = TextureRect.STRETCH_KEEP
 	tr.texture = _atlas_for(is_continue, selected)
 	root.add_child(tr)
-	var label: Label = Label.new()
-	label.name = "Title"
-	label.position = LoadMenuConfig.TITLE_OFFSET
-	label.size = Vector2(float(LoadMenuConfig.PANEL_W) - 32.0, float(h) - 8.0)
-	label.text = str(cmd["title"])
+
 	var font: Font = MessageConfig.load_font()
-	if font != null:
-		label.add_theme_font_override("font", font)
-	label.add_theme_font_size_override("font_size", LoadMenuConfig.FONT_SIZE)
 	var col: Color = LoadMenuConfig.TEXT_COLOR if bool(cmd["enabled"]) else LoadMenuConfig.TEXT_DISABLED
-	label.add_theme_color_override("font_color", col)
-	label.add_theme_color_override("font_shadow_color", LoadMenuConfig.TEXT_SHADOW)
-	label.add_theme_constant_override("shadow_offset_x", 0)
-	label.add_theme_constant_override("shadow_offset_y", 2)
-	root.add_child(label)
+
+	var title: Label = Label.new()
+	title.name = "Title"
+	title.position = LoadMenuConfig.TITLE_OFFSET
+	title.size = Vector2(float(LoadMenuConfig.PANEL_W) - 32.0, 28.0)
+	title.text = str(cmd["title"])
+	if font != null:
+		title.add_theme_font_override("font", font)
+	title.add_theme_font_size_override("font_size", LoadMenuConfig.FONT_SIZE)
+	title.add_theme_color_override("font_color", col)
+	title.add_theme_color_override("font_shadow_color", LoadMenuConfig.TEXT_SHADOW)
+	title.add_theme_constant_override("shadow_offset_x", 0)
+	title.add_theme_constant_override("shadow_offset_y", 2)
+	root.add_child(title)
+
+	if is_continue and bool(cmd["enabled"]) and _save_preview != null:
+		var save: SaveData = _save_preview
+		var detail: Label = Label.new()
+		detail.name = "Detail"
+		detail.position = Vector2(16.0, 48.0)
+		detail.size = Vector2(float(LoadMenuConfig.PANEL_W) - 40.0, 160.0)
+		var map_line: String = save.map_name if not save.map_name.is_empty() else "—"
+		var time_line: String = SaveService.format_play_time(save.play_seconds)
+		detail.text = "%s\n%s\nTiempo: %s" % [save.player_name, map_line, time_line]
+		if font != null:
+			detail.add_theme_font_override("font", font)
+		detail.add_theme_font_size_override("font_size", 22)
+		detail.add_theme_color_override("font_color", col)
+		detail.add_theme_color_override("font_shadow_color", LoadMenuConfig.TEXT_SHADOW)
+		detail.add_theme_constant_override("shadow_offset_x", 0)
+		detail.add_theme_constant_override("shadow_offset_y", 2)
+		detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		root.add_child(detail)
+
 	return root
 
 
@@ -196,6 +218,7 @@ func _confirm() -> void:
 				return
 			NewGameState.player_name = save.player_name
 			NewGameState.is_male = save.is_male
+			SessionBoot.loaded_play_seconds = save.play_seconds
 			SessionBoot.start_data = SaveService.to_start_data(save)
 			await FadeScreen.fade_out(0.4)
 			get_tree().change_scene_to_file("res://scenes/overworld/game/game_start.tscn")

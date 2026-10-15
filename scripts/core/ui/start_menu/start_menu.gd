@@ -1,6 +1,5 @@
 extends CanvasLayer
 class_name PauseMenu
-## Menú de pausa estilo PE (ventana arriba-derecha).
 
 signal closed
 
@@ -72,7 +71,6 @@ func _build() -> void:
 	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(_root)
-
 	_panel = NinePatchRect.new()
 	_panel.texture = MessageConfig.load_choice_texture()
 	_panel.patch_margin_left = 14
@@ -80,7 +78,6 @@ func _build() -> void:
 	_panel.patch_margin_right = 14
 	_panel.patch_margin_bottom = 14
 	_root.add_child(_panel)
-
 	_rows = VBoxContainer.new()
 	_rows.add_theme_constant_override("separation", 0)
 	_panel.add_child(_rows)
@@ -112,11 +109,9 @@ func _rebuild_rows() -> void:
 	_clear_rows()
 	var font: Font = MessageConfig.load_font()
 	var max_w: float = float(PauseMenuConfig.MIN_WIDTH)
-
 	for cmd: Dictionary in _commands:
 		var row: HBoxContainer = HBoxContainer.new()
 		row.add_theme_constant_override("separation", 4)
-
 		var arrow: TextureRect = TextureRect.new()
 		arrow.name = "Arrow"
 		arrow.custom_minimum_size = Vector2(16, PauseMenuConfig.LINE_H)
@@ -127,7 +122,6 @@ func _rebuild_rows() -> void:
 		arrow.visible = false
 		arrow.modulate.a = 0.0
 		row.add_child(arrow)
-
 		var lab: Label = Label.new()
 		lab.name = "Label"
 		lab.text = str(cmd["title"])
@@ -141,7 +135,6 @@ func _rebuild_rows() -> void:
 		lab.custom_minimum_size = Vector2(0, PauseMenuConfig.LINE_H)
 		lab.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		row.add_child(lab)
-
 		_rows.add_child(row)
 		if font != null:
 			max_w = maxf(
@@ -150,7 +143,6 @@ func _rebuild_rows() -> void:
 					lab.text, HORIZONTAL_ALIGNMENT_LEFT, -1, PauseMenuConfig.FONT_SIZE
 				).x + 40.0
 			)
-
 	var h: float = float(_commands.size() * PauseMenuConfig.LINE_H + PauseMenuConfig.PAD * 2)
 	var w: float = max_w + float(PauseMenuConfig.PAD * 2)
 	_panel.size = Vector2(w, h)
@@ -251,6 +243,69 @@ func _quit_flow() -> void:
 		_select(_index)
 
 
+func _save_flow() -> void:
+	visible = false
+	_ensure_message_ui()
+
+	MessageService.show_texts(
+		["¿Quieres guardar la partida?"],
+		"",
+		["SÍ", "NO"]
+	)
+	await MessageService.message_finished
+	if MessageService.get_last_choice() != 0:
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
+		if _open:
+			visible = true
+			_select(_index)
+		return
+
+	if SaveService.has_save():
+		MessageService.show_texts(
+			["Ya hay una partida guardada.\n¿Quieres sobrescribirla?"],
+			"",
+			["SÍ", "NO"]
+		)
+		await MessageService.message_finished
+		if MessageService.get_last_choice() != 0:
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
+			if _open:
+				visible = true
+				_select(_index)
+			return
+
+	var session: Node = get_tree().get_first_node_in_group(&"game_session")
+	if session == null:
+		session = get_tree().current_scene
+
+	var ok: bool = SaveService.save_game(session)
+	if ok:
+		MusicManager.reproducir_efecto_musical(SFXGame.MusicEffectID.ME_GUI_SAVE_GAME)
+		var n: String = NewGameState.player_name
+		if n.is_empty():
+			n = "Jugador"
+		MessageService.show_texts(["%s guardó la partida." % n])
+	else:
+		MessageService.show_texts(["No se pudo guardar la partida."])
+	await MessageService.message_finished
+
+	if _open:
+		visible = true
+		_select(_index)
+
+
+func _options_flow() -> void:
+	visible = false
+	var opts: OptionsMenu = OptionsMenu.new()
+	get_tree().current_scene.add_child(opts)
+	opts.open_menu()
+	await opts.closed
+	opts.queue_free()
+	if _open:
+		visible = true
+		_select(_index)
+
+
 func _lock_player(locked: bool) -> void:
 	var player: Node = get_tree().get_first_node_in_group(&"player")
 	if player == null:
@@ -271,32 +326,3 @@ func _ensure_message_ui() -> void:
 		host.add_child(ui)
 	else:
 		add_child(ui)
-
-func _save_flow() -> void:
-	visible = false
-	_ensure_message_ui()
-	var session: Node = get_tree().get_first_node_in_group(&"game_session")
-	if session == null:
-		session = get_tree().current_scene
-	var ok: bool = SaveService.save_game(session)
-	if ok:
-		MusicManager.reproducir_efecto_musical(SFXGame.MusicEffectID.ME_GUI_SAVE_GAME)
-		MessageService.show_texts(["¡Partida guardada!"])
-	else:
-		MessageService.show_texts(["No se pudo guardar."])
-	await MessageService.message_finished
-	if _open:
-		visible = true
-		_select(_index)
-
-
-func _options_flow() -> void:
-	visible = false
-	var opts: OptionsMenu = OptionsMenu.new()
-	get_tree().current_scene.add_child(opts)
-	opts.open_menu()
-	await opts.closed
-	opts.queue_free()
-	if _open:
-		visible = true
-		_select(_index)

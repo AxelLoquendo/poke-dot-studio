@@ -1,7 +1,5 @@
 lock
 faceplayer
-text "Camina." MSGBOX_NPC
-applymovement PLAYER walk_left,walk_left,face_down
-waitmovement
+text ¡Voy a guardar tu progreso!
+savegame
 release
-end
