@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c4f0xe4oall5u"]
 
+[ext_resource type="Script" uid="uid://bc32ghw4o41tf" path="res://scripts/core/boot/gender_select_scene.gd" id="1_klo5a"]
 [ext_resource type="Texture2D" uid="uid://dy403ryjw3d5s" path="res://assets/Pictures/introbg.png" id="2_u64y6"]
 [ext_resource type="Texture2D" uid="uid://dqfucjdx668l7" path="res://assets/Pictures/introbase.png" id="3_jbup1"]
-[ext_resource type="Texture2D" uid="uid://7eg3qv6t7cwk" path="res://assets/Trainers/POKEMONTRAINER_Red.png" id="4_rhqx1"]
-[ext_resource type="Texture2D" uid="uid://bunes77nxjtnx" path="res://assets/Trainers/POKEMONTRAINER_Leaf.png" id="5_ypycl"]
+[ext_resource type="Texture2D" uid="uid://bmvuuryu4hita" path="res://assets/Pictures/introBoy.png" id="4_u64y6"]
+[ext_resource type="Texture2D" uid="uid://dretkf3tdnv38" path="res://assets/Pictures/introGirl.png" id="5_jbup1"]
 
 [node name="GenderSelect" type="Control" unique_id=1983782125]
 layout_mode = 3
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_klo5a")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1737839738]
 layout_mode = 0
@@ -27,14 +29,9 @@ offset_right = 248.0
 offset_bottom = 283.0
 texture = ExtResource("3_jbup1")
 
-[node name="Boy" type="TextureRect" parent="Base" unique_id=836596345]
-layout_mode = 0
-offset_left = -6.0
-offset_top = -152.0
-offset_right = 122.0
-offset_bottom = -24.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_rhqx1")
+[node name="Boy" type="Sprite2D" parent="Base" unique_id=1015652663]
+position = Vector2(88, -40)
+texture = ExtResource("4_u64y6")
 
 [node name="Base2" type="TextureRect" parent="." unique_id=584529959]
 layout_mode = 0
@@ -44,11 +41,6 @@ offset_right = 448.0
 offset_bottom = 283.0
 texture = ExtResource("3_jbup1")
 
-[node name="Girl" type="TextureRect" parent="Base2" unique_id=128355316]
-layout_mode = 0
-offset_left = -6.0
-offset_top = -152.0
-offset_right = 122.0
-offset_bottom = -24.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_ypycl")
+[node name="Girl" type="Sprite2D" parent="Base2" unique_id=1614141224]
+position = Vector2(88, -40)
+texture = ExtResource("5_jbup1")

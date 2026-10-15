@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh3b43l1byb1l" path="res://scripts/core/boot/intro_scene.gd" id="1_q41ju"]
 [ext_resource type="Texture2D" uid="uid://dy403ryjw3d5s" path="res://assets/Pictures/introbg.png" id="2_6ql8d"]
+[ext_resource type="Texture2D" uid="uid://mwhlmetcwcwy" path="res://assets/Pictures/introOak.png" id="4_i7d1h"]
 
 [node name="Intro" type="Control" unique_id=190131854]
 layout_mode = 3
@@ -16,7 +17,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_6ql8d")
 
-[node name="Character" type="TextureRect" parent="." unique_id=2033184351]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Character" type="Sprite2D" parent="." unique_id=1483856238]
+position = Vector2(250, 185)
+texture = ExtResource("4_i7d1h")
