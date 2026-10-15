@@ -1,6 +1,5 @@
 extends Control
 class_name NamingScreen
-## Escena reutilizable: res://scenes/ui/naming/naming.tscn
 
 signal confirmed(result_name: String)
 signal cancelled
@@ -36,6 +35,9 @@ func _ready() -> void:
 	var mode: int = int(cfg.get("preview_mode", PreviewMode.CHARACTER))
 
 	setup(help, initial, _max_len, mode as PreviewMode, msg)
+
+	if not MusicManager.esta_sonando():
+		MusicManager.reproducir_mapa(SFXGame.MapMusicID.BGM_NEW_START)
 
 	if FadeScreen.is_covered():
 		await FadeScreen.fade_in(0.4)
@@ -96,8 +98,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _confirm(raw: String) -> void:
 	var n: String = raw.strip_edges()
 	if n.is_empty():
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_BUZZER)
 		return
 	_busy = true
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_NAMING_CONFIRM)
 
 	_ensure_message_ui()
 	MessageService.show_texts(
@@ -107,26 +111,25 @@ func _confirm(raw: String) -> void:
 	)
 	await MessageService.message_finished
 	var choice: int = MessageService.get_last_choice()
-	# 0 = SÍ, 1 = NO
 	if choice != 0:
-		# No está seguro → selector de género
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
 		SessionBoot.naming_config = {}
 		await FadeScreen.fade_out(0.4)
 		get_tree().change_scene_to_file("res://scenes/boot/gender_select.tscn")
 		return
 
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 	confirmed.emit(n)
 	var cfg: Dictionary = SessionBoot.naming_config if SessionBoot else {}
 	var next: String = str(cfg.get("on_confirm_scene", ""))
 	if not next.is_empty():
 		NewGameState.player_name = n
+		MusicManager.detener()
 		await FadeScreen.fade_out(0.4)
 		SessionBoot.start_data = NewGameState.build_start_data()
 		SessionBoot.naming_config = {}
 		get_tree().change_scene_to_file(next)
 		return
-
-	# Uso embebido: solo señal confirmed
 	_busy = false
 
 
@@ -140,6 +143,7 @@ func _ensure_message_ui() -> void:
 
 func _cancel() -> void:
 	_busy = true
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
 	cancelled.emit()
 	var cfg: Dictionary = SessionBoot.naming_config if SessionBoot else {}
 	var back: String = str(cfg.get("on_cancel_scene", ""))

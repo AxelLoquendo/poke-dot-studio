@@ -7,8 +7,6 @@ class_name IntroScene
 const PIC: String = "res://assets/Pictures/"
 const CROSSFADE: float = 0.35
 
-var _busy: bool = true
-
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -17,6 +15,7 @@ func _ready() -> void:
 	character.modulate.a = 0.0
 	FadeScreen.set_clear()
 	bg.modulate.a = 0.0
+	MusicManager.reproducir_mapa(SFXGame.MapMusicID.BGM_NEW_START)
 	await _tween_alpha(bg, 1.0)
 	await _play()
 
@@ -40,6 +39,7 @@ func _play() -> void:
 		"¿Eres un chico o una chica?",
 	])
 	await _tween_alpha(bg, 0.0)
+	# New Start sigue en género + naming; se corta al entrar al juego
 	get_tree().change_scene_to_file("res://scenes/boot/gender_select.tscn")
 
 
@@ -55,7 +55,6 @@ func _show_character(file_name: String) -> void:
 
 
 func _crossfade_character(file_name: String) -> void:
-	# Baja el actual, cambia textura, sube el nuevo
 	if character.visible:
 		await _tween_alpha(character, 0.0)
 	var path: String = PIC + file_name

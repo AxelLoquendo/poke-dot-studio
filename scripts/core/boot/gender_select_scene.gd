@@ -15,6 +15,9 @@ func _ready() -> void:
 	_refresh()
 	FadeScreen.set_clear()
 	bg.modulate.a = 0.0
+	# Si New Start no suena (entrada directa), relanzar
+	if not MusicManager.esta_sonando():
+		MusicManager.reproducir_mapa(SFXGame.MapMusicID.BGM_NEW_START)
 	await _tween_alpha(bg, 1.0)
 	_busy = false
 
@@ -28,26 +31,28 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _busy:
 		return
 	if event.is_action_pressed("Left"):
-		_index = 0
-		_refresh()
+		if _index != 0:
+			_index = 0
+			_refresh()
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CURSOR)
 	elif event.is_action_pressed("Right"):
-		_index = 1
-		_refresh()
+		if _index != 1:
+			_index = 1
+			_refresh()
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CURSOR)
 	elif event.is_action_pressed("buttonA") or event.is_action_pressed("ui_accept"):
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 		_ask_confirm()
 
 
 func _ask_confirm() -> void:
 	_busy = true
-	var prompt: String
-	if _index == 0:
-		prompt = "¿Así que eres un chico?"
-	else:
-		prompt = "¿Así que eres una chica?"
+	var prompt: String = "¿Así que eres un chico?" if _index == 0 else "¿Así que eres una chica?"
 	MessageService.show_texts([prompt], "", ["SÍ", "NO"])
 	await MessageService.message_finished
 	var choice: int = MessageService.get_last_choice()
 	if choice != 0:
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
 		_busy = false
 		return
 	NewGameState.is_male = (_index == 0)
@@ -59,7 +64,6 @@ func _go_naming() -> void:
 	if NewGameState.config != null:
 		initial = NewGameState.config.default_male_name if NewGameState.is_male \
 			else NewGameState.config.default_female_name
-
 	SessionBoot.naming_config = {
 		"help": "¿Cómo te llamas?",
 		"initial": initial,

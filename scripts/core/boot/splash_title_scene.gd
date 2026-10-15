@@ -1,12 +1,12 @@
 extends Control
 class_name SplashTitleScene
-## IntroEventScene de Sky: opacidad de la imagen, no solo cortina negra.
+## Splash → Title. BGM Title al abrir title.
 
 @onready var bg: TextureRect = $Bg
 @onready var start_prompt: TextureRect = $StartPrompt
 
 var _index: int = 0
-var _phase: StringName = &"sequence"  # sequence | title
+var _phase: StringName = &"sequence"
 var _busy: bool = true
 var _skip: bool = false
 var _flash_tween: Tween
@@ -23,7 +23,6 @@ func _ready() -> void:
 	start_prompt.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	start_prompt.stretch_mode = TextureRect.STRETCH_KEEP
 	start_prompt.position = TitleConfig.START_POS
-	# Sin cortina negra al arrancar: PE funde la propia imagen
 	FadeScreen.set_clear()
 	await _run_sequence()
 
@@ -53,10 +52,8 @@ func _show_image(path: String) -> void:
 	_skip = false
 	if ResourceLoader.exists(path):
 		bg.texture = load(path) as Texture2D
-	# Fade IN de la imagen (PE moveOpacity → 255)
 	await _tween_bg_alpha(1.0)
 	_busy = false
-	# Linger o skip
 	var t: float = 0.0
 	while t < TitleConfig.SECONDS_PER_SPLASH:
 		if _skip:
@@ -65,7 +62,6 @@ func _show_image(path: String) -> void:
 		t += get_process_delta_time()
 	_busy = true
 	_skip = false
-	# Fade OUT de la imagen (PE moveOpacity → 0)
 	await _tween_bg_alpha(0.0)
 	_busy = false
 
@@ -95,6 +91,7 @@ func _open_title() -> void:
 		tw.tween_property(start_prompt, "modulate:a", 1.0, TitleConfig.FADE_DURATION)
 		await tw.finished
 		_start_flash()
+	MusicManager.reproducir_mapa(SFXGame.MapMusicID.BGM_TITLE)
 	_busy = false
 
 
@@ -115,13 +112,13 @@ func _kill_flash() -> void:
 func _accept_title() -> void:
 	_busy = true
 	_kill_flash()
-	# PE: pausa corta + fade out de las imágenes
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 	await get_tree().create_timer(0.35).timeout
 	var tw: Tween = create_tween()
 	tw.set_parallel(true)
 	tw.tween_property(bg, "modulate:a", 0.0, TitleConfig.FADE_DURATION)
 	tw.tween_property(start_prompt, "modulate:a", 0.0, TitleConfig.FADE_DURATION)
 	await tw.finished
-	# Cortina negra solo al cambiar de escena (hacia Load)
+	MusicManager.detener()
 	FadeScreen.set_covered()
 	get_tree().change_scene_to_file("res://scenes/boot/load_menu.tscn")

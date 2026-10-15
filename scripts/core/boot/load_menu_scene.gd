@@ -1,6 +1,5 @@
 extends Control
 class_name LoadMenuScene
-## Menú Load (Sky PokemonLoadScreen). Continuar deshabilitado hasta tener save.
 
 signal continue_pressed
 signal new_game_pressed
@@ -10,8 +9,6 @@ signal quit_pressed
 enum Cmd { CONTINUE, NEW_GAME, OPTIONS, QUIT }
 
 var _commands: Array[Dictionary] = []
-## { id: Cmd, title: String, is_continue: bool, enabled: bool }
-
 var _index: int = 0
 var _panels: Array[Control] = []
 var _bg: TextureRect
@@ -69,7 +66,6 @@ func _build_commands() -> void:
 		"is_continue": false,
 		"enabled": true,
 	})
-	# Primer ítem habilitado
 	_index = 0
 	for i: int in _commands.size():
 		if bool(_commands[i]["enabled"]):
@@ -78,8 +74,6 @@ func _build_commands() -> void:
 
 
 func _has_save() -> bool:
-	# Cuando exista save:
-	# return FileAccess.file_exists("user://save.dat")
 	return false
 
 
@@ -87,38 +81,27 @@ func _build_panels() -> void:
 	for p: Control in _panels:
 		p.queue_free()
 	_panels.clear()
-
 	var y: float = LoadMenuConfig.PANEL_START_Y
 	for i: int in _commands.size():
 		var cmd: Dictionary = _commands[i]
+		if bool(cmd["is_continue"]) and not bool(cmd["enabled"]):
+			cmd["is_continue"] = false
+			_commands[i] = cmd
 		var panel: Control = _make_panel(cmd, false)
 		panel.position = Vector2(LoadMenuConfig.PANEL_X, y)
 		add_child(panel)
 		_panels.append(panel)
 		var h: float = float(LoadMenuConfig.PANEL_CONTINUE_H) if bool(cmd["is_continue"]) \
 			else float(LoadMenuConfig.PANEL_NEW_H)
-		# Sin save, el panel Continuar puede ser el chico también visualmente:
-		if bool(cmd["is_continue"]) and not bool(cmd["enabled"]):
-			# Sky aún muestra panel grande si show_continue; nosotros sin save → panel chico
-			h = float(LoadMenuConfig.PANEL_NEW_H)
-			cmd["is_continue"] = false
-			_commands[i] = cmd
-			panel.queue_free()
-			panel = _make_panel(cmd, false)
-			panel.position = Vector2(LoadMenuConfig.PANEL_X, y)
-			add_child(panel)
-			_panels[i] = panel
 		y += h
 
 
 func _make_panel(cmd: Dictionary, selected: bool) -> Control:
 	var root: Control = Control.new()
 	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
 	var is_continue: bool = bool(cmd["is_continue"])
 	var h: int = LoadMenuConfig.PANEL_CONTINUE_H if is_continue else LoadMenuConfig.PANEL_NEW_H
 	root.size = Vector2(float(LoadMenuConfig.PANEL_W), float(h))
-
 	var tr: TextureRect = TextureRect.new()
 	tr.name = "Skin"
 	tr.position = Vector2.ZERO
@@ -127,7 +110,6 @@ func _make_panel(cmd: Dictionary, selected: bool) -> Control:
 	tr.stretch_mode = TextureRect.STRETCH_KEEP
 	tr.texture = _atlas_for(is_continue, selected)
 	root.add_child(tr)
-
 	var label: Label = Label.new()
 	label.name = "Title"
 	label.position = LoadMenuConfig.TITLE_OFFSET
@@ -150,11 +132,9 @@ func _atlas_for(is_continue: bool, selected: bool) -> AtlasTexture:
 	var atlas: AtlasTexture = AtlasTexture.new()
 	atlas.atlas = _panels_tex
 	if is_continue:
-		# y=0 normal, y=222 seleccionado
 		var src_y: int = LoadMenuConfig.PANEL_CONTINUE_H if selected else 0
 		atlas.region = Rect2(0, src_y, LoadMenuConfig.PANEL_W, LoadMenuConfig.PANEL_CONTINUE_H)
 	else:
-		# y=444 normal, y=490 seleccionado
 		var src_y: int = LoadMenuConfig.PANEL_NONCONTINUE_SRC_Y
 		if selected:
 			src_y += LoadMenuConfig.PANEL_NEW_H
@@ -185,7 +165,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_confirm()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("buttonB") or event.is_action_pressed("ui_cancel"):
-		# Opcional: volver al title
 		get_viewport().set_input_as_handled()
 
 
@@ -196,20 +175,20 @@ func _move(dir: int) -> void:
 		if bool(_commands[next]["enabled"]):
 			break
 	if next != _index:
-		# SE decisión si tienes
-		# MusicManager.reproducir_se(...)
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CURSOR)
 		_select(next)
 
 
 func _confirm() -> void:
 	var cmd: Dictionary = _commands[_index]
 	if not bool(cmd["enabled"]):
+		MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_BUZZER)
 		return
 	_busy = true
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
 	match int(cmd["id"]):
 		Cmd.CONTINUE:
 			continue_pressed.emit()
-			# TODO: cargar save
 			_busy = false
 		Cmd.NEW_GAME:
 			new_game_pressed.emit()
@@ -218,7 +197,6 @@ func _confirm() -> void:
 			get_tree().change_scene_to_file("res://scenes/boot/intro.tscn")
 		Cmd.OPTIONS:
 			options_pressed.emit()
-			# Stub: no hay escena aún
 			push_warning("LoadMenu: Opciones todavía no implementadas")
 			_busy = false
 		Cmd.QUIT:
