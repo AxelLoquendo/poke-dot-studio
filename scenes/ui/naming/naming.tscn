@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b2f0d121eebcy" path="res://assets/ui/naming/bg_2.png" id="1_8gbss"]
 [ext_resource type="Texture2D" uid="uid://dnhor2ryypjlj" path="res://assets/ui/naming/icon_shadow.png" id="2_ydajd"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="3_gt06x"]
+[ext_resource type="SpriteFrames" uid="uid://xu20x1ye84nc" path="res://data/resources/overworld/player/player_anim.tres" id="3_ydajd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_htemk"]
 font = ExtResource("3_gt06x")
@@ -12,29 +13,62 @@ shadow_size = 0
 shadow_color = Color(0.65882355, 0.72156864, 0.72156864, 1)
 shadow_offset = Vector2(0, 2)
 
-[node name="Naming" type="Node2D" unique_id=113634336]
+[node name="Naming" type="Control" unique_id=1895923364]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1940635084]
 position = Vector2(256, 192)
 texture = ExtResource("1_8gbss")
 
 [node name="Mon" type="Node2D" parent="." unique_id=1973011369]
+visible = false
 
 [node name="Shadow" type="Sprite2D" parent="Mon" unique_id=1153271074]
+visible = false
 position = Vector2(78, 71)
 texture = ExtResource("2_ydajd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mon" unique_id=1371570141]
+visible = false
 
 [node name="Character" type="Node2D" parent="." unique_id=507016801]
 
 [node name="Shadow" type="Sprite2D" parent="Character" unique_id=1190526420]
+position = Vector2(78, 71)
+texture = ExtResource("2_ydajd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character" unique_id=1148258273]
+position = Vector2(79, 46)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_ydajd")
+animation = &"Idle_Down"
 
 [node name="Text" type="Node" parent="." unique_id=714530550]
 
-[node name="Label" type="Label" parent="Text" unique_id=472307584]
+[node name="Box_message" type="Label" parent="Text" unique_id=472307584]
 offset_left = 40.0
 offset_top = 300.0
 offset_right = 472.0
 offset_bottom = 372.0
-text = "Escribe texto usando el teclado. Pulsa Enter para confirmar, o Esc para cancelar."
+text = "Escribe texto usando el teclado. Pulsa Z/Enter para confirmar, o X para cancelar."
 label_settings = SubResource("LabelSettings_htemk")
 autowrap_mode = 2
+
+[node name="Pregunta" type="Label" parent="Text" unique_id=154650489]
+offset_left = 124.0
+offset_top = 8.0
+offset_right = 470.0
+offset_bottom = 43.0
+text = "¿Tú nombre?"
+label_settings = SubResource("LabelSettings_htemk")
+autowrap_mode = 2
+
+[node name="Print_Name" type="LineEdit" parent="Text" unique_id=858011231]
+offset_left = 124.0
+offset_top = 50.0
+offset_right = 462.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.0627451, 0.09411765, 0.1254902, 1)
+theme_override_fonts/font = ExtResource("3_gt06x")
+theme_override_font_sizes/font_size = 24
