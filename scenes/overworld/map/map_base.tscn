@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dio5lj711lhgc" path="res://scripts/overworld/map/map.gd" id="1_i3vuo"]
 [ext_resource type="Script" uid="uid://bb4w0g3qpr4fi" path="res://scripts/overworld/map/map_connection_entry.gd" id="2_h3yp2"]
 [ext_resource type="TileSet" uid="uid://b64s8oqxravxk" path="res://data/resources/overworld/tileset/collision/collision.tres" id="3_0fegv"]
+[ext_resource type="Script" uid="uid://bgh8vk7mcfn41" path="res://scripts/overworld/map/map_script_entry.gd" id="3_klgvi"]
 [ext_resource type="Script" uid="uid://c4b2avvs88ywc" path="res://scripts/overworld/map/map_music_controller.gd" id="3_m4svl"]
 [ext_resource type="Script" uid="uid://bkjunj4ec4jfi" path="res://scripts/overworld/map/map_border_controller.gd" id="4_gl05j"]
 [ext_resource type="Script" uid="uid://cfhh33et7ub23" path="res://scripts/core/weather/weather_controller.gd" id="7_524pk"]
