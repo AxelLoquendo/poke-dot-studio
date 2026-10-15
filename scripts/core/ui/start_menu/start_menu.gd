@@ -213,9 +213,9 @@ func _activate() -> void:
 		Cmd.POKEGEAR:
 			await _stub("Pokégear (próximamente).")
 		Cmd.SAVE:
-			await _stub("Guardar (próximamente).")
+			await _save_flow()
 		Cmd.OPTIONS:
-			await _stub("Opciones (próximamente).")
+			await _options_flow()
 		_:
 			pass
 	if _open:
@@ -271,3 +271,32 @@ func _ensure_message_ui() -> void:
 		host.add_child(ui)
 	else:
 		add_child(ui)
+
+func _save_flow() -> void:
+	visible = false
+	_ensure_message_ui()
+	var session: Node = get_tree().get_first_node_in_group(&"game_session")
+	if session == null:
+		session = get_tree().current_scene
+	var ok: bool = SaveService.save_game(session)
+	if ok:
+		MusicManager.reproducir_efecto_musical(SFXGame.MusicEffectID.ME_GUI_SAVE_GAME)
+		MessageService.show_texts(["¡Partida guardada!"])
+	else:
+		MessageService.show_texts(["No se pudo guardar."])
+	await MessageService.message_finished
+	if _open:
+		visible = true
+		_select(_index)
+
+
+func _options_flow() -> void:
+	visible = false
+	var opts: OptionsMenu = OptionsMenu.new()
+	get_tree().current_scene.add_child(opts)
+	opts.open_menu()
+	await opts.closed
+	opts.queue_free()
+	if _open:
+		visible = true
+		_select(_index)

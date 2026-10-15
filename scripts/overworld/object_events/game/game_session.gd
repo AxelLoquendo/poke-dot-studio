@@ -13,6 +13,7 @@ func _ready() -> void:
 	_ensure_message_ui()
 	_ensure_signpost()
 	_ensure_pause_menu()
+	add_to_group(&"game_session")
 	# Prioridad: datos del flujo Nueva partida
 	if SessionBoot.start_data != null:
 		start_data = SessionBoot.start_data

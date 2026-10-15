@@ -74,7 +74,7 @@ func _build_commands() -> void:
 
 
 func _has_save() -> bool:
-	return false
+	return SaveService.has_save()
 
 
 func _build_panels() -> void:
@@ -189,7 +189,16 @@ func _confirm() -> void:
 	match int(cmd["id"]):
 		Cmd.CONTINUE:
 			continue_pressed.emit()
-			_busy = false
+			var save: SaveData = SaveService.load_game()
+			if save == null:
+				MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_BUZZER)
+				_busy = false
+				return
+			NewGameState.player_name = save.player_name
+			NewGameState.is_male = save.is_male
+			SessionBoot.start_data = SaveService.to_start_data(save)
+			await FadeScreen.fade_out(0.4)
+			get_tree().change_scene_to_file("res://scenes/overworld/game/game_start.tscn")
 		Cmd.NEW_GAME:
 			new_game_pressed.emit()
 			NewGameState.reset()
@@ -197,7 +206,11 @@ func _confirm() -> void:
 			get_tree().change_scene_to_file("res://scenes/boot/intro.tscn")
 		Cmd.OPTIONS:
 			options_pressed.emit()
-			push_warning("LoadMenu: Opciones todavía no implementadas")
+			var opts: OptionsMenu = OptionsMenu.new()
+			add_child(opts)
+			opts.open_menu()
+			await opts.closed
+			opts.queue_free()
 			_busy = false
 		Cmd.QUIT:
 			quit_pressed.emit()

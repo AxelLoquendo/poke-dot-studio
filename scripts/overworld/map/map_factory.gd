@@ -225,3 +225,6 @@ func _init_npcs_current(mapa: Map) -> void:
 			controller,
 			controller.get_character_position()
 		)
+
+func get_current_map_id() -> MapSection.MapID:
+	return current_map_id
