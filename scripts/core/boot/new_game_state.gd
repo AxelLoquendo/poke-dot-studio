@@ -1,5 +1,5 @@
 extends Node
-## Autoload. No hace falta editar exports aquí.
+## Autoload NewGameState
 
 const CONFIG_PATH: String = "res://data/resources/boot/new_game_config.tres"
 

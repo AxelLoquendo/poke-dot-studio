@@ -27,4 +27,6 @@ metadata/_custom_type_script = "uid://b2ujhawa0fpvl"
 script = ExtResource("1_nq23f")
 male_player_data = SubResource("Resource_458q6")
 female_player_data = SubResource("Resource_hvil1")
+start_map_id = 1
+start_position = Vector2i(13, 8)
 metadata/_custom_type_script = "uid://c0om2rl36fu7t"

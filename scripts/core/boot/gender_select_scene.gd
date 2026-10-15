@@ -44,11 +44,9 @@ func _ask_confirm() -> void:
 		prompt = "¿Así que eres un chico?"
 	else:
 		prompt = "¿Así que eres una chica?"
-	# choices en la última página → ChoiceWindow SÍ/NO
 	MessageService.show_texts([prompt], "", ["SÍ", "NO"])
 	await MessageService.message_finished
 	var choice: int = MessageService.get_last_choice()
-	# 0 = SÍ, 1 = NO (o -1 si canceló)
 	if choice != 0:
 		_busy = false
 		return
@@ -57,9 +55,14 @@ func _ask_confirm() -> void:
 
 
 func _go_naming() -> void:
+	var initial: String = "Rojo" if NewGameState.is_male else "Hoja"
+	if NewGameState.config != null:
+		initial = NewGameState.config.default_male_name if NewGameState.is_male \
+			else NewGameState.config.default_female_name
+
 	SessionBoot.naming_config = {
 		"help": "¿Cómo te llamas?",
-		"initial": "Rojo" if NewGameState.is_male else "Hoja",
+		"initial": initial,
 		"max_length": 7,
 		"preview_mode": NamingScreen.PreviewMode.CHARACTER,
 		"message": "Escribe con el teclado. Enter/Z confirma, X cancela.",
