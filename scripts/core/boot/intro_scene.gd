@@ -1,11 +1,11 @@
 extends Control
 class_name IntroScene
-## Usa nodos de intro.tscn: Bg, Character. No mueve offsets del editor.
 
 @onready var bg: TextureRect = $Bg
 @onready var character: Sprite2D = $Character
 
 const PIC: String = "res://assets/Pictures/"
+const CROSSFADE: float = 0.35
 
 var _busy: bool = true
 
@@ -14,6 +14,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	_ensure_message_ui()
 	character.visible = false
+	character.modulate.a = 0.0
 	FadeScreen.set_clear()
 	bg.modulate.a = 0.0
 	await _tween_alpha(bg, 1.0)
@@ -21,17 +22,18 @@ func _ready() -> void:
 
 
 func _play() -> void:
-	_set_character("introOak.png")
+	await _show_character("introOak.png")
 	await _say([
 		"¡Hola! ¡Qué bueno verte!",
 		"¡Bienvenido al mundo de los Pokémon!",
 		"Me llamo Oak. ¡Pero todo el mundo me\nllama el Profesor Pokémon!",
 	])
-	_set_character("introMarill.png")
+	await _crossfade_character("introMarill.png")
 	await _say([
 		"Este mundo está habitado por criaturas\nllamadas Pokémon.",
 		"Los humanos y los Pokémon viven juntos\nayudándose unos a otros.",
 	])
+	await _tween_alpha(character, 0.0)
 	character.visible = false
 	await _say([
 		"Pero primero, cuéntame un poco sobre ti.",
@@ -41,14 +43,29 @@ func _play() -> void:
 	get_tree().change_scene_to_file("res://scenes/boot/gender_select.tscn")
 
 
-func _set_character(file_name: String) -> void:
+func _show_character(file_name: String) -> void:
 	var path: String = PIC + file_name
 	if not ResourceLoader.exists(path):
 		character.visible = false
 		return
 	character.texture = load(path) as Texture2D
 	character.visible = true
-	# No tocamos position/size: los dejas en el editor
+	character.modulate.a = 0.0
+	await _tween_alpha(character, 1.0)
+
+
+func _crossfade_character(file_name: String) -> void:
+	# Baja el actual, cambia textura, sube el nuevo
+	if character.visible:
+		await _tween_alpha(character, 0.0)
+	var path: String = PIC + file_name
+	if not ResourceLoader.exists(path):
+		character.visible = false
+		return
+	character.texture = load(path) as Texture2D
+	character.visible = true
+	character.modulate.a = 0.0
+	await _tween_alpha(character, 1.0)
 
 
 func _say(pages: Array[String]) -> void:
@@ -58,7 +75,7 @@ func _say(pages: Array[String]) -> void:
 
 func _tween_alpha(node: CanvasItem, a: float) -> void:
 	var tw: Tween = create_tween()
-	tw.tween_property(node, "modulate:a", a, 0.4).set_trans(Tween.TRANS_LINEAR)
+	tw.tween_property(node, "modulate:a", a, CROSSFADE).set_trans(Tween.TRANS_LINEAR)
 	await tw.finished
 
 

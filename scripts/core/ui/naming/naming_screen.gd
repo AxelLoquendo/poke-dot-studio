@@ -67,9 +67,17 @@ func setup(
 	mon_root.visible = (preview == PreviewMode.POKEMON)
 
 	if preview == PreviewMode.CHARACTER and character_sprite != null:
-		if character_sprite.sprite_frames != null \
-				and character_sprite.sprite_frames.has_animation(&"Idle_Down"):
-			character_sprite.play(&"Idle_Down")
+		var pd: PlayerData = NewGameState.male_player_data if NewGameState.is_male \
+			else NewGameState.female_player_data
+		if pd != null:
+			var built: SpriteFrames = frames_from_ow(pd.ow)
+			if built != null:
+				character_sprite.sprite_frames = built
+		# Caminar en el sitio (no mueve el Node2D)
+		if character_sprite.sprite_frames.has_animation("Walk_Down"):
+			character_sprite.play("Walk_Down")
+		elif character_sprite.sprite_frames.has_animation("First_Step_Down"):
+			character_sprite.play("First_Step_Down")
 
 	if not print_name.text_submitted.is_connected(_on_submitted):
 		print_name.text_submitted.connect(_on_submitted)
@@ -119,3 +127,40 @@ func _cancel() -> void:
 	if not back.is_empty():
 		await FadeScreen.fade_out(0.4)
 		get_tree().change_scene_to_file(back)
+
+static func frames_from_ow(ow: EventObjects.Obj_Event) -> SpriteFrames:
+	var path: String = str(EventObjects.ow_sprites.get(ow, ""))
+	if path.is_empty() or not ResourceLoader.exists(path):
+		return null
+	var texture: Texture2D = load(path) as Texture2D
+	var frames: SpriteFrames = SpriteFrames.new()
+	var frame_size: Vector2 = texture.get_size() / Vector2(3, 4)
+	var directions: Dictionary = {"Down": 0, "Up": 1, "Left": 2, "Right": 3}
+	var steps: Dictionary = {"First_Step": 0, "Idle": 1, "Second_Step": 2}
+	for direction: String in directions:
+		var y: int = directions[direction]
+		for step: String in steps:
+			var x: int = steps[step]
+			var anim: String = step + "_" + direction
+			frames.add_animation(anim)
+			frames.set_animation_speed(anim, 6.0)
+			frames.set_animation_loop(anim, true)
+			var atlas_0: AtlasTexture = AtlasTexture.new()
+			atlas_0.atlas = texture
+			atlas_0.region = Rect2(Vector2(x, y) * frame_size, frame_size)
+			frames.add_frame(anim, atlas_0)
+			if step != "Idle":
+				var atlas_1: AtlasTexture = AtlasTexture.new()
+				atlas_1.atlas = texture
+				atlas_1.region = Rect2(Vector2(1, y) * frame_size, frame_size)
+				frames.add_frame(anim, atlas_1)
+	# Walk_Down en sitio: First → Idle → Second → Idle
+	frames.add_animation("Walk_Down")
+	frames.set_animation_speed("Walk_Down", 6.0)
+	frames.set_animation_loop("Walk_Down", true)
+	for step_name: String in ["First_Step_Down", "Idle_Down", "Second_Step_Down", "Idle_Down"]:
+		# reusa frames ya añadidos copiando texturas del anim step
+		var src: String = step_name
+		if frames.has_animation(src) and frames.get_frame_count(src) > 0:
+			frames.add_frame("Walk_Down", frames.get_frame_texture(src, 0))
+	return frames

@@ -1,33 +1,42 @@
 extends Node
-## Datos temporales del flujo "Nueva partida". No es el save.
+## Autoload. No hace falta editar exports aquí.
+
+const CONFIG_PATH: String = "res://data/resources/boot/new_game_config.tres"
 
 var player_name: String = "Rojo"
 var is_male: bool = true
+var config: NewGameConfig
 
-## Plantillas de PlayerData (asigna en el inspector del autoload o carga por ruta).
-@export var male_player_data: PlayerData
-@export var female_player_data: PlayerData
 
-@export var start_map_id: MapSection.MapID
-@export var start_position: Vector2i = Vector2i(5, 5)
+func _ready() -> void:
+	if ResourceLoader.exists(CONFIG_PATH):
+		config = load(CONFIG_PATH) as NewGameConfig
+	else:
+		push_error("NewGameState: falta %s" % CONFIG_PATH)
 
 
 func reset() -> void:
-	player_name = "Rojo"
 	is_male = true
+	if config != null:
+		player_name = config.default_male_name
+	else:
+		player_name = "Rojo"
+
+
+func get_player_template() -> PlayerData:
+	if config == null:
+		return null
+	return config.male_player_data if is_male else config.female_player_data
 
 
 func build_start_data() -> GameStartData:
 	var data: GameStartData = GameStartData.new()
-	data.start_map_id = start_map_id
-	data.start_position = start_position
-	var base: PlayerData = male_player_data if is_male else female_player_data
+	if config != null:
+		data.start_map_id = config.start_map_id
+		data.start_position = config.start_position
+	var base: PlayerData = get_player_template()
 	if base != null:
 		var pd: PlayerData = base.duplicate(true) as PlayerData
-		# Si CharacterBase tiene nombre:
-		if "character_name" in pd:
-			pd.character_name = player_name
-		elif pd.get("name") != null:
-			pd.set("name", player_name)
+		pd.name = player_name
 		data.player_data = pd
 	return data

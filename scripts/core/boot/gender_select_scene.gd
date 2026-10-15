@@ -1,6 +1,5 @@
 extends Control
 class_name GenderSelectScene
-## gender_select.tscn: Bg, Base/Boy, Base2/Girl. Posiciones del editor.
 
 @onready var bg: TextureRect = $Bg
 @onready var boy: Sprite2D = $Base/Boy
@@ -12,6 +11,7 @@ var _busy: bool = true
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	_ensure_message_ui()
 	_refresh()
 	FadeScreen.set_clear()
 	bg.modulate.a = 0.0
@@ -34,12 +34,29 @@ func _unhandled_input(event: InputEvent) -> void:
 		_index = 1
 		_refresh()
 	elif event.is_action_pressed("buttonA") or event.is_action_pressed("ui_accept"):
-		_confirm()
+		_ask_confirm()
 
 
-func _confirm() -> void:
+func _ask_confirm() -> void:
 	_busy = true
+	var prompt: String
+	if _index == 0:
+		prompt = "¿Así que eres un chico?"
+	else:
+		prompt = "¿Así que eres una chica?"
+	# choices en la última página → ChoiceWindow SÍ/NO
+	MessageService.show_texts([prompt], "", ["SÍ", "NO"])
+	await MessageService.message_finished
+	var choice: int = MessageService.get_last_choice()
+	# 0 = SÍ, 1 = NO (o -1 si canceló)
+	if choice != 0:
+		_busy = false
+		return
 	NewGameState.is_male = (_index == 0)
+	_go_naming()
+
+
+func _go_naming() -> void:
 	SessionBoot.naming_config = {
 		"help": "¿Cómo te llamas?",
 		"initial": "Rojo" if NewGameState.is_male else "Hoja",
@@ -49,7 +66,7 @@ func _confirm() -> void:
 		"on_confirm_scene": "res://scenes/overworld/game/game_start.tscn",
 		"on_cancel_scene": "res://scenes/boot/gender_select.tscn",
 	}
-	await FadeScreen.fade_out(0.4)  # o tween de tu bg
+	await _tween_alpha(bg, 0.0)
 	get_tree().change_scene_to_file("res://scenes/ui/naming/naming.tscn")
 
 
@@ -57,3 +74,11 @@ func _tween_alpha(node: CanvasItem, a: float) -> void:
 	var tw: Tween = create_tween()
 	tw.tween_property(node, "modulate:a", a, 0.4).set_trans(Tween.TRANS_LINEAR)
 	await tw.finished
+
+
+func _ensure_message_ui() -> void:
+	if get_tree().get_first_node_in_group(&"message_ui") != null:
+		return
+	var ui: MessageUI = MessageUI.new()
+	ui.name = "MessageUI"
+	add_child(ui)

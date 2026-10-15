@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NewGameConfig" format=3 uid="uid://dil1052aj24h6"]
+
+[ext_resource type="Script" uid="uid://b2ujhawa0fpvl" path="res://scripts/overworld/object_events/player/player_data.gd" id="1_458q6"]
+[ext_resource type="Script" uid="uid://c0om2rl36fu7t" path="res://scripts/core/boot/new_game_config.gd" id="1_nq23f"]
+
+[sub_resource type="Resource" id="Resource_hvil1"]
+script = ExtResource("1_458q6")
+walk = 3.0
+running = 6.0
+id = &"PLAYER"
+ow = 5
+money = 3000
+shadow_type = 2
+metadata/_custom_type_script = "uid://b2ujhawa0fpvl"
+
+[sub_resource type="Resource" id="Resource_458q6"]
+script = ExtResource("1_458q6")
+walk = 3.0
+running = 6.0
+id = &"PLAYER"
+ow = 4
+money = 3000
+shadow_type = 2
+metadata/_custom_type_script = "uid://b2ujhawa0fpvl"
+
+[resource]
+script = ExtResource("1_nq23f")
+male_player_data = SubResource("Resource_458q6")
+female_player_data = SubResource("Resource_hvil1")
+metadata/_custom_type_script = "uid://c0om2rl36fu7t"
