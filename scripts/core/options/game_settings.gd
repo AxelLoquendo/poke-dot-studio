@@ -33,12 +33,11 @@ func apply_audio() -> void:
 func _set_bus_volume(bus_name: StringName, linear: float) -> void:
 	var idx: int = AudioServer.get_bus_index(bus_name)
 	if idx < 0:
-		idx = AudioServer.get_bus_index(&"Master")
-	if idx < 0:
+		# No tocar Master como fallback de SFX/Music (se pisan entre sí)
+		push_warning("GameSettings: bus '%s' no existe" % bus_name)
 		return
 	var v: float = clampf(linear, 0.0, 1.0)
 	AudioServer.set_bus_volume_db(idx, linear_to_db(v) if v > 0.001 else -80.0)
-
 
 func save_settings() -> void:
 	var cfg: ConfigFile = ConfigFile.new()

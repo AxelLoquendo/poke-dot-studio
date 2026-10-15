@@ -138,11 +138,15 @@ func is_typing() -> bool:
 
 func display_text(text: String) -> void:
 	_layout_content()
+	# Velocidad desde opciones (GameSettings)
+	if GameSettings != null:
+		_text_speed = GameSettings.text_delay()
+	else:
+		_text_speed = MessageConfig.TEXT_SPEED_MEDIUM
 	_full_text = text
 	_visible_chars = 0.0
 	_typing = true
 	visible = true
-	# Sombra solo Y
 	shadow_label.position = Vector2(0, 2)
 	shadow_label.text = _full_text
 	text_label.position = Vector2.ZERO
