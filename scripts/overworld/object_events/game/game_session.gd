@@ -9,7 +9,7 @@ extends Node
 var _signpost: LocationSignpost
 var _pause_menu: PauseMenu
 var play_seconds: float = 0.0
-
+var party: Party = Party.new()
 
 func _ready() -> void:
 	_ensure_message_ui()
@@ -40,7 +40,8 @@ func _ready() -> void:
 
 	if FadeScreen.is_covered():
 		await FadeScreen.fade_in(0.4)
-
+	party.add(Pokemon.create(&"BULBASAUR", 5))
+	party.add(Pokemon.create(&"CHARMANDER", 5))
 
 func _process(delta: float) -> void:
 	if MessageService.is_active():

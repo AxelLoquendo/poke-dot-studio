@@ -1,15 +1,25 @@
 [gd_scene format=3 uid="uid://ddubkphw2wx4n"]
 
 [ext_resource type="Texture2D" uid="uid://du6k0mtq5xdlk" path="res://assets/ui/Party/bg.png" id="1_akho4"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_kx2tx"]
 
-[node name="Party_Menu" type="Control" unique_id=1883093645]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="LabelSettings" id="LabelSettings_htemk"]
+font = ExtResource("2_kx2tx")
+font_size = 24
 
-[node name="BG" type="Sprite2D" parent="." unique_id=2092879392]
+[node name="Party_Menu" type="CanvasLayer" unique_id=2109011036]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2092879392]
 position = Vector2(256, 192)
 texture = ExtResource("1_akho4")
+
+[node name="Panels" type="Control" parent="." unique_id=1418893569]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CancelLabel" type="Label" parent="." unique_id=2023984911]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_htemk")
