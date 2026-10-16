@@ -1,0 +1,18 @@
+[
+  {
+	"key": "FIRE",
+	"name": "Fuego",
+	"icon_position": 9,
+	"weaknesses": ["WATER", "GROUND", "ROCK"],
+	"resistances": ["FIRE", "GRASS", "ICE", "BUG", "STEEL", "FAIRY"],
+	"immunities": []
+  },
+  {
+	"key": "WATER",
+	"name": "Agua",
+	"icon_position": 10,
+	"weaknesses": ["ELECTRIC", "GRASS"],
+	"resistances": ["FIRE", "WATER", "ICE", "STEEL"],
+	"immunities": []
+  }
+]

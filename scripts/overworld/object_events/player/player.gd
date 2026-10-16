@@ -12,7 +12,6 @@ func _ready() -> void:
 	add_to_group(&"player")
 	_aplicar_walk()
 
-
 func _physics_process(delta: float) -> void:
 	if _script_locked or MessageService.is_active():
 		# Sigue animación idle si hace falta, pero sin input de movimiento

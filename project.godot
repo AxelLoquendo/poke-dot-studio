@@ -27,6 +27,7 @@ NewGameState="*uid://dw0qry34r34k1"
 SessionBoot="*uid://dvncc6ew838td"
 SaveService="*uid://chgcleqfvetuh"
 GameSettings="*uid://bt5u80ab5c6c4"
+PokemonDB="*uid://c31u5pxyxbm34"
 
 [debug]
 
