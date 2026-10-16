@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://c8c1rqvpcsw76"]
+
+[ext_resource type="Texture2D" uid="uid://dxo77krxnm4lh" path="res://assets/ui/Party/panel_rect.png" id="1_weslv"]
+[ext_resource type="Texture2D" uid="uid://b0f7fpm1fgq0e" path="res://assets/ui/Party/icon_ball.png" id="2_eq1pi"]
+[ext_resource type="Texture2D" uid="uid://1ea0e0vhuawe" path="res://assets/Pokemon/Icons/FUECOCO.png" id="3_12602"]
+[ext_resource type="Texture2D" uid="uid://86ybwp71b8ty" path="res://assets/ui/Party/icon_item.png" id="4_12602"]
+[ext_resource type="Texture2D" uid="uid://d036g447qmg3x" path="res://assets/ui/Party/overlay_hp_back.png" id="4_yjcg7"]
+[ext_resource type="Texture2D" uid="uid://b5lg23wi4wbmb" path="res://assets/ui/Party/overlay_hp.png" id="5_biew1"]
+[ext_resource type="Texture2D" uid="uid://ca25bo2fg00nv" path="res://assets/ui/Party/overlay_lv.png" id="6_bi0a4"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="7_weslv"]
+[ext_resource type="Texture2D" uid="uid://bgmb0piy6dpa4" path="res://assets/ui/statuses.png" id="9_yjcg7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q4lci"]
+font = ExtResource("7_weslv")
+font_size = 24
+shadow_size = 0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pj0hq"]
+font = ExtResource("7_weslv")
+font_size = 24
+font_color = Color(0.09411765, 0.57254905, 0.9411765, 1)
+shadow_size = 0
+shadow_color = Color(0.050980393, 0.28627452, 0.46666667, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_14cdr"]
+font = ExtResource("7_weslv")
+font_size = 24
+shadow_size = 0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_htemk"]
+font = ExtResource("7_weslv")
+font_size = 24
+shadow_size = 0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="Party_Slot" type="Node2D" unique_id=1113238041]
+
+[node name="Box" type="Sprite2D" parent="." unique_id=1448302227]
+position = Vector2(128, 49)
+texture = ExtResource("1_weslv")
+
+[node name="Ball" type="Sprite2D" parent="Box" unique_id=1833833139]
+position = Vector2(-96, -21)
+texture = ExtResource("2_eq1pi")
+
+[node name="Icon_Mon" type="Sprite2D" parent="Box" unique_id=1310233281]
+position = Vector2(-74, -19)
+texture = ExtResource("3_12602")
+hframes = 2
+
+[node name="Icon_Held" type="Sprite2D" parent="Box/Icon_Mon" unique_id=1514396089]
+position = Vector2(14, 26)
+texture = ExtResource("4_12602")
+
+[node name="Name_Mon" type="Label" parent="Box" unique_id=788607702]
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 44.0
+offset_bottom = -6.0
+text = "Fuecoco"
+label_settings = SubResource("LabelSettings_q4lci")
+
+[node name="Gender" type="Label" parent="Box" unique_id=1224313187]
+offset_left = 98.0
+offset_top = -32.0
+offset_right = 110.0
+offset_bottom = -6.0
+text = "♂"
+label_settings = SubResource("LabelSettings_pj0hq")
+
+[node name="HpBar" type="Sprite2D" parent="Box" unique_id=1895847636]
+position = Vector2(33, 8)
+texture = ExtResource("4_yjcg7")
+
+[node name="ProgressBar" type="Sprite2D" parent="Box/HpBar" unique_id=2039829736]
+position = Vector2(11, -1)
+texture = ExtResource("5_biew1")
+vframes = 3
+
+[node name="HpNumber" type="Label" parent="Box/HpBar" unique_id=723665832]
+offset_left = -25.0
+offset_top = 1.0
+offset_right = 59.0
+offset_bottom = 27.0
+text = "000/000"
+label_settings = SubResource("LabelSettings_14cdr")
+horizontal_alignment = 2
+
+[node name="Nivel" type="Sprite2D" parent="Box" unique_id=339629086]
+position = Vector2(-100, 28)
+texture = ExtResource("6_bi0a4")
+
+[node name="Number" type="Label" parent="Box/Nivel" unique_id=832411058]
+offset_left = 12.0
+offset_top = -21.0
+offset_right = 25.0
+offset_bottom = 9.0
+text = "5"
+label_settings = SubResource("LabelSettings_htemk")
+
+[node name="Status" type="Sprite2D" parent="." unique_id=937722079]
+position = Vector2(96, 76)
+texture = ExtResource("9_yjcg7")
+vframes = 7
+frame = 1

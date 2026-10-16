@@ -20,7 +20,7 @@ var _cancel_label: Label
 
 
 func _ready() -> void:
-	layer = 30
+	layer = 91
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	_build_if_needed()

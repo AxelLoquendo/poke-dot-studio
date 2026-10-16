@@ -2,10 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://du6k0mtq5xdlk" path="res://assets/ui/Party/bg.png" id="1_akho4"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_kx2tx"]
+[ext_resource type="PackedScene" uid="uid://c8c1rqvpcsw76" path="res://scenes/ui/party_menu/party_slot.tscn" id="2_x0s1s"]
+[ext_resource type="Texture2D" uid="uid://tr6wav0owiw8" path="res://assets/ui/Party/icon_cancel.png" id="3_6m1gj"]
+[ext_resource type="Texture2D" uid="uid://dn72txah25gn3" path="res://assets/window_skins/choice 1.png" id="5_6m1gj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_htemk"]
 font = ExtResource("2_kx2tx")
 font_size = 24
+shadow_size = 0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_14cdr"]
+font = ExtResource("2_kx2tx")
+font_size = 24
+font_color = Color(0.3137255, 0.3137255, 0.34509805, 1)
+shadow_size = 0
+shadow_color = Color(0.627451, 0.627451, 0.65882355, 1)
+shadow_offset = Vector2(0, 2)
 
 [node name="Party_Menu" type="CanvasLayer" unique_id=2109011036]
 
@@ -19,7 +33,50 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CancelLabel" type="Label" parent="." unique_id=2023984911]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Party_Slot" parent="Panels" unique_id=1113238041 instance=ExtResource("2_x0s1s")]
+
+[node name="Party_Slot2" parent="Panels" unique_id=1971304605 instance=ExtResource("2_x0s1s")]
+position = Vector2(256, 16)
+
+[node name="Party_Slot3" parent="Panels" unique_id=1695481810 instance=ExtResource("2_x0s1s")]
+position = Vector2(0, 96)
+
+[node name="Party_Slot4" parent="Panels" unique_id=583740490 instance=ExtResource("2_x0s1s")]
+position = Vector2(256, 112)
+
+[node name="Party_Slot5" parent="Panels" unique_id=1647165114 instance=ExtResource("2_x0s1s")]
+position = Vector2(0, 192)
+
+[node name="Party_Slot6" parent="Panels" unique_id=1162207608 instance=ExtResource("2_x0s1s")]
+position = Vector2(256, 208)
+
+[node name="Cancel" type="Sprite2D" parent="." unique_id=644999764]
+position = Vector2(454, 352)
+texture = ExtResource("3_6m1gj")
+
+[node name="CancelLabel" type="Label" parent="Cancel" unique_id=2023984911]
+offset_left = -48.0
+offset_top = -17.0
+offset_right = 48.0
+offset_bottom = 20.0
+text = "CANCELAR"
 label_settings = SubResource("LabelSettings_htemk")
+
+[node name="Box_Msg" type="NinePatchRect" parent="." unique_id=2104294600]
+offset_top = 320.0
+offset_right = 398.0
+offset_bottom = 384.0
+texture = ExtResource("5_6m1gj")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Text" type="Label" parent="Box_Msg" unique_id=126203802]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 384.0
+offset_bottom = 50.0
+text = "Elige un Pokémon."
+label_settings = SubResource("LabelSettings_14cdr")
