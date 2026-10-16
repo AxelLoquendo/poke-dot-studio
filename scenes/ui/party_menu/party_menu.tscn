@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ddubkphw2wx4n"]
+
+[ext_resource type="Texture2D" uid="uid://du6k0mtq5xdlk" path="res://assets/ui/Party/bg.png" id="1_akho4"]
+
+[node name="Party_Menu" type="Control" unique_id=1883093645]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="Sprite2D" parent="." unique_id=2092879392]
+position = Vector2(256, 192)
+texture = ExtResource("1_akho4")
