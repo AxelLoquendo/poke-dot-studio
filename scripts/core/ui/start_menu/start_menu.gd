@@ -199,7 +199,7 @@ func _activate() -> void:
 		Cmd.POKEDEX:
 			await _stub("Pokédex (próximamente).")
 		Cmd.PARTY:
-			await _stub("Equipo (próximamente).")
+			await _party_flow()
 		Cmd.BAG:
 			await _stub("Mochila (próximamente).")
 		Cmd.POKEGEAR:
@@ -326,3 +326,36 @@ func _ensure_message_ui() -> void:
 		host.add_child(ui)
 	else:
 		add_child(ui)
+
+func _party_flow() -> void:
+	visible = false
+
+	var session: Node = get_tree().get_first_node_in_group(&"game_session")
+	var party: Party = null
+	if session != null:
+		party = session.get("party") as Party
+
+	if party == null or party.size() == 0:
+		_ensure_message_ui()
+		MessageService.show_texts(["No tienes ningún Pokémon."])
+		await MessageService.message_finished
+		if _open:
+			visible = true
+			_select(_index)
+		return
+
+	var menu: PartyMenu = PartyMenu.new()
+	menu.name = "PartyMenu"
+	var host: Node = get_tree().current_scene
+	if host != null:
+		host.add_child(menu)
+	else:
+		add_child(menu)
+
+	menu.open(party)
+	await menu.closed
+	menu.queue_free()
+
+	if _open:
+		visible = true
+		_select(_index)
