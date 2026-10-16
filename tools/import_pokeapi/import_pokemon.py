@@ -107,10 +107,12 @@ def key_of(slug: str) -> str:
     return re.sub(r"[^A-Z0-9]", "", slug.upper())
 
 
-def named(names: list, fallback: str) -> str:
+def named(names: list, fallback: str, key: str = "name") -> str:
     for entry in names:
         if entry.get("language", {}).get("name") == LANG:
-            return entry["name"]
+            value = entry.get(key)
+            if value:
+                return value
     return fallback.replace("-", " ").title()
 
 
@@ -133,12 +135,25 @@ class Client:
         path = self.cache / (name + ".json")
         if path.exists():
             return json.loads(path.read_text(encoding="utf-8"))
-        request = urllib.request.Request(url, headers={"User-Agent": "poke-dot-studio-import"})
-        with urllib.request.urlopen(request, timeout=60) as response:
-            raw = response.read()
-        path.write_bytes(raw)
-        time.sleep(0.05)
-        return json.loads(raw.decode("utf-8"))
+
+        last_err = None
+        for attempt in range(5):  # hasta 5 intentos
+            try:
+                request = urllib.request.Request(
+                    url, headers={"User-Agent": "poke-dot-studio-import"}
+                )
+                with urllib.request.urlopen(request, timeout=90) as response:
+                    raw = response.read()
+                path.write_bytes(raw)
+                time.sleep(0.1)  # un poco más de pausa entre requests
+                return json.loads(raw.decode("utf-8"))
+            except Exception as e:
+                last_err = e
+                wait = 2 ** attempt  # 1s, 2s, 4s, 8s, 16s
+                print(f"  retry {attempt + 1}/5 after error: {e} (wait {wait}s)")
+                time.sleep(wait)
+
+        raise last_err  # ← debe estar DENTRO de get, al mismo nivel que el for
 
 
 def evolution_rules(chain: dict, species_key: str) -> list[dict]:
@@ -252,7 +267,7 @@ def species_row(client: Client, dex: int, chains: dict[str, dict]) -> tuple[dict
         "color": COLOR.get(species.get("color", {}).get("name", ""), "Green"),
         "shape": SHAPE.get(species.get("shape", {}).get("name", ""), "Quadruped"),
         "habitat": (species.get("habitat") or {}).get("name", "") or "",
-        "category": named(species.get("genera", []), ""),
+        "category": named(species.get("genera", []), "", key="genus"),
         "pokedex": flavor(species.get("flavor_text_entries", [])),
         "generation": int(re.sub(r"\D", "", species["generation"]["name"]) or 1),
         "evolutions": evolution_rules(chains[chain_url], key),
