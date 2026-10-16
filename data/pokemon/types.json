@@ -1,316 +1,316 @@
 [
   {
-    "key": "NORMAL",
-    "name": "Normal",
-    "icon_position": 0,
-    "weaknesses": [
+	"key": "NORMAL",
+	"name": "Normal",
+	"icon_position": 0,
+	"weaknesses": [
       "FIGHTING"
-    ],
-    "resistances": [],
-    "immunities": [
+	],
+	"resistances": [],
+	"immunities": [
       "GHOST"
-    ]
+	]
   },
   {
-    "key": "FIGHTING",
-    "name": "Lucha",
-    "icon_position": 1,
-    "weaknesses": [
-      "FLYING",
-      "PSYCHIC",
+	"key": "FIGHTING",
+	"name": "Lucha",
+	"icon_position": 1,
+	"weaknesses": [
+	  "FLYING",
+	  "PSYCHIC",
       "FAIRY"
-    ],
-    "resistances": [
-      "ROCK",
-      "BUG",
+	],
+	"resistances": [
+	  "ROCK",
+	  "BUG",
       "DARK"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "FLYING",
-    "name": "Volador",
-    "icon_position": 2,
-    "weaknesses": [
-      "ROCK",
-      "ELECTRIC",
+	"key": "FLYING",
+	"name": "Volador",
+	"icon_position": 2,
+	"weaknesses": [
+	  "ROCK",
+	  "ELECTRIC",
       "ICE"
-    ],
-    "resistances": [
-      "FIGHTING",
-      "BUG",
+	],
+	"resistances": [
+	  "FIGHTING",
+	  "BUG",
       "GRASS"
-    ],
-    "immunities": [
+	],
+	"immunities": [
       "GROUND"
-    ]
+	]
   },
   {
-    "key": "POISON",
-    "name": "Veneno",
-    "icon_position": 3,
-    "weaknesses": [
-      "GROUND",
+	"key": "POISON",
+	"name": "Veneno",
+	"icon_position": 3,
+	"weaknesses": [
+	  "GROUND",
       "PSYCHIC"
-    ],
-    "resistances": [
-      "FIGHTING",
-      "POISON",
-      "BUG",
-      "GRASS",
+	],
+	"resistances": [
+	  "FIGHTING",
+	  "POISON",
+	  "BUG",
+	  "GRASS",
       "FAIRY"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "GROUND",
-    "name": "Tierra",
-    "icon_position": 4,
-    "weaknesses": [
-      "WATER",
-      "GRASS",
+	"key": "GROUND",
+	"name": "Tierra",
+	"icon_position": 4,
+	"weaknesses": [
+	  "WATER",
+	  "GRASS",
       "ICE"
-    ],
-    "resistances": [
-      "POISON",
+	],
+	"resistances": [
+	  "POISON",
       "ROCK"
-    ],
-    "immunities": [
+	],
+	"immunities": [
       "ELECTRIC"
-    ]
+	]
   },
   {
-    "key": "ROCK",
-    "name": "Roca",
-    "icon_position": 5,
-    "weaknesses": [
-      "FIGHTING",
-      "GROUND",
-      "STEEL",
-      "WATER",
+	"key": "ROCK",
+	"name": "Roca",
+	"icon_position": 5,
+	"weaknesses": [
+	  "FIGHTING",
+	  "GROUND",
+	  "STEEL",
+	  "WATER",
       "GRASS"
-    ],
-    "resistances": [
-      "NORMAL",
-      "FLYING",
-      "POISON",
+	],
+	"resistances": [
+	  "NORMAL",
+	  "FLYING",
+	  "POISON",
       "FIRE"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "BUG",
-    "name": "Bicho",
-    "icon_position": 6,
-    "weaknesses": [
-      "FLYING",
-      "ROCK",
+	"key": "BUG",
+	"name": "Bicho",
+	"icon_position": 6,
+	"weaknesses": [
+	  "FLYING",
+	  "ROCK",
       "FIRE"
-    ],
-    "resistances": [
-      "FIGHTING",
-      "GROUND",
+	],
+	"resistances": [
+	  "FIGHTING",
+	  "GROUND",
       "GRASS"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "GHOST",
-    "name": "Fantasma",
-    "icon_position": 7,
-    "weaknesses": [
-      "GHOST",
+	"key": "GHOST",
+	"name": "Fantasma",
+	"icon_position": 7,
+	"weaknesses": [
+	  "GHOST",
       "DARK"
-    ],
-    "resistances": [
-      "POISON",
+	],
+	"resistances": [
+	  "POISON",
       "BUG"
-    ],
-    "immunities": [
-      "NORMAL",
+	],
+	"immunities": [
+	  "NORMAL",
       "FIGHTING"
-    ]
+	]
   },
   {
-    "key": "STEEL",
-    "name": "Acero",
-    "icon_position": 8,
-    "weaknesses": [
-      "FIGHTING",
-      "GROUND",
+	"key": "STEEL",
+	"name": "Acero",
+	"icon_position": 8,
+	"weaknesses": [
+	  "FIGHTING",
+	  "GROUND",
       "FIRE"
-    ],
-    "resistances": [
-      "NORMAL",
-      "FLYING",
-      "ROCK",
-      "BUG",
-      "STEEL",
-      "GRASS",
-      "PSYCHIC",
-      "ICE",
-      "DRAGON",
+	],
+	"resistances": [
+	  "NORMAL",
+	  "FLYING",
+	  "ROCK",
+	  "BUG",
+	  "STEEL",
+	  "GRASS",
+	  "PSYCHIC",
+	  "ICE",
+	  "DRAGON",
       "FAIRY"
-    ],
-    "immunities": [
+	],
+	"immunities": [
       "POISON"
-    ]
+	]
   },
   {
-    "key": "FIRE",
-    "name": "Fuego",
-    "icon_position": 9,
-    "weaknesses": [
-      "GROUND",
-      "ROCK",
+	"key": "QMARKS",
+	"name": "???",
+	"icon_position": 9,
+	"weaknesses": [],
+	"resistances": [],
+	"immunities": []
+  },
+  {
+	"key": "FIRE",
+	"name": "Fuego",
+	"icon_position": 10,
+	"weaknesses": [
+	  "GROUND",
+	  "ROCK",
       "WATER"
-    ],
-    "resistances": [
-      "BUG",
-      "STEEL",
-      "FIRE",
-      "GRASS",
-      "ICE",
+	],
+	"resistances": [
+	  "BUG",
+	  "STEEL",
+	  "FIRE",
+	  "GRASS",
+	  "ICE",
       "FAIRY"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "WATER",
-    "name": "Agua",
-    "icon_position": 10,
-    "weaknesses": [
-      "GRASS",
+	"key": "WATER",
+	"name": "Agua",
+	"icon_position": 11,
+	"weaknesses": [
+	  "GRASS",
       "ELECTRIC"
-    ],
-    "resistances": [
-      "STEEL",
-      "FIRE",
-      "WATER",
+	],
+	"resistances": [
+	  "STEEL",
+	  "FIRE",
+	  "WATER",
       "ICE"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "GRASS",
-    "name": "Planta",
-    "icon_position": 11,
-    "weaknesses": [
-      "FLYING",
-      "POISON",
-      "BUG",
-      "FIRE",
+	"key": "GRASS",
+	"name": "Planta",
+	"icon_position": 12,
+	"weaknesses": [
+	  "FLYING",
+	  "POISON",
+	  "BUG",
+	  "FIRE",
       "ICE"
-    ],
-    "resistances": [
-      "GROUND",
-      "WATER",
-      "GRASS",
+	],
+	"resistances": [
+	  "GROUND",
+	  "WATER",
+	  "GRASS",
       "ELECTRIC"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "ELECTRIC",
-    "name": "Eléctrico",
-    "icon_position": 12,
-    "weaknesses": [
+	"key": "ELECTRIC",
+	"name": "Eléctrico",
+	"icon_position": 13,
+	"weaknesses": [
       "GROUND"
-    ],
-    "resistances": [
-      "FLYING",
-      "STEEL",
+	],
+	"resistances": [
+	  "FLYING",
+	  "STEEL",
       "ELECTRIC"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "PSYCHIC",
-    "name": "Psíquico",
-    "icon_position": 13,
-    "weaknesses": [
-      "BUG",
-      "GHOST",
+	"key": "PSYCHIC",
+	"name": "Psíquico",
+	"icon_position": 14,
+	"weaknesses": [
+	  "BUG",
+	  "GHOST",
       "DARK"
-    ],
-    "resistances": [
-      "FIGHTING",
+	],
+	"resistances": [
+	  "FIGHTING",
       "PSYCHIC"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "ICE",
-    "name": "Hielo",
-    "icon_position": 14,
-    "weaknesses": [
-      "FIGHTING",
-      "ROCK",
-      "STEEL",
+	"key": "ICE",
+	"name": "Hielo",
+	"icon_position": 15,
+	"weaknesses": [
+	  "FIGHTING",
+	  "ROCK",
+	  "STEEL",
       "FIRE"
-    ],
-    "resistances": [
+	],
+	"resistances": [
       "ICE"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "DRAGON",
-    "name": "Dragón",
-    "icon_position": 15,
-    "weaknesses": [
-      "ICE",
-      "DRAGON",
+	"key": "DRAGON",
+	"name": "Dragón",
+	"icon_position": 16,
+	"weaknesses": [
+	  "ICE",
+	  "DRAGON",
       "FAIRY"
-    ],
-    "resistances": [
-      "FIRE",
-      "WATER",
-      "GRASS",
+	],
+	"resistances": [
+	  "FIRE",
+	  "WATER",
+	  "GRASS",
       "ELECTRIC"
-    ],
-    "immunities": []
+	],
+	"immunities": []
   },
   {
-    "key": "DARK",
-    "name": "Siniestro",
-    "icon_position": 16,
-    "weaknesses": [
-      "FIGHTING",
-      "BUG",
+	"key": "DARK",
+	"name": "Siniestro",
+	"icon_position": 17,
+	"weaknesses": [
+	  "FIGHTING",
+	  "BUG",
       "FAIRY"
-    ],
-    "resistances": [
-      "GHOST",
+	],
+	"resistances": [
+	  "GHOST",
       "DARK"
-    ],
-    "immunities": [
+	],
+	"immunities": [
       "PSYCHIC"
-    ]
+	]
   },
   {
-    "key": "FAIRY",
-    "name": "Hada",
-    "icon_position": 17,
-    "weaknesses": [
-      "POISON",
+	"key": "FAIRY",
+	"name": "Hada",
+	"icon_position": 18,
+	"weaknesses": [
+	  "POISON",
       "STEEL"
-    ],
-    "resistances": [
-      "FIGHTING",
-      "BUG",
+	],
+	"resistances": [
+	  "FIGHTING",
+	  "BUG",
       "DARK"
-    ],
-    "immunities": [
+	],
+	"immunities": [
       "DRAGON"
-    ]
-  },
-  {
-    "key": "STELLAR",
-    "name": "Astral",
-    "icon_position": 18,
-    "weaknesses": [],
-    "resistances": [],
-    "immunities": []
+	]
   }
 ]

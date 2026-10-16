@@ -1,1 +1,8238 @@
-[]
+[
+  {
+	"key": "REPEL",
+	"name": "Repelente",
+	"pocket": "1",
+	"price": 400,
+	"description": "Repele Pokémon salvajes débiles en un recorrido de 100 pasos.",
+	"flags": [
+	  "Repel",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SUPERREPEL",
+	"name": "Superrepelente",
+	"pocket": "1",
+	"price": 700,
+	"description": "Repele Pokémon salvajes débiles en un recorrido de 200 pasos.",
+	"flags": [
+	  "Repel",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MAXREPEL",
+	"name": "Repelente Máximo",
+	"pocket": "1",
+	"price": 900,
+	"description": "Repele Pokémon salvajes débiles en un recorrido de 250 pasos.",
+	"flags": [
+	  "Repel",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BLACKFLUTE",
+	"name": "Flauta Negra",
+	"pocket": "1",
+	"price": 20,
+	"description": "Flauta de cristal negro cuya melodía reduce las probabilidades de encontrarse con Pokémon salvajes.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "WHITEFLUTE",
+	"name": "Flauta Blanca",
+	"pocket": "1",
+	"price": 20,
+	"description": "Flauta de cristal blanco cuya melodía aumenta las probabilidades de encontrarse con Pokémon salvajes.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "HONEY",
+	"name": "Miel",
+	"pocket": "1",
+	"price": 900,
+	"description": "Su delicioso aroma atrae a Pokémon salvajes si se usa en zonas de hierba alta, cuevas o árboles especiales.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "REDSHARD",
+	"name": "Parte Roja",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Un pequeño fragmento rojo. Parece formar parte de algún tipo de herramienta antigua.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "YELLOWSHARD",
+	"name": "Parte Amarilla",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Un pequeño fragmento amarillo. Parece formar parte de algún tipo de herramienta antigua.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BLUESHARD",
+	"name": "Parte Azul",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Un pequeño fragmento azul. Parece formar parte de algún tipo de herramienta antigua.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GREENSHARD",
+	"name": "Parte Verde",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Un pequeño fragmento verde. Parece formar parte de algún tipo de herramienta antigua.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "FIRESTONE",
+	"name": "Piedra Fuego",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Amarilla como el fuego.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "THUNDERSTONE",
+	"name": "Piedra Trueno",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Tiene dibujado un rayo.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "WATERSTONE",
+	"name": "Piedra Agua",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Es azul, como el agua.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LEAFSTONE",
+	"name": "Piedra Hoja",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Tiene dibujada una hoja.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MOONSTONE",
+	"name": "Piedra Lunar",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Negra como el azabache.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SUNSTONE",
+	"name": "Piedra Solar",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Es roja como el sol.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DUSKSTONE",
+	"name": "Piedra Noche",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Una piedra peculiar que permite evolucionar a algunos Pokémon. Es oscura como la noche.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DAWNSTONE",
+	"name": "Piedra Alba",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Una piedra peculiar que permite evolucionar a algunos Pokémon. Brilla como un lucero.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SHINYSTONE",
+	"name": "Piedra Día",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Una piedra peculiar que permite evolucionar a algunos Pokémon. Tiene un brillo espectacular.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ICESTONE",
+	"name": "Piedra Hielo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Curiosa piedra que permite evolucionar a determinadas especies de Pokémon. Tiene un patrón nevado.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SWEETAPPLE",
+	"name": "Manzana Dulce",
+	"pocket": "1",
+	"price": 2200,
+	"description": "Curiosa manzana, de sabor particularmente dulce, que permite evolucionar a Applin.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "TARTAPPLE",
+	"name": "Manzana Ácida",
+	"pocket": "1",
+	"price": 2200,
+	"description": "Curiosa manzana, de sabor particularmente ácido, que permite evolucionar a Applin.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "CRACKEDPOT",
+	"name": "Tetera Agrietada",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Tetera agrietada que permite evolucionar a Sinistea (forma Falsificada). Sirve un té exquisito.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHIPPEDPOT",
+	"name": "Tetera Rota",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Tetera rota que permite evolucionar a Sinistea (forma Genuina). Sirve un té exquisito.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GALARICACUFF",
+	"name": "Brazal Galanuez",
+	"pocket": "1",
+	"price": 6000,
+	"description": "Un brazalete hecho de Ramas de Galanuez trenzadas. Los Slowpoke de Galar lo adoran.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GALARICAWREATH",
+	"name": "Corona Galanuez",
+	"pocket": "1",
+	"price": 6000,
+	"description": "Una corona hecha con Ramas de Galanuez. Los Slowpoke de Galar lo adoran.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "REDAPRICORN",
+	"name": "Bonguri Roja",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color rojo y aroma muy penetrante.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "YELLOWAPRICORN",
+	"name": "Bonguri Amarilla",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color amarillo y aroma refrescante.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "BLUEAPRICORN",
+	"name": "Bonguri Azul",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color azul y aroma tierno.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "GREENAPRICORN",
+	"name": "Bonguri Verde",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color verde y aroma peculiar que recuerda al café tostado.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "PINKAPRICORN",
+	"name": "Bonguri Rosa",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color rosa y aroma dulce.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "WHITEAPRICORN",
+	"name": "Bonguri Blanca",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color blanco que no desprende aroma alguno.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "BLACKAPRICORN",
+	"name": "Bonguri Negra",
+	"pocket": "1",
+	"price": 200,
+	"description": "Bonguri de color negro y aroma indescriptible.",
+	"flags": [
+      "Apricorn"
+	]
+  },
+  {
+	"key": "HELIXFOSSIL",
+	"name": "Fósil Helix",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de concha marina.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "DOMEFOSSIL",
+	"name": "Fósil Domo",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de concha.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "OLDAMBER",
+	"name": "Ámbar Viejo",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Fragmento de ámbar que contiene información genética de un Pokémon ancestral. Es de color amarillo.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "ROOTFOSSIL",
+	"name": "Fósil Raíz",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser parte de una raíz.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "CLAWFOSSIL",
+	"name": "Fósil Garra",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser parte de una garra.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "SKULLFOSSIL",
+	"name": "Fósil Cráneo",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una cabeza.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "ARMORFOSSIL",
+	"name": "Fósil Coraza",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon prehistórico terrestre. Parece ser un fragmento del cuello.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "COVERFOSSIL",
+	"name": "Fósil Tapa",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de caparazón.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "PLUMEFOSSIL",
+	"name": "Fósil Pluma",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon ancestral que surcó los cielos. Parece ser parte de un ala suya.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "JAWFOSSIL",
+	"name": "Fósil Mandíbula",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una mandíbula.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "SAILFOSSIL",
+	"name": "Fósil Aleta",
+	"pocket": "1",
+	"price": 7000,
+	"description": "Fósil de un Pokémon prehistórico marino. Parece ser parte de una aleta.",
+	"flags": [
+	  "Fossil",
+      "Fling_100"
+	]
+  },
+  {
+	"key": "FOSSILIZEDBIRD",
+	"name": "Ornitofósil",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Parte del fósil de un Pokémon prehistórico que surcaba los cielos. Su apariencia es una incógnita.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "FOSSILIZEDFISH",
+	"name": "Ictiofósil",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Parte del fósil de un Pokémon prehistórico que habitaba en el mar. Su apariencia es una incógnita.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "FOSSILIZEDDRAKE",
+	"name": "Dracofósil",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Parte del fósil de un Pokémon prehistórico que habitaba en tierra firme. Su apariencia es una incógnita.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "FOSSILIZEDDINO",
+	"name": "Plesiofósil",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Parte del fósil de un Pokémon prehistórico que habitaba en el mar. Su apariencia es una incógnita.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "PRETTYFEATHER",
+	"name": "Pluma Bella",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Pluma normal y corriente. Muy bonita, pero no sirve para nada.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "TINYMUSHROOM",
+	"name": "Mini Seta",
+	"pocket": "1",
+	"price": 500,
+	"description": "Seta pequeña y poco común bastante popular entre determinados grupos de gourmets.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BIGMUSHROOM",
+	"name": "Seta Grande",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Seta grande y poco común muy popular entre determinados grupos de gourmets.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BALMMUSHROOM",
+	"name": "Seta Aroma",
+	"pocket": "1",
+	"price": 15000,
+	"description": "Extraña seta que desprende un agradable aroma. Muy apreciada por los gourmets.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "PEARL",
+	"name": "Perla",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Brillante perla plateada de tamaño más bien pequeño que no alcanza mucho precio en las tiendas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BIGPEARL",
+	"name": "Perla Grande",
+	"pocket": "1",
+	"price": 8000,
+	"description": "Brillante perla plateada de gran tamaño que puede venderse a buen precio en las tiendas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "PEARLSTRING",
+	"name": "Sarta de perlas",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Brillantes perlas plateadas de gran tamaño. Muy valoradas por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "STARDUST",
+	"name": "Polvoestelar",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Bonita arena roja de tacto sedoso que alcanza un alto precio en las tiendas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "STARPIECE",
+	"name": "Trozo Estrella",
+	"pocket": "1",
+	"price": 12000,
+	"description": "Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "COMETSHARD",
+	"name": "Fragmento Cometa",
+	"pocket": "1",
+	"price": 25000,
+	"description": "Fragmento de un cometa caído al suelo al atravesar la atmósfera. Muy valorado por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "NUGGET",
+	"name": "Pepita",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Pepita de oro puro que desprende un brillo espectacular. Puede venderse muy cara en las tiendas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BIGNUGGET",
+	"name": "Maxipepita",
+	"pocket": "1",
+	"price": 40000,
+	"description": "Pepita grande de oro puro que desprende un brillo espectacular. Muy valorada por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "HEARTSCALE",
+	"name": "Escama Corazón",
+	"pocket": "1",
+	"price": 100,
+	"description": "Bella escama con forma de corazón que brilla con los colores del arco iris. Es muy poco común.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SLOWPOKETAIL",
+	"name": "Cola Slowpoke",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Cola de origen desconocido y muy sabrosa. Se vende muy cara.",
+	"flags": []
+  },
+  {
+	"key": "RAREBONE",
+	"name": "Hueso Raro",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Un hueso de gran valor arqueológico que puede alcanzar un alto precio en las tiendas.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "RELICCOPPER",
+	"name": "Real de cobre",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Moneda de cobre de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICSILVER",
+	"name": "Real de plata",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Moneda de plata de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICGOLD",
+	"name": "Real de oro",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Moneda de oro de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICVASE",
+	"name": "Ánfora Antigua",
+	"pocket": "1",
+	"price": 0,
+	"description": "Jarrón de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICBAND",
+	"name": "Brazal antiguo",
+	"pocket": "1",
+	"price": 0,
+	"description": "Brazalete de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICSTATUE",
+	"name": "Efigie Antigua",
+	"pocket": "1",
+	"price": 0,
+	"description": "Efigie de piedra de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RELICCROWN",
+	"name": "Corona Antigua",
+	"pocket": "1",
+	"price": 0,
+	"description": "Corona de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GROWTHMULCH",
+	"name": "Abono Rápido",
+	"pocket": "1",
+	"price": 200,
+	"description": "Un fertilizante que se usa en tierra suelta. Acelera el crecimiento de las bayas, pero también seca el suelo.",
+	"flags": [
+	  "Mulch",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DAMPMULCH",
+	"name": "Abono Lento",
+	"pocket": "1",
+	"price": 200,
+	"description": "Fertilizante para tierra suelta que ralentiza el crecimiento de las bayas y seca el suelo lentamente.",
+	"flags": [
+	  "Mulch",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "STABLEMULCH",
+	"name": "Abono Fijador",
+	"pocket": "1",
+	"price": 200,
+	"description": "Fertilizante para tierra suelta que retrasa la caída de las bayas maduras.",
+	"flags": [
+	  "Mulch",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GOOEYMULCH",
+	"name": "Abono Brote",
+	"pocket": "1",
+	"price": 200,
+	"description": "Fertilizante para tierra suelta que hace que broten más plantas nuevas de las plantas marchitas.",
+	"flags": [
+	  "Mulch",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SHOALSALT",
+	"name": "Sal Cardumen",
+	"pocket": "1",
+	"price": 20,
+	"description": "Sal pura y de sabor intenso procedente de las profundidades de la Cueva Cardumen.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SHOALSHELL",
+	"name": "Concha Cardumen",
+	"pocket": "1",
+	"price": 20,
+	"description": "Hermosa concha marina hallada en lo más profundo de la Cueva Cardumen. Tiene rayas azules y blancas.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ODDKEYSTONE",
+	"name": "Piedra Espíritu",
+	"pocket": "1",
+	"price": 2100,
+	"description": "Vital para impedir que una torre de piedra se derrumbe. A veces se oyen voces en su interior.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "REDNECTAR",
+	"name": "Néctar Rojo",
+	"pocket": "1",
+	"price": 300,
+	"description": "Néctar de ciertas flores de los Jardines de Ula-Ula, capaz de hacer cambiar de forma a Oricorio.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "YELLOWNECTAR",
+	"name": "Néctar Amarillo",
+	"pocket": "1",
+	"price": 300,
+	"description": "Néctar de ciertas flores de los Jardines de Melemele, capaz de hacer cambiar de forma a Oricorio.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "PINKNECTAR",
+	"name": "Néctar Rosa",
+	"pocket": "1",
+	"price": 300,
+	"description": "Néctar de ciertas flores de los parterres de la Avenida Royale, capaz de hacer cambiar de forma a Oricorio.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "PURPLENECTAR",
+	"name": "Néctar Violeta",
+	"pocket": "1",
+	"price": 300,
+	"description": "Néctar de ciertas flores de los Jardines de Poni, capaz de hacer cambiar de forma a Oricorio.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "AIRBALLOON",
+	"name": "Globo Helio",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El Pokémon que lo lleve flotará en el aire. Si recibe un golpe, estallará.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "BRIGHTPOWDER",
+	"name": "Polvo Brillo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Lanza un destello que baja la precisión del enemigo. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "EVIOLITE",
+	"name": "Mineral Evolutivo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Piedra evolutiva. El Pokémon portador aumentará su Defensa y su Defensa Especial si aún puede evolucionar.",
+	"flags": [
+      "Fling_40"
+	]
+  },
+  {
+	"key": "FLOATSTONE",
+	"name": "Piedra Pómez",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Piedra muy ligera que reduce el peso del Pokémon que la lleve.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DESTINYKNOT",
+	"name": "Lazo Destino",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Un hilo largo y delgado de color rojo que transmite el enamoramiento del Pokémon que lo lleva a su rival.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ROCKYHELMET",
+	"name": "Casco Dentado",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Si el portador es alcanzado por un ataque físico, el agresor también recibe daño.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "ASSAULTVEST",
+	"name": "Chaleco Asalto",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Chaleco que potencia la Def. Esp. del Pokémon que lo lleva, pero le impide lanzar ataques de estado.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SAFETYGOGGLES",
+	"name": "Gafa Protectora",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Gafa que protege de los efectos adversos del clima y del polvo lanzado por los rivales.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "PROTECTIVEPADS",
+	"name": "Paracontacto",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Protege al Pokémon de los efectos que le produciría el contacto directo en combate.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "HEAVYDUTYBOOTS",
+	"name": "Botas Gruesas",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Anula los efectos de aquello que se coloca a los pies del Pokémon para obstaculizarlo, como las trampas.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "UTILITYUMBRELLA",
+	"name": "Parasol Multiuso",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El portador se vuelve invulnerable a los efectos de los climas lluvioso y soleado.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "EJECTBUTTON",
+	"name": "Botón Escape",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Si el portador es alcanzado por un ataque, saldrá del combate y será sustituido por otro Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EJECTPACK",
+	"name": "Mochila Escape",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Si el portador ve reducidas sus características, será sustituido por otro Pokémon del equipo.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "REDCARD",
+	"name": "Tarjeta Roja",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Misteriosa tarjeta que permite al Pokémon que la lleve expulsar al agresor cuando este le cause daño.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SHEDSHELL",
+	"name": "Muda Concha",
+	"pocket": "1",
+	"price": 3000,
+	"description": "En combate, esta concha desechada sirve para que un Pokémon se cambie por otro que no esté combatiendo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SMOKEBALL",
+	"name": "Bola Humo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarla un Pokémon. Permite huir de combates contra Pokémon salvajes.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LUCKYEGG",
+	"name": "Huevo Suerte",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Es un huevo lleno de felicidad que te hará ganar Puntos de Exp. extra en combate. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPSHARE",
+	"name": "Repartir Exp",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El Pokémon que lo lleva obtiene parte de los Puntos de Exp. conseguidos en el combate sin participar en él.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPSHARE2",
+	"name": "Repartir Exp Equipo",
+	"pocket": "8",
+	"price": 0,
+	"description": "Permite repartir los Puntos de Exp. entre los Pokémon que el entrenador elija desde la opción del equipo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "AMULETCOIN",
+	"name": "Moneda Amuleto",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Si el Pokémon que la lleva lucha en un combate, duplica las ganancias.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SOOTHEBELL",
+	"name": "Cascabel Alivio",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Una campana con un tañido calmante que reconforta al Pokémon que la lleva y lo vuelve más amistoso.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CLEANSETAG",
+	"name": "Amuleto",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "CHOICEBAND",
+	"name": "Cinta Elección",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Aumenta el Ataque un 50% pero solo permite usar un tipo de movimiento un 50%. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CHOICESPECS",
+	"name": "Gafas Elección",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Potencian el At. Esp. un 50% pero solo permiten usar un tipo de movimiento. Debe llevarlas un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CHOICESCARF",
+	"name": "Pañuelo Elección",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Debe llevarlo un Pokémon. Potencia la Velocidad un 50%, pero solo permite usar un tipo de movimiento.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "HEATROCK",
+	"name": "Roca Calor",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración del movimiento Día Soleado que use el Pokémon que la lleva.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "DAMPROCK",
+	"name": "Roca Lluvia",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración del movimiento Danza Lluvia que use el Pokémon que la lleva.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "SMOOTHROCK",
+	"name": "Roca Suave",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración del movimiento Tormenta Arena que use el Pokémon que la lleva.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ICYROCK",
+	"name": "Roca Helada",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración del movimiento Granizo del Pokémon que la lleva.",
+	"flags": [
+      "Fling_40"
+	]
+  },
+  {
+	"key": "TERRAINEXTENDER",
+	"name": "Cubresuelos",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Al llevarlo, prolonga la duración de los campos creados por el Pokémon en el terreno de combate.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "LIGHTCLAY",
+	"name": "Refleluz",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración de barreras como Reflejo y Pantalla de Luz. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GRIPCLAW",
+	"name": "Garra Garfio",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Prolonga la duración de ataques multiturno como Atadura y Repetición. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "BINDINGBAND",
+	"name": "Banda Atadura",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Banda que potencia los movimientos que estrujan al rival.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BIGROOT",
+	"name": "Raíz Grande",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Potencia los movimientos que roban PS. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "BLACKSLUDGE",
+	"name": "Lodo Negro",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Restaura gradualmente los PS de los Pokémon de tipo Veneno y daña a todos los demás.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LEFTOVERS",
+	"name": "Restos",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Restauran gradualmente los PS del Pokémon que los lleva durante el combate.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SHELLBELL",
+	"name": "Cascabel Concha",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Debe llevarla un Pokémon. Cada vez que este inflija daño, recuperará algunos PS.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MENTALHERB",
+	"name": "Hierba Mental",
+	"pocket": "1",
+	"price": 4000,
+	"description": "El Pokémon que la lleve se libera del enamoramiento. Solo puede usarse una vez.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "WHITEHERB",
+	"name": "Hierba Blanca",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Restaura cualquier característica debilitada en combate. Solo se puede usar una vez.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "POWERHERB",
+	"name": "Hierba Única",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Permite el uso inmediato de cualquier movimiento en el primer turno. Es de un solo uso.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ABSORBBULB",
+	"name": "Tubérculo",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Raíz de usar y tirar que sube el Ataque Especial cuando se recibe un ataque de tipo Agua.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "CELLBATTERY",
+	"name": "Pila",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Batería de usar y tirar que sube el Ataque de quien la lleva cuando recibe un golpe de tipo Eléctrico.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LUMINOUSMOSS",
+	"name": "Musgo Brillante",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Aumenta la Def. Esp. del Pokémon que la lleva si este recibe un ataque de tipo Agua. Es de un solo uso.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SNOWBALL",
+	"name": "Bola de Nieve",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Aumenta el Ataque del Pokémon que lo lleva si este recibe un ataque de tipo Hielo. Es de un solo uso.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "WEAKNESSPOLICY",
+	"name": "Seguro Debilidad",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Aumenta mucho el Atq. y el At. Esp. cuando el Pokémon que lo lleva recibe un ataque frente al cual es débil.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BLUNDERPOLICY",
+	"name": "Seguro Fallo",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Aumenta mucho la Velocidad cuando el Pokémon erra el movimiento debido a la precisión.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "THROATSPRAY",
+	"name": "Espray Bucal",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Aumenta el Ataque Especial al emplear un movimiento que se sirva del sonido.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ADRENALINEORB",
+	"name": "Nerviosfera",
+	"pocket": "1",
+	"price": 300,
+	"description": "Si lo lleva un Pokémon, sube la Velocidad al ser intimidado. Es de un solo uso.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ROOMSERVICE",
+	"name": "Servicio Raro",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Si lo lleva un Pokémon, reduce la Velocidad cuando se usa Espacio Raro.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "ELECTRICSEED",
+	"name": "Semilla Electro",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Aumenta la Defensa del portador si el terreno está cubierto por un Campo Eléctrico.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "GRASSYSEED",
+	"name": "Semilla Hierba",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Aumenta la Defensa del portador si el terreno está cubierto por un Campo de Hierba.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "MISTYSEED",
+	"name": "Semilla Bruma",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Aumenta la Defensa Especial del portador si el terreno está cubierto por un Campo de Niebla.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "PSYCHICSEED",
+	"name": "Semilla Psique",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Aumenta la Defensa Especial del portador si el terreno está cubierto por un Campo Psíquico.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "LIFEORB",
+	"name": "Vidasfera",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Potencia los movimientos, pero consume PS con cada ataque un 30%. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPERTBELT",
+	"name": "Cinta Experto",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Potencia ligeramente los movimientos supereficaces un 20%. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "METRONOME",
+	"name": "Metrónomo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Potencia un movimiento que se use de forma consecutiva. Pero el efecto se pierde si se emplea otro movimiento.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MUSCLEBAND",
+	"name": "Cinta Fuerte",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Cinta de pelo que aumenta ligeramente la potencia de los movimientos físicos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "WISEGLASSES",
+	"name": "Gafas Especiales",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Potencian ligeramente los movimientos especiales. Debe llevarlas un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "RAZORCLAW",
+	"name": "Garra Afilada",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Aumenta a la probabilidad de que el Pokémon que la lleva consiga un golpe crítico.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCOPELENS",
+	"name": "Periscopio",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Su lente aumenta la posibilidad que tiene el Pokémon que lo lleva de conseguir un golpe crítico.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "WIDELENS",
+	"name": "Lupa",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Debe llevarla un Pokémon. Aumenta ligeramente la precisión de los movimientos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ZOOMLENS",
+	"name": "Telescopio",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Debe llevarlo un Pokémon. Si se mueve después del enemigo, aumenta el índice de precisión del Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "KINGSROCK",
+	"name": "Roca del Rey",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Puede amedrentar al enemigo cuando el Pokémon que la lleva le hiera.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RAZORFANG",
+	"name": "Colmillo Agudo",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Si lo lleva un Pokémon cuando hiere a un rival, puede amedrentarlo.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LAGGINGTAIL",
+	"name": "Cola Plúmbea",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Es muy pesada y hace que el Pokémon que la lleva se mueva más lento de lo normal.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "QUICKCLAW",
+	"name": "Garra Rápida",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Garra ligera y afilada que permite que el Pokémon que la lleve ataque primero ocasionalmente.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "FOCUSBAND",
+	"name": "Cinta Aguante",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El Pokémon que la lleve puede resistir un golpe que lo debilitaría y quedarse con 1 PS.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "FOCUSSASH",
+	"name": "Banda Aguante",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Si el Pokémon que la lleva tiene los PS al máximo, resistirá un golpe que potencialmente lo deja KO con 1 PS.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "FLAMEORB",
+	"name": "Llamasfera",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Extraña esfera que causa quemaduras a quien la usa en combate. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "TOXICORB",
+	"name": "Toxisfera",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Extraña esfera que envenena gravemente a quien la usa en combate. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "STICKYBARB",
+	"name": "Toxiestrella",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Daña en cada turno al Pokémon que la lleva y también puede dañar a los enemigos que toquen al Pokémon.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "IRONBALL",
+	"name": "Bola Férrea",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Reduce la Velocidad y los movimientos tipo Tierra afectan a Pokémon que levitan y los de tipo Volador.",
+	"flags": [
+      "Fling_130"
+	]
+  },
+  {
+	"key": "RINGTARGET",
+	"name": "Blanco",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El Pokémon que lo lleva es vulnerable frente a movimientos que normalmente no afectan a su tipo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "MACHOBRACE",
+	"name": "Brazal Firme",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Sólido y pesado brazal que fomenta el crecimiento pero reduce la Velocidad. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "POWERWEIGHT",
+	"name": "Pesa Recia",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a conseguir más PS al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "POWERBRACER",
+	"name": "Brazal Recio",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a ganar Ataque al subir de nivel, pero reduce la Velocidad. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "POWERBELT",
+	"name": "Cinto Recio",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a ganar Defensa al subir de nivel, pero reduce la Velocidad. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "POWERLENS",
+	"name": "Lente Recia",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a ganar At. Esp. al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "POWERBAND",
+	"name": "Banda Recia",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a ganar Def. Esp. al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "POWERANKLET",
+	"name": "Franja Recia",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Ayuda a ganar Velocidad al subir de nivel, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "LAXINCENSE",
+	"name": "Incienso Suave",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Debe llevarlo un Pokémon. Su peculiar aroma reduce la precisión del rival.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "FULLINCENSE",
+	"name": "Incienso Lento",
+	"pocket": "1",
+	"price": 5000,
+	"description": "Exótica sustancia aromática que hace que el Pokémon que la lleva se mueva más despacio.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "LUCKINCENSE",
+	"name": "Incienso Duplo",
+	"pocket": "1",
+	"price": 11000,
+	"description": "Incienso de aroma exótico. Si el Pokémon que lo lleva participa en un combate, duplica las ganancias.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "PUREINCENSE",
+	"name": "Incienso Puro",
+	"pocket": "1",
+	"price": 6000,
+	"description": "Si lo lleva el primer Pokémon del equipo, los Pokémon salvajes se acercarán con menos frecuencia.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SEAINCENSE",
+	"name": "Incienso Marino",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Tiene un curioso aroma que potencia la energía de los ataques de tipo Agua. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "WAVEINCENSE",
+	"name": "Incienso Aqua",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Incienso exótico que fortalece los movimientos de tipo Agua. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ROSEINCENSE",
+	"name": "Incienso Floral",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Incienso de exótico aroma que fortalece los movimientos de tipo Planta. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ODDINCENSE",
+	"name": "Incienso Raro",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Incienso de exótico aroma que fortalece los movimientos de tipo Psíquico. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ROCKINCENSE",
+	"name": "Incienso Roca",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Incienso de exótico aroma que fortalece los movimientos de tipo Roca. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CHARCOAL",
+	"name": "Carbón",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Actúa como combustible y potencia la energía de los ataques de tipo Fuego. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MYSTICWATER",
+	"name": "Agua Mística",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Gema con forma de lágrima que fortalece los ataques de tipo Agua un 20%. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MAGNET",
+	"name": "Imán",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarlo un Pokémon. Su potente magnetismo fortalece los ataques de tipo Eléctrico.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MIRACLESEED",
+	"name": "Semilla Milagro",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarla un Pokémon. La vitalidad de la semilla fortalece los ataques de tipo Planta.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "NEVERMELTICE",
+	"name": "Antiderretir",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Fragmento de hielo que repele el calor y fortalece los ataques de tipo Hielo. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BLACKBELT",
+	"name": "Cinturón Negro",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarlo un Pokémon. Aumenta la decisión y fortalece los ataques de tipo Lucha.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "POISONBARB",
+	"name": "Flecha Venenosa",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Flecha venenosa que refuerza los movimientos de tipo Veneno un 20%. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "SOFTSAND",
+	"name": "Arena Fina",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarla un Pokémon. La suavidad de la arena fortalece los ataques de tipo Tierra.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SHARPBEAK",
+	"name": "Pico Afilado",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Pico largo y afilado que aumenta la potencia de los movimientos de tipo Volador. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "TWISTEDSPOON",
+	"name": "Cuchara Torcida",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Cuchara llena de energía telequinética que potencia los movimientos de tipo Psíquico.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SILVERPOWDER",
+	"name": "Polvo Plata",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Polvo de brillo argénteo que fortalece los ataques de tipo Bicho. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "HARDSTONE",
+	"name": "Piedra Dura",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarla un Pokémon. La robustez de la piedra fortalece los ataques de tipo Roca.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "SPELLTAG",
+	"name": "Hechizo",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Misterioso y oscuro objeto que refuerza los ataques de tipo Fantasma. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DRAGONFANG",
+	"name": "Colmillo Dragón",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Colmillo de gran dureza que refuerza los ataques de tipo Dragón. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "BLACKGLASSES",
+	"name": "Gafas de Sol",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Debe llevarlas un Pokémon. Fortalecen los ataques de tipo Siniestro.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "METALCOAT",
+	"name": "Revestim. Metálico",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Película metálica que fortalece los ataques de tipo Acero. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SILKSCARF",
+	"name": "Pañuelo de Seda",
+	"pocket": "1",
+	"price": 3000,
+	"description": "La delicadeza del pañuelo fortalece los ataques de tipo Normal. Debe llevarlo un Pokémon.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "FLAMEPLATE",
+	"name": "Tabla Llama",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "SPLASHPLATE",
+	"name": "Tabla Linfa",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "ZAPPLATE",
+	"name": "Tabla Trueno",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "MEADOWPLATE",
+	"name": "Tabla Pradal",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "ICICLEPLATE",
+	"name": "Tabla Helada",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "FISTPLATE",
+	"name": "Tabla Fuerte",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TOXICPLATE",
+	"name": "Tabla Tóxica",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "EARTHPLATE",
+	"name": "Tabla Terrax",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "SKYPLATE",
+	"name": "Tabla Cielo",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "MINDPLATE",
+	"name": "Tabla Mental",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "INSECTPLATE",
+	"name": "Tabla Bicho",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "STONEPLATE",
+	"name": "Tabla Pétrea",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "SPOOKYPLATE",
+	"name": "Tabla Terror",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "DRACOPLATE",
+	"name": "Tabla Draco",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "DREADPLATE",
+	"name": "Tabla Oscura",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "IRONPLATE",
+	"name": "Tabla Acero",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "PIXIEPLATE",
+	"name": "Tabla Duende",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Hada. Debe llevarla un Pokémon.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "FIREGEM",
+	"name": "Gema Fuego",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "WATERGEM",
+	"name": "Gema Agua",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "ELECTRICGEM",
+	"name": "Gema Eléctrico",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "GRASSGEM",
+	"name": "Gema Planta",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "ICEGEM",
+	"name": "Gema Hielo",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "FIGHTINGGEM",
+	"name": "Gema Lucha",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "POISONGEM",
+	"name": "Gema Veneno",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "GROUNDGEM",
+	"name": "Gema Tierra",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "FLYINGGEM",
+	"name": "Gema Volador",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "PSYCHICGEM",
+	"name": "Gema Psíquico",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "BUGGEM",
+	"name": "Gema Bicho",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "ROCKGEM",
+	"name": "Gema Roca",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "GHOSTGEM",
+	"name": "Gema Fantasma",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "DRAGONGEM",
+	"name": "Gema Dragón",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "DARKGEM",
+	"name": "Gema Siniestro",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "STEELGEM",
+	"name": "Gema Acero",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "FAIRYGEM",
+	"name": "Gema Hada",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Hada. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "NORMALGEM",
+	"name": "Gema Normal",
+	"pocket": "1",
+	"price": 4000,
+	"description": "Joya de un solo uso que potencia los movimientos de tipo Normal. Debe llevarla un Pokémon.",
+	"flags": [
+      "TypeGem"
+	]
+  },
+  {
+	"key": "LIGHTBALL",
+	"name": "Bolaluminosa",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Asombrosa esfera que debe llevar Pikachu y que aumenta el Ataque y el Ataque Especial.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LUCKYPUNCH",
+	"name": "Puño Suerte",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Debe llevarlo Chansey. Potencia su índice de golpe crítico.",
+	"flags": [
+      "Fling_40"
+	]
+  },
+  {
+	"key": "METALPOWDER",
+	"name": "Polvo Metálico",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez resistente, que aumentará su Defensa.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "QUICKPOWDER",
+	"name": "Polvo Veloz",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Este objeto duplica la Velocidad de Ditto en batalla. Deja de ser efectivo una vez se transforma.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "THICKCLUB",
+	"name": "Hueso Grueso",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Un extraño tipo de hueso que potencia el Ataque. Suelen llevarlo Cubone o Marowak.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "LEEK",
+	"name": "Puerro",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Es un puerro muy largo que suele llevar Farfetch'd. Aumenta la probabilidad de un golpe crítico.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "SOULDEW",
+	"name": "Rocío Bondad",
+	"pocket": "1",
+	"price": 0,
+	"description": "Un orbe fantástico que deben llevar Latios o Latias. Potencia los movimientos de tipo Dragón y Psíquico en un 20%.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DEEPSEATOOTH",
+	"name": "Diente Marino",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Tiene el brillo afilado de la plata y debe llevarlo Clamperl. Sube el At. Esp.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "DEEPSEASCALE",
+	"name": "Escama Marina",
+	"pocket": "1",
+	"price": 2000,
+	"description": "Tiene un débil brillo rosado y debe llevarla Clamperl. Sube la Def. Esp.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ADAMANTORB",
+	"name": "Diamansfera",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Una esfera brillante que potencia los ataques de tipo Acero y Dragón. Debe llevarla Dialga.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "LUSTROUSORB",
+	"name": "Lustresfera",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Una bonita esfera que potencia los ataques de tipo Dragón y Agua. Debe llevarla Palkia.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "GRISEOUSORB",
+	"name": "Griseosfera",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Una esfera brillante que potencia los ataques de tipo Dragón y Fantasma. Debe llevarla Giratina.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "RUSTEDSWORD",
+	"name": "Espada Oxidada",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cuenta una antigua leyenda que un valiente héroe blandió esta espada para hacer frente a un cataclismo.",
+	"flags": []
+  },
+  {
+	"key": "RUSTEDSHIELD",
+	"name": "Escudo Oxidado",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cuenta una antigua leyenda que un valiente héroe asió este escudo para hacer frente a un cataclismo.",
+	"flags": []
+  },
+  {
+	"key": "DOUSEDRIVE",
+	"name": "HidroROM",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Agua.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "SHOCKDRIVE",
+	"name": "FulgoROM",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Eléctrico.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "BURNDRIVE",
+	"name": "PiroROM",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Fuego.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "CHILLDRIVE",
+	"name": "CrioROM",
+	"pocket": "1",
+	"price": 0,
+	"description": "Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Hielo.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "FIREMEMORY",
+	"name": "Disco Fuego",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Fuego. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "WATERMEMORY",
+	"name": "Disco Agua",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Agua. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "ELECTRICMEMORY",
+	"name": "Disco Eléctrico",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Eléctrico. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "GRASSMEMORY",
+	"name": "Disco Planta",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Planta. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "ICEMEMORY",
+	"name": "Disco Hielo",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Hielo. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "FIGHTINGMEMORY",
+	"name": "Disco Lucha",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Lucha. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "POISONMEMORY",
+	"name": "Disco Veneno",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Veneno. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "GROUNDMEMORY",
+	"name": "Disco Tierra",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Tierra. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "FLYINGMEMORY",
+	"name": "Disco Volador",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Volador. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "PSYCHICMEMORY",
+	"name": "Disco Psíquico",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Psíquico. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "BUGMEMORY",
+	"name": "Disco Bicho",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Bicho. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "ROCKMEMORY",
+	"name": "Disco Roca",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Roca. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "GHOSTMEMORY",
+	"name": "Disco Fantasma",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene info. relativa al tipo Fantasma. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "DRAGONMEMORY",
+	"name": "Disco Dragón",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Dragón. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "DARKMEMORY",
+	"name": "Disco Siniestro",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Siniestro. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "STEELMEMORY",
+	"name": "Disco Acero",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Acero. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "FAIRYMEMORY",
+	"name": "Disco Hada",
+	"pocket": "1",
+	"price": 1000,
+	"description": "Disco de datos que contiene información relativa al tipo Hada. Permite cambiar de tipo a Silvally.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "EVERSTONE",
+	"name": "Piedra Eterna",
+	"pocket": "1",
+	"price": 3000,
+	"description": "El Pokémon que lleve esta piedra mágica no evolucionará.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DRAGONSCALE",
+	"name": "Escamadragón",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Una gruesa y resistente escama que pueden llevar los Pokémon de tipo Dragón cuando son capturados.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "UPGRADE",
+	"name": "Mejora",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Peculiar dispositivo fabricado en Silph S.A. que contiene todo tipo de datos. Permite evolucionar a Porygon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "DUBIOUSDISC",
+	"name": "Disco Extraño",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Dispositivo transparente que contiene datos misteriosos. Permite evolucionar a Porygon2.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "PROTECTOR",
+	"name": "Protector",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Dispositivo de protección muy pesado. Sirve para evolucionar a Rhydon.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ELECTIRIZER",
+	"name": "Electrizador",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Este dispositivo contiene una gran cantidad de energía eléctrica. Sirve para evolucionar a Electabuzz.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MAGMARIZER",
+	"name": "Magmatizador",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Esta caja contiene una enorme cantidad de energía magmática. Sirve para evolucionar a Magmar.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "REAPERCLOTH",
+	"name": "Tela Terrible",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Tela imbuida de una energía espiritual muy potente. Sirve para evolucionar a Dusclops.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "PRISMSCALE",
+	"name": "Escama Bella",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Preciosa escama que permite evolucionar a Feebas. Brilla con los colores del arcoíris.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "OVALSTONE",
+	"name": "Piedra Oval",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Una piedra peculiar que permite evolucionar a Happiny. Tiene forma de huevo.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "WHIPPEDDREAM",
+	"name": "Dulce de Nata",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Un dulce a base de suave y esponjosa nata montada. Sirve para evolucionar a Swirlix.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SACHET",
+	"name": "Saquito Fragante",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Saquito que desprende un aroma peculiar. Sirve para evolucionar a Spritzee.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "STRAWBERRYSWEET",
+	"name": "Confite Fresa",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de fresa. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "LOVESWEET",
+	"name": "Confite Corazón",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de corazón. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "BERRYSWEET",
+	"name": "Confite Fruto",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de fruto. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CLOVERSWEET",
+	"name": "Confite Trébol",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de trébol. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "FLOWERSWEET",
+	"name": "Confite Flor",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de flor. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "STARSWEET",
+	"name": "Confite Estrella",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de estrella. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "RIBBONSWEET",
+	"name": "Confite Lazo",
+	"pocket": "1",
+	"price": 500,
+	"description": "Confite con forma de lazo. Permite evolucionar a Milcery.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "VENUSAURITE",
+	"name": "Venusaurita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Venusaur en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHARIZARDITEX",
+	"name": "Charizardita X",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHARIZARDITEY",
+	"name": "Charizardita Y",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BLASTOISINITE",
+	"name": "Blastoisita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Blastoise en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BEEDRILLITE",
+	"name": "Beedrillita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Beedrill en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "PIDGEOTITE",
+	"name": "Pidgeotita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Pidgeot en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ALAKAZITE",
+	"name": "Alakazamita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Alakazam en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SLOWBRONITE",
+	"name": "Slowbronita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Slowbro en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GENGARITE",
+	"name": "Gengarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Gengar en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "KANGASKHANITE",
+	"name": "Kangaskhanita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Kangaskhan en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "PINSIRITE",
+	"name": "Pinsirita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Pinsir en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GYARADOSITE",
+	"name": "Gyaradosita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Gyarados en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "AERODACTYLITE",
+	"name": "Aerodactylita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Aerodactyl en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MEWTWONITEX",
+	"name": "Mewtwoita X",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MEWTWONITEY",
+	"name": "Mewtwoita Y",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "AMPHAROSITE",
+	"name": "Ampharosita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Ampharos en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "STEELIXITE",
+	"name": "Steelixita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Steelix en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCIZORITE",
+	"name": "Scizorita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Scizor en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "HERACRONITE",
+	"name": "Heracrossita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Heracross en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "HOUNDOOMINITE",
+	"name": "Houndoomita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Houndoom en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TYRANITARITE",
+	"name": "Tyranitarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Tyranitar en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCEPTILITE",
+	"name": "Sceptilita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Sceptile en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BLAZIKENITE",
+	"name": "Blazikenita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Blaziken en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SWAMPERTITE",
+	"name": "Swampertita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Swampert en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GARDEVOIRITE",
+	"name": "Gardevoirita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Gardevoir en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SABLENITE",
+	"name": "Sableynita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Sableye en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MAWILITE",
+	"name": "Mawilita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Mawile en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "AGGRONITE",
+	"name": "Aggronita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Aggron en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MEDICHAMITE",
+	"name": "Medichamita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Medicham en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MANECTITE",
+	"name": "Manectricita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Manectric en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SHARPEDONITE",
+	"name": "Sharpedonita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Sharpedo en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CAMERUPTITE",
+	"name": "Cameruptita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Camerupt en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ALTARIANITE",
+	"name": "Altarianita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Altaria en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BANETTITE",
+	"name": "Banettita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Banette en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ABSOLITE",
+	"name": "Absolita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GLALITITE",
+	"name": "Glalita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Glalie en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SALAMENCITE",
+	"name": "Salamencita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Salamence en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "METAGROSSITE",
+	"name": "Metagrossita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Metagross en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "LATIASITE",
+	"name": "Latiasita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Latias en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "LATIOSITE",
+	"name": "Latiosita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Latios en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "LOPUNNITE",
+	"name": "Lopunnita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Lopunny en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GARCHOMPITE",
+	"name": "Garchompita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "LUCARIONITE",
+	"name": "Lucarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ABOMASITE",
+	"name": "Abomasnowita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Abomasnow en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GALLADITE",
+	"name": "Galladita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Gallade en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "AUDINITE",
+	"name": "Audinita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Audino en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DIANCITE",
+	"name": "Diancita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Diancie en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "REDORB",
+	"name": "Prisma Rojo",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Piedra carmesí de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.",
+	"flags": []
+  },
+  {
+	"key": "BLUEORB",
+	"name": "Prisma Azul",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Piedra añil que, según dicen, guarda una estrecha relación con las leyendas de Hoenn.",
+	"flags": []
+  },
+  {
+	"key": "CLEFABLITE",
+	"name": "Clefablita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Clefable en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "STARMINITE",
+	"name": "Starmita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Starmie en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "VICTREEBELITE",
+	"name": "Victreebelita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Victreebel en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DRAGONINITE",
+	"name": "Dragonitita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Dragonite en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MEGANIUMITE",
+	"name": "Meganiumita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Meganium en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "FERALIGITE",
+	"name": "Feraligatrita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Feraligatr en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SKARMORITE",
+	"name": "Skarmorita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Skarmory en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "FROSLASSITE",
+	"name": "Froslassita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Froslass en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "EMBOARITE",
+	"name": "Emboarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Emboar en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "EXCADRITE",
+	"name": "Excadrilita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Excadril en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCOLIPITE",
+	"name": "Scolipedita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Scolipede en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "EELEKTROSSITE",
+	"name": "Elektrossita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Eelektross en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCRAFTINITE",
+	"name": "Scraftita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Scrafty en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHANDELURITE",
+	"name": "Chandelurita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Chandelure en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHESNAUGHTITE",
+	"name": "Chesnaughtita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Chesnaught en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DELPHOXITE",
+	"name": "Delphoxita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Delphox en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GRENINJITE",
+	"name": "Greninjanita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Greninja en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "PYROARITE",
+	"name": "Pyroarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Pyroar en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MALAMARITE",
+	"name": "Malamarita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Malamar en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "HAWLUCHANITE",
+	"name": "Hawluchanita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Hawlucha en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BARBARACITE",
+	"name": "Barbaraclita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Barbaracle en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DRAGALGITE",
+	"name": "Dragalgita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Dragalge en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DRAMPANITE",
+	"name": "Drampanita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Drampa en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "FALINKSITE",
+	"name": "Falinksita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Falinks en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ZYGARDITE",
+	"name": "Zygardita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Zygarde en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "FLOETTITE",
+	"name": "Floettita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Floette Flor Eterna en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GARCHOMPITEZ",
+	"name": "Garchompita Z",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ABSOLITEZ",
+	"name": "Absolita Z",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "LUCARIONITEZ",
+	"name": "Lucarita Z",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "SCOVILLAINITE",
+	"name": "Scovillainita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Scovillain en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CRABOMINITE",
+	"name": "Crabominablita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Crabominable en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "STARAPTITE",
+	"name": "Staraptorita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Staraptor en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GOLURKITE",
+	"name": "Golurkita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Golurk en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "RAICHUNITEX",
+	"name": "Raichunita X",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "RAICHUNITEY",
+	"name": "Raichunita Y",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "DARKRANITE",
+	"name": "Darkrainita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Darkrai en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TATSUGIRINITE",
+	"name": "Tatsugirita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Tatsugiri en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MAGEARNITE",
+	"name": "Magearnita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Magearna en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GOLISOPITE",
+	"name": "Golisopodita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Golisopod en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MEOWSTICITE",
+	"name": "Meowsticita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Meowstic en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "HEATRANITE",
+	"name": "Heatranita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Heatran en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "GLIMMORANITE",
+	"name": "Glimmoranita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Glimmora en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "BAXCALIBRITE",
+	"name": "Baxcaliburita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Baxcalibur en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "CHIMECHITE",
+	"name": "Chimechita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Chimecho en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "ZERAORITE",
+	"name": "Zeraoranita",
+	"pocket": "1",
+	"price": 0,
+	"description": "Una de las misteriosas Megapiedras. Permite megaevolucionar a Zeraora en combate.",
+	"flags": [
+	  "MegaStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "POTION",
+	"name": "Poción",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que cura heridas y restaura 20 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "SUPERPOTION",
+	"name": "Superpoción",
+	"pocket": "2",
+	"price": 700,
+	"description": "Medicina en espray que cura heridas y restaura 60 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "HYPERPOTION",
+	"name": "Hiperpoción",
+	"pocket": "2",
+	"price": 1500,
+	"description": "Medicina en espray que cura heridas y restaura 120 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "MAXPOTION",
+	"name": "Poción Máxima",
+	"pocket": "2",
+	"price": 2500,
+	"description": "Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "FULLRESTORE",
+	"name": "Restaura Todo",
+	"pocket": "2",
+	"price": 3000,
+	"description": "Medicina que restaura todos los PS y cura todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "SACREDASH",
+	"name": "Ceniza Sagrada",
+	"pocket": "2",
+	"price": 50000,
+	"description": "Reanima completamente a los Pokémon debilitados y restaura todos sus PS.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "AWAKENING",
+	"name": "Despertar",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que libera a un Pokémon de las garras del sueño.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "ANTIDOTE",
+	"name": "Antídoto",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que contrarresta los efectos del veneno en un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "BURNHEAL",
+	"name": "Antiquemadura",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que cura las quemaduras a un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "PARALYZEHEAL",
+	"name": "Antiparalizante",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que cura a un Pokémon paralizado.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "ICEHEAL",
+	"name": "Antihielo",
+	"pocket": "2",
+	"price": 200,
+	"description": "Medicina en espray que descongela a un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "FULLHEAL",
+	"name": "Cura Total",
+	"pocket": "2",
+	"price": 400,
+	"description": "Medicina en espray que cura todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "PEWTERCRUNCHIES",
+	"name": "Rokikos",
+	"pocket": "2",
+	"price": 250,
+	"description": "Snack crujiente típico de Ciudad Plateada. Cura todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "RAGECANDYBAR",
+	"name": "Caramelo Furia",
+	"pocket": "2",
+	"price": 350,
+	"description": "Caramelo típico de Pueblo Caoba, muy popular como souvenir.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LAVACOOKIE",
+	"name": "Galleta Lava",
+	"pocket": "2",
+	"price": 350,
+	"description": "Dulce típico de Pueblo Lavacalda que cura todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "OLDGATEAU",
+	"name": "Barrita Plus",
+	"pocket": "2",
+	"price": 350,
+	"description": "Especialidad de la Vieja Mansión. Cura los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "CASTELIACONE",
+	"name": "Porcehelado",
+	"pocket": "2",
+	"price": 350,
+	"description": "Especialidad de Ciudad Porcelana. Cura los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "LUMIOSEGALETTE",
+	"name": "Crêpe Luminalia",
+	"pocket": "2",
+	"price": 350,
+	"description": "Postre típico de Ciudad Luminalia. Cura los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "SHALOURSABLE",
+	"name": "Galleta Yantra",
+	"pocket": "2",
+	"price": 350,
+	"description": "Especialidad de Ciudad Yantra. Cura los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "BIGMALASADA",
+	"name": "Malasada Maxi",
+	"pocket": "2",
+	"price": 350,
+	"description": "Fritura típica de Alola que cura todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "REVIVE",
+	"name": "Revivir",
+	"pocket": "2",
+	"price": 2000,
+	"description": "Medicina que reanima a un Pokémon debilitado y restaura la mitad de sus PS.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "MAXREVIVE",
+	"name": "Revivir Máximo",
+	"pocket": "2",
+	"price": 4000,
+	"description": "Medicina que reanima a un Pokémon debilitado y restaura todos sus PS.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "BERRYJUICE",
+	"name": "Zumo de Baya",
+	"pocket": "2",
+	"price": 100,
+	"description": "Zumo de bayas 100% natural que restaura 20 PS de un Pokémon. Si se equipa el Pokémon lo usará automáticamente.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SWEETHEART",
+	"name": "Corazón Dulce",
+	"pocket": "2",
+	"price": 3000,
+	"description": "Chocolatina de sabor dulce. Restaura 20 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "FRESHWATER",
+	"name": "Agua Fresca",
+	"pocket": "2",
+	"price": 200,
+	"description": "Agua de alto contenido mineral que restaura 30 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "SODAPOP",
+	"name": "Refresco",
+	"pocket": "2",
+	"price": 300,
+	"description": "Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "LEMONADE",
+	"name": "Limonada",
+	"pocket": "2",
+	"price": 350,
+	"description": "Bebida dulce que restaura 70 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "MOOMOOMILK",
+	"name": "Leche Mu-mu",
+	"pocket": "2",
+	"price": 600,
+	"description": "Leche de alto valor nutritivo que restaura 100 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "ENERGYPOWDER",
+	"name": "Polvo Energía",
+	"pocket": "2",
+	"price": 500,
+	"description": "Polvo medicinal muy amargo que restaura 50 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "ENERGYROOT",
+	"name": "Raíz Energía",
+	"pocket": "2",
+	"price": 1200,
+	"description": "Raíz muy amarga que restaura 120 PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "HEALPOWDER",
+	"name": "Polvo Curación",
+	"pocket": "2",
+	"price": 300,
+	"description": "Polvos muy amargos que curan todos los problemas de estado de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "REVIVALHERB",
+	"name": "Hierba Revivir",
+	"pocket": "2",
+	"price": 2800,
+	"description": "Hierba muy amarga que reanima a un Pokémon debilitado y restaura todos sus PS.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "MAXHONEY",
+	"name": "Maxipanal",
+	"pocket": "2",
+	"price": 8000,
+	"description": "Miel producida por un Vespiquen Dinamax. Revive y restaura todos los PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "ETHER",
+	"name": "Éter",
+	"pocket": "2",
+	"price": 1200,
+	"description": "Restaura un máximo de 10 PP del ataque que elijas de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MAXETHER",
+	"name": "Éter Máximo",
+	"pocket": "2",
+	"price": 2000,
+	"description": "Restaura completamente los PP del movimiento que elijas de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ELIXIR",
+	"name": "Elixir",
+	"pocket": "2",
+	"price": 3000,
+	"description": "Restaura 10 PP de todos los movimientos aprendidos por un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MAXELIXIR",
+	"name": "Elixir Máximo",
+	"pocket": "2",
+	"price": 4500,
+	"description": "Restaura completamente los PP de todos los movimientos aprendidos por el Pokémon elegido.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "PPUP",
+	"name": "Más PP",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Aumenta ligeramente los PP máximos del ataque que elijas de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "PPMAX",
+	"name": "PP Máximos",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Aumenta al máximo los PP del ataque que elijas de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "HPUP",
+	"name": "Más PS",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que aumenta los PS de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "PROTEIN",
+	"name": "Proteína",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que aumenta el Ataque de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "IRON",
+	"name": "Hierro",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que aumenta la Defensa de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "CALCIUM",
+	"name": "Calcio",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que sube el At. Esp. de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "ZINC",
+	"name": "Zinc",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que aumenta la Defensa Especial de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "CARBOS",
+	"name": "Carburante",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Nutritiva bebida que sube la Velocidad de un Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "HEALTHFEATHER",
+	"name": "Pluma Vigor",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta los PS base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "MUSCLEFEATHER",
+	"name": "Pluma Músculo",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta el Ataque base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "RESISTFEATHER",
+	"name": "Pluma Aguante",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta la Defensa base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "GENIUSFEATHER",
+	"name": "Pluma Intelecto",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta el Ataque Especial base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "CLEVERFEATHER",
+	"name": "Pluma Mente",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta la Defensa Especial base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "SWIFTFEATHER",
+	"name": "Pluma Ímpetu",
+	"pocket": "2",
+	"price": 300,
+	"description": "Objeto que aumenta la Velocidad base de un Pokémon.",
+	"flags": [
+	  "Fling_20",
+      "Vitamin"
+	]
+  },
+  {
+	"key": "LONELYMINT",
+	"name": "Menta Huraña",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Huraña (+At., -Def.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ADAMANTMINT",
+	"name": "Menta Firme",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Firme (+At., -At.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "NAUGHTYMINT",
+	"name": "Menta Pícara",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Pícara (+At., -Def.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "BRAVEMINT",
+	"name": "Menta Audaz",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Audaz (+At., -Vel.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "BOLDMINT",
+	"name": "Menta Osada",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Osada (+Def., -At.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "IMPISHMINT",
+	"name": "Menta Agitada",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Agitada (+Def., -At.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "LAXMINT",
+	"name": "Menta Floja",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Floja (+Def., -Def.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "RELAXEDMINT",
+	"name": "Menta Plácida",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Plácida (+Def., -Vel.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "MODESTMINT",
+	"name": "Menta Modesta",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Modesta (+At.Esp., -At.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "MILDMINT",
+	"name": "Menta Afable",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Afable (+At.Esp., -Def.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "RASHMINT",
+	"name": "Menta Alocada",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Alocada (+At.Esp., -Def.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "QUIETMINT",
+	"name": "Menta Mansa",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Mansa (+At.Esp., -Vel.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CALMMINT",
+	"name": "Menta Serena",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Serena (+Def.Esp., -At.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "GENTLEMINT",
+	"name": "Menta Amable",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Amable (+Def.Esp., -Def.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "CAREFULMINT",
+	"name": "Menta Cauta",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Cauta (+Def.Esp., -At.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SASSYMINT",
+	"name": "Menta Grosera",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Grosera (+Def.Esp., -Vel.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TIMIDMINT",
+	"name": "Menta Miedosa",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Miedosa (+Vel., -At.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "HASTYMINT",
+	"name": "Menta Activa",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Activa (+Vel., -Def.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "JOLLYMINT",
+	"name": "Menta Alegre",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Alegre (+Vel., -At.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "NAIVEMINT",
+	"name": "Menta Ingenua",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Ingenua (+Vel., -Def.Esp.).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "SERIOUSMINT",
+	"name": "Menta Seria",
+	"pocket": "2",
+	"price": 20,
+	"description": "Menta que cambia la naturaleza de tu Pokémon a Seria (neutra).",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "ABILITYCAPSULE",
+	"name": "Cápsula Habilidad",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Cápsula que les permite cambiar de habilidad a los Pokémon que poseen dos.",
+	"flags": []
+  },
+  {
+	"key": "ABILITYPATCH",
+	"name": "Parche Habilidad",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Parche que permite cambiar la habilidad normal de un Pokémon por la oculta.",
+	"flags": []
+  },
+  {
+	"key": "SUPERCAPSULE",
+	"name": "Super Cápsula",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Una cápsula especial que permite a un Pokémon cambiar de habilidad entre todas las que tiene.",
+	"flags": []
+  },
+  {
+	"key": "EXPCANDYXS",
+	"name": "Caramelo Exp. XS",
+	"pocket": "2",
+	"price": 20,
+	"description": "Caramelo energético que aumenta ligerísimamente los Puntos de Experiencia de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPCANDYS",
+	"name": "Caramelo Exp. S",
+	"pocket": "2",
+	"price": 240,
+	"description": "Caramelo energético que aumenta ligeramente los Puntos de Experiencia de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPCANDYM",
+	"name": "Caramelo Exp. M",
+	"pocket": "2",
+	"price": 1000,
+	"description": "Caramelo energético que aumenta los Puntos de Experiencia de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPCANDYL",
+	"name": "Caramelo Exp. L",
+	"pocket": "2",
+	"price": 3000,
+	"description": "Caramelo energético que aumenta bastante los Puntos de Experiencia de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "EXPCANDYXL",
+	"name": "Caramelo Exp. XL",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Caramelo energético que aumenta mucho los Puntos de Experiencia de un Pokémon.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "RARECANDY",
+	"name": "Caramelo Raro",
+	"pocket": "2",
+	"price": 10000,
+	"description": "Caramelo energético que sube a un Pokémon de nivel.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "UNRARECANDY",
+	"name": "Caramelo Malo",
+	"pocket": "2",
+	"price": 5000,
+	"description": "Caramelo energético que baja a un Pokémon de nivel.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "POKEBALL",
+	"name": "Poké Ball",
+	"pocket": "3",
+	"price": 200,
+	"description": "Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se lanza como una bola contra el blanco.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "GREATBALL",
+	"name": "Super Ball",
+	"pocket": "3",
+	"price": 600,
+	"description": "Poké Ball de alto rendimiento. Tiene un índice de éxito superior al de la Poké Ball.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "ULTRABALL",
+	"name": "Ultra Ball",
+	"pocket": "3",
+	"price": 800,
+	"description": "Poké Ball de rendimiento superior. Tiene más índice de éxito que la Superball.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "MASTERBALL",
+	"name": "Master Ball",
+	"pocket": "3",
+	"price": 0,
+	"description": "La Poké Ball definitiva. Atrapa a cualquier Pokémon salvaje y no falla nunca.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "SAFARIBALL",
+	"name": "Safari Ball",
+	"pocket": "3",
+	"price": 0,
+	"description": "Poké Ball con un diseño de camuflaje que se utiliza únicamente en el Gran Pantano.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "SPORTBALL",
+	"name": "Competi Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Poké Ball especial para el Concurso de Captura de Bichos.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "NETBALL",
+	"name": "Malla Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Es algo distinta a las demás. Funciona especialmente bien con los Pokémon de tipo Agua y Bicho.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "DIVEBALL",
+	"name": "Buceo Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Es algo distinta a las demás. Funciona especialmente bien con los Pokémon que viven en el mar.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "NESTBALL",
+	"name": "Nido Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Es algo distinta a las demás. Funciona especialmente bien con los Pokémon salvajes de menor nivel.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "REPEATBALL",
+	"name": "Acopio Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Es algo distinta a las demás. Funciona especialmente bien con los Pokémon iguales a los que ya has capturado.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "TIMERBALL",
+	"name": "Turno Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Una Poké Ball algo distinta que va mejorando su rendimiento con cada turno de combate.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "LUXURYBALL",
+	"name": "Lujo Ball",
+	"pocket": "3",
+	"price": 3000,
+	"description": "Acogedora Poké Ball que hace más amistosos a los Pokémon salvajes capturados.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "PREMIERBALL",
+	"name": "Honor Ball",
+	"pocket": "3",
+	"price": 200,
+	"description": "Es una Poké Ball muy particular que se creó para conmemorar algún acontecimiento.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "DUSKBALL",
+	"name": "Ocaso Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Es algo distinta. Hace que sea más fácil capturar a Pokémon salvajes en la oscuridad.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "HEALBALL",
+	"name": "Sana Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Poké Ball curativa que restaura los PS de un Pokémon capturado y cura sus problemas de estado.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "QUICKBALL",
+	"name": "Veloz Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Una Poké Ball que aumenta su eficacia si se usa en el turno 1 del combate.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "CHERISHBALL",
+	"name": "Gloria Ball",
+	"pocket": "3",
+	"price": 0,
+	"description": "Es una Poké Ball muy particular que se creó para conmemorar algún acontecimiento.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "FASTBALL",
+	"name": "Rapid Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Poké Ball algo distinta, especialmente indicada para capturar Pokémon con Velocidad muy alta.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "LEVELBALL",
+	"name": "Nivel Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball diseñada para capturar Pokémon de nivel inferior al de tu Pokémon.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "LUREBALL",
+	"name": "Cebo Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Poké Ball algo distinta, especialmente indicada para capturar los Pokémon que se han pescado con una Caña.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "HEAVYBALL",
+	"name": "Peso Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball diseñada para capturar Pokémon muy pesados.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "LOVEBALL",
+	"name": "Amor Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball diseñada para capturar Pokémon del género opuesto al de tu Pokémon.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "FRIENDBALL",
+	"name": "Amigo Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball que hace más amistosos a los Pokémon capturados.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "MOONBALL",
+	"name": "Luna Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball diseñada para capturar Pokémon que evolucionan con Piedra Lunar.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "DREAMBALL",
+	"name": "Ensueño Ball",
+	"pocket": "3",
+	"price": 300,
+	"description": "Una Poké Ball algo diferente que funciona mejor cuando el Pokémon está dormido.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "BEASTBALL",
+	"name": "Ente Ball",
+	"pocket": "3",
+	"price": 1000,
+	"description": "Una Poké Ball especial diseñada para capturar Ultraentes. Con otros Pokémon suele fallar.",
+	"flags": [
+      "PokeBall"
+	]
+  },
+  {
+	"key": "TM01",
+	"name": "MT01",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Se concentra para dar un puñetazo. Falla si se sufre un golpe antes de su uso.",
+	"flags": [
+      "Fling_150"
+	]
+  },
+  {
+	"key": "TM02",
+	"name": "MT02",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Araña al objetivo con garras afiladas.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM03",
+	"name": "MT03",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con un potente chorro de agua. Puede confundir al objetivo.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM04",
+	"name": "MT04",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Aumenta la concentración y calma el espíritu para subir el Ataque Especial y la Defensa Especial.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM05",
+	"name": "MT05",
+	"pocket": "4",
+	"price": 1000,
+	"description": "Se lleva al objetivo, que es cambiado por otro Pokémon. Si es un Pokémon salvaje, acaba el combate.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM06",
+	"name": "MT06",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Envenena gravemente al objetivo y causa un daño mayor en cada turno.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM07",
+	"name": "MT07",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Tormenta de granizo que dura cinco turnos. Hiere a s, excepto a los de tipo Hielo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM08",
+	"name": "MT08",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Robustece el cuerpo para subir el Ataque y la Defensa.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM09",
+	"name": "MT09",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Dispara rápido de dos a cinco ráfagas de semillas de manera consecutiva.",
+	"flags": [
+      "Fling_25"
+	]
+  },
+  {
+	"key": "TM10",
+	"name": "MT10",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Movimiento que aumenta el Ataque y el Ataque Especial de quien lo usa.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM11",
+	"name": "MT11",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Intensifica el sol durante cinco turnos, lo que potencia los movimientos de tipo Fuego.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM12",
+	"name": "MT12",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Enfurece al objetivo para que solo use movimientos de ataque durante tres turnos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM13",
+	"name": "MT13",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Rayo de hielo que puede llegar a congelar.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM14",
+	"name": "MT14",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Tormenta de hielo que puede llegar a congelar.",
+	"flags": [
+      "Fling_110"
+	]
+  },
+  {
+	"key": "TM15",
+	"name": "MT15",
+	"pocket": "4",
+	"price": 7500,
+	"description": "Un rayo fulminante, pero el atacante deberá descansar en el siguiente turno.",
+	"flags": [
+      "Fling_150"
+	]
+  },
+  {
+	"key": "TM16",
+	"name": "MT16",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Pared de luz que reduce durante cinco turnos el daño producido por los ataques especiales.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM17",
+	"name": "MT17",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Frena los ataques, pero puede fallar si se usa repetidamente.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM18",
+	"name": "MT18",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Genera una fuerte lluvia que refuerza los movimientos de tipo Agua durante cinco turnos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM19",
+	"name": "MT19",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Absorbe la mitad del daño producido.",
+	"flags": [
+      "Fling_75"
+	]
+  },
+  {
+	"key": "TM20",
+	"name": "MT20",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Crea un campo protector que evita problemas de estado durante cinco turnos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM21",
+	"name": "MT21",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Inflige daño a los oponentes con una potente luz.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM22",
+	"name": "MT22",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Primer turno: absorbe luz. Segundo turno: ataca.",
+	"flags": [
+      "Fling_120"
+	]
+  },
+  {
+	"key": "TM23",
+	"name": "MT23",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con una cola férrea y puede bajar la Defensa del objetivo.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "TM24",
+	"name": "MT24",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Potente ataque eléctrico que puede paralizar al objetivo.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM25",
+	"name": "MT25",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Un poderoso rayo que daña al objetivo y puede paralizarlo.",
+	"flags": [
+      "Fling_110"
+	]
+  },
+  {
+	"key": "TM26",
+	"name": "MT26",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Un terremoto que afecta a los Pokémon de alrededor en combate.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "TM27",
+	"name": "MT27",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Un veloz ataque a los pies que reduce la Velocidad del objetivo.",
+	"flags": [
+      "Fling_65"
+	]
+  },
+  {
+	"key": "TM28",
+	"name": "MT28",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Primer turno: cava. Segundo turno: ataca. También sirve para salir de ciertas zonas.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM29",
+	"name": "MT29",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Fuerte ataque telequinético que puede bajar la Defensa Especial del objetivo.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM30",
+	"name": "MT30",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Lanza una bola oscura que puede bajar la Defensa Especial del objetivo.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM31",
+	"name": "MT31",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Potente ataque que también es capaz de destruir barreras como pantalla de luz y reflejo.",
+	"flags": [
+      "Fling_75"
+	]
+  },
+  {
+	"key": "TM32",
+	"name": "MT32",
+	"pocket": "4",
+	"price": 1000,
+	"description": "Crea copias de sí mismo para mejorar la Evasión.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM33",
+	"name": "MT33",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Pared de luz que reduce durante cinco turnos el daño producido por los ataques físicos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM34",
+	"name": "MT34",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataque eléctrico muy rápido e ineludible.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM35",
+	"name": "MT35",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con una gran ráfaga de fuego que puede causar quemaduras.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM36",
+	"name": "MT36",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Arroja residuos al objetivo. Puede llegar a envenenar.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM37",
+	"name": "MT37",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Tormenta de arena que dura cinco turnos y hiere a s, excepto a los de tipo Roca, Tierra y Acero.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM38",
+	"name": "MT38",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Llama intensa que lo chamusca y puede causar quemaduras.",
+	"flags": [
+      "Fling_110"
+	]
+  },
+  {
+	"key": "TM39",
+	"name": "MT39",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Tira rocas que detienen al objetivo y bajan su Velocidad.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM40",
+	"name": "MT40",
+	"pocket": "4",
+	"price": 3000,
+	"description": "El usuario lanza un ataque muy rápido e ineludible.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM41",
+	"name": "MT41",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Atormenta y enfurece al objetivo, que no puede usar dos veces seguidas el mismo movimiento.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM42",
+	"name": "MT42",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con el doble de potencia si el usuario está quemado, paralizado o envenenado.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "TM43",
+	"name": "MT43",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Tras atacar, vuelve a toda prisa para dar paso a otro Pokémon del equipo.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "TM44",
+	"name": "MT44",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Restaura los PS y cura los problemas de estado del usuario. Duerme los dos próximos turnos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM45",
+	"name": "MT45",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Si el objetivo es del sexo opuesto, se enamorará y bajará la posibilidad de que ataque.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM46",
+	"name": "MT46",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Ataca y le quita al objetivo su objeto. Si el agresor lleva un objeto, no robará el del objetivo.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM47",
+	"name": "MT47",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Alas macizas que golpean al objetivo y pueden subir la Defensa del usuario.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "TM48",
+	"name": "MT48",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Usa el poder psíquico para intercambiar habilidades con el objetivo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM49",
+	"name": "MT49",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca arrojando agua hirviendo al objetivo. Puede causar quemaduras.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM50",
+	"name": "MT50",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Ataque en toda regla que baja mucho el Ataque Especial de quien lo usa.",
+	"flags": [
+      "Fling_130"
+	]
+  },
+  {
+	"key": "TM51",
+	"name": "MT51",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Aterriza sobre la superficie para descansar. Recupera hasta la mitad del total de sus PS.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM52",
+	"name": "MT52",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Agudiza la concentración mental y libera su poder. Puede disminuir la Def. Esp. del rival.",
+	"flags": [
+      "Fling_120"
+	]
+  },
+  {
+	"key": "TM53",
+	"name": "MT53",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Aúna fuerzas de la naturaleza y libera su ataque. Puede disminuir la Defensa Especial del objetivo.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM54",
+	"name": "MT54",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Ataque moderado que no debilita al objetivo y le deja al menos un PS.",
+	"flags": [
+      "Fling_40"
+	]
+  },
+  {
+	"key": "TM55",
+	"name": "MT55",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Si al objetivo le queda la mitad o menos de sus PS, el ataque será el doble de fuerte.",
+	"flags": [
+      "Fling_65"
+	]
+  },
+  {
+	"key": "TM56",
+	"name": "MT56",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Lanza contra el objetivo su objeto. La fuerza del ataque y su efecto varían según el objeto.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM57",
+	"name": "MT57",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Lanza un rayo eléctrico contra el rival. Puede subir el Ataque Especial de quien lo usa.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "TM58",
+	"name": "MT58",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Resiste cualquier ataque y deja al menos un PS. Puede fallar si se usa repetidamente.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM59",
+	"name": "MT59",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Abre mucho la boca y libera una onda de choque que ataca al objetivo.",
+	"flags": [
+      "Fling_85"
+	]
+  },
+  {
+	"key": "TM60",
+	"name": "MT60",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Un golpe que drena energía. El Pokémon recupera la mitad de los PS arrebatados al objetivo.",
+	"flags": [
+      "Fling_75"
+	]
+  },
+  {
+	"key": "TM61",
+	"name": "MT61",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Siniestra llama morada que produce quemaduras.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM62",
+	"name": "MT62",
+	"pocket": "4",
+	"price": 3000,
+	"description": "El movimiento de las alas crea una onda sónica dañina. Puede disminuir la Defensa Especial del objetivo.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM63",
+	"name": "MT63",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Estimula su cerebro pensando en cosas malas. Aumenta considerablemente el Ataque Especial.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM64",
+	"name": "MT64",
+	"pocket": "4",
+	"price": 7500,
+	"description": "El atacante explota y hiere a todos a su alrededor. El usuario se debilita de inmediato.",
+	"flags": [
+      "Fling_250"
+	]
+  },
+  {
+	"key": "TM65",
+	"name": "MT65",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con una garra afilada hecha de sombras. Suele ser crítico.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "TM66",
+	"name": "MT66",
+	"pocket": "4",
+	"price": 3000,
+	"description": "El usuario contraataca con el doble de fuerza si el objetivo usa un movimiento antes.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "TM67",
+	"name": "MT67",
+	"pocket": "4",
+	"price": 1000,
+	"description": "Recicla y así recupera el objeto equipado de un solo uso que ya ha sido empleado en el combate.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM68",
+	"name": "MT68",
+	"pocket": "4",
+	"price": 7500,
+	"description": "Carga contra el rival usando toda la fuerza que tiene. El Pokémon descansa el turno siguiente.",
+	"flags": [
+      "Fling_150"
+	]
+  },
+  {
+	"key": "TM69",
+	"name": "MT69",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Reduce la resistencia puliendo su cuerpo. Aumenta la Velocidad considerablemente.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM70",
+	"name": "MT70",
+	"pocket": "4",
+	"price": 1000,
+	"description": "Luz cegadora que baja la Precisión del objetivo. Fuera de combate sirve para iluminar.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM71",
+	"name": "MT71",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Clava piedras muy afiladas al objetivo. Suele ser crítico.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "TM72",
+	"name": "MT72",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Este ataque inflige el doble de daño a un objetivo que haya golpeado al usuario en ese mismo turno.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM73",
+	"name": "MT73",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Una ligera descarga que paraliza al objetivo si lo alcanza.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM74",
+	"name": "MT74",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Embiste con un potente ataque giratorio. Cuanto más lento es el usuario, más daño causa.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM75",
+	"name": "MT75",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Baile frenético que aumenta mucho el Ataque.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM76",
+	"name": "MT76",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Una trampa de rocas que flota en el aire y daña a los objetivos que entran en combate.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM77",
+	"name": "MT77",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Se hipnotiza y copia cualquier cambio que haya en las características de su objetivo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM78",
+	"name": "MT78",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca lanzando un chillido insoportable que baja el Ataque Especial de los objetivos.",
+	"flags": [
+      "Fling_55"
+	]
+  },
+  {
+	"key": "TM79",
+	"name": "MT79",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Libera una horrible aura llena de malos pensamientos y puede amedrentar al objetivo.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM80",
+	"name": "MT80",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Lanza grandes pedruscos. Puede amedrentar al objetivo.",
+	"flags": [
+      "Fling_75"
+	]
+  },
+  {
+	"key": "TM81",
+	"name": "MT81",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Cruza las guadañas o las garras para atacar al rival como si fueran unas tijeras.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM82",
+	"name": "MT82",
+	"pocket": "4",
+	"price": 1000,
+	"description": "Mientras duerme, usa uno de sus movimientos elegido al azar.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM83",
+	"name": "MT83",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Ataca con una sacudida sísmica que afecta a los Pokémon adyacentes y baja su Velocidad.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM84",
+	"name": "MT84",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Pincha al rival con un tentáculo o brazo envenenado. Puede llegar a envenenar al rival.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM85",
+	"name": "MT85",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Restaura al usuario la mitad del daño causado a un objetivo dormido.",
+	"flags": [
+      "Fling_100"
+	]
+  },
+  {
+	"key": "TM86",
+	"name": "MT86",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Enreda al objetivo con hierba y lo derriba. Cuanto más pesado es el objetivo, más daño inflige.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM87",
+	"name": "MT87",
+	"pocket": "4",
+	"price": 1500,
+	"description": "Provoca confusión en el objetivo, pero también sube mucho su Ataque.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM88",
+	"name": "MT88",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Picotea al objetivo. Si este sostiene una Baya, la picotea también y obtiene sus efectos.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TM89",
+	"name": "MT89",
+	"pocket": "4",
+	"price": 3000,
+	"description": "Tras atacar, vuelve a toda prisa para dar paso a otro Pokémon del equipo.",
+	"flags": [
+      "Fling_70"
+	]
+  },
+  {
+	"key": "TM90",
+	"name": "MT90",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Utiliza parte de los PS propios para crear un sustituto que actúa como señuelo.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM91",
+	"name": "MT91",
+	"pocket": "4",
+	"price": 3000,
+	"description": "El usuario concentra toda la luz del cuerpo y la libera. Puede bajar la Defensa Especial del objetivo.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM92",
+	"name": "MT92",
+	"pocket": "4",
+	"price": 5500,
+	"description": "Se crea un espacio extraño en el que los Pokémon lentos se mueven primero durante cinco turnos.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM93",
+	"name": "MT93",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",
+	"flags": [
+      "Fling_50"
+	]
+  },
+  {
+	"key": "TM94",
+	"name": "MT94",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Primer turno: vuela. Segundo turno: ataca. Fuera de combate, permite ir a sitios ya conocidos.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM95",
+	"name": "MT95",
+	"pocket": "4",
+	"price": 2500,
+	"description": "Inunda el campo de batalla con una ola gigante. Fuera de batalla sirve para moverse sobre el agua.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "TM96",
+	"name": "MT96",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Potente puñetazo. Fuera de combate sirve para mover piedras.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM97",
+	"name": "MT97",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Potente viento que barre el reflejo o pantalla de luz del objetivo y puede reducir su Evasión.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TM98",
+	"name": "MT98",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",
+	"flags": [
+      "Fling_40"
+	]
+  },
+  {
+	"key": "TM99",
+	"name": "MT99",
+	"pocket": "4",
+	"price": 2500,
+	"description": "Embiste con un gran impulso que puede amedrentar. También sirve para remontar cascadas.",
+	"flags": [
+      "Fling_80"
+	]
+  },
+  {
+	"key": "TM100",
+	"name": "MT100",
+	"pocket": "4",
+	"price": 2000,
+	"description": "Ataca con una gran embestida. Puede confundir al objetivo.",
+	"flags": [
+      "Fling_90"
+	]
+  },
+  {
+	"key": "HM01",
+	"name": "MO01",
+	"pocket": "4",
+	"price": 0,
+	"description": "Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",
+	"flags": []
+  },
+  {
+	"key": "HM02",
+	"name": "MO02",
+	"pocket": "4",
+	"price": 0,
+	"description": "Primer turno: vuela. Segundo turno: ataca. Fuera de combate, permite ir a sitios ya conocidos.",
+	"flags": []
+  },
+  {
+	"key": "HM03",
+	"name": "MO03",
+	"pocket": "4",
+	"price": 0,
+	"description": "Inunda el campo de batalla con una ola gigante. Fuera de batalla sirve para moverse sobre el agua.",
+	"flags": []
+  },
+  {
+	"key": "HM04",
+	"name": "MO04",
+	"pocket": "4",
+	"price": 0,
+	"description": "Potente puñetazo. Fuera de combate sirve para mover piedras.",
+	"flags": []
+  },
+  {
+	"key": "HM05",
+	"name": "MO05",
+	"pocket": "4",
+	"price": 0,
+	"description": "Embiste con un gran impulso que puede amedrentar. También sirve para remontar cascadas.",
+	"flags": []
+  },
+  {
+	"key": "HM06",
+	"name": "MO06",
+	"pocket": "4",
+	"price": 0,
+	"description": "Primer turno: se sumerge en el mar. Segundo turno: emerge y ataca.",
+	"flags": []
+  },
+  {
+	"key": "CHERIBERRY",
+	"name": "Baya Zreza",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_FIRE_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "CHESTOBERRY",
+	"name": "Baya Atania",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para despertar del sueño.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_WATER_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "PECHABERRY",
+	"name": "Baya Meloc",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para curarse del envenenamiento.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_ELECTRIC_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "RAWSTBERRY",
+	"name": "Baya Safre",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para curarse las quemaduras.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_GRASS_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "ASPEARBERRY",
+	"name": "Baya Perasi",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para descongelarse.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_ICE_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "LEPPABERRY",
+	"name": "Baya Zanama",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para restaurar 10 PP de un movimiento.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_FIGHTING_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "ORANBERRY",
+	"name": "Baya Aranja",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden usarla o llevarla para restaurar 10 PS.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_POISON_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "PERSIMBERRY",
+	"name": "Baya Caquic",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden usarla o llevarla para salir del estado de confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_GROUND_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "LUMBERRY",
+	"name": "Baya Ziuela",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden llevarla o usarla para recuperarse de problemas de estado.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_FLYING_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "SITRUSBERRY",
+	"name": "Baya Zidra",
+	"pocket": "5",
+	"price": 20,
+	"description": "Los Pokémon pueden usarla o llevarla para restaurar algunos PS.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_PSYCHIC_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "FIGYBERRY",
+	"name": "Baya Higog",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_BUG_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "WIKIBERRY",
+	"name": "Baya Wiki",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_ROCK_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "MAGOBERRY",
+	"name": "Baya Ango",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_GHOST_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "AGUAVBERRY",
+	"name": "Baya Guaya",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_DRAGON_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "IAPAPABERRY",
+	"name": "Baya Pabaya",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+	  "NaturalGift_DARK_80",
+      "Healing"
+	]
+  },
+  {
+	"key": "RAZZBERRY",
+	"name": "Baya Frambu",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Frambu.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_STEEL_80"
+	]
+  },
+  {
+	"key": "BLUKBERRY",
+	"name": "Baya Oram",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Oram.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIRE_90"
+	]
+  },
+  {
+	"key": "NANABBERRY",
+	"name": "Baya Latano",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Latano.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_WATER_90"
+	]
+  },
+  {
+	"key": "WEPEARBERRY",
+	"name": "Baya Peragu",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Peragu.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ELECTRIC_90"
+	]
+  },
+  {
+	"key": "PINAPBERRY",
+	"name": "Baya Pinia",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Pinia.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GRASS_90"
+	]
+  },
+  {
+	"key": "POMEGBERRY",
+	"name": "Baya Grana",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero también reduces sus PS.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ICE_90"
+	]
+  },
+  {
+	"key": "KELPSYBERRY",
+	"name": "Baya Algama",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero reduces su Ataque.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIGHTING_90"
+	]
+  },
+  {
+	"key": "QUALOTBERRY",
+	"name": "Baya Ispero",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero reduces su Defensa.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_POISON_90"
+	]
+  },
+  {
+	"key": "HONDEWBERRY",
+	"name": "Baya Meluce",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero reduces su Ataque Especial.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GROUND_90"
+	]
+  },
+  {
+	"key": "GREPABERRY",
+	"name": "Baya Uvav",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero reduces su Defensa Especial.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FLYING_90"
+	]
+  },
+  {
+	"key": "TAMATOBERRY",
+	"name": "Baya Tamate",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la usas en un Pokémon te ganas su amistad, pero baja su Velocidad.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_PSYCHIC_90"
+	]
+  },
+  {
+	"key": "CORNNBERRY",
+	"name": "Baya Mais",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Mais.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_BUG_90"
+	]
+  },
+  {
+	"key": "MAGOSTBERRY",
+	"name": "Baya Aostan",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Aostan.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ROCK_90"
+	]
+  },
+  {
+	"key": "RABUTABERRY",
+	"name": "Baya Rautan",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Rautan.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GHOST_90"
+	]
+  },
+  {
+	"key": "NOMELBERRY",
+	"name": "Baya Monli",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Monli.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DRAGON_90"
+	]
+  },
+  {
+	"key": "SPELONBERRY",
+	"name": "Baya Wikano",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Wikano.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DARK_90"
+	]
+  },
+  {
+	"key": "PAMTREBERRY",
+	"name": "Baya Plama",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Plama.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_STEEL_90"
+	]
+  },
+  {
+	"key": "WATMELBERRY",
+	"name": "Baya Sambia",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Sambia.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIRE_100"
+	]
+  },
+  {
+	"key": "DURINBERRY",
+	"name": "Baya Rudion",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Rudion.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_WATER_100"
+	]
+  },
+  {
+	"key": "BELUEBERRY",
+	"name": "Baya Andano",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la plantas en tierra suelta, saldrá una planta de Andano.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ELECTRIC_100"
+	]
+  },
+  {
+	"key": "OCCABERRY",
+	"name": "Baya Caoca",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Fuego.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIRE_80"
+	]
+  },
+  {
+	"key": "PASSHOBERRY",
+	"name": "Baya Pasio",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Agua.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_WATER_80"
+	]
+  },
+  {
+	"key": "WACANBERRY",
+	"name": "Baya Gualot",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Eléctrico.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ELECTRIC_80"
+	]
+  },
+  {
+	"key": "RINDOBERRY",
+	"name": "Baya Tamar",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Planta.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GRASS_80"
+	]
+  },
+  {
+	"key": "YACHEBERRY",
+	"name": "Baya Rimoya",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Hielo.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ICE_80"
+	]
+  },
+  {
+	"key": "CHOPLEBERRY",
+	"name": "Baya Pomaro",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Lucha.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIGHTING_80"
+	]
+  },
+  {
+	"key": "KEBIABERRY",
+	"name": "Baya Kebia",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Veneno.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_POISON_80"
+	]
+  },
+  {
+	"key": "SHUCABERRY",
+	"name": "Baya Acardo",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Tierra.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GROUND_80"
+	]
+  },
+  {
+	"key": "COBABERRY",
+	"name": "Baya Kouba",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Volador.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FLYING_80"
+	]
+  },
+  {
+	"key": "PAYAPABERRY",
+	"name": "Baya Payapa",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Psíquico.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_PSYCHIC_80"
+	]
+  },
+  {
+	"key": "TANGABERRY",
+	"name": "Baya Yecana",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Bicho.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_BUG_80"
+	]
+  },
+  {
+	"key": "CHARTIBERRY",
+	"name": "Baya Alcho",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Roca.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ROCK_80"
+	]
+  },
+  {
+	"key": "KASIBBERRY",
+	"name": "Baya Drasi",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Fantasma.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GHOST_80"
+	]
+  },
+  {
+	"key": "HABANBERRY",
+	"name": "Baya Anjiro",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Dragón.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DRAGON_80"
+	]
+  },
+  {
+	"key": "COLBURBERRY",
+	"name": "Baya Dillo",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Siniestro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DARK_80"
+	]
+  },
+  {
+	"key": "BABIRIBERRY",
+	"name": "Baya Baribá",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita ataques supereficaces de tipo Acero.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_STEEL_80"
+	]
+  },
+  {
+	"key": "ROSELIBERRY",
+	"name": "Baya Hibis",
+	"pocket": "5",
+	"price": 20,
+	"description": "Debilita ataques super eficaces de tipo Hada.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FAIRY_80"
+	]
+  },
+  {
+	"key": "CHILANBERRY",
+	"name": "Baya Chilan",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, debilita el ataque de tipo Normal de un enemigo.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_NORMAL_80"
+	]
+  },
+  {
+	"key": "LIECHIBERRY",
+	"name": "Baya Lichi",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, le subirá el Ataque en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GRASS_100"
+	]
+  },
+  {
+	"key": "GANLONBERRY",
+	"name": "Baya Gonlan",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, le subirá la Defensa en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ICE_100"
+	]
+  },
+  {
+	"key": "SALACBERRY",
+	"name": "Baya Aslac",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, le subirá la Velocidad en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FIGHTING_100"
+	]
+  },
+  {
+	"key": "PETAYABERRY",
+	"name": "Baya Yapati",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, le subirá el At. Esp. en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_POISON_100"
+	]
+  },
+  {
+	"key": "APICOTBERRY",
+	"name": "Baya Aricoc",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, le subirá la Def. Esp. en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GROUND_100"
+	]
+  },
+  {
+	"key": "LANSATBERRY",
+	"name": "Baya Zonlan",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, sube su capacidad de dar un golpe crítico en un apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FLYING_100"
+	]
+  },
+  {
+	"key": "STARFBERRY",
+	"name": "Baya Arabol",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon, aumenta drásticamente 1 característica en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_PSYCHIC_100"
+	]
+  },
+  {
+	"key": "ENIGMABERRY",
+	"name": "Baya Enigma",
+	"pocket": "5",
+	"price": 20,
+	"description": "Restaura los PS de un Pokémon si la lleva cuando le alcanza un ataque supereficaz.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_BUG_100"
+	]
+  },
+  {
+	"key": "MICLEBERRY",
+	"name": "Baya Lagro",
+	"pocket": "5",
+	"price": 20,
+	"description": "Cuando la lleve un Pokémon, le subirá la precisión de un movimiento en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_ROCK_100"
+	]
+  },
+  {
+	"key": "CUSTAPBERRY",
+	"name": "Baya Chiri",
+	"pocket": "5",
+	"price": 20,
+	"description": "El Pokémon que la lleve podrá actuar en primer lugar una vez cuando se encuentre en un momento de apuro.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_GHOST_100"
+	]
+  },
+  {
+	"key": "JABOCABERRY",
+	"name": "Baya Jaboca",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon cuando un enemigo lanza un ataque físico, este también recibirá daño.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DRAGON_100"
+	]
+  },
+  {
+	"key": "ROWAPBERRY",
+	"name": "Baya Magua",
+	"pocket": "5",
+	"price": 20,
+	"description": "Si la lleva un Pokémon cuando un enemigo lanza un ataque especial, este también recibirá daño.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DARK_100"
+	]
+  },
+  {
+	"key": "KEEBERRY",
+	"name": "Baya Biglia",
+	"pocket": "5",
+	"price": 20,
+	"description": "Aumenta la defensa cuando el Pokémon recibe un ataque físico.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_FAIRY_100"
+	]
+  },
+  {
+	"key": "MARANGABERRY",
+	"name": "Baya Maranga",
+	"pocket": "5",
+	"price": 20,
+	"description": "Aumenta la defensa especial cuando el Pokémon recibe un ataque especial.",
+	"flags": [
+	  "Berry",
+	  "Fling_10",
+      "NaturalGift_DARK_100"
+	]
+  },
+  {
+	"key": "GRASSMAIL",
+	"name": "Carta Hierba",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con un estampado de hierba. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "FLAMEMAIL",
+	"name": "Carta Fuego",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con los colores del fuego. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "BUBBLEMAIL",
+	"name": "Carta Pompas",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con una imagen de burbujas. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "BLOOMMAIL",
+	"name": "Carta Flores",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con un bonito estampado floral. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "TUNNELMAIL",
+	"name": "Carta Mina",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con la imagen de una mina de carbón poco iluminada. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "STEELMAIL",
+	"name": "Carta Acero",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con un estupendo diseño de estilo industrial. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "HEARTMAIL",
+	"name": "Carta Corazón",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con un estampado de corazones. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "SNOWMAIL",
+	"name": "Carta Nieve",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con la imagen de un bonito mundo cubierto de nieve. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "SPACEMAIL",
+	"name": "Carta Sideral",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con la imagen de una galaxia. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "AIRMAIL",
+	"name": "Carta Áerea",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con el diseño tradicional del correo aéreo. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "MOSAICMAIL",
+	"name": "Carta Mosaico",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con un mosaico de arco iris. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "BRICKMAIL",
+	"name": "Carta Pared",
+	"pocket": "6",
+	"price": 50,
+	"description": "Carta con la imagen de una pared de ladrillos. Haz que la entregue un Pokémon.",
+	"flags": [
+      "IconMail"
+	]
+  },
+  {
+	"key": "XATTACK",
+	"name": "Ataque X",
+	"pocket": "7",
+	"price": 1000,
+	"description": "Aumenta 1 nivel el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XATTACK2",
+	"name": "Ataque X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XATTACK3",
+	"name": "Ataque X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XATTACK6",
+	"name": "Ataque X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XDEFENSE",
+	"name": "Defensa X",
+	"pocket": "7",
+	"price": 2000,
+	"description": "Aumenta 1 nivel la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XDEFENSE2",
+	"name": "Defensa X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XDEFENSE3",
+	"name": "Defensa X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XDEFENSE6",
+	"name": "Defensa X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPATK",
+	"name": "Ataque Especial X",
+	"pocket": "7",
+	"price": 1000,
+	"description": "Aumenta 1 nivel el At. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPATK2",
+	"name": "Ataque Especial X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles el At. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPATK3",
+	"name": "Ataque Especial X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles el At. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPATK6",
+	"name": "Ataque Especial X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles el At. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPDEF",
+	"name": "Defensa Especial X",
+	"pocket": "7",
+	"price": 2000,
+	"description": "Aumenta 1 nivel la Def. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPDEF2",
+	"name": "Defensa Especial X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles la Def. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPDEF3",
+	"name": "Defensa Especial X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles la Def. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPDEF6",
+	"name": "Defensa Especial X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles la Def. Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPEED",
+	"name": "Velocidad X",
+	"pocket": "7",
+	"price": 1000,
+	"description": "Aumenta 1 nivel la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPEED2",
+	"name": "Velocidad X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPEED3",
+	"name": "Velocidad X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XSPEED6",
+	"name": "Velocidad X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XACCURACY",
+	"name": "Precisión X",
+	"pocket": "7",
+	"price": 1000,
+	"description": "Aumenta 1 nivel la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XACCURACY2",
+	"name": "Precisión X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XACCURACY3",
+	"name": "Precisión X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "XACCURACY6",
+	"name": "Precisión X 6",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 6 niveles la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "MAXMUSHROOMS",
+	"name": "Maxisetas",
+	"pocket": "7",
+	"price": 8000,
+	"description": "Setas que aumentan todas las estadísticas de un Pokémon en combate.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "DIREHIT",
+	"name": "Crítico X",
+	"pocket": "7",
+	"price": 1000,
+	"description": "Aumenta 1 nivel el índice de golpe crítico en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "DIREHIT2",
+	"name": "Crítico X 2",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 2 niveles el índice de golpe crítico en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "DIREHIT3",
+	"name": "Crítico X 3",
+	"pocket": "7",
+	"price": 0,
+	"description": "Aumenta 3 niveles el índice de golpe crítico en combate. Al cambiar de Pokémon, el efecto desaparece.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "GUARDSPEC",
+	"name": "Prot. Especial",
+	"pocket": "7",
+	"price": 1500,
+	"description": "Evita que bajen las características del equipo Pokémon durante cinco turnos.",
+	"flags": [
+	  "Fling_30",
+      "XItem"
+	]
+  },
+  {
+	"key": "RESETURGE",
+	"name": "Quitaestado",
+	"pocket": "7",
+	"price": 0,
+	"description": "Cuando se usa, se anulan los cambios en las características de un Pokémon de tu equipo.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ABILITYURGE",
+	"name": "Habilitador",
+	"pocket": "7",
+	"price": 0,
+	"description": "Al usarlo, activa la habilidad de un Pokémon de tu equipo.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ITEMURGE",
+	"name": "Activaobjeto",
+	"pocket": "7",
+	"price": 0,
+	"description": "Cuando se usa, un Pokémon de tu equipo utiliza su objeto inmediatamente.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ITEMDROP",
+	"name": "Tiraobjeto",
+	"pocket": "7",
+	"price": 0,
+	"description": "Cuando se usa, un Pokémon de tu equipo pierde su objeto.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BLUEFLUTE",
+	"name": "Flauta Azul",
+	"pocket": "7",
+	"price": 20,
+	"description": "Flauta de cristal azul cuya melodía despierta a los Pokémon dormidos.",
+	"flags": [
+	  "Fling_30",
+      "Healing"
+	]
+  },
+  {
+	"key": "YELLOWFLUTE",
+	"name": "Flauta Amarilla",
+	"pocket": "7",
+	"price": 20,
+	"description": "Flauta de cristal amarillo que espabila a los Pokémon confusos.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "REDFLUTE",
+	"name": "Flauta Roja",
+	"pocket": "7",
+	"price": 20,
+	"description": "Flauta de cristal rojo que libera a un Pokémon del enamoramiento.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "POKEDOLL",
+	"name": "Pokémuñeco",
+	"pocket": "7",
+	"price": 300,
+	"description": "Un muñeco que atrae a los Pokémon. Puedes utilizarlo para huir de un combate con un Pokémon salvaje.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "FLUFFYTAIL",
+	"name": "Cola Skitty",
+	"pocket": "7",
+	"price": 300,
+	"description": "Atrae a los Pokémon y sirve para huir de un combate con un Pokémon salvaje.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "POKETOY",
+	"name": "Pokéseñuelo",
+	"pocket": "7",
+	"price": 300,
+	"description": "Un objeto que atrae a los Pokémon. Puedes utilizarlo para huir de un combate con un Pokémon salvaje.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BICYCLE",
+	"name": "Bici",
+	"pocket": "8",
+	"price": 0,
+	"description": "Bicicleta plegable con la que se va más rápido que con deportivas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "OLDROD",
+	"name": "Caña Vieja",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "GOODROD",
+	"name": "Caña Buena",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SUPERROD",
+	"name": "Caña de Pescar",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "ITEMFINDER",
+	"name": "Buscaobjetos",
+	"pocket": "8",
+	"price": 0,
+	"description": "Detector de objetos invisibles por ondas sonoras. Emite una señal cuando encuentra un objeto.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "DOWSINGMACHINE",
+	"name": "Zahorí",
+	"pocket": "8",
+	"price": 0,
+	"description": "Aparato de precisión que reacciona con luz y sonido ante los objetos que no se ven e indica su posición.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "POKERADAR",
+	"name": "Poké Radar",
+	"pocket": "8",
+	"price": 0,
+	"description": "Busca Pokémon que se esconden en la hierba. La batería se recarga mientras caminas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "TOWNMAP",
+	"name": "Mapa",
+	"pocket": "8",
+	"price": 0,
+	"description": "Un mapa que puede consultarse en cualquier momento y que te indica dónde te encuentras.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "ESCAPEROPE",
+	"name": "Cuerda Huida",
+	"pocket": "8",
+	"price": 0,
+	"description": "Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "COINCASE",
+	"name": "Monedero",
+	"pocket": "8",
+	"price": 0,
+	"description": "Pequeño monedero para guardar fichas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "POKEFLUTE",
+	"name": "Poké Flauta",
+	"pocket": "8",
+	"price": 0,
+	"description": "Consigue despertar al instante a cualquier Pokémon y suena de maravilla.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SOOTSACK",
+	"name": "Saco Hollín",
+	"pocket": "8",
+	"price": 0,
+	"description": "Un saco grande y resistente utilizado para transportar la ceniza volcánica.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SILPHSCOPE",
+	"name": "Detector Silph",
+	"pocket": "8",
+	"price": 0,
+	"description": "Dispositivo hecho en SILPH S.A para ver Pokémon invisibles.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "DEVONSCOPE",
+	"name": "Detector Devon",
+	"pocket": "8",
+	"price": 0,
+	"description": "Dispositivo hecho en DEVON para ver Pokémon invisibles.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SQUIRTBOTTLE",
+	"name": "Squirgadera",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una regadera con forma de Squirtle. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SPRAYDUCK",
+	"name": "Psydugadera",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una regadera con forma de Psyduck. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "WAILMERPAIL",
+	"name": "Wailmegadera",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una regadera con forma de Wailmer. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SPRINKLOTAD",
+	"name": "Lotadgadera",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una regadera con forma de Lotad. Ayuda a que las bayas plantadas en suelo blandito crezcan mejor.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "GRACIDEA",
+	"name": "Gracídea",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una flor que se suele regalar para expresar agradecimiento. Permite cambiar a Shaymin a su forma Cielo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "REVEALGLASS",
+	"name": "Espejo Veraz",
+	"pocket": "8",
+	"price": 0,
+	"description": "Espejo misterioso que refleja la verdad y devuelve los Pokémon a su forma original.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "PRISONBOTTLE",
+	"name": "Vasija Castigo",
+	"pocket": "8",
+	"price": 0,
+	"description": "Vasija en la que se halla confinado el poder de cierto Pokémon desde hace mucho tiempo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "ROTOMCATALOG",
+	"name": "Catálogo Rotom",
+	"pocket": "8",
+	"price": 0,
+	"description": "Catálogos con los distintos electrodomésticos que Rotom puede poseer.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "ZYGARDECUBE",
+	"name": "Arca de Zygarde",
+	"pocket": "8",
+	"price": 0,
+	"description": "Dispositivo para almacenar células de Zygarde. Permite cambiarle de forma y movs.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "DNASPLICERS",
+	"name": "Punta ADN",
+	"pocket": "8",
+	"price": 0,
+	"description": "Punta que permite fusionar a Kyurem con cierto Pokémon con el que, originariamente, formaba un solo ser.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "DNASPLICERSUSED",
+	"name": "Punta ADN",
+	"pocket": "8",
+	"price": 0,
+	"description": "Punta que permite fusionar a Kyurem con cierto Pokémon con el que, originariamente, formaba un solo ser.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "NSOLARIZER",
+	"name": "Necrosol",
+	"pocket": "8",
+	"price": 0,
+	"description": "Artefacto que permite fusionar a Necrozma, ávido de luz, con Solgaleo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "NSOLARIZERUSED",
+	"name": "Necrosol",
+	"pocket": "8",
+	"price": 0,
+	"description": "Artefacto que permite fusionar a Necrozma, ávido de luz, con Solgaleo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "NLUNARIZER",
+	"name": "Necroluna",
+	"pocket": "8",
+	"price": 0,
+	"description": "Artefacto que permite fusionar a Necrozma, ávido de luz, con Lunala.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "NLUNARIZERUSED",
+	"name": "Necroluna",
+	"pocket": "8",
+	"price": 0,
+	"description": "Artefacto que permite fusionar a Necrozma, ávido de luz, con Lunala.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "REINSOFUNITY",
+	"name": "Riendas Unión",
+	"pocket": "8",
+	"price": 0,
+	"description": "Riendas que permiten unir a Calyrex con su montura.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "REINSOFUNITYUSED",
+	"name": "Riendas Unión",
+	"pocket": "8",
+	"price": 0,
+	"description": "Riendas que permiten unir a Calyrex con su montura.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "OVALCHARM",
+	"name": "Amuleto Oval",
+	"pocket": "8",
+	"price": 0,
+	"description": "Misterioso amuleto redondo que aumenta la posibilidad de encontrar Huevos en la Guardería Pokémon.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "SHINYCHARM",
+	"name": "Amuleto Iris",
+	"pocket": "8",
+	"price": 0,
+	"description": "Misterioso amuleto brillante que aumenta la probabilidad de encontrar Pokémon variocolores.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "CATCHINGCHARM",
+	"name": "Amuleto Captura",
+	"pocket": "8",
+	"price": 0,
+	"description": "Misterioso amuleto que aumenta la posibilidad de hacer capturas críticas.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "EXPCHARM",
+	"name": "Amuleto Exp",
+	"pocket": "8",
+	"price": 0,
+	"description": "Amuleto que aumenta los Puntos de Exp. que ganan los Pokémon en combate.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "MEGARING",
+	"name": "Mega Aro",
+	"pocket": "8",
+	"price": 0,
+	"description": "Aro que sirve para activar el poder de la Mega Evolución.",
+	"flags": [
+	  "KeyItem",
+      "MegaRing"
+	]
+  },
+  {
+	"key": "POKEMONBOXLINK",
+	"name": "Pokémon Box Link",
+	"pocket": "8",
+	"price": 0,
+	"description": "Te permite acceder al sistema de almacenamiento desde el equipo. En algunos lugares falla.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "AURORATICKET",
+	"name": "Carné Espacial",
+	"pocket": "8",
+	"price": 0,
+	"description": "Una tarjeta de identificación necesaria para acceder a los Puertos Espaciales.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "OLDSEAMAP",
+	"name": "Mapa Viejo",
+	"pocket": "8",
+	"price": 0,
+	"description": "Un mapa viejo descolorido que muestra el camino a una determinada isla.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "BLACKAUGURITE",
+	"name": "Mineral Negro",
+	"pocket": "1",
+	"price": 2100,
+	"description": "Mineral de color muy oscuro que permite evolucionar a Scyther.",
+	"flags": [
+	  "Fling_30",
+      "EvolutionStone"
+	]
+  },
+  {
+	"key": "PEATBLOCK",
+	"name": "Bloque de Turba",
+	"pocket": "1",
+	"price": 2100,
+	"description": "Extraño bloque compuesto de carbón fósil. Permite evolucionar a Ursaring.",
+	"flags": [
+	  "Fling_30",
+      "EvolutionStone"
+	]
+  },
+  {
+	"key": "LINKINGCORD",
+	"name": "Cordón Unión",
+	"pocket": "1",
+	"price": 2100,
+	"description": "Extraño cordón que recuerda a un cable. Permite evolucionar a ciertos Pokémon.",
+	"flags": [
+	  "Fling_30",
+      "EvolutionStone"
+	]
+  },
+  {
+	"key": "ADAMANTCRYSTAL",
+	"name": "Gran Diamansfera",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Si se usa en Dialga, esta gran gema le hace cambiar de forma.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "LUSTROUSGLOBE",
+	"name": "Gran Lustresfera",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Si se usa en Palkia, esta gran gema le hace cambiar de forma.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "LEGENDPLATE",
+	"name": "Tabla Legendaria",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Tabla de piedra que convierte a Arceus en función del tipo del rival.",
+	"flags": [
+	  "Fling_90",
+      "Plate"
+	]
+  },
+  {
+	"key": "BLANKPLATE",
+	"name": "Tabla Normal",
+	"pocket": "1",
+	"price": 10000,
+	"description": "Tabla de piedra que potencia los movimientos de tipo Normal. Debe llevarla un Pokémon.",
+	"flags": [
+	  "Fling_90",
+      "Plate"
+	]
+  },
+  {
+	"key": "GRISEOUSCORE",
+	"name": "Gran Griseosfera",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Si se usa en Giratina, esta gran gema le hace cambiar de forma.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "AUSPICIOUSARMOR",
+	"name": "Armadura Auspiciosa",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Armadura que alberga sentimientos auspiciosos. Permite evolucionar a Charcadet.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MALICIOUSARMOR",
+	"name": "Armadura Maldita",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Armadura que alberga sentimientos de rencor. Permite evolucionar a Charcadet.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SCROLLOFDARKNESS",
+	"name": "Manuscrito Sombras",
+	"pocket": "1",
+	"price": 0,
+	"description": "Curioso manuscrito que permite cambiar a Urshifu a su forma Estilo brusco.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SCROLLOFWATERS",
+	"name": "Manuscrito Aguas",
+	"pocket": "1",
+	"price": 0,
+	"description": "Curioso manuscrito que permite cambiar a Urshifu a su forma Estilo fluido.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LEADERSCREST",
+	"name": "Distintivo de Líder",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Fragmento de lo que parece una cuchilla desgastada. Permite evolucionar a Bisharp.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BOOSTERENERGY",
+	"name": "Energía Potenciadora",
+	"pocket": "1",
+	"price": 0,
+	"description": "Tanque que contiene energía. Si lo lleva un Pokémon que posea cierta habilidad, potenciará su poder.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "ABILITYSHIELD",
+	"name": "Escudo Habilidad",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Escudo muy bonito que impide que otros Pokémon cambien la habilidad del Pokémon que lo lleva.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "CLEARAMULET",
+	"name": "Amuleto Puro",
+	"pocket": "1",
+	"price": 30000,
+	"description": "Amuleto brillante y transparente. Impide que otros Pokémon reduzcan las características de quien lo lleva.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "MIRRORHERB",
+	"name": "Hierba Copia",
+	"pocket": "1",
+	"price": 30000,
+	"description": "Quien la lleva aumenta sus características si el rival aumenta las suyas. De un solo uso.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "PUNCHINGGLOVE",
+	"name": "Guante de Boxeo",
+	"pocket": "1",
+	"price": 15000,
+	"description": "Guante que aumenta la potencia de los movimientos con puños y evita que hagan contacto con el rival.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "COVERTCLOAK",
+	"name": "Capa Furtiva",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Capa con capucha que protege de los efectos secundarios de los movimientos de sus rivales.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "LOADEDDICE",
+	"name": "Dado Trucado",
+	"pocket": "1",
+	"price": 20000,
+	"description": "Dado que siempre cae favorablemente. Los movimientos de ataque múltiple golpearán más veces.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "GIMMIGHOULCOIN",
+	"name": "Moneda de Gimmighoul",
+	"pocket": "1",
+	"price": 0,
+	"description": "Moneda perteneciente al cofre de un Gimmighoul. Permite hacerle evolucionar.",
+	"flags": [
+      "Fling_10"
+	]
+  },
+  {
+	"key": "TINYBAMBOOSHOOT",
+	"name": "Bambú Pequeño",
+	"pocket": "1",
+	"price": 1500,
+	"description": "Un pequeño y raro trozo de bambú. Es muy popular entre cierta clase de gourmets.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "BIGBAMBOOSHOOT",
+	"name": "Bambú Grande",
+	"pocket": "1",
+	"price": 6000,
+	"description": "Un trozo grande y raro de bambú. Es muy popular entre cierta clase de gourmets.",
+	"flags": [
+      "Fling_30"
+	]
+  },
+  {
+	"key": "SCARLETBOOK",
+	"name": "Libro Escarlata",
+	"pocket": "8",
+	"price": 0,
+	"description": "Antiguo libro de la región de Paldea que habla sobre especies de ensueño del pasado.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "VIOLETBOOK",
+	"name": "Libro Púrpura",
+	"pocket": "8",
+	"price": 0,
+	"description": "Antiguo libro de la región de Paldea que habla sobre especies de ensueño del futuro.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "HEALTHMOCHI",
+	"name": "Mochi Vigor",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs los PS de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "MUSCLEMOCHI",
+	"name": "Mochi Músculo",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs el Ataque de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "RESISTMOCHI",
+	"name": "Mochi Aguante",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs la Defensa de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "GENIUSMOCHI",
+	"name": "Mochi Intelecto",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs el At. Esp. de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "CLEVERMOCHI",
+	"name": "Mochi Mente",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs la Def. Esp. de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "SWIFTMOCHI",
+	"name": "Mochi Ímpetu",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que aumenta en 10 EVs la Velocidad de un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "FRESHSTARTMOCHI",
+	"name": "Mochi Reinicio",
+	"pocket": "2",
+	"price": 250,
+	"description": "Mochi preparado con bayas que reinicia todos los EVs un Pokémon.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "FAIRYFEATHER",
+	"name": "Pluma Feérica",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Hermosa pluma que brilla si le da el sol. Fortalece los ataques de tipo Hada.",
+	"flags": [
+      "Fling_20"
+	]
+  },
+  {
+	"key": "SYRUPYAPPLE",
+	"name": "Manzana Melosa",
+	"pocket": "1",
+	"price": 2200,
+	"description": "Curiosa manzana recubierta de sirope que permite evolucionar a Applin.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "UNREMARKABLETEACUP",
+	"name": "Cuenco Mediocre",
+	"pocket": "1",
+	"price": 1500,
+	"description": "Cuenco mediocre que permite evolucionar a Poltchageist (forma Fraudulenta).",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "MASTERPIECETEACUP",
+	"name": "Cuenco Exquisito",
+	"pocket": "1",
+	"price": 1500,
+	"description": "Cuenco exquisito que permite evolucionar a Poltchageist (forma Opulenta).",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_80"
+	]
+  },
+  {
+	"key": "WELLSPRINGMASK",
+	"name": "Máscara Fuente",
+	"pocket": "1",
+	"price": 0,
+	"description": "Extraña máscara que permite cambiar a Ogerpon a su forma Máscara Fuente.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "HEARTHFLAMEMASK",
+	"name": "Máscara Horno",
+	"pocket": "1",
+	"price": 0,
+	"description": "Extraña máscara que permite cambiar a Ogerpon a su forma Máscara Horno.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "CORNERSTONEMASK",
+	"name": "Máscara Cimiento",
+	"pocket": "1",
+	"price": 0,
+	"description": "Extraña máscara que permite cambiar a Ogerpon a su forma Máscara Cimiento.",
+	"flags": [
+      "Fling_60"
+	]
+  },
+  {
+	"key": "TEALMASK",
+	"name": "Máscara Turquesa",
+	"pocket": "8",
+	"price": 0,
+	"description": "Máscara que se dice que perteneció a un Pokémon muy fuerte de la región de Noroteo.",
+	"flags": [
+	  "KeyItem",
+      "Fling_60"
+	]
+  },
+  {
+	"key": "METALALLOY",
+	"name": "Metal Compuesto",
+	"pocket": "1",
+	"price": 3000,
+	"description": "Metal resultante de la mezcla de otros metales. Permite evolucionar a Duraludon.",
+	"flags": [
+	  "EvolutionStone",
+      "Fling_30"
+	]
+  },
+  {
+	"key": "INDIGODISK",
+	"name": "Disco Índigo",
+	"pocket": "8",
+	"price": 0,
+	"description": "Extraño disco que parece estar relacionado con el Área Cero de Paldea.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "MYTHICALPECHABERRY",
+	"name": "Baya Meloc singular",
+	"pocket": "8",
+	"price": 0,
+	"description": "Baya Meloc de la más alta calidad. Hay un Pokémon que la adora.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "METEORITE",
+	"name": "Meteorito",
+	"pocket": "8",
+	"price": 0,
+	"description": "Extraño meteorito proveniente del espacio. Permite cambiar de forma a Deoxys.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "INFREPEL",
+	"name": "Repelente Infinito",
+	"pocket": "8",
+	"price": 0,
+	"description": "Un repelente que nunca se gasta. Puedes activarlo y desactivarlo.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "RADAR",
+	"name": "Buscasalvajes",
+	"pocket": "8",
+	"price": 0,
+	"description": "Dispositivo que ofrece información sobre los Pokémon salvajes del lugar en el que estés.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "VIAL",
+	"name": "Curaportátil",
+	"pocket": "8",
+	"price": 0,
+	"description": "Aparato de usos limitados que permite curar a todo tu equipo. Se recarga en Centros Pokémon.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "EMPTYVIAL",
+	"name": "Curaportátil",
+	"pocket": "8",
+	"price": 0,
+	"description": "Aparato de usos limitados que permite curar a todo tu equipo. Se recarga en Centros Pokémon. Vacío.",
+	"flags": [
+      "KeyItem"
+	]
+  },
+  {
+	"key": "EGGHATCHER",
+	"name": "Incubadora",
+	"pocket": "8",
+	"price": 0,
+	"description": "Incubadora que permite mantener 6 huevos hasta que eclosionen.",
+	"flags": [
+      "KeyItem"
+	]
+  }
+]

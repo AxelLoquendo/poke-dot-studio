@@ -11,6 +11,12 @@ var _script_locked: bool = false
 func _ready() -> void:
 	add_to_group(&"player")
 	_aplicar_walk()
+	var m: MoveData = PokemonDB.move(&"TACKLE")
+	print(m.function_code, " ", m.flags)
+	var s: SpeciesData = PokemonDB.species(&"BULBASAUR")
+	print(s.tutor_moves.size(), " ", s.wild_item_common)
+	var i: ItemData = PokemonDB.item(&"POKEBALL")
+	print(i.name, " ", i.price)
 
 func _physics_process(delta: float) -> void:
 	if _script_locked or MessageService.is_active():
