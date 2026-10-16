@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ddubkphw2wx4n"]
 
+[ext_resource type="Script" uid="uid://d28h2pp0wv41j" path="res://scripts/game/pokemon/party_menu.gd" id="1_6ulgt"]
 [ext_resource type="Texture2D" uid="uid://du6k0mtq5xdlk" path="res://assets/ui/Party/bg.png" id="1_akho4"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_kx2tx"]
 [ext_resource type="PackedScene" uid="uid://c8c1rqvpcsw76" path="res://scenes/ui/party_menu/party_slot.tscn" id="2_x0s1s"]
@@ -22,6 +23,8 @@ shadow_color = Color(0.627451, 0.627451, 0.65882355, 1)
 shadow_offset = Vector2(0, 2)
 
 [node name="Party_Menu" type="CanvasLayer" unique_id=2109011036]
+layer = 91
+script = ExtResource("1_6ulgt")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2092879392]
 position = Vector2(256, 192)

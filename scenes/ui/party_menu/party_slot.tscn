@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8c1rqvpcsw76"]
 
 [ext_resource type="Texture2D" uid="uid://dxo77krxnm4lh" path="res://assets/ui/Party/panel_rect.png" id="1_weslv"]
+[ext_resource type="Script" uid="uid://ya1tbffo5bb8" path="res://scripts/game/pokemon/party_slot.gd" id="1_yjcg7"]
 [ext_resource type="Texture2D" uid="uid://b0f7fpm1fgq0e" path="res://assets/ui/Party/icon_ball.png" id="2_eq1pi"]
 [ext_resource type="Texture2D" uid="uid://1ea0e0vhuawe" path="res://assets/Pokemon/Icons/FUECOCO.png" id="3_12602"]
 [ext_resource type="Texture2D" uid="uid://86ybwp71b8ty" path="res://assets/ui/Party/icon_item.png" id="4_12602"]
@@ -40,6 +41,7 @@ shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
 shadow_offset = Vector2(0, 2)
 
 [node name="Party_Slot" type="Node2D" unique_id=1113238041]
+script = ExtResource("1_yjcg7")
 
 [node name="Box" type="Sprite2D" parent="." unique_id=1448302227]
 position = Vector2(128, 49)

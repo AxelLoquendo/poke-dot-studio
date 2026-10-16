@@ -41,7 +41,7 @@ func _ready() -> void:
 	if FadeScreen.is_covered():
 		await FadeScreen.fade_in(0.4)
 	party.add(Pokemon.create(&"BULBASAUR", 5))
-	party.add(Pokemon.create(&"CHARMANDER", 5))
+	party.add(Pokemon.create(&"SPRIGATITO", 5))
 
 func _process(delta: float) -> void:
 	if MessageService.is_active():

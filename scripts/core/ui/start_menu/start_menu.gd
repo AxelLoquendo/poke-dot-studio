@@ -344,14 +344,8 @@ func _party_flow() -> void:
 			_select(_index)
 		return
 
-	var menu: PartyMenu = PartyMenu.new()
-	menu.name = "PartyMenu"
-	var host: Node = get_tree().current_scene
-	if host != null:
-		host.add_child(menu)
-	else:
-		add_child(menu)
-
+	var menu: PartyMenu = (preload("res://scenes/ui/party_menu/party_menu.tscn").instantiate() as PartyMenu)
+	get_tree().current_scene.add_child(menu)
 	menu.open(party)
 	await menu.closed
 	menu.queue_free()
