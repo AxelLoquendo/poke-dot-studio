@@ -15,6 +15,7 @@ enum Cmd {
 }
 
 const LAYER: int = 90
+const ARROW_W: float = 16.0
 
 var _root: Control
 var _panel: NinePatchRect
@@ -112,16 +113,19 @@ func _rebuild_rows() -> void:
 	for cmd: Dictionary in _commands:
 		var row: HBoxContainer = HBoxContainer.new()
 		row.add_theme_constant_override("separation", 4)
+
 		var arrow: TextureRect = TextureRect.new()
 		arrow.name = "Arrow"
-		arrow.custom_minimum_size = Vector2(16, PauseMenuConfig.LINE_H)
+		arrow.custom_minimum_size = Vector2(ARROW_W, PauseMenuConfig.LINE_H)
 		arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		arrow.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 		if _arrow_tex != null:
 			arrow.texture = _arrow_tex
-		arrow.visible = false
+		# Siempre visible: reserva el hueco del cursor
+		arrow.visible = true
 		arrow.modulate.a = 0.0
 		row.add_child(arrow)
+
 		var lab: Label = Label.new()
 		lab.name = "Label"
 		lab.text = str(cmd["title"])
@@ -141,8 +145,9 @@ func _rebuild_rows() -> void:
 				max_w,
 				font.get_string_size(
 					lab.text, HORIZONTAL_ALIGNMENT_LEFT, -1, PauseMenuConfig.FONT_SIZE
-				).x + 40.0
+				).x + ARROW_W + 24.0
 			)
+
 	var h: float = float(_commands.size() * PauseMenuConfig.LINE_H + PauseMenuConfig.PAD * 2)
 	var w: float = max_w + float(PauseMenuConfig.PAD * 2)
 	_panel.size = Vector2(w, h)
@@ -162,9 +167,8 @@ func _select(i: int) -> void:
 		var arrow: TextureRect = row.get_node_or_null("Arrow") as TextureRect
 		if arrow == null:
 			continue
-		var on: bool = (r == _index)
-		arrow.visible = on
-		arrow.modulate.a = 1.0 if on else 0.0
+		arrow.visible = true
+		arrow.modulate.a = 1.0 if r == _index else 0.0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -246,7 +250,6 @@ func _quit_flow() -> void:
 func _save_flow() -> void:
 	visible = false
 	_ensure_message_ui()
-
 	MessageService.show_texts(
 		["¿Quieres guardar la partida?"],
 		"",
@@ -327,6 +330,7 @@ func _ensure_message_ui() -> void:
 	else:
 		add_child(ui)
 
+
 func _party_flow() -> void:
 	visible = false
 
@@ -344,7 +348,9 @@ func _party_flow() -> void:
 			_select(_index)
 		return
 
-	var menu: PartyMenu = (preload("res://scenes/ui/party_menu/party_menu.tscn").instantiate() as PartyMenu)
+	var menu: PartyMenu = (
+		preload("res://scenes/ui/party_menu/party_menu.tscn").instantiate() as PartyMenu
+	)
 	get_tree().current_scene.add_child(menu)
 	menu.open(party)
 	await menu.closed

@@ -7,6 +7,10 @@ const CANCEL_PATH: String = "res://assets/ui/Party/icon_cancel.png"
 const CANCEL_SEL_PATH: String = "res://assets/ui/Party/icon_cancel_sel.png"
 const LINE_H: int = 32
 const CMD_PAD: int = 8
+const ARROW_W: float = 16.0
+const SCREEN_W: float = 512.0
+const SCREEN_H: float = 384.0
+const MARGIN: float = 4.0
 
 enum Mode { BROWSE, COMMAND, ITEM, SWITCH }
 
@@ -21,6 +25,8 @@ var _switch_from: int = -1
 
 var _cancel: Sprite2D
 var _msg_label: Label
+var _box_msg: Control
+var _box_msg_rect: Rect2
 var _cmd_root: Control
 var _cmd_panel: NinePatchRect
 var _cmd_rows: VBoxContainer
@@ -81,9 +87,10 @@ func _collect_slots() -> void:
 			_slots.append(child as PartySlot)
 	_slots.sort_custom(func(a: Node, b: Node) -> bool: return str(a.name) < str(b.name))
 	_cancel = get_node_or_null("Cancel") as Sprite2D
-	var box_msg: Node = get_node_or_null("Box_Msg")
-	if box_msg != null:
-		_msg_label = box_msg.get_node_or_null("Text") as Label
+	_box_msg = get_node_or_null("Box_Msg") as Control
+	if _box_msg != null:
+		_msg_label = _box_msg.get_node_or_null("Text") as Label
+		_box_msg_rect = Rect2(_box_msg.position, _box_msg.size)
 
 
 func _build_command_window() -> void:
@@ -121,21 +128,28 @@ func _show_commands(labels: Array[String]) -> void:
 	for label: String in labels:
 		var row: HBoxContainer = HBoxContainer.new()
 		row.add_theme_constant_override("separation", 4)
+
+		# Columna fija del cursor: siempre ocupa espacio
 		var arrow: TextureRect = TextureRect.new()
 		arrow.name = "Arrow"
-		arrow.custom_minimum_size = Vector2(16, LINE_H)
+		arrow.custom_minimum_size = Vector2(ARROW_W, LINE_H)
 		arrow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		arrow.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 		if _arrow_tex != null:
 			arrow.texture = _arrow_tex
+		arrow.visible = true
 		arrow.modulate.a = 0.0
 		row.add_child(arrow)
+
 		var lab: Label = Label.new()
 		lab.name = "Label"
 		lab.text = label
 		if font != null:
 			lab.add_theme_font_override("font", font)
-			max_w = maxf(max_w, font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + 36.0)
+			max_w = maxf(
+				max_w,
+				font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + ARROW_W + 20.0
+			)
 		lab.add_theme_font_size_override("font_size", 24)
 		lab.add_theme_color_override("font_color", MessageConfig.DARK_TEXT_MAIN)
 		lab.add_theme_color_override("font_shadow_color", MessageConfig.DARK_TEXT_SHADOW)
@@ -149,9 +163,17 @@ func _show_commands(labels: Array[String]) -> void:
 	var h: float = float(labels.size() * LINE_H + CMD_PAD * 2)
 	var w: float = max_w + float(CMD_PAD * 2)
 	_cmd_panel.size = Vector2(w, h)
-	# Abajo-derecha, como pbBottomRight de PE (pantalla 512×384)
-	_cmd_panel.position = Vector2(512.0 - w - 8.0, 384.0 - h - 8.0)
+	# PE: pbBottomRight
+	_cmd_panel.position = Vector2(SCREEN_W - w - MARGIN, SCREEN_H - h - MARGIN)
 	_cmd_rows.position = Vector2(float(CMD_PAD), float(CMD_PAD))
+	_cmd_rows.size = Vector2(w - float(CMD_PAD * 2), h - float(CMD_PAD * 2))
+
+	# Help a la izquierda del command window (PE: pbBottomLeft + resize)
+	if _box_msg != null:
+		var help_w: float = maxf(160.0, _cmd_panel.position.x - MARGIN)
+		_box_msg.size = Vector2(help_w, _box_msg_rect.size.y)
+		_box_msg.position = Vector2(MARGIN, SCREEN_H - _box_msg.size.y - MARGIN)
+
 	_cmd_root.visible = true
 	_select_command(0)
 
@@ -167,15 +189,18 @@ func _select_command(i: int) -> void:
 		var arrow: TextureRect = row.get_node_or_null("Arrow") as TextureRect
 		if arrow == null:
 			continue
-		var on: bool = r == _cmd_index
-		arrow.visible = on
-		arrow.modulate.a = 1.0 if on else 0.0
+		# Nunca visible=false: el texto no se desplaza
+		arrow.visible = true
+		arrow.modulate.a = 1.0 if r == _cmd_index else 0.0
 
 
 func _hide_commands() -> void:
 	if _cmd_root != null:
 		_cmd_root.visible = false
 	_cmd_labels.clear()
+	if _box_msg != null and _box_msg_rect.size != Vector2.ZERO:
+		_box_msg.position = _box_msg_rect.position
+		_box_msg.size = _box_msg_rect.size
 
 
 func _refresh() -> void:
@@ -183,8 +208,13 @@ func _refresh() -> void:
 	for i: int in range(_slots.size()):
 		var mon: Pokemon = party.get_at(i) if party != null else null
 		_slots[i].bind(mon)
-		var is_sel: bool = _active and _mode != Mode.COMMAND and _mode != Mode.ITEM \
-			and i == _index and i < count
+		var is_sel: bool = (
+			_active
+			and _mode != Mode.COMMAND
+			and _mode != Mode.ITEM
+			and i == _index
+			and i < count
+		)
 		_slots[i].set_selected(is_sel)
 		if _mode == Mode.SWITCH:
 			_slots[i].set_switching(true, i == _switch_from)
