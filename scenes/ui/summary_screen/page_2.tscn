@@ -1,0 +1,572 @@
+[gd_scene format=3 uid="uid://cs0sqdv66o6mx"]
+
+[ext_resource type="Texture2D" uid="uid://babhdtluocq7i" path="res://assets/ui/Summary/bg_3.png" id="1_oqenq"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_xvo0x"]
+[ext_resource type="Texture2D" uid="uid://c5w8743i2bpas" path="res://assets/Plugins/Enhanced Pokemon UI/iv_ratings.png" id="3_2qusw"]
+[ext_resource type="Texture2D" uid="uid://dm3ocn6yohqrw" path="res://assets/ui/Summary/bgability_extender.png" id="3_2tp3t"]
+[ext_resource type="Texture2D" uid="uid://bir1llynw4c0d" path="res://assets/ui/Summary/bg_allstats.png" id="4_2tp3t"]
+[ext_resource type="Texture2D" uid="uid://qhwn7t2kfexb" path="res://assets/ui/Summary/overlay_hp.png" id="4_xvo0x"]
+[ext_resource type="Texture2D" uid="uid://ccpkdqu03ylfh" path="res://assets/ui/types.png" id="7_luqik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2tp3t"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlwde"]
+line_spacing = 6.0
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+shadow_size = 0
+shadow_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_luqik"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqenq"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xvo0x"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qusw"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_734er"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7q50h"]
+font = ExtResource("2_xvo0x")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="Page2" type="Node2D" unique_id=1284904289]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=2002338177]
+position = Vector2(256, 192)
+texture = ExtResource("1_oqenq")
+
+[node name="Page_Name" type="Label" parent="Bg" unique_id=50179018]
+offset_left = -229.0
+offset_top = -177.0
+offset_right = -123.0
+offset_bottom = -151.0
+text = "Skills"
+label_settings = SubResource("LabelSettings_2tp3t")
+
+[node name="Bg_Ability_Desc" type="Sprite2D" parent="." unique_id=1116504750]
+visible = false
+position = Vector2(256, 192)
+texture = ExtResource("3_2tp3t")
+
+[node name="Page_Name" type="Label" parent="Bg_Ability_Desc" unique_id=276064569]
+offset_left = -229.0
+offset_top = -177.0
+offset_right = -123.0
+offset_bottom = -151.0
+text = "Habilidad"
+label_settings = SubResource("LabelSettings_2tp3t")
+
+[node name="Ability_Description" type="Label" parent="Bg_Ability_Desc" unique_id=1900270286]
+offset_left = -26.0
+offset_top = -114.0
+offset_right = 242.0
+offset_bottom = 178.0
+text = "Aquí va la descripción de
+la habilidad solicitada o
+eso creo xd."
+label_settings = SubResource("LabelSettings_mlwde")
+
+[node name="Bg_Stats" type="Sprite2D" parent="." unique_id=695040024]
+visible = false
+position = Vector2(256, 192)
+texture = ExtResource("4_2tp3t")
+
+[node name="Page_Name" type="Label" parent="Bg_Stats" unique_id=952867129]
+offset_left = -229.0
+offset_top = -177.0
+offset_right = -123.0
+offset_bottom = -151.0
+text = "Estadísticas"
+label_settings = SubResource("LabelSettings_2tp3t")
+
+[node name="Skills" type="Node2D" parent="." unique_id=1996577843]
+
+[node name="PS" type="Label" parent="Skills" unique_id=1196367691]
+offset_left = 248.0
+offset_top = 74.0
+offset_right = 352.0
+offset_bottom = 100.0
+text = "PS"
+label_settings = SubResource("LabelSettings_luqik")
+horizontal_alignment = 1
+
+[node name="PS_Number" type="Label" parent="Skills/PS" unique_id=1574235004]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "00/140"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/PS" unique_id=2102564991]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Attack" type="Label" parent="Skills" unique_id=796809219]
+offset_left = 248.0
+offset_top = 118.0
+offset_right = 352.0
+offset_bottom = 144.0
+text = "Ataque"
+label_settings = SubResource("LabelSettings_oqenq")
+
+[node name="Attack_Number" type="Label" parent="Skills/Attack" unique_id=1648708145]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/Attack" unique_id=485557944]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Defense" type="Label" parent="Skills" unique_id=2097863844]
+offset_left = 248.0
+offset_top = 150.0
+offset_right = 352.0
+offset_bottom = 176.0
+text = "Defensa"
+label_settings = SubResource("LabelSettings_xvo0x")
+
+[node name="Defense_Number" type="Label" parent="Skills/Defense" unique_id=422382012]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/Defense" unique_id=263580768]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Sp_Attack" type="Label" parent="Skills" unique_id=1819704061]
+offset_left = 248.0
+offset_top = 182.0
+offset_right = 352.0
+offset_bottom = 208.0
+text = "At. Esp"
+label_settings = SubResource("LabelSettings_2qusw")
+
+[node name="Sp_Attack_Number" type="Label" parent="Skills/Sp_Attack" unique_id=2143012505]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/Sp_Attack" unique_id=1782074030]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Sp_Defense" type="Label" parent="Skills" unique_id=1732904718]
+offset_left = 248.0
+offset_top = 214.0
+offset_right = 352.0
+offset_bottom = 240.0
+text = "Def. Esp"
+label_settings = SubResource("LabelSettings_734er")
+
+[node name="Sp_Defense_Number" type="Label" parent="Skills/Sp_Defense" unique_id=463354281]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/Sp_Defense" unique_id=890557433]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Velocity" type="Label" parent="Skills" unique_id=1055007480]
+offset_left = 248.0
+offset_top = 246.0
+offset_right = 352.0
+offset_bottom = 272.0
+text = "Velocidad"
+label_settings = SubResource("LabelSettings_7q50h")
+
+[node name="Velocity_Number" type="Label" parent="Skills/Velocity" unique_id=1874912043]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 215.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Iv" type="Sprite2D" parent="Skills/Velocity" unique_id=1589294462]
+position = Vector2(226, 17)
+texture = ExtResource("3_2qusw")
+hframes = 6
+vframes = 2
+frame = 6
+
+[node name="Hp_Bar" type="Sprite2D" parent="Skills" unique_id=168914690]
+position = Vector2(408, 113)
+texture = ExtResource("4_xvo0x")
+vframes = 3
+
+[node name="Ability" type="Label" parent="Skills" unique_id=2091280537]
+offset_left = 218.0
+offset_top = 282.0
+offset_right = 322.0
+offset_bottom = 308.0
+text = "Habilidad"
+label_settings = SubResource("LabelSettings_luqik")
+horizontal_alignment = 1
+
+[node name="Ability_Name" type="Label" parent="Skills/Ability" unique_id=1908406806]
+layout_mode = 0
+offset_left = 109.0
+offset_right = 291.0
+offset_bottom = 26.0
+text = "Teracambio"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Special_Desc" type="Label" parent="Skills/Ability" unique_id=1122498323]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 290.0
+offset_bottom = 60.0
+text = "[SHIFT]: Descripción."
+label_settings = SubResource("LabelSettings_mlwde")
+
+[node name="Stats" type="Node2D" parent="." unique_id=1019397847]
+visible = false
+
+[node name="Total" type="Label" parent="Stats" unique_id=1947518087]
+offset_left = 356.0
+offset_top = 86.0
+offset_right = 410.0
+offset_bottom = 112.0
+text = "Total"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="IV" type="Label" parent="Stats" unique_id=1713177695]
+offset_left = 413.0
+offset_top = 86.0
+offset_right = 445.0
+offset_bottom = 112.0
+text = "IV"
+label_settings = SubResource("LabelSettings_luqik")
+horizontal_alignment = 1
+
+[node name="EV" type="Label" parent="Stats" unique_id=1336449352]
+offset_left = 451.0
+offset_top = 86.0
+offset_right = 497.0
+offset_bottom = 112.0
+text = "EV"
+label_settings = SubResource("LabelSettings_luqik")
+horizontal_alignment = 1
+
+[node name="PS" type="Label" parent="Stats" unique_id=1843489387]
+offset_left = 239.0
+offset_top = 118.0
+offset_right = 351.0
+offset_bottom = 144.0
+text = "PS"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="PS_Number" type="Label" parent="Stats/PS" unique_id=986958287]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="PS_Number_IV" type="Label" parent="Stats/PS" unique_id=243970305]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="PS_Number_EV" type="Label" parent="Stats/PS" unique_id=62909484]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Attack" type="Label" parent="Stats" unique_id=1246261574]
+offset_left = 239.0
+offset_top = 150.0
+offset_right = 351.0
+offset_bottom = 176.0
+text = "Ataque"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Attack_Number" type="Label" parent="Stats/Attack" unique_id=204811089]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Attack_Number_IV" type="Label" parent="Stats/Attack" unique_id=1211138780]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Attack_Number_EV" type="Label" parent="Stats/Attack" unique_id=1556822893]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Defense" type="Label" parent="Stats" unique_id=1184647066]
+offset_left = 239.0
+offset_top = 182.0
+offset_right = 351.0
+offset_bottom = 208.0
+text = "Defensa"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Defense_Number" type="Label" parent="Stats/Defense" unique_id=858994467]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Defense_Number_IV" type="Label" parent="Stats/Defense" unique_id=1683243908]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Defense_Number_EV" type="Label" parent="Stats/Defense" unique_id=1204046631]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Sp_Attack" type="Label" parent="Stats" unique_id=1291896257]
+offset_left = 239.0
+offset_top = 214.0
+offset_right = 351.0
+offset_bottom = 240.0
+text = "At. Esp"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Sp_Attack_Number" type="Label" parent="Stats/Sp_Attack" unique_id=787378244]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Sp_Attack_Number_IV" type="Label" parent="Stats/Sp_Attack" unique_id=1398623358]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Sp_Attack_Number_EV" type="Label" parent="Stats/Sp_Attack" unique_id=553476066]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Sp_Defense" type="Label" parent="Stats" unique_id=1108688034]
+offset_left = 239.0
+offset_top = 246.0
+offset_right = 351.0
+offset_bottom = 272.0
+text = "Def. Esp"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Sp_Defense_Number" type="Label" parent="Stats/Sp_Defense" unique_id=1380896371]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Sp_Defense_Number_IV" type="Label" parent="Stats/Sp_Defense" unique_id=1959548426]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Sp_Defense_Number_EV" type="Label" parent="Stats/Sp_Defense" unique_id=1154081314]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Velocity" type="Label" parent="Stats" unique_id=1195523807]
+offset_left = 239.0
+offset_top = 278.0
+offset_right = 351.0
+offset_bottom = 304.0
+text = "Velocidad"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Velocity_Number" type="Label" parent="Stats/Velocity" unique_id=1525276241]
+layout_mode = 0
+offset_left = 116.0
+offset_right = 168.0
+offset_bottom = 26.0
+text = "000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Velocity_Number_IV" type="Label" parent="Stats/Velocity" unique_id=1362627426]
+layout_mode = 0
+offset_left = 174.0
+offset_right = 206.0
+offset_bottom = 26.0
+text = "00"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 2
+
+[node name="Velocity_Number_EV" type="Label" parent="Stats/Velocity" unique_id=2057894993]
+layout_mode = 0
+offset_left = 212.0
+offset_right = 258.0
+offset_bottom = 26.0
+text = "0"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="EVs_Total" type="Label" parent="Stats" unique_id=1071907350]
+offset_left = 224.0
+offset_top = 316.0
+offset_right = 278.0
+offset_bottom = 342.0
+text = "EVs Totales"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Number_Evs_Total" type="Label" parent="Stats/EVs_Total" unique_id=610669437]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 2.0
+offset_right = 284.0
+offset_bottom = 28.0
+text = "000/000"
+label_settings = SubResource("LabelSettings_mlwde")
+horizontal_alignment = 1
+
+[node name="Secret_Power" type="Label" parent="Stats" unique_id=360828382]
+offset_left = 223.0
+offset_top = 348.0
+offset_right = 343.0
+offset_bottom = 374.0
+text = "Poder Oculto"
+label_settings = SubResource("LabelSettings_luqik")
+
+[node name="Power_Type" type="Sprite2D" parent="Stats/Secret_Power" unique_id=684258145]
+position = Vector2(209, 17)
+texture = ExtResource("7_luqik")
+vframes = 20
