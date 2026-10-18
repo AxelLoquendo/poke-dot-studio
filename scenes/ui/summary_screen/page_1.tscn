@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://be0km8n1uh524"]
 
 [ext_resource type="Texture2D" uid="uid://smkorkvwk0cw" path="res://assets/ui/Summary/bg_2.png" id="1_rvlf2"]
+[ext_resource type="Script" uid="uid://c18c4moa37u6o" path="res://scripts/core/ui/summary_screen/summary_page1.gd" id="1_wf77y"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_wf77y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yj70q"]
@@ -36,6 +37,7 @@ shadow_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
 shadow_offset = Vector2(0, 2)
 
 [node name="Page1" type="Node2D" unique_id=497899358]
+script = ExtResource("1_wf77y")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=617862264]
 position = Vector2(256, 192)

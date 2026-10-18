@@ -10,8 +10,11 @@ var party: Party
 var party_index: int = 0
 var _page: int = 0
 var _active: bool = false
+const PAGE_COUNT: int = 2  # 0 Info, 1 Memo
 
 @onready var page0: SummaryPage0 = $Page0 as SummaryPage0
+@onready var page1: SummaryPage1 = $Page1 as SummaryPage1
+
 @onready var mon_sprite: Sprite2D = $Mon
 @onready var mon_name: Label = $Mon/Mon_Name
 @onready var mon_level: Label = $Mon/Lvl
@@ -62,6 +65,18 @@ func _refresh() -> void:
 		page0.visible = (_page == 0)
 		if _page == 0:
 			page0.bind(mon)
+	if page1 != null:
+		page1.visible = (_page == 1)
+		if _page == 1:
+			page1.bind(mon)
+
+func _set_page(next: int) -> void:
+	var n: int = posmod(next, PAGE_COUNT)
+	if n == _page:
+		return
+	_page = n
+	_refresh()
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SUMMARY_CHANGE_PAGE)
 
 func _bind_header(mon: Pokemon) -> void:
 	if mon == null:
@@ -128,7 +143,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			_play_current_cry()
 		get_viewport().set_input_as_handled()
 		return
-	if event.is_action_pressed("Left") or event.is_action_pressed("Right"):
+	if event.is_action_pressed("Left"):
+		_set_page(_page - 1)
+		get_viewport().set_input_as_handled()
+		return
+	if event.is_action_pressed("Right"):
+		_set_page(_page + 1)
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("buttonSelect"):
