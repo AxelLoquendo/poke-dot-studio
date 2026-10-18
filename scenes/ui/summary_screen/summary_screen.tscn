@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dqj2yfqlgjsbg"]
+
+[ext_resource type="PackedScene" uid="uid://cucw82m1afjv0" path="res://scenes/ui/summary_screen/page_0.tscn" id="1_mpb3p"]
+
+[node name="Summary_Screen" type="CanvasLayer" unique_id=734637596]
+
+[node name="Page0" parent="." unique_id=1809680239 instance=ExtResource("1_mpb3p")]

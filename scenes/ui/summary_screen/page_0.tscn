@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://cucw82m1afjv0"]
+
+[ext_resource type="Texture2D" uid="uid://e62leoe6r4pf" path="res://assets/ui/Summary/bg_1.png" id="1_bp1yx"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_acl64"]
+[ext_resource type="Texture2D" uid="uid://dsm23msvbcosy" path="res://assets/Pokemon/Front/ALAKAZAM_1.png" id="3_nrelq"]
+[ext_resource type="Texture2D" uid="uid://5mdhdfaafjda" path="res://assets/Items/ALAKAZITE.png" id="4_mxg43"]
+[ext_resource type="Texture2D" uid="uid://ddfa8p6s1pu3i" path="res://assets/ui/Summary/icon_ball_POKEBALL.png" id="5_vahi6"]
+[ext_resource type="Texture2D" uid="uid://bwmnhfyqy2f4g" path="res://assets/Plugins/Terastallization/tera_types.png" id="6_mxg43"]
+[ext_resource type="Texture2D" uid="uid://ccpkdqu03ylfh" path="res://assets/ui/types.png" id="7_vahi6"]
+[ext_resource type="Texture2D" uid="uid://dfmruda34xed" path="res://assets/ui/Summary/overlay_exp.png" id="8_vahi6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_14cdr"]
+font = ExtResource("2_acl64")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_htemk"]
+font = ExtResource("2_acl64")
+font_size = 24
+font_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+shadow_size = 0
+shadow_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ky7uq"]
+font = ExtResource("2_acl64")
+font_size = 24
+font_color = Color(0.09411765, 0.57254905, 0.9411765, 1)
+shadow_size = 0
+shadow_color = Color(0.050980393, 0.28627452, 0.46666667, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="Page0" type="Node2D" unique_id=1809680239]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=124399730]
+position = Vector2(256, 192)
+texture = ExtResource("1_bp1yx")
+
+[node name="Mon_Name" type="Label" parent="Bg" unique_id=1389618181]
+offset_left = -229.0
+offset_top = -177.0
+offset_right = -123.0
+offset_bottom = -151.0
+text = "Info"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Mon" type="Sprite2D" parent="." unique_id=1899079144]
+position = Vector2(104, 206)
+texture = ExtResource("3_nrelq")
+
+[node name="Mon_Name" type="Label" parent="Mon" unique_id=175507513]
+offset_left = -62.0
+offset_top = -146.0
+offset_right = 44.0
+offset_bottom = -120.0
+text = "Terapagos"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Lvl" type="Label" parent="Mon" unique_id=1770299624]
+offset_left = -60.0
+offset_top = -116.0
+offset_right = -20.0
+offset_bottom = -90.0
+text = "100"
+label_settings = SubResource("LabelSettings_htemk")
+
+[node name="Gender" type="Label" parent="Mon" unique_id=2085073235]
+offset_left = 74.0
+offset_top = -146.0
+offset_right = 86.0
+offset_bottom = -120.0
+text = "♂"
+label_settings = SubResource("LabelSettings_ky7uq")
+
+[node name="Item_Sprite" type="Sprite2D" parent="Mon" unique_id=1718918444]
+position = Vector2(-74, 114)
+texture = ExtResource("4_mxg43")
+
+[node name="Item" type="Label" parent="Mon/Item_Sprite" unique_id=13763581]
+offset_left = 36.0
+offset_top = -4.0
+offset_right = 142.0
+offset_bottom = 22.0
+text = "Item"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Lvl" type="Label" parent="Mon/Item_Sprite" unique_id=2034158874]
+offset_left = -26.0
+offset_top = 34.0
+offset_right = 70.0
+offset_bottom = 60.0
+text = "Alakazite"
+label_settings = SubResource("LabelSettings_htemk")
+
+[node name="Ball" type="Sprite2D" parent="Mon" unique_id=813502061]
+position = Vector2(-78, -130)
+texture = ExtResource("5_vahi6")
+
+[node name="Info" type="Node2D" parent="." unique_id=1855462691]
+
+[node name="No_Dex" type="Label" parent="Info" unique_id=1825177763]
+offset_left = 237.0
+offset_top = 78.0
+offset_right = 364.0
+offset_bottom = 104.0
+text = "No. Dex"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Dex_Number" type="Label" parent="Info/No_Dex" unique_id=112550182]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 263.0
+offset_bottom = 26.0
+text = "1025"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 1
+
+[node name="Specie" type="Label" parent="Info" unique_id=894296362]
+offset_left = 237.0
+offset_top = 110.0
+offset_right = 364.0
+offset_bottom = 136.0
+text = "Especie"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Specie_Name" type="Label" parent="Info/Specie" unique_id=8666142]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 263.0
+offset_bottom = 26.0
+text = "Terapagos"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 1
+
+[node name="Type" type="Label" parent="Info" unique_id=180280072]
+offset_left = 237.0
+offset_top = 142.0
+offset_right = 364.0
+offset_bottom = 168.0
+text = "Tipo"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Tera_Type" type="Sprite2D" parent="Info/Type" unique_id=429143238]
+position = Vector2(111, 17)
+texture = ExtResource("6_mxg43")
+vframes = 20
+
+[node name="Type_1" type="Sprite2D" parent="Info/Type" unique_id=528693189]
+position = Vector2(165, 17)
+texture = ExtResource("7_vahi6")
+vframes = 20
+
+[node name="Type_2" type="Sprite2D" parent="Info/Type" unique_id=2111187329]
+position = Vector2(231, 17)
+texture = ExtResource("7_vahi6")
+vframes = 20
+
+[node name="EO" type="Label" parent="Info" unique_id=714370162]
+offset_left = 237.0
+offset_top = 174.0
+offset_right = 364.0
+offset_bottom = 200.0
+text = "EO"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="EO_Name" type="Label" parent="Info/EO" unique_id=694341412]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 263.0
+offset_bottom = 26.0
+text = "Rojo"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 1
+
+[node name="No_ID" type="Label" parent="Info" unique_id=132315697]
+offset_left = 237.0
+offset_top = 206.0
+offset_right = 364.0
+offset_bottom = 232.0
+text = "No. ID"
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="ID_Number" type="Label" parent="Info/No_ID" unique_id=687790267]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 263.0
+offset_bottom = 26.0
+text = "123456"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 1
+
+[node name="Exp_Points" type="Label" parent="Info" unique_id=515171339]
+offset_left = 237.0
+offset_top = 238.0
+offset_right = 364.0
+offset_bottom = 264.0
+text = "Puntos Exp."
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Number_Exp_Points" type="Label" parent="Info/Exp_Points" unique_id=1508733065]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 32.0
+offset_right = 251.0
+offset_bottom = 58.0
+text = "1,000,000"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 2
+
+[node name="Next_Lvl" type="Label" parent="Info" unique_id=214561811]
+offset_left = 237.0
+offset_top = 302.0
+offset_right = 369.0
+offset_bottom = 328.0
+text = "Siguiente Nv."
+label_settings = SubResource("LabelSettings_14cdr")
+
+[node name="Number_Next_Lvl" type="Label" parent="Info/Next_Lvl" unique_id=972905337]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 32.0
+offset_right = 251.0
+offset_bottom = 58.0
+text = "1,000,000"
+label_settings = SubResource("LabelSettings_htemk")
+horizontal_alignment = 2
+
+[node name="Exp_Bar" type="Sprite2D" parent="Info" unique_id=1998243277]
+position = Vector2(426, 375)
+texture = ExtResource("8_vahi6")
