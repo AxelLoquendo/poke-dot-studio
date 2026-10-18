@@ -30,7 +30,7 @@ script = ExtResource("1_ky7uq")
 position = Vector2(256, 192)
 texture = ExtResource("1_bp1yx")
 
-[node name="Mon_Name" type="Label" parent="Bg" unique_id=1389618181]
+[node name="Page_Name" type="Label" parent="Bg" unique_id=1389618181]
 offset_left = -229.0
 offset_top = -177.0
 offset_right = -123.0

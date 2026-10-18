@@ -1,14 +1,6 @@
 extends Node2D
 class_name SummaryPage0
-## Página INFO. La escena ya define layout, fuentes y colores.
-
-@onready var mon_sprite: Sprite2D = $Mon
-@onready var mon_name: Label = $Mon/Mon_Name
-@onready var mon_level: Label = $Mon/Lvl
-@onready var mon_gender: Label = $Mon/Gender
-@onready var ball: Sprite2D = $Mon/Ball
-@onready var item_sprite: Sprite2D = $Mon/Item_Sprite
-@onready var item_label: Label = $Mon/Item_Sprite/Item_Name
+## Página INFO. No toca el header Mon (está en SummaryScreen).
 
 @onready var dex_number: Label = $Info/No_Dex/Dex_Number
 @onready var species_name: Label = $Info/Specie/Specie_Name
@@ -27,36 +19,11 @@ func bind(mon: Pokemon) -> void:
 		return
 	var data: SpeciesData = mon.species_data()
 
-	if mon_sprite != null:
-		mon_sprite.texture = PokemonGraphics.load_front(mon.species_key, mon.form, mon.shiny)
-
-	if mon_name != null:
-		mon_name.text = mon.display_name()
-	if mon_level != null:
-		mon_level.text = str(mon.level)
-
-	_bind_gender(mon)
-
-	if ball != null:
-		var ball_path: String = "res://assets/ui/Summary/icon_ball_POKEBALL.png"
-		if ResourceLoader.exists(ball_path):
-			ball.texture = load(ball_path) as Texture2D
-
-	if item_label != null:
-		if mon.held_item == &"":
-			item_label.text = "Ninguno"
-		else:
-			var iname: String = String(mon.held_item)
-			var idata: ItemData = PokemonDB.item(mon.held_item) if PokemonDB != null else null
-			if idata != null and not idata.name.is_empty():
-				iname = idata.name
-			item_label.text = iname
-
 	if dex_number != null:
 		var dex: int = 0
 		if PokemonDB != null and PokemonDB.has_method("national_dex"):
 			dex = PokemonDB.national_dex(mon.species_key)
-		dex_number.text = "???" if dex <= 0 else "%03d" % dex
+		dex_number.text = "????" if dex <= 0 else "%04d" % dex
 
 	if species_name != null:
 		species_name.text = data.name if data != null else String(mon.species_key)
@@ -74,26 +41,7 @@ func bind(mon: Pokemon) -> void:
 		tera_type.visible = false
 
 
-func _bind_gender(mon: Pokemon) -> void:
-	if mon_gender == null:
-		return
-	var g: int = 2
-	if mon.get("gender") != null:
-		g = int(mon.get("gender"))
-	match g:
-		0:
-			mon_gender.text = "♂"
-			mon_gender.visible = true
-		1:
-			mon_gender.text = "♀"
-			mon_gender.visible = true
-		_:
-			mon_gender.text = ""
-			mon_gender.visible = false
-
-
 func _bind_types(data: SpeciesData) -> void:
-	# types.png con vframes = 20 → frame = índice del tipo
 	if type1 == null:
 		return
 	if data == null or data.types.is_empty():
@@ -101,13 +49,11 @@ func _bind_types(data: SpeciesData) -> void:
 		if type2 != null:
 			type2.visible = false
 		return
-	type1.vframes = 20
-	type1.frame = clampi(int(data.types[0]), 0, 19)
+	type1.frame = clampi(int(data.types[0]), 0, type1.vframes - 1)
 	type1.visible = true
 	if type2 != null:
 		if data.types.size() >= 2:
-			type2.vframes = 20
-			type2.frame = clampi(int(data.types[1]), 0, 19)
+			type2.frame = clampi(int(data.types[1]), 0, type2.vframes - 1)
 			type2.visible = true
 		else:
 			type2.visible = false
@@ -136,7 +82,6 @@ func _bind_exp(mon: Pokemon, data: SpeciesData) -> void:
 	var w: float = floor(frac * full_w / 2.0) * 2.0
 	exp_bar.region_enabled = true
 	exp_bar.region_rect = Rect2(0.0, 0.0, w, full_h)
-	# No tocar position: la dejaste en el editor
 
 
 func _format_number(n: int) -> String:

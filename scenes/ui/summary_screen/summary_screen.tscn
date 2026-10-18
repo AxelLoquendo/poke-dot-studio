@@ -41,17 +41,17 @@ position = Vector2(104, 206)
 texture = ExtResource("3_udv6r")
 
 [node name="Mon_Name" type="Label" parent="Mon" unique_id=1132768205]
-offset_left = -62.0
+offset_left = -60.0
 offset_top = -146.0
-offset_right = 44.0
+offset_right = 46.0
 offset_bottom = -120.0
 text = "Terapagos"
 label_settings = SubResource("LabelSettings_vplxg")
 
 [node name="Lvl" type="Label" parent="Mon" unique_id=741663820]
-offset_left = -60.0
+offset_left = -58.0
 offset_top = -116.0
-offset_right = -20.0
+offset_right = -18.0
 offset_bottom = -90.0
 text = "100"
 label_settings = SubResource("LabelSettings_1svey")
@@ -68,20 +68,21 @@ label_settings = SubResource("LabelSettings_37skr")
 position = Vector2(-74, 114)
 texture = ExtResource("5_folmp")
 
-[node name="Item" type="Label" parent="Mon/Item_Sprite" unique_id=2105655284]
-offset_left = 36.0
-offset_top = -4.0
-offset_right = 142.0
-offset_bottom = 22.0
+[node name="Item" type="Label" parent="Mon" unique_id=2105655284]
+offset_left = -38.0
+offset_top = 110.0
+offset_right = 68.0
+offset_bottom = 136.0
 text = "Item"
 label_settings = SubResource("LabelSettings_vplxg")
 
-[node name="Item_Name" type="Label" parent="Mon/Item_Sprite" unique_id=217434497]
-offset_left = -26.0
-offset_top = 34.0
-offset_right = 70.0
-offset_bottom = 60.0
-text = "Alakazite"
+[node name="Item_Name" type="Label" parent="Mon/Item" unique_id=217434497]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 38.0
+offset_right = 34.0
+offset_bottom = 64.0
+text = "---"
 label_settings = SubResource("LabelSettings_1svey")
 
 [node name="Ball" type="Sprite2D" parent="Mon" unique_id=971089294]
