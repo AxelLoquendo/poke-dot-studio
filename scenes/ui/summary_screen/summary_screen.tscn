@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drvyb88t2hi8n" path="res://scripts/core/ui/summary_screen/summary_screen.gd" id="1_5imov"]
 [ext_resource type="PackedScene" uid="uid://cucw82m1afjv0" path="res://scenes/ui/summary_screen/page_0.tscn" id="1_mpb3p"]
+[ext_resource type="PackedScene" uid="uid://be0km8n1uh524" path="res://scenes/ui/summary_screen/page_1.tscn" id="3_tckpn"]
 [ext_resource type="Texture2D" uid="uid://dsm23msvbcosy" path="res://assets/Pokemon/Front/ALAKAZAM_1.png" id="3_udv6r"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="4_tckpn"]
 [ext_resource type="Texture2D" uid="uid://5mdhdfaafjda" path="res://assets/Items/ALAKAZITE.png" id="5_folmp"]
@@ -35,6 +36,8 @@ shadow_offset = Vector2(0, 2)
 script = ExtResource("1_5imov")
 
 [node name="Page0" parent="." unique_id=1809680239 instance=ExtResource("1_mpb3p")]
+
+[node name="Page1" parent="." unique_id=497899358 instance=ExtResource("3_tckpn")]
 
 [node name="Mon" type="Sprite2D" parent="." unique_id=476307857]
 position = Vector2(104, 206)

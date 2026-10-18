@@ -23,6 +23,14 @@ shadow_size = 0
 shadow_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
 shadow_offset = Vector2(0, 2)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nrelq"]
+font = ExtResource("2_acl64")
+font_size = 24
+font_color = Color(0.09411765, 0.4392157, 0.84705883, 1)
+shadow_size = 0
+shadow_color = Color(0.53333336, 0.65882355, 0.8156863, 1)
+shadow_offset = Vector2(0, 2)
+
 [node name="Page0" type="Node2D" unique_id=1809680239]
 script = ExtResource("1_ky7uq")
 
@@ -111,7 +119,7 @@ offset_left = 133.0
 offset_right = 263.0
 offset_bottom = 26.0
 text = "Rojo"
-label_settings = SubResource("LabelSettings_htemk")
+label_settings = SubResource("LabelSettings_nrelq")
 horizontal_alignment = 1
 
 [node name="No_ID" type="Label" parent="Info" unique_id=132315697]
