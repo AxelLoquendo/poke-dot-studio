@@ -347,7 +347,10 @@ func _activate_command() -> void:
 		return
 	match picked:
 		"Resumen":
-			_set_help("Resumen (próximamente).")
+			var host: Node = get_tree().current_scene
+			var summary: SummaryScreen = SummaryScreen.open_for(host, party, _index)
+			await summary.closed
+			summary.queue_free()
 			_leave_commands()
 		"Cambiar":
 			_hide_commands()

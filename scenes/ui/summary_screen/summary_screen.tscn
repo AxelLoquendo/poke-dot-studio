@@ -1,7 +1,89 @@
 [gd_scene format=3 uid="uid://dqj2yfqlgjsbg"]
 
+[ext_resource type="Script" uid="uid://drvyb88t2hi8n" path="res://scripts/core/ui/summary_screen/summary_screen.gd" id="1_5imov"]
 [ext_resource type="PackedScene" uid="uid://cucw82m1afjv0" path="res://scenes/ui/summary_screen/page_0.tscn" id="1_mpb3p"]
+[ext_resource type="Texture2D" uid="uid://dsm23msvbcosy" path="res://assets/Pokemon/Front/ALAKAZAM_1.png" id="3_udv6r"]
+[ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="4_tckpn"]
+[ext_resource type="Texture2D" uid="uid://5mdhdfaafjda" path="res://assets/Items/ALAKAZITE.png" id="5_folmp"]
+[ext_resource type="Texture2D" uid="uid://ddfa8p6s1pu3i" path="res://assets/ui/Summary/icon_ball_POKEBALL.png" id="6_p23o8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vplxg"]
+font = ExtResource("4_tckpn")
+font_size = 24
+font_color = Color(0.972549, 0.972549, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1svey"]
+font = ExtResource("4_tckpn")
+font_size = 24
+font_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+shadow_size = 0
+shadow_color = Color(0.6901961, 0.6901961, 0.6901961, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_37skr"]
+font = ExtResource("4_tckpn")
+font_size = 24
+font_color = Color(0.09411765, 0.57254905, 0.9411765, 1)
+shadow_size = 0
+shadow_color = Color(0.050980393, 0.28627452, 0.46666667, 1)
+shadow_offset = Vector2(0, 2)
 
 [node name="Summary_Screen" type="CanvasLayer" unique_id=734637596]
+script = ExtResource("1_5imov")
 
 [node name="Page0" parent="." unique_id=1809680239 instance=ExtResource("1_mpb3p")]
+
+[node name="Mon" type="Sprite2D" parent="." unique_id=476307857]
+position = Vector2(104, 206)
+texture = ExtResource("3_udv6r")
+
+[node name="Mon_Name" type="Label" parent="Mon" unique_id=1132768205]
+offset_left = -62.0
+offset_top = -146.0
+offset_right = 44.0
+offset_bottom = -120.0
+text = "Terapagos"
+label_settings = SubResource("LabelSettings_vplxg")
+
+[node name="Lvl" type="Label" parent="Mon" unique_id=741663820]
+offset_left = -60.0
+offset_top = -116.0
+offset_right = -20.0
+offset_bottom = -90.0
+text = "100"
+label_settings = SubResource("LabelSettings_1svey")
+
+[node name="Gender" type="Label" parent="Mon" unique_id=708308063]
+offset_left = 74.0
+offset_top = -146.0
+offset_right = 86.0
+offset_bottom = -120.0
+text = "♂"
+label_settings = SubResource("LabelSettings_37skr")
+
+[node name="Item_Sprite" type="Sprite2D" parent="Mon" unique_id=1986609889]
+position = Vector2(-74, 114)
+texture = ExtResource("5_folmp")
+
+[node name="Item" type="Label" parent="Mon/Item_Sprite" unique_id=2105655284]
+offset_left = 36.0
+offset_top = -4.0
+offset_right = 142.0
+offset_bottom = 22.0
+text = "Item"
+label_settings = SubResource("LabelSettings_vplxg")
+
+[node name="Item_Name" type="Label" parent="Mon/Item_Sprite" unique_id=217434497]
+offset_left = -26.0
+offset_top = 34.0
+offset_right = 70.0
+offset_bottom = 60.0
+text = "Alakazite"
+label_settings = SubResource("LabelSettings_1svey")
+
+[node name="Ball" type="Sprite2D" parent="Mon" unique_id=971089294]
+position = Vector2(-78, -130)
+texture = ExtResource("6_p23o8")

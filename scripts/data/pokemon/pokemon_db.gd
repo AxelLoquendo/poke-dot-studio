@@ -8,7 +8,7 @@ var _moves: Dictionary = {}
 var _items: Dictionary = {}
 var _species: Dictionary = {}
 var _forms: Dictionary = {}
-
+var _dex_numbers: Dictionary = {}
 
 func _ready() -> void:
 	_load_all()
@@ -48,6 +48,8 @@ func type_effectiveness(attack: PokemonEnums.TypeId, def1: PokemonEnums.TypeId, 
 		m *= TypeChart.multiplier(attack, type_data(def2))
 	return m
 
+func national_dex(key: StringName) -> int:
+	return int(_dex_numbers.get(String(key), 0))
 
 func _load_all() -> void:
 	_load_types(_read_json("types.json"))
@@ -132,11 +134,12 @@ func _load_items(rows: Array) -> void:
 
 
 func _load_species(rows: Array) -> void:
-	for row: Variant in rows:
-		if row is not Dictionary:
-			continue
+	_dex_numbers.clear()
+	for i: int in range(rows.size()):
+		var row: Dictionary = rows[i]
 		var data: SpeciesData = _species_from_dict(row, 0)
 		_species[String(data.key)] = data
+		_dex_numbers[String(data.key)] = i + 1
 
 
 func _load_forms(rows: Array) -> void:
