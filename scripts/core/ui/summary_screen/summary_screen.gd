@@ -10,10 +10,11 @@ var party: Party
 var party_index: int = 0
 var _page: int = 0
 var _active: bool = false
-const PAGE_COUNT: int = 2  # 0 Info, 1 Memo
+const PAGE_COUNT: int = 3
 
 @onready var page0: SummaryPage0 = $Page0 as SummaryPage0
 @onready var page1: SummaryPage1 = $Page1 as SummaryPage1
+@onready var page2: SummaryPage2 = $Page2 as SummaryPage2
 
 @onready var mon_sprite: Sprite2D = $Mon
 @onready var mon_name: Label = $Mon/Mon_Name
@@ -61,6 +62,7 @@ func _refresh() -> void:
 		return
 	var mon: Pokemon = party.get_at(party_index)
 	_bind_header(mon)
+
 	if page0 != null:
 		page0.visible = (_page == 0)
 		if _page == 0:
@@ -69,14 +71,22 @@ func _refresh() -> void:
 		page1.visible = (_page == 1)
 		if _page == 1:
 			page1.bind(mon)
+	if page2 != null:
+		page2.visible = (_page == 2)
+		if _page == 2:
+			page2.bind(mon)
+		else:
+			page2.reset_subview()
 
 func _set_page(next: int) -> void:
 	var n: int = posmod(next, PAGE_COUNT)
 	if n == _page:
 		return
+	if page2 != null:
+		page2.reset_subview()
 	_page = n
 	_refresh()
-	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SUMMARY_CHANGE_PAGE)
+	MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CURSOR)
 
 func _bind_header(mon: Pokemon) -> void:
 	if mon == null:
@@ -124,9 +134,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not _active:
 		return
 	if event.is_action_pressed("buttonB"):
+		if _page == 2 and page2 != null and page2.try_back():
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_CANCEL)
+			get_viewport().set_input_as_handled()
+			return
 		close()
 		get_viewport().set_input_as_handled()
 		return
+	if _page == 2 and page2 != null and not page2.is_in_subview():
+		if event.is_action_pressed("buttonSpecial"):
+			page2.open_ability_desc()
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
+			get_viewport().set_input_as_handled()
+			return
+		if event.is_action_pressed("buttonStart"):
+			page2.open_stats()
+			MusicManager.reproducir_se(SFXGame.SoundEffectID.SE_GUI_SEL_DECISION)
+			get_viewport().set_input_as_handled()
+			return
 	if event.is_action_pressed("Up"):
 		if party != null and party.size() > 1:
 			party_index = posmod(party_index - 1, party.size())
@@ -151,6 +176,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_set_page(_page + 1)
 		get_viewport().set_input_as_handled()
 		return
+	# Start en otras páginas: consumir para que NO abra el pause menu
+	if event.is_action_pressed("buttonStart"):
+		get_viewport().set_input_as_handled()
+		return
+	# Cry solo con Select
 	if event.is_action_pressed("buttonSelect"):
 		_play_current_cry()
 		get_viewport().set_input_as_handled()

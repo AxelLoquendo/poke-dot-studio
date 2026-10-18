@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cs0sqdv66o6mx"]
 
+[ext_resource type="Script" uid="uid://pgje7evb4gak" path="res://scripts/core/ui/summary_screen/summary_page2.gd" id="1_mlwde"]
 [ext_resource type="Texture2D" uid="uid://babhdtluocq7i" path="res://assets/ui/Summary/bg_3.png" id="1_oqenq"]
 [ext_resource type="FontFile" uid="uid://bpkh1ceii3bkx" path="res://font/power green.ttf" id="2_xvo0x"]
 [ext_resource type="Texture2D" uid="uid://c5w8743i2bpas" path="res://assets/Plugins/Enhanced Pokemon UI/iv_ratings.png" id="3_2qusw"]
@@ -74,6 +75,7 @@ shadow_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
 shadow_offset = Vector2(0, 2)
 
 [node name="Page2" type="Node2D" unique_id=1284904289]
+script = ExtResource("1_mlwde")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=2002338177]
 position = Vector2(256, 192)
@@ -109,6 +111,7 @@ text = "Aquí va la descripción de
 la habilidad solicitada o
 eso creo xd."
 label_settings = SubResource("LabelSettings_mlwde")
+autowrap_mode = 2
 
 [node name="Bg_Stats" type="Sprite2D" parent="." unique_id=695040024]
 visible = false
